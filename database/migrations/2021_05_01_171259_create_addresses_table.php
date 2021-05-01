@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSurveysTable extends Migration
+class CreateAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateSurveysTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey', function (Blueprint $table) {
+        Schema::create('address', function (Blueprint $table) {
             $table->id();
+            $table->string('city');
+            $table->string('postal_code');
+            $table->string('phone');
+            $table->string('address_detail');
             $table->foreignId('username')->constrained();
-            $table->integer('point');
+            $table->enum('stat_delete', ['0', '1'])
+            ->default( '0')->comment('0 = notDeleted, 1 = Deleted');
             $table->timestamps();
         });
     }
@@ -28,6 +33,6 @@ class CreateSurveysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surveys');
+        Schema::dropIfExists('addresses');
     }
 }

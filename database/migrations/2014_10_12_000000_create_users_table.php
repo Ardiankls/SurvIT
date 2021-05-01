@@ -30,7 +30,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('updated_at');
             $table->enum('is_admin', ['0', '1'])
             ->default( '0')->comment('0 = notAdmin, 1 = Admin');
-            $table->integer('stat_delete');
+            $table->enum('stat_delete', ['0', '1'])
+            ->default( '0')->comment('0 = notDeleted, 1 = Deleted');
             $table->rememberToken();
             $table->timestamps();
         });
