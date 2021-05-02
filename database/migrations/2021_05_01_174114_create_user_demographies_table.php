@@ -15,8 +15,8 @@ class CreateUserDemographiesTable extends Migration
     {
         Schema::create('user_demography', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('username')->constrained();
-            $table->foreignId('id_demography')->constrained();
+            $table->foreignId('username');
+            $table->foreignId('id_demography');
             $table->timestamps();
         });
     }

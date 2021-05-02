@@ -15,8 +15,8 @@ class CreateSurveyDemographiesTable extends Migration
     {
         Schema::create('survey_demography', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('survey_id')->constrained();
-            $table->foreignId('id_demography')->constrained();
+            $table->foreignId('survey_id');
+            $table->foreignId('id_demography');
             $table->timestamps();
         });
     }

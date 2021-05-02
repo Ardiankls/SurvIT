@@ -15,8 +15,8 @@ class CreateSurveyAnswersTable extends Migration
     {
         Schema::create('survey_answer', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('qsurvey_id')->constrained();
-            $table->foreignId('username')->constrained();
+            $table->foreignId('qsurvey_id');
+            $table->foreignId('username');
             $table->string('answer');
             $table->timestamps();
         });

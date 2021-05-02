@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
             $table->string('postal_code');
             $table->string('phone');
             $table->string('address_detail');
-            $table->foreignId('username')->constrained();
+            $table->foreignId('username');
             $table->enum('stat_delete', ['0', '1'])
             ->default( '0')->comment('0 = notDeleted, 1 = Deleted');
             $table->timestamps();

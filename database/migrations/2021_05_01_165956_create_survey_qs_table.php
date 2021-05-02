@@ -15,7 +15,7 @@ class CreateSurveyQsTable extends Migration
     {
         Schema::create('survey_q', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('survey_id')->constrained();
+            $table->foreignId('survey_id');
             $table->integer('qtype');
             $table->string('question');
             $table->enum('null_able', ['0', '1'])
