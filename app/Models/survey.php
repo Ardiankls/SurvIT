@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class survey extends Model
 {
     use HasFactory;
+    protected $table = 'surveys';
+
+    protected $fillable = [
+        'user_id','age_from','age_to','point'
+    ];
+
+    public function user() {
+        return $this->belongsTo(Users::class,'user_id', 'id');
+    }
 }

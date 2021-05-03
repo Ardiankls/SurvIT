@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class survey_q extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'survey_id','qtype','question','null_able'
+    ];
+
+    public function survey() {
+        return $this->belongsTo(survey::class,'survey_id', 'id');
+    }
 }

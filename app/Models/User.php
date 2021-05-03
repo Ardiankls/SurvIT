@@ -27,6 +27,8 @@ class User extends Authenticatable
         'phone',
         'birthdate',
         'point',
+        'gender_id',
+        'address_id',
         'is_verified',
         'is_admin',
         'stat_delete'
