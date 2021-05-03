@@ -22,10 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('phone')->nullable();
             $table->timestamp('birthdate')->nullable();
-            $table->enum('gender', ['0', '1', '2'])
-            ->default( '0')->comment('0 = Unassigned, 1 = Male, 2 = Female');
             $table->integer('point');
-            $table->timestamp('verified_at')->nullable();
+            $table->enum('is_verified', ['0', '1'])
+            ->default( '0')->comment('0 = notVerified, 1 = Verified');
             $table->enum('is_admin', ['0', '1'])
             ->default( '0')->comment('0 = notAdmin, 1 = Admin');
             $table->enum('stat_delete', ['0', '1'])

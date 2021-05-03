@@ -13,10 +13,10 @@ class CreateSurveyAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey_answer', function (Blueprint $table) {
+        Schema::create('survey_answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('qsurvey_id');
-            $table->foreignId('username');
+            $table->foreignId('survey_q_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->string('answer');
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserDemographiesTable extends Migration
+class CreateUserJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUserDemographiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_demography', function (Blueprint $table) {
+        Schema::create('user_jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('username');
-            $table->foreignId('id_demography');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('job_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateUserDemographiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_demographies');
+        Schema::dropIfExists('user_jobs');
     }
 }

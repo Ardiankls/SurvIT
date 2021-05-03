@@ -13,9 +13,11 @@ class CreateSurveysTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey', function (Blueprint $table) {
+        Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('username');
+            $table->foreignId('user_id')->constrained();
+            $table->integer('age_from');
+            $table->integer('age_to');
             $table->integer('point');
             $table->timestamps();
         });

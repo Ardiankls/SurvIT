@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePayMethodsTable extends Migration
+class AddForeignKeyToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePayMethodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pay_methods', function (Blueprint $table) {
-            $table->id();
-            $table->string('method_name');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->foreignId('gender_id')->constrained();
+            $table->foreignId('address_id')->constrained();
         });
     }
 
@@ -27,6 +27,8 @@ class CreatePayMethodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pay_methods');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }
