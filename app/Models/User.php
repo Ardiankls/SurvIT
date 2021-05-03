@@ -16,15 +16,20 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+
     protected $fillable = [
-        'email',
+        'username',
         'password',
-        'role_id',
-        'is_login',
+        'email',
+        'first_name',
+        'last_name',
+        'phone',
+        'birthdate',
+        'point',
+        'is_verified',
         'is_admin',
-        'student_id',
-        'lecturer_id',
-        'staff_id'
+        'stat_delete'
     ];
 
     /**
@@ -34,7 +39,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
@@ -45,4 +50,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function gender() {
+        return $this->belongsTo(gender::class,'gender_id', 'id');
+    }
+
+    public function address() {
+        return $this->belongsTo(address::class,'address_id', 'id');
+    }
 }
