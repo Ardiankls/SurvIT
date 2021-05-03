@@ -16,10 +16,10 @@ class job extends Model
         'job_type',
     ];
 
-    public function survey_demogrpahy(){
-        return $this->hasMany(survey_demography::class);
+    public function survey_demography(){
+        return $this->morphMany('App\survey_demography','demography_id');
     }
-
+    
     public function user_jobs(){
         return $this->belongsToMany(job::class, 'user_job', 'job_id', 'username')->withTimeStamps();
     }

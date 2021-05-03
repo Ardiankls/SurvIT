@@ -15,7 +15,7 @@ class interest extends Model
         'interest',
     ];
 
-    public function survey_demogrpahy(){
-        return $this->hasMany(survey_demography::class);
+    public function survey_demography(){
+        return $this->morphMany('App\survey_demography','demography_id');
     }
 }
