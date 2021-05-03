@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDemographiesTable extends Migration
+class CreateUserInterestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDemographiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('demography', function (Blueprint $table) {
+        Schema::create('user_interests', function (Blueprint $table) {
             $table->id();
-            $table->string('demography');
-            $table->string('status');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('interest_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateDemographiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('demographies');
+        Schema::dropIfExists('user_interests');
     }
 }

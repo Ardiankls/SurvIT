@@ -13,10 +13,11 @@ class CreateSurveyDemographiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey_demography', function (Blueprint $table) {
+        Schema::create('survey_demographies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('survey_id')->constrained();
-            $table->foreignId('id_demography')->constrained();
+            $table->integer('demography_id');
+            $table->string('demography_type');
             $table->timestamps();
         });
     }

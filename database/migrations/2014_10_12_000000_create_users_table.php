@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username')->unique();
             $table->string('password');
@@ -22,12 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('phone')->nullable();
             $table->timestamp('birthdate')->nullable();
-            $table->enum('gender', ['0', '1', '2'])
-            ->default( '0')->comment('0 = Unassigned, 1 = Male, 2 = Female');
             $table->integer('point');
-            //$table->timestamp('created_at');
             $table->timestamp('verified_at')->nullable();
-            //$table->timestamp('updated_at');
             $table->enum('is_admin', ['0', '1'])
             ->default( '0')->comment('0 = notAdmin, 1 = Admin');
             $table->enum('stat_delete', ['0', '1'])

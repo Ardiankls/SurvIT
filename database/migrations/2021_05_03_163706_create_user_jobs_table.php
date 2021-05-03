@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeyToUsersTable extends Migration
+class CreateUserJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddForeignKeyToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('user_jobs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('job_id')->constrained();
-            $table->foreignId('address_id')->constrained();
-            //
+            $table->timestamps();
         });
     }
 
@@ -27,8 +28,6 @@ class AddForeignKeyToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('user_jobs');
     }
 }
