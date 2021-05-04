@@ -27,15 +27,17 @@ class UserController extends Controller
         $jobs = job::all();
         $interests = interest::all();
 
-        $mygender = Auth::gender_id();
-        $myjob = Auth::job_id();
-        $myinterest = Auth::interest_id();
+        $users = User::findOrFail(Auth::id());
+        $mygender = $user->gender_id;
+        $myjob = $user->job->job_id;
+        $myinterest = $user->interest->interest_id;
+        dd($myjob);
         //$surveys = survey::all()->where('gender_id', $mygender);
-        $surveys = survey::all()->where([
+        $surveys = survey::all()->where(
             ['gender_id', '=', $mygender],
             ['job_id', '=', $myjob],
             ['interest_id', '=', $myinterest],
-        ]);
+        );
 
         return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'user', 'surveys'));
     }

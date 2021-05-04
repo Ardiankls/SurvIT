@@ -24,16 +24,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($events as $event)
-                                    {{-- <tr>
-                                        <td><a href="@auth{{ route('student.event.show', $event) }}@endauth">{{ $event->event }}</td>
-                                        @if ($event->type == 0)
-                                            <td>Student Exchange</td>
-                                        @else
-                                            <td>Student Excursion</td>
-                                        @endif --}}
-                                    {{-- </tr> --}}
-                                {{-- @endforeach --}}
+                                @foreach ($surveys as $survey)
+                                    <tr>
+                                        <td>
+                                            {{ $survey->user_id }}
+                                        </td>
+                                        <td>
+                                            {{ $survey->interest_id }}
+                                        </td>
+                                        <td>
+                                            {{ $survey->pay }}
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     @endif

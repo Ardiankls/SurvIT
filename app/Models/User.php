@@ -62,4 +62,12 @@ class User extends Authenticatable
     public function address() {
         return $this->belongsTo(address::class,'address_id', 'id');
     }
+
+    public function job() {
+        return $this->belongsTo(user_job::class, 'job_id', 'id');
+    }
+
+    public function interest() {
+        return $this->belongsTo(user_interest::class, 'interest_id', 'id');
+    }
 }

@@ -16,4 +16,8 @@ class interest extends Model
     public function survey_demography(){
         return $this->morphMany('App\survey_demography','demography_id');
     }
+
+    public function users(){
+        return $this->belongsToMany(user::class, 'user_job', 'interest_id', 'user_id')->withTimeStamps();
+    }
 }

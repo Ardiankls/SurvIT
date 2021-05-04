@@ -17,7 +17,7 @@ class job extends Model
         return $this->morphMany('App\survey_demography','demography_id');
     }
 
-    public function user_jobs(){
-        return $this->belongsToMany(job::class, 'user_job', 'job_id', 'username')->withTimeStamps();
+    public function users(){
+        return $this->belongsToMany(user::class, 'user_job', 'job_id', 'user_id')->withTimeStamps();
     }
 }
