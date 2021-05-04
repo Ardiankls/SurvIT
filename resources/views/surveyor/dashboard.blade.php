@@ -32,7 +32,7 @@
                                         @else
                                             <td>Student Excursion</td>
                                         @endif --}}
-                                    </tr>
+                                    {{-- </tr> --}}
                                 {{-- @endforeach --}}
                             </tbody>
                         </table>

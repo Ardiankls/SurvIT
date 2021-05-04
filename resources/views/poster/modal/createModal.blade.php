@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="survey.store" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">

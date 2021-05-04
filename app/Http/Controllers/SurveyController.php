@@ -15,7 +15,7 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        //
+        return view('poster.dashboard');
     }
 
     /**
