@@ -12,7 +12,12 @@
                             </div>
                         @endif
                     </div>
-                    <a href="" data-toggle="modal" data-target="#demography" class="btn btn-primary ">Isi Demografi terlebih dahulu</a>
+                    @if ($user->is_survey_avail == '0')
+                        <a href="" data-toggle="modal" data-target="#demography" class="btn btn-primary ">Isi Demografi terlebih dahulu</a>
+                    @else
+
+                    @endif
+
                 </div>
 
             </div>

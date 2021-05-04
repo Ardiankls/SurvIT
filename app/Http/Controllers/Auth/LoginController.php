@@ -50,7 +50,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($user)){
             $this->isLogin(Auth::id());
-            return redirect()->route('home');
+            return redirect()->route('user.index');
         }
 
         return redirect()->route('login');
@@ -64,7 +64,7 @@ class LoginController extends Controller
         ]);
 
         $request->session()->invalidate();
-        return $this->LoggedOut($request) ?: redirect('user.index');
+        return $this->LoggedOut($request) ?: redirect('login');
     }
 
     public function isLogin(int $id)
