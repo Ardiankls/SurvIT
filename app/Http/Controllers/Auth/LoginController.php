@@ -64,7 +64,7 @@ class LoginController extends Controller
         ]);
 
         $request->session()->invalidate();
-        return $this->LoggedOut($request) ?: redirect('login');
+        return $this->LoggedOut($request) ?: redirect('user.index');
     }
 
     public function isLogin(int $id)

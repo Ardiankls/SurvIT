@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">
@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="form-group"><label>Pekerjaan</label>
-                            <select name="course_name" class="custom-select">
+                            <select name="job" class="custom-select">
                                 @foreach ($jobs as $job)
                                     <option value="{{ $job->id }}">{{ $job->job_name }}</option>
                                 @endforeach
@@ -30,7 +30,7 @@
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dynamic_field">Kesukaan
                                 <tr>
-                                    <td><select name="creator_team1" class="custom-select">
+                                    <td><select name="interest" class="custom-select">
                                             @foreach ($interests as $interest)
                                                 <option value="{{ $interest->id }}" required>
                                                     {{ $interest->interest }} </option>
