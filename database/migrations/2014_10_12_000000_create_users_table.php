@@ -24,13 +24,13 @@ class CreateUsersTable extends Migration
             $table->timestamp('birthdate')->nullable();
             $table->integer('point')->nullable();
             $table->enum('is_login', ['0', '1'])
-                ->default( '0')->comment('0 = notLogin, 1 = Login');
+                ->default('0')->comment('0 = notLogin, 1 = Login');
             $table->enum('is_verified', ['0', '1'])
-            ->default( '0')->comment('0 = notVerified, 1 = Verified');
+                ->default('0')->comment('0 = notVerified, 1 = Verified');
             $table->enum('is_admin', ['0', '1'])
-            ->default( '0')->comment('0 = notAdmin, 1 = Admin');
+                ->default('0')->comment('0 = notAdmin, 1 = Admin');
             $table->enum('stat_delete', ['0', '1'])
-            ->default( '0')->comment('0 = notDeleted, 1 = Deleted');
+                ->default('0')->comment('0 = notDeleted, 1 = Deleted');
             $table->rememberToken();
             $table->timestamps();
         });
