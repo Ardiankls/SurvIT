@@ -10,8 +10,6 @@ class user_interest extends Model
     use HasFactory;
     protected $table = 'user_interests';
 
-    protected $primaryKey = "user_interests_id";
-  
     protected $fillable = [
         'user_id','interest_id'
     ];
