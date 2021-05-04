@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class survey_q extends Model
 {
     use HasFactory;
+ 
+    protected $primaryKey = "survey_q_id";
+ 
     protected $fillable = [
         'survey_id','qtype','question','null_able'
     ];

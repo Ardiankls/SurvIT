@@ -10,6 +10,8 @@ class user_job extends Model
     use HasFactory;
     protected $table = 'user_jobs';
 
+    protected $primaryKey = "user_job_id";
+ 
     protected $fillable = [
         'user_id','job_id'
     ];

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class survey_demography extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = "survey_demography_id";
+    
     protected $fillable = [
         'survey_id','demography_id','demography_type'
     ];
