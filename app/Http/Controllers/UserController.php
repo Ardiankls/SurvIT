@@ -49,7 +49,8 @@ class UserController extends Controller
         $id = Auth::id();
         $user = User::findOrFail($id);
         $user->update([
-            'gender_id' => $request->gender
+            'gender_id' => $request->gender,
+            'is_survey_avail' => '1'
         ]);
 
         user_interest::create([
@@ -62,7 +63,7 @@ class UserController extends Controller
             'job_id' => $request->job
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('user.index');
     }
 
     /**
