@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\gender;
+use App\Models\interest;
+use App\Models\job;
+use App\Models\User;
 use App\Models\survey;
+use App\Models\user_interest;
+use App\Models\user_job;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
@@ -15,7 +22,11 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        return view('poster.dashboard');
+        $genders = gender::all();
+        $jobs = job::all();
+        $interests = interest::all();
+
+        return view('poster.dashboard', compact('genders', 'jobs', 'interests'));
     }
 
     /**
@@ -45,7 +56,7 @@ class SurveyController extends Controller
             'limit' => $request->limit,
         ]);
 
-        return redirect()->route('user.index');
+        return redirect()->route('survey.index');
     }
 
     /**
