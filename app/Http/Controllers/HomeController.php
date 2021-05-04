@@ -31,28 +31,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $genders = gender::all();
-        $jobs = job::all();
-        $interests = interest::all();
-
-        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests'));
-    }
-
-
-    public function store(Request $request, User $user)
-    {
-        $user->update([
-            'gender_id' => $request->gender
-        ]);
-
-        $user->update([
-            'gender_id' => $request->gender
-        ]);
-
-        $user->update([
-            'gender_id' => $request->gender
-        ]);
-
-        return redirect()->route('home');
+        //
     }
 }
