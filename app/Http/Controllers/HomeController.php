@@ -3,14 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\gender;
-use App\Models\interest;
-use App\Models\job;
-use App\Models\User;
-use App\Models\userinterest;
-use App\Models\userjob;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
