@@ -28,7 +28,7 @@ class HomeController extends Controller
     }
 
     public function createDemo(){
-        $gender = gender::all()->get('gender');
-        return view('surveyor.dashboard', compact('gender'));
+        $genders = gender::all();
+        return view('surveyor.dashboard', compact('genders'));
     }
 }
