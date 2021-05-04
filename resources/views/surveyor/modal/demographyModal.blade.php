@@ -11,34 +11,33 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="container" style="padding: 20px 55px;">
-                        <div class="form-group"><label>Jenis Kelamin</label>
-                            <select name="course_name" class="custom-select">
+                        <div class="form-group">
+                            <label>Jenis Kelamin</label>
+                            <select name="gender" class="custom-select">
                                 @foreach ($genders as $gender)
-                                    <option value="{{ $gender->id }}" required>
-                                        {{ $gender->gender }} </option>
+                                    <option value="{{ $gender->id }}">{{ $gender->gender }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="form-group"><label>Pekerjaan</label>
                             <select name="course_name" class="custom-select">
-                                {{--                                @foreach ($courses as $course)--}}
-                                {{--                                    <option value="{{ $course->id }}" required>--}}
-                                {{--                                        {{ $course->courses->name }} </option>--}}
-                                {{--                                @endforeach--}}
+                                {{-- @foreach ($courses as $course) --}}
+                                {{-- <option value="{{ $course->id }}" required> --}}
+                                {{-- {{ $course->courses->name }} </option> --}}
+                                {{-- @endforeach --}}
                             </select>
                         </div>
                         <div class="form-group"><label>Kesukaan</label>
                             <select name="course_name" class="custom-select">
-                                {{--                                @foreach ($courses as $course)--}}
-                                {{--                                    <option value="{{ $course->id }}" required>--}}
-                                {{--                                        {{ $course->courses->name }} </option>--}}
-                                {{--                                @endforeach--}}
+                                {{-- @foreach ($courses as $course) --}}
+                                {{-- <option value="{{ $course->id }}" required> --}}
+                                {{-- {{ $course->courses->name }} </option> --}}
+                                {{-- @endforeach --}}
                             </select>
                         </div>
 
-                        <button
-                            class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit
+                        <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit
                         </button>
                     </div>
 
