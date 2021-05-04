@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class survey extends Model
 {
     use HasFactory;
-    protected $table = 'surveys';
+
+    protected $primaryKey = "survey_id";
 
     protected $fillable = [
-        'user_id','age_from','age_to','point'
+        'user_id',
+        'age_from',
+        'age_to',
+        'point',
     ];
 
     public function user() {

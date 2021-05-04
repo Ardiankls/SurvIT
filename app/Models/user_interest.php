@@ -11,7 +11,8 @@ class user_interest extends Model
     protected $table = 'user_interests';
 
     protected $fillable = [
-        'user_id','interest_id'
+        'user_id',
+        'interest_id',
     ];
 
     public function user() {

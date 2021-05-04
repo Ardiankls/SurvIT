@@ -12,13 +12,13 @@ class survey_answer extends Model
     protected $primaryKey = "survey_id";
 
     protected $fillable = [
-        'qsurvey_id',
+        'survey_q_id',
         'username',
         'answer',
     ];
 
     public function survey_q(){
-        return $this->belongsTo(survey_q::class, 'qsurvey_id', 'qsurvey_id');
+        return $this->belongsTo(survey_q::class, 'survey_q_id', 'id');
     }
 
     public function user(){
