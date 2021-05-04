@@ -9,8 +9,6 @@ class survey_q extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "survey_q_id";
-
     protected $fillable = [
         'survey_id',
         'qtype',

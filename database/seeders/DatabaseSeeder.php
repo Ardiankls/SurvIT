@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             InterestSeeder::class,
             JobSeeder::class,
             GenderSeeder::class,
+            UserSeeder::class,
         ]);
 
         Model::reguard();
