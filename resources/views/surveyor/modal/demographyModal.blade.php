@@ -22,19 +22,23 @@
 
                         <div class="form-group"><label>Pekerjaan</label>
                             <select name="course_name" class="custom-select">
-                                {{-- @foreach ($courses as $course) --}}
-                                {{-- <option value="{{ $course->id }}" required> --}}
-                                {{-- {{ $course->courses->name }} </option> --}}
-                                {{-- @endforeach --}}
+                                @foreach ($jobs as $job)
+                                    <option value="{{ $job->id }}">{{ $job->job_name }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="form-group"><label>Kesukaan</label>
-                            <select name="course_name" class="custom-select">
-                                {{-- @foreach ($courses as $course) --}}
-                                {{-- <option value="{{ $course->id }}" required> --}}
-                                {{-- {{ $course->courses->name }} </option> --}}
-                                {{-- @endforeach --}}
-                            </select>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dynamic_field">Kesukaan
+                                <tr>
+                                    <td><select name="creator_team1" class="custom-select">
+                                            @foreach ($interests as $interest)
+                                                <option value="{{ $interest->id }}" required>
+                                                    {{ $interest->interest }} </option>
+                                            @endforeach
+                                        </select></td>
+                                    <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                                </tr>
+                            </table>
                         </div>
 
                         <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit
@@ -49,3 +53,4 @@
         </div>
     </div>
 </div>
+

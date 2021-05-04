@@ -14,6 +14,7 @@
                     </div>
                     <a href="" data-toggle="modal" data-target="#demography" class="btn btn-primary ">Isi Demografi terlebih dahulu</a>
                 </div>
+
             </div>
         </div>
     </div>

@@ -79,5 +79,24 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        $(document).ready(function(){
+            var i=1;
+            $('#add').click(function(){
+                i++;
+                document.getElementById('count').value = i;
+                $('#dynamic_field').append('<tr id="row'+i+'"><td><select name="creator_team'+i+'" class="custom-select">\n' +
+                    '                                        @foreach ($interests as $interest)\n' +
+                    '                                            <option value="{{ $interest->id }}" required>\n' +
+                    '                                                {{ $interest->$interest }} </option>\n' +
+                    '                                        @endforeach\n' +
+                    '                                    </select></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#row'+button_id+'').remove();
+            });
+        });
+    </script>
 </body>
 </html>
