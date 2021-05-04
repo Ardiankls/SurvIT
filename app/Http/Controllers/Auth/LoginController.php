@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,39 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+        $user = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if(Auth::attempt($user)){
+            $this->isLogin(Auth::id());
+            return redirect()->route('home');
+        }
+
+        return redirect()->route('login');
+    }
+
+    public function logout(Request $request)
+    {
+        $user = User::findOrFail(Auth::id());
+        $user->update([
+            'is_login' => '0',
+        ]);
+
+        $request->session()->invalidate();
+        return $this->LoggedOut($request) ?: redirect('login');
+    }
+
+    public function isLogin(int $id)
+    {
+        $user = User::findOrFail($id);
+        return $user->update([
+            'is_login' => '1',
+        ]);
     }
 }

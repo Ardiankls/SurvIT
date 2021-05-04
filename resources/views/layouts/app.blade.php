@@ -15,7 +15,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -80,5 +79,24 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        $(document).ready(function(){
+            var i=1;
+            $('#add').click(function(){
+                i++;
+                document.getElementById('count').value = i;
+                $('#dynamic_field').append('<tr id="row'+i+'"><td><select name="creator_team'+i+'" class="custom-select">\n' +
+                    '                                        @foreach ($interests as $interest)\n' +
+                    '                                            <option value="{{ $interest->id }}" required>\n' +
+                    '                                                {{ $interest->$interest }} </option>\n' +
+                    '                                        @endforeach\n' +
+                    '                                    </select></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#row'+button_id+'').remove();
+            });
+        });
+    </script>
 </body>
 </html>

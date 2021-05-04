@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class user_job extends Model
 {
     use HasFactory;
+
     protected $table = 'user_jobs';
 
     protected $fillable = [
-        'user_id','job_id'
+        'user_id',
+        'job_id',
     ];
 
     public function user() {

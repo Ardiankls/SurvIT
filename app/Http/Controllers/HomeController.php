@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\gender;
+use App\Models\interest;
+use App\Models\job;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $genders = gender::all();
+        $jobs = job::all();
+        $interests = interest::all();
+
+        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests'));
     }
 }
