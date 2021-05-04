@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
                 ->default('0')->comment('0 = notLogin, 1 = Login');
             $table->enum('is_verified', ['0', '1'])
                 ->default('0')->comment('0 = notVerified, 1 = Verified');
+            $table->enum('is_survey_avail', ['0', '1'])
+                ->default('0')->comment('0 = notAvailable, 1 = Available');
             $table->enum('is_admin', ['0', '1'])
                 ->default('0')->comment('0 = notAdmin, 1 = Admin');
             $table->enum('stat_delete', ['0', '1'])
