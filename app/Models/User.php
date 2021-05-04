@@ -32,6 +32,7 @@ class User extends Authenticatable
         'is_login',
         'is_verified',
         'is_admin',
+        'is_survey_avail',
         'stat_delete'
     ];
 

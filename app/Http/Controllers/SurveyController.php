@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user_demography;
 use Illuminate\Http\Request;
+use App\Models\survey;
+use Illuminate\Support\Facades\Auth;
 
-class UserDemographyController extends Controller
+class SurveyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,16 +36,25 @@ class UserDemographyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        survey::create([
+            'user_id' => Auth::id(),
+            'interest_id' => $request->interest,
+            'job_id' => $request->job,
+            'gender_id' => $request->gender,
+            'pay' => $request->pay,
+            'limit' => $request->limit,
+        ]);
+
+        return redirect()->route('user.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\user_demography  $user_demography
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(user_demography $user_demography)
+    public function show($id)
     {
         //
     }
@@ -52,10 +62,10 @@ class UserDemographyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\user_demography  $user_demography
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(user_demography $user_demography)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +74,10 @@ class UserDemographyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\user_demography  $user_demography
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user_demography $user_demography)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +85,10 @@ class UserDemographyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\user_demography  $user_demography
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(user_demography $user_demography)
+    public function destroy($id)
     {
         //
     }

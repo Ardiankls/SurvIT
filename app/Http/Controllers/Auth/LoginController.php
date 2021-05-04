@@ -50,7 +50,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($user)){
             $this->isLogin(Auth::id());
-            return redirect()->route('home');
+            return redirect()->route('user.index');
         }
 
         return redirect()->route('login');
