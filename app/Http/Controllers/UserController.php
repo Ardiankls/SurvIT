@@ -46,9 +46,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Auth::user();
-        $user = User::find($id);
-        // dd($id);
+        $id = Auth::id();
+        $user = User::findOrFail($id);
         $user->update([
             'gender_id' => $request->gender
         ]);
