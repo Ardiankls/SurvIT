@@ -9,8 +9,6 @@ class interest extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "interest_id";
-
     protected $fillable = [
         'interest',
     ];
