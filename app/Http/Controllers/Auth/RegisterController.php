@@ -72,7 +72,6 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'is_verified' => '1',
             'is_login' => '1',
         ]);
     }
