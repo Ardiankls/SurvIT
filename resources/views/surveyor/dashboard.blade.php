@@ -19,6 +19,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Judul</th>
+                                    <th scope="col">Link</th>
                                     <th scope="col">Interest</th>
                                     <th scope="col">Point</th>
                                 </tr>
@@ -27,13 +28,16 @@
                                 @foreach ($surveys as $survey)
                                     <tr>
                                         <td>
-                                            {{ $survey->user_id }}
+                                            {{ $survey->title }}
                                         </td>
                                         <td>
-                                            {{ $survey->interest_id }}
+                                            {{ $survey->link }}
                                         </td>
                                         <td>
-                                            {{ $survey->pay }}
+                                            {{ $survey->interest->interest }}
+                                        </td>
+                                        <td>
+                                            {{ $survey->pay / $survey->limit }}
                                         </td>
                                     </tr>
                                 @endforeach

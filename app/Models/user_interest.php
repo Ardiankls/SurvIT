@@ -16,10 +16,10 @@ class user_interest extends Model
         'interest_id',
     ];
 
-    public function user() {
-        return $this->belongsTo(Users::class,'user_id', 'id');
-    }
-    public function interest() {
-        return $this->belongsTo(interest::class,'interest_id', 'id');
-    }
+    // public function user() {
+    //     return $this->belongsTo(Users::class,'user_id', 'id');
+    // }
+    // public function interest() {
+    //     return $this->belongsTo(interest::class,'interest_id', 'id');
+    // }
 }

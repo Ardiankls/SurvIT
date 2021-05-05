@@ -14,6 +14,8 @@ class survey extends Model
         //'age_from',
         //'age_to',
         //'point'
+        'title',
+        'link',
         'pay',
         'gender_id',
         'job_id',

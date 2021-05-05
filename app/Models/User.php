@@ -33,7 +33,9 @@ class User extends Authenticatable
         'is_verified',
         'is_admin',
         'is_survey_avail',
-        'stat_delete'
+        'stat_delete',
+        'job_id',
+        'interest_id'
     ];
 
     /**
@@ -63,11 +65,19 @@ class User extends Authenticatable
         return $this->belongsTo(address::class,'address_id', 'id');
     }
 
-    public function jobs() {
-        return $this->belongsToMany(user::class, 'user_jobs', 'job_id', 'user_id')->withTimeStamps();
+    // public function jobs() {
+    //     return $this->belongsToMany(user::class, 'user_jobs', 'job_id', 'user_id')->withTimeStamps();
+    // }
+
+    // public function interests() {
+    //     return $this->belongsToMany(user::class, 'user_interests', 'user_id', 'interest_id')->withTimeStamps();
+    // }
+
+    public function job() {
+        return $this->belongsTo(job::class,'job_id', 'id');
     }
 
-    public function interests() {
-        return $this->belongsToMany(user::class, 'user_interests', 'user_id', 'interest_id')->withTimeStamps();
+    public function interest() {
+        return $this->belongsTo(interest::class,'interest_id', 'id');
     }
 }

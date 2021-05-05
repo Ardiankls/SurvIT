@@ -19,6 +19,8 @@ class CreateSurveysTable extends Migration
             // $table->integer('age_from');
             // $table->integer('age_to');
             // $table->integer('point');
+            $table->string('title');
+            $table->string('link');
             $table->foreignId('gender_id')->constrained();
             $table->foreignId('job_id')->constrained();
             $table->foreignId('interest_id')->constrained();

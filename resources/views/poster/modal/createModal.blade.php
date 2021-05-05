@@ -13,9 +13,9 @@
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">
                             <div class="form-group"><label>Judul</label>
-                                <input class="form-control" type="text" name="survey_name" required></div>
+                                <input class="form-control" type="text" name="title" required></div>
                             <div class="form-group"><label>Link Form</label>
-                                <input class="form-control" type="text" name="form_link" required>
+                                <input class="form-control" type="text" name="link" required>
                             </div>
                             <label>Jenis Kelamin</label>
                             <select name="gender" class="custom-select">

@@ -54,6 +54,8 @@ class SurveyController extends Controller
             'gender_id' => $request->gender,
             'pay' => $request->pay,
             'limit' => $request->limit,
+            'title' => $request->title,
+            'link' => $request->link,
         ]);
 
         return redirect()->route('survey.index');

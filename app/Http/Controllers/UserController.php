@@ -30,17 +30,12 @@ class UserController extends Controller
         $id = Auth::id();
         $users = User::findOrFail($id);
         $mygender = $user->gender_id;
+        $myjob = $user->job_id;
+        $myinterest = $user->interest_id;
+        // $myjob = $users->jobs()->where('user_id', '=', $id)->first();
+        // $myinterest = $users->interests()->where('user_id', '=', $id)->first();
 
-        $myjob = $users->jobs->where('user_id', '=', $id);
-        // $myinterest = $user->interest->interest_id;
-        dd($myjob);
-        //$surveys = survey::all()->where('gender_id', $mygender);
-        $surveys = survey::all();
-        // ->where(
-            // ['gender_id', '=', $mygender],
-            // ['job_id', '=', $myjob],
-            // ['interest_id', '=', $myinterest],
-        // );
+        $surveys = survey::all()->where('gender_id', '=', $mygender)->where('interest_id', '=', $myinterest)->where('job_id', '=', $myjob);
 
         return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'user', 'surveys'));
     }
@@ -67,6 +62,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update([
             'gender_id' => $request->gender,
+            'interest_id' => $request->interest,
+            'job_id' => $request->job,
             'is_survey_avail' => '1'
         ]);
 
