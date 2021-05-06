@@ -9,3 +9,8 @@
     font-family: MartelSansRegular;
     src: url("https://fonts.googleapis.com/css2?family=Martel+Sans:wght@400;800&display=swap") format("opentype");
 }
+
+#gradient{
+    background-image: linear-gradient(to bottom, #66b6ff, #47a6ff, #2695ff, #0083ff, #0070ff);
+    font-family: "Martel Sans Light";
+}
