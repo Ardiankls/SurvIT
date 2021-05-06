@@ -57,5 +57,41 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </div>--}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card text-center">
+                    <table class="table table-striped" id="myTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Judul</th>
+                                <th scope="col">Link</th>
+                                <th scope="col">Interest</th>
+                                <th scope="col">Point</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($surveys as $survey)
+                                <tr>
+                                    <td>
+                                        {{ $survey->title }}
+                                    </td>
+                                    <td>
+                                        {{ $survey->link }}
+                                    </td>
+                                    <td>
+                                        {{ $survey->interest->interest }}
+                                    </td>
+                                    <td>
+                                        {{ $survey->pay / $survey->limit }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

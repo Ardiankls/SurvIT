@@ -26,7 +26,9 @@ class SurveyController extends Controller
         $jobs = job::all();
         $interests = interest::all();
 
-        return view('poster.dashboard', compact('genders', 'jobs', 'interests'));
+        $surveys = survey::all();
+
+        return view('poster.dashboard', compact('genders', 'jobs', 'interests', 'surveys'));
     }
 
     /**
