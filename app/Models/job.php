@@ -18,6 +18,6 @@ class job extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(user::class, 'user_job', 'job_id', 'user_id')->withTimeStamps();
+        return $this->belongsToMany(User::class, 'user_jobs', 'job_id', 'user_id');
     }
 }

@@ -22,6 +22,7 @@ class SurveyController extends Controller
      */
     public function index()
     {
+        $id = Auth::user()->id;
         $genders = gender::all();
         $jobs = job::all();
         $interests = interest::all();
@@ -49,16 +50,18 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        survey::create([
-            'user_id' => Auth::id(),
-            'interest_id' => $request->interest,
-            'job_id' => $request->job,
-            'gender_id' => $request->gender,
-            'pay' => $request->pay,
-            'limit' => $request->limit,
+        $survey = survey::create([
             'title' => $request->title,
             'link' => $request->link,
+            'pay' => $request->pay,
+            'limit' => $request->limit,
+            'user_id' => Auth::id(),
+            'gender_id' => $request->gender,
         ]);
+
+        $survey->jobs()->attach($request->job);
+
+        $survey->interests()->attach($request->interest);
 
         return redirect()->route('survey.index');
     }

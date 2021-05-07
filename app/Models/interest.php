@@ -18,6 +18,6 @@ class interest extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(user::class, 'user_job', 'interest_id', 'user_id')->withTimeStamps();
+        return $this->belongsToMany(User::class, 'user_interests', 'interest_id', 'user_id')->withTimeStamps();
     }
 }

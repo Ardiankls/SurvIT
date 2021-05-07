@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeyToUsersTable extends Migration
+class CreateSurveyInterestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddForeignKeyToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('gender_id')->nullable()->constrained();
-            $table->foreignId('address_id')->nullable()->constrained();
+        Schema::create('survey_interests', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('survey_id')->constrained();
+            $table->foreignId('interest_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddForeignKeyToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('survey_interests');
     }
 }

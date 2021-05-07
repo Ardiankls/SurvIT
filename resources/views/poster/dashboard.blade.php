@@ -66,7 +66,7 @@
                             <tr>
                                 <th scope="col">Judul</th>
                                 <th scope="col">Link</th>
-                                <th scope="col">Interest</th>
+                                {{-- <th scope="col">Interest</th> --}}
                                 <th scope="col">Point</th>
                             </tr>
                         </thead>
@@ -79,9 +79,9 @@
                                     <td>
                                         {{ $survey->link }}
                                     </td>
-                                    <td>
-                                        {{ $survey->interest->interest }}
-                                    </td>
+                                    {{-- <td>
+                                        {{ $survey->interests()->interest_id }}
+                                    </td> --}}
                                     <td>
                                         {{ $survey->pay / $survey->limit }}
                                     </td>

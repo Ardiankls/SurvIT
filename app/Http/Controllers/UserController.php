@@ -8,8 +8,6 @@ use App\Models\interest;
 use App\Models\job;
 use App\Models\User;
 use App\Models\survey;
-use App\Models\user_interest;
-use App\Models\user_job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,17 +25,17 @@ class UserController extends Controller
         $jobs = job::all();
         $interests = interest::all();
 
-        $id = Auth::id();
-        $users = User::findOrFail($id);
-        $mygender = $user->gender_id;
-        $myjob = $user->job_id;
-        $myinterest = $user->interest_id;
-        // $myjob = $users->jobs()->where('user_id', '=', $id)->first();
-        // $myinterest = $users->interests()->where('user_id', '=', $id)->first();
+        $id = Auth::user()->id;
+        $uinterests = User::find($id)->interests;
+        $ujobs = User::find($id)->jobs;
+        $ugender = User::find($id)->gender_id;
 
-        $surveys = survey::all()->where('gender_id', '=', $mygender)->where('interest_id', '=', $myinterest)->where('job_id', '=', $myjob);
+        $surveys = survey::all();
 
-        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'user', 'surveys'));
+        // $demographies = array($uinterests, $ujobs, $surveys, $sinterests, $sjobs);
+        // dd($demographies);
+
+        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'user', 'uinterests', 'ugender', 'ujobs', 'surveys'));
     }
 
     /**
@@ -58,24 +56,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Auth::id();
+        $id = Auth::user()->id;
         $user = User::findOrFail($id);
         $user->update([
             'gender_id' => $request->gender,
-            'interest_id' => $request->interest,
-            'job_id' => $request->job,
             'is_survey_avail' => '1'
         ]);
 
-        user_interest::create([
-            'user_id' => $request->gender,
-            'interest_id' => $request->interest
-        ]);
+        $user->jobs()->attach($request->job);
 
-        user_job::create([
-            'user_id' => $request->gender,
-            'job_id' => $request->job
-        ]);
+        $user->interests()->attach($request->interest);
 
         return redirect()->route('user.index');
     }
