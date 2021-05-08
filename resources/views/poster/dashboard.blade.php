@@ -2,6 +2,7 @@
 
 @section('content')
     @include('poster.modal.createModal')
+    @include('poster.modal.editModal')
 <div class="container-fluid">
 
     <div class="p-5">
@@ -65,25 +66,25 @@
                         <thead>
                             <tr>
                                 <th scope="col">Judul</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Link</th>
-                                {{-- <th scope="col">Interest</th> --}}
-                                <th scope="col">Point</th>
+                                <th scope="col">Edit</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($surveys as $survey)
                                 <tr>
                                     <td>
-                                        {{ $survey->title }}
+                                        <a href="" data-toggle="modal" data-target="#editsurvey"> {{ $survey->title }}</a>
                                     </td>
                                     <td>
-                                        {{ $survey->link }}
+                                        {{ $survey->pay / $survey->limit }}pt
                                     </td>
-                                    {{-- <td>
-                                        {{ $survey->interests()->interest_id }}
-                                    </td> --}}
                                     <td>
-                                        {{ $survey->pay / $survey->limit }}
+                                        <a href={{ $survey->link }} class="btn btn-primary">Open</a>
+                                    </td>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#editsurvey" class="btn btn-primary ">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach

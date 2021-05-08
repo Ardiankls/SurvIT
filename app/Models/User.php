@@ -64,10 +64,14 @@ class User extends Authenticatable
     }
 
     public function jobs() {
-        return $this->belongsToMany(job::class, 'user_jobs', 'user_id', 'job_id');
+        return $this->belongsToMany(job::class, 'user_jobs', 'user_id', 'job_id')->withTimeStamps();
     }
 
     public function interests() {
-        return $this->belongsToMany(interest::class, 'user_interests', 'user_id', 'interest_id');
+        return $this->belongsToMany(interest::class, 'user_interests', 'user_id', 'interest_id')->withTimeStamps();
+    }
+
+    public function provinces() {
+        return $this->belongsToMany(province::class, 'user_provinces', 'user_id', 'province_id')->withTimeStamps();
     }
 }

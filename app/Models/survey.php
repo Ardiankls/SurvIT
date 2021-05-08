@@ -30,10 +30,14 @@ class survey extends Model
     }
 
     public function jobs() {
-        return $this->belongsToMany(job::class, 'survey_jobs', 'survey_id', 'job_id');
+        return $this->belongsToMany(job::class, 'survey_jobs', 'survey_id', 'job_id')->withTimeStamps();
     }
 
     public function interests() {
-        return $this->belongsToMany(interest::class, 'survey_interests', 'survey_id', 'interest_id');
+        return $this->belongsToMany(interest::class, 'survey_interests', 'survey_id', 'interest_id')->withTimeStamps();
+    }
+
+    public function provinces() {
+        return $this->belongsToMany(province::class, 'survey_provinces', 'survey_id', 'province_id')->withTimeStamps();
     }
 }

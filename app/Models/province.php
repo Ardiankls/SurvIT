@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class job extends Model
+class province extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'job_name',
+        'province',
     ];
 
     public function survey_demography(){
@@ -18,10 +18,10 @@ class job extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(User::class, 'user_jobs', 'job_id', 'user_id')->withTimeStamps();
+        return $this->belongsToMany(User::class, 'user_provinces', 'province_id', 'user_id')->withTimeStamps();
     }
 
     public function surveys(){
-        return $this->belongsToMany(survey::class, 'survey_jobs', 'job_id', 'survey_id')->withTimeStamps();
+        return $this->belongsToMany(survey::class, 'survey_provinces', 'province_id', 'survey_id')->withTimeStamps();
     }
 }

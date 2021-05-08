@@ -16,4 +16,8 @@ class gender extends Model
     public function user(){
         return $this->hasMany(User::class);
     }
+
+    public function survey(){
+        return $this->hasMany(survey::class);
+    }
 }

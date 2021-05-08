@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
-use App\Models\User;
+use App\Models\province;
 use App\Models\survey;
-use App\Models\user_interest;
-use App\Models\user_job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,10 +24,11 @@ class SurveyController extends Controller
         $genders = gender::all();
         $jobs = job::all();
         $interests = interest::all();
+        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
-        $surveys = survey::all();
+        $surveys = survey::all()->where('user_id', '=', $id);
 
-        return view('poster.dashboard', compact('genders', 'jobs', 'interests', 'surveys'));
+        return view('poster.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'surveys'));
     }
 
     /**
@@ -60,8 +59,8 @@ class SurveyController extends Controller
         ]);
 
         $survey->jobs()->attach($request->job);
-
         $survey->interests()->attach($request->interest);
+        $survey->provinces()->attach($request->province);
 
         return redirect()->route('survey.index');
     }

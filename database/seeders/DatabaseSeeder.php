@@ -18,9 +18,10 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call([
-            InterestSeeder::class,
-            JobSeeder::class,
             GenderSeeder::class,
+            JobSeeder::class,
+            InterestSeeder::class,
+            ProvinceSeeder::class,
             UserSeeder::class,
         ]);
 

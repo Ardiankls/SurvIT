@@ -15,6 +15,10 @@ class GenderSeeder extends Seeder
     public function run()
     {
         $gender = new gender();
+        $gender->gender = 'Tidak ada';
+        $gender->save();
+
+        $gender = new gender();
         $gender->gender = 'Laki-laki';
         $gender->save();
 

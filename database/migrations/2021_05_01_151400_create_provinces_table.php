@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSurveyInterestsTable extends Migration
+class CreateProvincesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateSurveyInterestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey_interests', function (Blueprint $table) {
+        Schema::create('provinces', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('survey_id')->constrained();
-            $table->foreignId('interest_id')->nullable()->constrained();
+            $table->string('province');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateSurveyInterestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('survey_interests');
+        Schema::dropIfExists('provinces');
     }
 }

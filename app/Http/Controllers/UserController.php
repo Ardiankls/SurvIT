@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
+use App\Models\province;
 use App\Models\User;
 use App\Models\survey;
 use Illuminate\Http\Request;
@@ -21,21 +22,23 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $genders = gender::all();
-        $jobs = job::all();
-        $interests = interest::all();
+        $genders = gender::all()->where('id', '<>', '1');
+        $jobs = job::all()->where('id', '<>', '1');
+        $interests = interest::all()->where('id', '<>', '1');
+        $provinces = province::all()->where('id', '<>', '1');
 
         $id = Auth::user()->id;
-        $uinterests = User::find($id)->interests;
-        $ujobs = User::find($id)->jobs;
         $ugender = User::find($id)->gender_id;
+        $ujobs = User::find($id)->jobs;
+        $uinterests = User::find($id)->interests;
+        $uprovinces = User::find($id)->provinces;
 
-        $surveys = survey::all();
+        $surveys = survey::all()->where('user_id', '<>', $id);
 
         // $demographies = array($uinterests, $ujobs, $surveys, $sinterests, $sjobs);
         // dd($demographies);
 
-        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'user', 'uinterests', 'ugender', 'ujobs', 'surveys'));
+        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'ugender', 'ujobs', 'uinterests', 'uprovinces', 'surveys'));
     }
 
     /**
@@ -64,8 +67,8 @@ class UserController extends Controller
         ]);
 
         $user->jobs()->attach($request->job);
-
         $user->interests()->attach($request->interest);
+        $user->provinces()->attach($request->province);
 
         return redirect()->route('user.index');
     }

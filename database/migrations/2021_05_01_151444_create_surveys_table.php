@@ -16,7 +16,7 @@ class CreateSurveysTable extends Migration
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('gender_id')->constrained();
+            $table->foreignId('gender_id')->nullable()->constrained();
             // $table->integer('age_from');
             // $table->integer('age_to');
             // $table->integer('point');
