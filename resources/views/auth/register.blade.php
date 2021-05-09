@@ -34,6 +34,7 @@
                     <div class="col-6">
                         <div class="row">
                             <form method="POST" action="{{ route('register') }}">
+                                @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <input id="first_name" type="text"
@@ -86,6 +87,12 @@
                                         </span>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <input id="password-confirm" type="password" class="form-control"
+                                           name="password_confirmation" required autocomplete="new-password"  placeholder="Confirm Password">
+                                </div>
+
                                 <button type="submit" class="btn btn-primary">Register</button>
                             </form>
 {{--                            <form method="POST" action="{{ route('register') }}">--}}
