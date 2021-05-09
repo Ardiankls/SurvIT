@@ -9,6 +9,7 @@ use App\Models\job;
 use App\Models\province;
 use App\Models\User;
 use App\Models\survey;
+use App\Models\user_survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,11 +35,37 @@ class UserController extends Controller
         $uprovinces = User::find($id)->provinces;
 
         $surveys = survey::all()->where('user_id', '<>', $id);
-
+        $usurveys = user_survey::all()->where('user_id', '=', $id);
+        // dd($usurveys);
         // $demographies = array($uinterests, $ujobs, $surveys, $sinterests, $sjobs);
         // dd($demographies);
 
-        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'ugender', 'ujobs', 'uinterests', 'uprovinces', 'surveys'));
+        // foreach ($surveys as $survey){
+        //     $sinterests = $survey->interests;
+        //     $sjobs = $survey->jobs;
+        //     $sgender = $survey->gender_id;
+        //     $sprovinces = $survey->provinces;
+        //                             foreach ($sinterests as $sinterest){}
+        //                             foreach ($sjobs as $sjob){}
+        //                             foreach ($sprovinces as $sprovince){}
+        //                             foreach ($uinterests as $uinterest){}
+        //                             foreach ($ujobs as $ujob){}
+        //                             foreach ($uprovinces as $uprovince){}
+
+        //                             if ($sgender == $ugender || $sgender == '1'){
+        //                                 if ($sinterest->pivot->interest_id == $uinterest->pivot->interest_id || $sinterest->pivot->interest_id == '1'){
+        //                                     if ($sjob->pivot->job_id == $ujob->pivot->job_id || $sjob->pivot->job_id == '1'){
+        //                                         if ($sprovince->pivot->province_id == $uprovince->pivot->province_id || $sprovince->pivot->province_id == '1'){
+        //                                             // $user->surveys()->attach($survey);
+
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+
+        // }
+
+        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'ugender', 'ujobs', 'uinterests', 'uprovinces', 'surveys', 'usurveys'));
     }
 
     /**
@@ -102,9 +129,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $survey)
     {
-        //
+        $id = User::Auth()->id;
+        $survey->surveys()->attach($id);
     }
 
     /**

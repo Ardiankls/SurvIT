@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
 
 class RegisterController extends Controller
 {
@@ -74,5 +76,21 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'is_login' => '1',
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        if(empty($user)){
+            redirect()->route('register');
+        }
+
+        //send email
+        // event(new ActivationEvent($user));
+
+        return redirect('login')->with('Success', 'Registration Complete, please verify your email');
     }
 }

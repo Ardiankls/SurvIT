@@ -22,7 +22,7 @@ class survey extends Model
     ];
 
     public function user() {
-        return $this->belongsTo(Users::class,'user_id', 'id');
+        return $this->belongsTo(User::class,'user_id', 'id');
     }
 
     public function gender() {
@@ -39,5 +39,9 @@ class survey extends Model
 
     public function provinces() {
         return $this->belongsToMany(province::class, 'survey_provinces', 'survey_id', 'province_id')->withTimeStamps();
+    }
+
+    public function users() {
+        return $this->belongsToMany(User::class, 'user_surveys', 'survey_id', 'user_id')->withPivot('status')->withTimeStamps();
     }
 }

@@ -74,4 +74,8 @@ class User extends Authenticatable
     public function provinces() {
         return $this->belongsToMany(province::class, 'user_provinces', 'user_id', 'province_id')->withTimeStamps();
     }
+
+    public function surveys() {
+        return $this->belongsToMany(survey::class, 'user_surveys', 'user_id', 'survey_id')->withTimeStamps();
+    }
 }

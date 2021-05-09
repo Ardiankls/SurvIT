@@ -25,6 +25,7 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Point</th>
                                     <th scope="col">Link</th>
+                                    <th scope="col">Selesai</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,10 +61,58 @@
                                                         {{ $sinterest->pivot->interest_id }}
                                                     </td>
                                                     <td>
+                                                            {{-- @foreach($usurveys as $surv)
+                                                                    @if($surv->survey_id == $survey->id)
+                                                                        {{$surv}}
+                                                                        @if($surv != null)
+                                                                            @if($surv->status == 2)
+                                                                                Proses
+                                                                            @elseif($surv->status == 3)
+                                                                                Sukses
+                                                                            @endif
+                                                                        @else
+                                                                            Baru
+                                                                        @endif                                                                    @endif
+
+                                                            @endforeach --}}
+
+                                                            @foreach($survey->users as $usurveyy)
+                                                                @if($usurveyy->pivot->user_id == $user->id)
+                                                                    <?php
+                                                                        $isExist = $usurveyy->exists();
+                                                                    ?>
+                                                                    @if($isExist)
+                                                                        @if($usurveyy->pivot->status == 2)
+                                                                            Proses
+                                                                        @elseif($usurveyy->pivot->status == 3)
+                                                                            Sukses
+                                                                        @endif
+                                                                    @else
+                                                                        PUCEK
+                                                                    @endif
+                                                                @endif
+
+                                                            @endforeach
+                                                    </td>
+                                                    <td>
                                                         {{ $survey->pay / $survey->limit }}pt
                                                     </td>
                                                     <td>
-                                                        <a href={{ $survey->link }} class="btn btn-primary">Open</a>
+                                                        <a href={{ $survey->link }} class="btn btn-primary">Buka</a>
+                                                    </td>
+                                                    <td>
+                                                        {{-- @if($survey->users != null)
+                                                            @if($usurveyy->pivot->user_id == $user->id)
+                                                                -
+                                                            @else --}}
+                                                                <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <input name="_method" type="hidden" value="PATCH">
+                                                                    <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Selesai
+                                                                    </button>
+                                                                </form>
+                                                            {{-- @endif
+                                                        @endif --}}
                                                     </td>
                                                 </tr>
                                                 @endif

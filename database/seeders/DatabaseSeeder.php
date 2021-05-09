@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             InterestSeeder::class,
             ProvinceSeeder::class,
             UserSeeder::class,
+            StatusSeeder::class,
         ]);
 
         Model::reguard();
