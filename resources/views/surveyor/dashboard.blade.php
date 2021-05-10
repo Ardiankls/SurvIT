@@ -21,11 +21,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Judul</th>
-                                    <th scope="col">Interest</th>
+                                    <th scope="col">Topik</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Point</th>
                                     <th scope="col">Link</th>
-                                    <th scope="col">Selesai</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,7 +58,9 @@
                                                         {{ $survey->title }}
                                                     </td>
                                                     <td>
-                                                        {{ $sinterest->pivot->interest_id }}
+                                                        @if($sinterest->interest == 'Tidak ada')
+                                                            Umum
+                                                        @endif
                                                     </td>
                                                     <td>
                                                             {{-- @foreach($usurveys as $surv)
@@ -75,30 +77,29 @@
                                                                         @endif                                                                    @endif
 
                                                             @endforeach --}}
-
-                                                            @foreach($survey->users as $usurveyy)
-                                                                @if($usurveyy->pivot->user_id == $user->id)
-                                                                    <?php
-                                                                        $isExist = $usurveyy->exists();
-                                                                    ?>
-                                                                    @if($isExist)
-                                                                        @if($usurveyy->pivot->status == 2)
-                                                                            Proses
-                                                                        @elseif($usurveyy->pivot->status == 3)
-                                                                            Sukses
+                                                            @if($survey->users != null)
+                                                                @foreach($survey->users as $usurveyy)
+                                                                    @if($usurveyy->pivot->user_id == $user->id)
+                                                                        @if($usurveyy->exists())
+                                                                            @if($usurveyy->pivot->status == 2)
+                                                                                Proses
+                                                                            @elseif($usurveyy->pivot->status == 3)
+                                                                                Sukses
+                                                                            @endif
+                                                                        @else
+                                                                            Baru
                                                                         @endif
-                                                                    @else
-                                                                        PUCEK
                                                                     @endif
-                                                                @endif
-
-                                                            @endforeach
+                                                                @endforeach
+                                                            @else
+                                                                Baru
+                                                            @endif
                                                     </td>
                                                     <td>
                                                         {{ $survey->pay / $survey->limit }}pt
                                                     </td>
                                                     <td>
-                                                        <a href={{ $survey->link }} class="btn btn-primary">Buka</a>
+                                                        <a href={{ $survey->link }} target="_blank" class="btn btn-primary">Buka</a>
                                                     </td>
                                                     <td>
                                                         {{-- @if($survey->users != null)

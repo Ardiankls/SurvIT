@@ -36,7 +36,7 @@ class UserController extends Controller
 
         $surveys = survey::all()->where('user_id', '<>', $id);
         $usurveys = user_survey::all()->where('user_id', '=', $id);
-        // dd($usurveys);
+
         // $demographies = array($uinterests, $ujobs, $surveys, $sinterests, $sjobs);
         // dd($demographies);
 
