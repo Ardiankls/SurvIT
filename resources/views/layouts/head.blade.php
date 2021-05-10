@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="Easy Survey For Your Business"/>
     <!-- CSRF Token -->
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 
     <title>{{ config('app.name', 'SurvIT') }}</title>
 

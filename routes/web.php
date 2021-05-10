@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true ]);
 
-Route::resource('user', UserController::class);
+Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
