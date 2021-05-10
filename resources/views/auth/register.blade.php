@@ -1,6 +1,7 @@
 @extends('layouts.head')
 
 {{--@section('content')--}}
+{{--@include('auth.modal.verifymodal')--}}
 @section('content2')
     <div class="col-md-8 ">
         <div class="row p-5">
@@ -90,7 +91,7 @@
                                    placeholder="Confirm Password">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" data-toggle="modal" data-target="#verifymodal" class="btn btn-primary">Register</button>
                     </form>
                 </div>
             </div>

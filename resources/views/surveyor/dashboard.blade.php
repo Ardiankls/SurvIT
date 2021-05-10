@@ -109,7 +109,7 @@
                                                                 <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <input name="_method" type="hidden" value="PATCH">
-                                                                    <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Selesai
+                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#actionmodal" type="submit" style="background-color: rgb(221,177,226);">Selesai
                                                                     </button>
                                                                 </form>
                                                             {{-- @endif
