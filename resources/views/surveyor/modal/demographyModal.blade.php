@@ -41,6 +41,14 @@
                             </table>
                         </div>
 
+                        <div class="form-group"><label>Provinsi</label>
+                            <select name="province" class="custom-select">
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->id }}">{{ $province->province }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit
                         </button>
                     </div>

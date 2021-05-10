@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('phone')->nullable();
             $table->timestamp('birthdate')->nullable();
-            $table->integer('point')->nullable();
+            $table->integer('point')->default('0');
             $table->enum('is_login', ['0', '1'])
                 ->default('0')->comment('0 = notLogin, 1 = Login');
             $table->timestamp('email_verified_at')->nullable();

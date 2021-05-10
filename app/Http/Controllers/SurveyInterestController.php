@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user_interest;
+use App\Models\survey_interest;
 use Illuminate\Http\Request;
 
-class UserInterestController extends Controller
+class SurveyInterestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class UserInterestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\user_interest  $user_interest
+     * @param  \App\Models\survey_interest  $survey_interest
      * @return \Illuminate\Http\Response
      */
-    public function show(user_interest $user_interest)
+    public function show(survey_interest $survey_interest)
     {
         //
     }
@@ -52,10 +52,10 @@ class UserInterestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\user_interest  $user_interest
+     * @param  \App\Models\survey_interest  $survey_interest
      * @return \Illuminate\Http\Response
      */
-    public function edit(user_interest $user_interest)
+    public function edit(survey_interest $survey_interest)
     {
         //
     }
@@ -64,10 +64,10 @@ class UserInterestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\user_interest  $user_interest
+     * @param  \App\Models\survey_interest  $survey_interest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user_interest $user_interest)
+    public function update(Request $request, survey_interest $survey_interest)
     {
         //
     }
@@ -75,10 +75,10 @@ class UserInterestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\user_interest  $user_interest
+     * @param  \App\Models\survey_interest  $survey_interest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(user_interest $user_interest)
+    public function destroy(survey_interest $survey_interest)
     {
         //
     }

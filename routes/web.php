@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\http\controllers\UserController;
 use App\http\controllers\SurveyController;
+use App\http\controllers\UserSurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,5 @@ Auth::routes(['verify' => true ]);
 
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class);
+Route::resource('usersurvey', UserSurveyController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

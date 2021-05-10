@@ -2,6 +2,7 @@
 
 @section('content')
     @include('poster.modal.createModal')
+    @include('poster.modal.editModal')
 <div class="container-fluid">
 
     <div class="p-5">
@@ -57,5 +58,41 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </div>--}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card text-center">
+                    <table class="table table-striped" id="myTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Judul</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Link</th>
+                                <th scope="col">Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($surveys as $survey)
+                                <tr>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#editsurvey"> {{ $survey->title }}</a>
+                                    </td>
+                                    <td>
+                                        {{ $survey->pay / $survey->limit }}pt
+                                    </td>
+                                    <td>
+                                        <a href={{ $survey->link }} class="btn btn-primary">Open</a>
+                                    </td>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#editsurvey" class="btn btn-primary ">Edit</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

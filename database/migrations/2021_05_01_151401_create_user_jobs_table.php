@@ -16,7 +16,7 @@ class CreateUserJobsTable extends Migration
         Schema::create('user_jobs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('job_id')->constrained();
+            $table->foreignId('job_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

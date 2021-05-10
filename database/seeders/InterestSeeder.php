@@ -15,6 +15,10 @@ class InterestSeeder extends Seeder
     public function run()
     {
         $interest = new interest();
+        $interest->interest = 'Tidak ada';
+        $interest->save();
+
+        $interest = new interest();
         $interest->interest = 'Olahraga';
         $interest->save();
 

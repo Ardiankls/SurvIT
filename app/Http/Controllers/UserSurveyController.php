@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user_job;
+use App\Http\Controllers\Controller;
+use App\Models\user_survey;
+use App\Models\survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UserJobController extends Controller
+class UserSurveyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +44,10 @@ class UserJobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\user_job  $user_job
+     * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function show(user_job $user_job)
+    public function show(user_survey $user_survey)
     {
         //
     }
@@ -52,10 +55,10 @@ class UserJobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\user_job  $user_job
+     * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function edit(user_job $user_job)
+    public function edit(user_survey $user_survey)
     {
         //
     }
@@ -64,21 +67,30 @@ class UserJobController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\user_job  $user_job
+     * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user_job $user_job)
+    public function update($detail)
     {
-        //
+        $survey = survey::Find($detail);
+        $id = Auth::user()->id;
+
+        $survey->users()->detach($id);
+        $survey->users()->attach($id);
+        $survey->users()->update([
+            'status' => '2'
+        ]);
+
+        return redirect()->route('user.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\user_job  $user_job
+     * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function destroy(user_job $user_job)
+    public function destroy(user_survey $user_survey)
     {
         //
     }

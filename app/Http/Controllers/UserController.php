@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
+use App\Models\province;
 use App\Models\User;
 use App\Models\survey;
-use App\Models\user_interest;
-use App\Models\user_job;
+use App\Models\user_survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,21 +30,49 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $genders = gender::all();
-        $jobs = job::all();
-        $interests = interest::all();
+        $genders = gender::all()->where('id', '<>', '1');
+        $jobs = job::all()->where('id', '<>', '1');
+        $interests = interest::all()->where('id', '<>', '1');
+        $provinces = province::all()->where('id', '<>', '1');
 
-        $id = Auth::id();
-        $users = User::findOrFail($id);
-        $mygender = $user->gender_id;
-        $myjob = $user->job_id;
-        $myinterest = $user->interest_id;
-        // $myjob = $users->jobs()->where('user_id', '=', $id)->first();
-        // $myinterest = $users->interests()->where('user_id', '=', $id)->first();
+        $id = Auth::user()->id;
+        $ugender = User::find($id)->gender_id;
+        $ujobs = User::find($id)->jobs;
+        $uinterests = User::find($id)->interests;
+        $uprovinces = User::find($id)->provinces;
 
-        $surveys = survey::all()->where('gender_id', '=', $mygender)->where('interest_id', '=', $myinterest)->where('job_id', '=', $myjob);
+        $surveys = survey::all()->where('user_id', '<>', $id);
+        $usurveys = user_survey::all()->where('user_id', '=', $id);
 
-        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'user', 'surveys'));
+        // $demographies = array($uinterests, $ujobs, $surveys, $sinterests, $sjobs);
+        // dd($demographies);
+
+        // foreach ($surveys as $survey){
+        //     $sinterests = $survey->interests;
+        //     $sjobs = $survey->jobs;
+        //     $sgender = $survey->gender_id;
+        //     $sprovinces = $survey->provinces;
+        //                             foreach ($sinterests as $sinterest){}
+        //                             foreach ($sjobs as $sjob){}
+        //                             foreach ($sprovinces as $sprovince){}
+        //                             foreach ($uinterests as $uinterest){}
+        //                             foreach ($ujobs as $ujob){}
+        //                             foreach ($uprovinces as $uprovince){}
+
+        //                             if ($sgender == $ugender || $sgender == '1'){
+        //                                 if ($sinterest->pivot->interest_id == $uinterest->pivot->interest_id || $sinterest->pivot->interest_id == '1'){
+        //                                     if ($sjob->pivot->job_id == $ujob->pivot->job_id || $sjob->pivot->job_id == '1'){
+        //                                         if ($sprovince->pivot->province_id == $uprovince->pivot->province_id || $sprovince->pivot->province_id == '1'){
+        //                                             // $user->surveys()->attach($survey);
+
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+
+        // }
+
+        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'ugender', 'ujobs', 'uinterests', 'uprovinces', 'surveys', 'usurveys'));
     }
 
     /**
@@ -65,24 +93,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Auth::id();
+        $id = Auth::user()->id;
         $user = User::findOrFail($id);
         $user->update([
             'gender_id' => $request->gender,
-            'interest_id' => $request->interest,
-            'job_id' => $request->job,
             'is_survey_avail' => '1'
         ]);
 
-        user_interest::create([
-            'user_id' => $request->gender,
-            'interest_id' => $request->interest
-        ]);
-
-        user_job::create([
-            'user_id' => $request->gender,
-            'job_id' => $request->job
-        ]);
+        $user->jobs()->attach($request->job);
+        $user->interests()->attach($request->interest);
+        $user->provinces()->attach($request->province);
 
         return redirect()->route('user.index');
     }
@@ -116,9 +136,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $survey)
     {
-        //
+        $id = User::Auth()->id;
+        $survey->surveys()->attach($id);
     }
 
     /**

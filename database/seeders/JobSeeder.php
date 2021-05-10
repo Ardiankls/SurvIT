@@ -15,19 +15,23 @@ class JobSeeder extends Seeder
     public function run()
     {
         $job = new job();
-        $job->job_name = 'Student';
+        $job->job_name = 'Tidak ada';
         $job->save();
 
         $job = new job();
-        $job->job_name = 'College Student';
+        $job->job_name = 'Murid';
         $job->save();
 
         $job = new job();
-        $job->job_name = 'Employee';
+        $job->job_name = 'Mahasiswa';
         $job->save();
 
         $job = new job();
-        $job->job_name = 'Business Owner';
+        $job->job_name = 'Karyawan';
+        $job->save();
+
+        $job = new job();
+        $job->job_name = 'Pemilik Bisnis';
         $job->save();
     }
 }

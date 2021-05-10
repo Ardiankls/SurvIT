@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserInterestsTable extends Migration
+class CreateSurveyJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUserInterestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_interests', function (Blueprint $table) {
+        Schema::create('survey_jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('interest_id')->nullable()->constrained();
+            $table->foreignId('survey_id')->constrained();
+            $table->foreignId('job_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateUserInterestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_interests');
+        Schema::dropIfExists('survey_jobs');
     }
 }

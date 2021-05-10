@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
-use App\Models\User;
+use App\Models\province;
 use App\Models\survey;
-use App\Models\user_interest;
-use App\Models\user_job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,11 +20,15 @@ class SurveyController extends Controller
      */
     public function index()
     {
+        $id = Auth::user()->id;
         $genders = gender::all();
         $jobs = job::all();
         $interests = interest::all();
+        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
-        return view('poster.dashboard', compact('genders', 'jobs', 'interests'));
+        $surveys = survey::all()->where('user_id', '=', $id);
+
+        return view('poster.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'surveys'));
     }
 
     /**
@@ -47,16 +49,18 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        survey::create([
-            'user_id' => Auth::id(),
-            'interest_id' => $request->interest,
-            'job_id' => $request->job,
-            'gender_id' => $request->gender,
-            'pay' => $request->pay,
-            'limit' => $request->limit,
+        $survey = survey::create([
             'title' => $request->title,
             'link' => $request->link,
+            'pay' => $request->pay,
+            'limit' => $request->limit,
+            'user_id' => Auth::id(),
+            'gender_id' => $request->gender,
         ]);
+
+        $survey->jobs()->attach($request->job);
+        $survey->interests()->attach($request->interest);
+        $survey->provinces()->attach($request->province);
 
         return redirect()->route('survey.index');
     }
