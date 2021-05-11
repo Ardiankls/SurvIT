@@ -3,6 +3,9 @@
 @section('content')
     @include('poster.modal.createModal')
     @include('poster.modal.editModal')
+
+
+@if( Auth::user()->is_admin == '1' )
 <div class="container-fluid">
 
     <div class="p-5">
@@ -81,7 +84,7 @@
                                         {{ $survey->pay / $survey->limit }}pt
                                     </td>
                                     <td>
-                                        <a href={{ $survey->link }} class="btn btn-primary">Open</a>
+                                        <a href="{{ $survey->link }}" class="btn btn-primary" >Open</a>
                                     </td>
                                     <td>
                                         <a href="" data-toggle="modal" data-target="#editsurvey" class="btn btn-primary ">Edit</a>
@@ -95,4 +98,21 @@
         </div>
     </div>
 </div>
+@else
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Coming Soon') }}</div>
+
+                    <div class="card-body">
+
+                        {{ __('Fitur ini akan segera kami luncurkan setelah melewati proses testing dan jumlah user ') }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 @endsection
