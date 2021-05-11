@@ -72,7 +72,9 @@
                     <div class="card-body">
 
                         {{ __('Fitur ini akan segera kami luncurkan setelah melewati proses testing dan jumlah user ') }}
+                        {{ __('Jika ingin membuat survey, dapat menghubungi pada kontak yang kami sediakan ') }}
 
+                        <a class="btn btn-primary" target="_blank" href="https://surv-it.web.app/#Footer">Hubungi Kami</a>
                     </div>
                 </div>
             </div>
