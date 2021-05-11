@@ -26,4 +26,5 @@ Auth::routes(['verify' => true ]);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('usersurvey', UserSurveyController::class);
+// Route::get('user', [UserController::class, 'selesai'])->name('user.selesai');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -28,70 +28,54 @@
                             </select>
                         </div>
 
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dynamic_field">Kesukaan
-                                <tr>
-                                    <td><select name="interest" class="custom-select">
-                                            @foreach ($interests as $interest)
-                                                <option value="{{ $interest->id }}" required>
-                                                    {{ $interest->interest }} </option>
-                                            @endforeach
-                                        </select></td>
-                                    <td>
-                                        <button type="button" name="add" id="add" class="btn btn-success">Add More
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
                         {{--                        CHECKBOX--}}
                         <label>Kesukaan / Topik / Hobi</label>
                         <div class="container rounded border ">
                             <div class="row mt-3">
-                                <div class="col-6">
-                                    <div class="form-group ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="1"> Olahraga</label>
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="1"> Olahraga</label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="2"> Musik</label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="3"> Buku</label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="4"> Film</label>
+                                        </div>
+                                        <div class="form-group  ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="5"> Games</label>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="2"> Musik</label>
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="6"> Kuliner</label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="7"> Teknologi</label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="8"> Fashion</label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="9"> Seni</label>
+                                        </div>
+                                        <div class="form-group  ">
+                                            <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
+                                                        value="10"> Kecantikan</label>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="3"> Buku</label>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="4"> Film</label>
-                                    </div>
-                                    <div class="form-group  ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="5"> Games</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="6"> Kuliner</label>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="7"> Teknologi</label>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="8"> Fashion</label>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="9"> Seni</label>
-                                    </div>
-                                    <div class="form-group  ">
-                                        <label><input class="single-checkbox" type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
-                                                      value="10"> Kecantikan</label>
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
@@ -104,7 +88,7 @@
                             </select>
                         </div>
 
-                        <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit
+                        <button class="btn btn-primary"  id="checkBtn" type="submit" style="background-color: rgb(221,177,226);">Submit
                         </button>
                     </div>
 
@@ -131,7 +115,7 @@
                     akan berubah menjadi "Sukses"</p>
             </div>
             <div class="modal-footer">
-                <a href="{{ route('login') }}" class="btn btn-secondary">Close</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

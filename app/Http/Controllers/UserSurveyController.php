@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\user_survey;
 use App\Models\survey;
+use App\Models\gender;
+use App\Models\interest;
+use App\Models\job;
+use App\Models\province;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

@@ -112,7 +112,7 @@
                                                                 <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <input name="_method" type="hidden" value="PATCH">
-                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#actionmodal" type="submit" style="background-color: rgb(221,177,226);">Selesai
+                                                                    <button class="btn btn-primary" id="selesai" type="submit" style="background-color: rgb(221,177,226);">Selesai
                                                                     </button>
                                                                 </form>
                                                             {{-- @endif
@@ -134,11 +134,47 @@
             </div>
         </div>
     </div>
-    <script>$('input[type=checkbox]').change(function(e){
+    <script>
+        $('input[type=checkbox]').change(function(e){
             if ($('input[type=checkbox]:checked').length > 3) {
                 $(this).prop('checked', false)
                 alert("Kamu hanya dapat memilih maksimal 3");
             }
-        })</script>
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#checkBtn').click(function() {
+              checked = $("input[type=checkbox]:checked").length;
+
+              if(!checked) {
+                alert("You must check at least one checkbox.");
+                return false;
+              }
+
+            });
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#selesai').click(function() {
+              checked = $("input[type=checkbox]:checked").length;
+
+              if(!checked) {
+                alert("Kami akan melakukan pengecekan validasi survey anda, apabila pengisian survey sudah valid. Maka status akan berubah menjadi Sukses. Klik Ok untuk konfirmasi.");
+                return true;
+              }
+
+            });
+        });
+
+    </script>
+    <?php
+        if($pages == "selesai"){?>
+    <script>$(function(){
+        $('#actionmodal').modal('show');
+    });</script>
+    <?php } ?>
 @endsection
 
