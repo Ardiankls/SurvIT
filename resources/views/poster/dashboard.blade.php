@@ -25,42 +25,6 @@
         </div>
     </div>
 
-{{--    <div class="row justify-content-center">--}}
-{{--        <div class="col-md-8">--}}
-{{--            <div class="row bg-danger ">--}}
-{{--                <div class="col-4"></div>--}}
-{{--                <div class="col-4"></div>--}}
-{{--                <div class="col-4"><a href="" data-toggle="modal" data-target="#demography" class="btn btn-primary ">Buat Survey</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--                <h1>Your Recent Surveys</h1>--}}
-
-{{--            <div class="card m-3" style="min-heigth: 15rem;">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-4">--}}
-{{--                        <img class="d-block w-100" src="" alt="ImageGonBeHere">--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-8">--}}
-{{--                        <h3 style="font-style: italic;">Add New Survey</h3>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="card m-3">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-4">--}}
-{{--                        <img class="d-block w-100" src="" alt="ImageGonBeHere">--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-8">--}}
-{{--                        <h3 style="font-style: italic;">Survey Title</h3>--}}
-{{--                        <p>Date created</p>--}}
-{{--                        <p>Clicked times</p>--}}
-{{--                        <p>Point</p>--}}
-{{--                        <a class="btn btn-success">Edit</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

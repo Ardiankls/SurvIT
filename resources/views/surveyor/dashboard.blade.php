@@ -60,7 +60,10 @@
                                                     <td>
                                                         @if($sinterest->interest == 'Tidak ada')
                                                             Umum
+                                                        @else
+                                                            {{ $sinterest->interest }}
                                                         @endif
+
                                                     </td>
                                                     <td>
                                                             {{-- @foreach($usurveys as $surv)
@@ -138,4 +141,8 @@
     $(window).on('load', function() {
         $('#actionmodal').modal('show');
     });
+
+//     $(function() {
+//     $('#actionmodal').modal('show');
+// });
 </script>
