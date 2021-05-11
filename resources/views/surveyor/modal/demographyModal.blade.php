@@ -50,45 +50,45 @@
                             <div class="row mt-3">
                                 <div class="col-6">
                                     <div class="form-group ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="1"> Olahraga</label>
                                     </div>
                                     <div class="form-group ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="2"> Musik</label>
                                     </div>
                                     <div class="form-group ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="3"> Buku</label>
                                     </div>
                                     <div class="form-group ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="4"> Film</label>
                                     </div>
                                     <div class="form-group  ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="5"> Games</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="6"> Kuliner</label>
                                     </div>
                                     <div class="form-group ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="7"> Teknologi</label>
                                     </div>
                                     <div class="form-group ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="8"> Fashion</label>
                                     </div>
                                     <div class="form-group ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="9"> Seni</label>
                                     </div>
                                     <div class="form-group  ">
-                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                        <label><input type="checkbox" name="interest[]" aria-label="Checkbox for following text input"
                                                       value="10"> Kecantikan</label>
                                     </div>
                                 </div>
