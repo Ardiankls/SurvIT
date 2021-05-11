@@ -60,10 +60,10 @@
                         </div>
 
                         <div class="form-group"><label>Deposit</label>
-                            <input class="form-control" type="text" name="pay" required>
+                            <input class="form-control" type="text" name="pay">
                         </div>
                         <div class="form-group"><label>Limit</label>
-                            <input class="form-control" type="text" name="limit" required>
+                            <input class="form-control" type="text" name="limit">
                         </div>
 
                         <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit</button>

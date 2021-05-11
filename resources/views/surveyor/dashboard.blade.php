@@ -99,7 +99,8 @@
                                                             @endif
                                                     </td>
                                                     <td>
-                                                        {{ $survey->pay / $survey->limit }}pt
+                                                        {{-- {{ $survey->pay / $survey->limit }}pt --}}
+                                                        0pt
                                                     </td>
                                                     <td>
                                                         <a href={{ $survey->link }} target="_blank" class="btn btn-primary">Buka</a>
