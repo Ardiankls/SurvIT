@@ -134,15 +134,11 @@
             </div>
         </div>
     </div>
+    <script>$('input[type=checkbox]').change(function(e){
+            if ($('input[type=checkbox]:checked').length > 3) {
+                $(this).prop('checked', false)
+                alert("Kamu hanya dapat memilih maksimal 3");
+            }
+        })</script>
 @endsection
-<script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    $(window).on('load', function() {
-        $('#actionmodal').modal('show');
-    });
 
-//     $(function() {
-//     $('#actionmodal').modal('show');
-// });
-</script>
