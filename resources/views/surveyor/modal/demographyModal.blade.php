@@ -27,6 +27,7 @@
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dynamic_field">Kesukaan
                                 <tr>
@@ -36,12 +37,65 @@
                                                     {{ $interest->interest }} </option>
                                             @endforeach
                                         </select></td>
-                                    <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                                    <td>
+                                        <button type="button" name="add" id="add" class="btn btn-success">Add More
+                                        </button>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
+                        {{--                        CHECKBOX--}}
+                        <label>Kesukaan / Topik / Hobi</label>
+                        <div class="container rounded border ">
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <div class="form-group ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="1"> Olahraga</label>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="2"> Musik</label>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="3"> Buku</label>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="4"> Film</label>
+                                    </div>
+                                    <div class="form-group  ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="5"> Games</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="6"> Kuliner</label>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="7"> Teknologi</label>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="8"> Fashion</label>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="9"> Seni</label>
+                                    </div>
+                                    <div class="form-group  ">
+                                        <label><input type="checkbox" aria-label="Checkbox for following text input"
+                                                      value="10"> Kecantikan</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="form-group"><label>Provinsi</label>
+                        <div class="form-group mt-1"><label>Provinsi</label>
                             <select name="province" class="custom-select">
                                 @foreach ($provinces as $province)
                                     <option value="{{ $province->id }}">{{ $province->province }}</option>
@@ -66,10 +120,12 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLongTitle">Terimakasih Sudah Mengisi Survey Kami</h5>
+                <h5 class="modal-title text-center" id="exampleModalLongTitle">Terimakasih Sudah Mengisi Survey
+                    Kami</h5>
             </div>
             <div class="modal-body">
-                <p>Kami akan melakukan pengecekan survey anda, apabila Survey pengisian survey sudah valid. Maka status akan berubah menjadi "Sukses"</p>
+                <p>Kami akan melakukan pengecekan validasi survey anda, apabila pengisian survey sudah valid. Maka status
+                    akan berubah menjadi "Sukses"</p>
             </div>
             <div class="modal-footer">
                 <a href="{{ route('login') }}" class="btn btn-secondary">Close</a>
