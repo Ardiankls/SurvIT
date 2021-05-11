@@ -52,8 +52,8 @@ class SurveyController extends Controller
         $survey = survey::create([
             'title' => $request->title,
             'link' => $request->link,
-            'pay' => $request->pay,
-            'limit' => $request->limit,
+            // 'pay' => $request->pay,
+            // 'limit' => $request->limit,
             'user_id' => Auth::id(),
             'gender_id' => $request->gender,
         ]);

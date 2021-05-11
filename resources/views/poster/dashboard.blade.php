@@ -45,7 +45,7 @@
                                         <a href="" data-toggle="modal" data-target="#editsurvey"> {{ $survey->title }}</a>
                                     </td>
                                     <td>
-                                        {{ $survey->pay / $survey->limit }}pt
+                                        {{-- {{ $survey->pay / $survey->limit }}pt --}}
                                     </td>
                                     <td>
                                         <a href="{{ $survey->link }}" class="btn btn-primary" >Open</a>
