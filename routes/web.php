@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\http\controllers\UserController;
-use App\http\controllers\SurveyController;
-use App\http\controllers\UserSurveyController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\UserSurveyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
