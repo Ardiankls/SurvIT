@@ -24,6 +24,7 @@ class CreateSurveysTable extends Migration
             $table->string('link');
             $table->integer('limit')->nullable();
             $table->integer('pay')->nullable();
+            $table->integer('count')->default('0');
             $table->timestamps();
         });
     }

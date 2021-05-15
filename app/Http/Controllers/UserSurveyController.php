@@ -80,6 +80,9 @@ class UserSurveyController extends Controller
         $survey = survey::Find($detail);
         $id = Auth::user()->id;
 
+        $survey->update([
+            'count' => $survey->count + 1
+        ]);
         $survey->users()->detach($id);
         $survey->users()->attach($id);
         $survey->users()->update([

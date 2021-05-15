@@ -41,7 +41,9 @@ class UserController extends Controller
         $uinterests = User::find($id)->interests;
         $uprovinces = User::find($id)->provinces;
 
-        $surveys = survey::all()->where('user_id', '<>', $id);
+        // $surveyys = user_survey::all()->where('user_id', '=', $id);
+
+        $surveys = survey::all()->where('user_id', '<>', $id)->where('limit', '>=', 'count');
         $usurveys = user_survey::all()->where('user_id', '=', $id);
 
         $pages = "user";
@@ -54,24 +56,25 @@ class UserController extends Controller
         //     $sjobs = $survey->jobs;
         //     $sgender = $survey->gender_id;
         //     $sprovinces = $survey->provinces;
-        //                             foreach ($sinterests as $sinterest){}
-        //                             foreach ($sjobs as $sjob){}
-        //                             foreach ($sprovinces as $sprovince){}
-        //                             foreach ($uinterests as $uinterest){}
-        //                             foreach ($ujobs as $ujob){}
-        //                             foreach ($uprovinces as $uprovince){}
 
-        //                             if ($sgender == $ugender || $sgender == '1'){
-        //                                 if ($sinterest->pivot->interest_id == $uinterest->pivot->interest_id || $sinterest->pivot->interest_id == '1'){
-        //                                     if ($sjob->pivot->job_id == $ujob->pivot->job_id || $sjob->pivot->job_id == '1'){
-        //                                         if ($sprovince->pivot->province_id == $uprovince->pivot->province_id || $sprovince->pivot->province_id == '1'){
-        //                                             // $user->surveys()->attach($survey);
+        //     foreach ($sinterests as $sinterest){}
+        //     foreach ($sjobs as $sjob){}
+        //     foreach ($sprovinces as $sprovince){}
+        //     foreach ($uinterests as $uinterest){}
+        //     foreach ($ujobs as $ujob){}
+        //     foreach ($uprovinces as $uprovince){}
 
-        //                                         }
-        //                                     }
-        //                                 }
-        //                             }
+        //     if ($sgender == $ugender || $sgender == '1'){
+        //         if ($sinterest->pivot->interest_id == $uinterest->pivot->interest_id || $sinterest->pivot->interest_id == '1'){
+        //             if ($sjob->pivot->job_id == $ujob->pivot->job_id || $sjob->pivot->job_id == '1'){
+        //                 if ($sprovince->pivot->province_id == $uprovince->pivot->province_id || $sprovince->pivot->province_id == '1'){
 
+        //                     $surves = $survey;
+
+        //                 }
+        //             }
+        //         }
+        //     }
         // }
 
         return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'ugender', 'ujobs', 'uinterests', 'uprovinces', 'surveys', 'usurveys', 'pages'));

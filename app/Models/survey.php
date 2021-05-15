@@ -19,6 +19,7 @@ class survey extends Model
         'pay',
         'gender_id',
         'limit',
+        'count',
     ];
 
     public function user() {

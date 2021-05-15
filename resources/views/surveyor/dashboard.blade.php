@@ -103,8 +103,11 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        {{-- {{ $survey->pay / $survey->limit }}pt --}}
-                                                        0pt
+                                                        @if ($survey->pay != null)
+                                                            {{ $survey->pay / $survey->limit }}pt
+                                                        @else
+                                                            0pt
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         <a href={{ $survey->link }} target="_blank"
