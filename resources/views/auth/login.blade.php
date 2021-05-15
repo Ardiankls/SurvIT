@@ -50,13 +50,13 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-8">
-                                <div class="col-md-6 mb-2 ">
+                            <div class="form-group col-md-8 no-gutters">
+                                <div class="col-md-12 mb-2 -danger ">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember"
                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                        <label class="form-check-label" for="remember">
+                                        <label class="form-check-label " for="remember">
                                             {{ __('Remember Me') }}
                                         </label>
                                     </div>
