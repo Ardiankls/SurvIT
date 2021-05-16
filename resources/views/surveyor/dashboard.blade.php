@@ -160,7 +160,7 @@
                 <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
                     <h4 class="text-center">Survey List</h4>
                 </div>
-                <div class="card-list container d-md-none">
+                <div class="card-list container-fluid d-md-none">
                     <div class="container bg-white  shadow pr-4 pl-4 pt-4 pb-3 " style="border-radius: 15px;">
                         <div class="row">
                             <div class="col-8">
@@ -209,8 +209,8 @@
                                     0
                                 @endif
                             </div>
-                            <div class="col-7 text-right">
-                                <form action="{{ route('usersurvey.update', $survey) }}" method="post" class="no-gutter" enctype="multipart/form-data">
+                            <div class="col-7 text-right ">
+                                <form action="{{ route('usersurvey.update', $survey) }}" method="post" class="d-inline " enctype="multipart/form-data">
                                     @csrf
                                     <input name="_method" type="hidden" value="PATCH">
                                     <button class="btn btn-sm btn-primary" id="selesai" type="submit">Selesai
