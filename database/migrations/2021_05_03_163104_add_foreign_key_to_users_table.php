@@ -15,7 +15,7 @@ class AddForeignKeyToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('gender_id')->nullable()->constrained();
-            $table->foreignId('address_id')->nullable()->constrained();
+            $table->foreignId('province_id')->nullable()->constrained();
         });
     }
 

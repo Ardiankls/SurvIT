@@ -28,7 +28,7 @@ class User extends Authenticatable
         'birthdate',
         'point',
         'gender_id',
-        'address_id',
+        'province_id',
         'is_login',
         'is_verified',
         'is_admin',
@@ -63,16 +63,16 @@ class User extends Authenticatable
         return $this->belongsTo(address::class,'address_id', 'id');
     }
 
+    public function province() {
+        return $this->belongsTo(province::class, 'province_id', 'id');
+    }
+
     public function jobs() {
         return $this->belongsToMany(job::class, 'user_jobs', 'user_id', 'job_id')->withTimeStamps();
     }
 
     public function interests() {
         return $this->belongsToMany(interest::class, 'user_interests', 'user_id', 'interest_id')->withTimeStamps();
-    }
-
-    public function provinces() {
-        return $this->belongsToMany(province::class, 'user_provinces', 'user_id', 'province_id')->withTimeStamps();
     }
 
     public function surveys() {

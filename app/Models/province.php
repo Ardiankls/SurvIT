@@ -17,8 +17,8 @@ class province extends Model
         return $this->morphMany('App\survey_demography','demography_id');
     }
 
-    public function users(){
-        return $this->belongsToMany(User::class, 'user_provinces', 'province_id', 'user_id')->withTimeStamps();
+    public function user(){
+        return $this->hasMany(User::class);
     }
 
     public function surveys(){

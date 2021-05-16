@@ -22,6 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $pages = "user";
         $user = Auth::user();
         $genders = gender::all()->where('id', '<>', '1');
         $jobs = job::all()->where('id', '<>', '1');
@@ -30,42 +31,46 @@ class UserController extends Controller
 
         $id = Auth::user()->id;
         $ugender = User::find($id)->gender_id;
+        $uprovince = User::find($id)->province_id;
         $ujobs = User::find($id)->jobs;
         $uinterests = User::find($id)->interests;
-        $uprovinces = User::find($id)->provinces;
+        $ui = [1];
+        $uj = [1];
+        $up = [1, $uprovince];
 
-        $surveys = survey::all()->where('user_id', '<>', $id);
-        $usurveys = user_survey::all()->where('user_id', '=', $id);
+        foreach ($uinterests as $uinterest){
+            $ui[] = $uinterest->pivot->interest_id;
+        }
 
-        // $demographies = array($uinterests, $ujobs, $surveys, $sinterests, $sjobs);
-        // dd($demographies);
+        foreach ($ujobs as $ujob){
+            $uj[] = $ujob->pivot->job_id;
+        }
+
+        // $surveys = survey::all()
+        //     ->where('gender_id', '=', $ugender || '1')
+
+        // $surveys = survey::all();
+        // if($ui != null){
+        $surveys = survey::whereHas('interests', function($query) use($ui) {
+            $query->whereIn('interest_id', $ui);})->whereHas('jobs', function($query) use($uj) {
+                $query->whereIn('job_id', $uj);})->whereHas('provinces', function($query) use($up) {
+                    $query->whereIn('province_id', $up);})
+                    ->where('user_id', '<>', $id)
+                    ->where('limit', '>=', 'count')
+                    ->where(function ($query) use($ugender){
+                        $query->where('gender_id', '=', $ugender)
+                              ->orWhere('gender_id', '=', 1);
+                    })
+                    ->get();
 
         // foreach ($surveys as $survey){
-        //     $sinterests = $survey->interests;
-        //     $sjobs = $survey->jobs;
-        //     $sgender = $survey->gender_id;
-        //     $sprovinces = $survey->provinces;
-        //                             foreach ($sinterests as $sinterest){}
-        //                             foreach ($sjobs as $sjob){}
-        //                             foreach ($sprovinces as $sprovince){}
-        //                             foreach ($uinterests as $uinterest){}
-        //                             foreach ($ujobs as $ujob){}
-        //                             foreach ($uprovinces as $uprovince){}
-
-        //                             if ($sgender == $ugender || $sgender == '1'){
-        //                                 if ($sinterest->pivot->interest_id == $uinterest->pivot->interest_id || $sinterest->pivot->interest_id == '1'){
-        //                                     if ($sjob->pivot->job_id == $ujob->pivot->job_id || $sjob->pivot->job_id == '1'){
-        //                                         if ($sprovince->pivot->province_id == $uprovince->pivot->province_id || $sprovince->pivot->province_id == '1'){
-        //                                             // $user->surveys()->attach($survey);
-
-        //                                         }
-        //                                     }
-        //                                 }
-        //                             }
-
+        //     $sinterests[] = $survey->interests;
         // }
 
-        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'ugender', 'ujobs', 'uinterests', 'uprovinces', 'surveys', 'usurveys'));
+        // dd($up);
+
+
+        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'surveys', 'pages'));
     }
 
     /**
@@ -90,12 +95,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update([
             'gender_id' => $request->gender,
+            'province_id' => $request->province,
             'is_survey_avail' => '1'
         ]);
 
         $user->jobs()->attach($request->job);
         $user->interests()->attach($request->interest);
-        $user->provinces()->attach($request->province);
 
         return redirect()->route('user.index');
     }
