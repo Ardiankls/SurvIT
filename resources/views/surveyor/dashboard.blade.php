@@ -14,12 +14,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 mt-5">
-                <div class="bg-white text-center rounded-lg shadow" style="">
-                    @if ($user->is_survey_avail == '0')
-                        <a href="" data-toggle="modal" data-target="#demography" class="btn btn-primary ">Isi Demografi
-                            terlebih dahulu</a>
-                    @else
+
+            @if ($user->is_survey_avail == '0')
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header fs-5">{{ __('Selamat Datang di Website Survey SurvIT!') }}</div>
+
+                                <div class="card-body">
+
+                                    {{ __('Survey survey kami akan dibagikan menurut demografi pengguna') }}
+                                    {{ __('Jika anda ingin mengisi survey, mohon klik tombol untuk mengisi demografi terlebih dahulu ') }}
+                                    <br>
+                                    <a class="btn btn-primary" href="" data-toggle="modal" data-target="#demography">Isi
+                                        Demografi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="col-md-8 mt-5 ">
+                    <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
                         <h1 class="p-3">Survey List</h1>
                         <table class="table table-striped" id="myTable">
                             <thead>
@@ -138,11 +155,38 @@
                             @endforeach
                             </tbody>
                         </table>
-                    @endif
-
+                        @endif
+                    </div>
                 </div>
-
-            </div>
+                <div class="container bg-white  shadow pr-4 pl-4 pt-4 pb-3 d-md-none" style="border-radius: 15px;">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="font-weight-bolder">
+                                Judul Survey
+                            </h5>
+                        </div>
+                        <div class="col-4 text-right">
+                            <div class="">Status:</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            temasurvey, temasurvey, temasurvey
+                        </div>
+                        <div class="col-4 text-right">
+                            PENDING
+                        </div>
+                    </div>
+                    <div class="row mt-2 ">
+                        <div class="col-5 mt-1 ">
+                            <i class="fas fa-coins mr-1"></i>2000
+                        </div>
+                        <div class="col-7 text-right">
+                            <a class="btn btn-sm btn-primary mr-3">Selesai</a>
+                            <a class="btn btn-sm  btn-primary">Buka</a>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
     <script>
