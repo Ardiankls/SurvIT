@@ -121,9 +121,9 @@
                                                         </td>
                                                         <td>
                                                             @if ($survey->pay != null)
-                                                                {{ $survey->pay / $survey->limit }}pt
+                                                                {{ $survey->pay / $survey->limit }}
                                                             @else
-                                                                0pt
+                                                                0
                                                             @endif
                                                         </td>
                                                         <td>
@@ -175,7 +175,7 @@
                         <div class="row">
                             <div class="col-8">
                                 @if ($sinterest->interest == 'Tidak ada')
-                                    Umummmmmmmmmmmmmmmmm
+                                    Umum
                                 @else
                                     {{ $sinterest->interest }}
                                 @endif
@@ -204,9 +204,9 @@
                             <div class="col-5 mt-1 ">
                                 <i class="fas fa-coins mr-1"></i>
                                 @if ($survey->pay != null)
-                                    {{ $survey->pay / $survey->limit }}pt
+                                    {{ $survey->pay / $survey->limit }}
                                 @else
-                                    0pt
+                                    0
                                 @endif
                             </div>
                             <div class="col-7 text-right">
