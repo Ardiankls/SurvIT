@@ -11,13 +11,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-
 {{--    <title>{{ config('app.name', 'SurvIT') }}</title>--}}
 
 {{--    <!-- Scripts -->--}}
 {{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
 
-    <!-- Fonts -->
+<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
@@ -29,27 +28,13 @@
 
 </head>
 <body>
-<div class="container-fluid vh-100">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="row">
-                <div class="col-md-12 vh-100 bg-danger text-center p-5" id="gradient">
-                    <div class="container-sm mt-5 ">
-                        <img class="logo w-75 mt-5" src="{{ asset('assets/assets/logo/logoWhite.svg') }}" alt="">
-                        <p class="mt-5 font-weight-bold text-white"> Mari Ikut Serta Mendorong Perkembangan UMKM dan
-                            Bisnis Di Indonesia Hanya Dengan Mengisi Survey</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        @yield('content2')
 
-    </div>
-</div>
+@yield('content2')
+
+
 <div class="row justify-content-center">
     <div class="col-md-8">
-
     </div>
 </div>
 </body>
