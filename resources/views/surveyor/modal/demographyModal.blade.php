@@ -80,7 +80,7 @@
 
                         </div>
 
-                        <div class="form-group"><label>Provinsi</label>
+                        <div class="form-group mt-1"><label>Provinsi</label>
                             <select name="province" class="custom-select">
                                 @foreach ($provinces as $province)
                                     <option value="{{ $province->id }}">{{ $province->province }}</option>
@@ -88,7 +88,7 @@
                             </select>
                         </div>
 
-                        <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit
+                        <button class="btn btn-primary"  id="checkBtn" type="submit" style="background-color: rgb(221,177,226);">Submit
                         </button>
                     </div>
 
@@ -99,5 +99,34 @@
             </div>
         </div>
     </div>
+
+
 </div>
+
+<div class="modal fade" id="actionmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLongTitle">Terimakasih Sudah Mengisi Survey
+                    Kami</h5>
+            </div>
+            <div class="modal-body">
+                <p>Kami akan melakukan pengecekan validasi survey anda, apabila pengisian survey sudah valid. Maka status
+                    akan berubah menjadi "Sukses"</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('input[type=checkbox]').change(function(e){
+        if ($('input[type=checkbox]:checked').length > 3) {
+            $(this).prop('checked', false)
+            alert("allowed only 3");
+        }
+    })
+</script>
 

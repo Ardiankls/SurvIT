@@ -53,5 +53,10 @@ class InterestSeeder extends Seeder
         $interest = new interest();
         $interest->interest = 'Seni';
         $interest->save();
+
+        $interest = new interest();
+        $interest->interest = 'Kecantikan';
+        $interest->save();
+
     }
 }

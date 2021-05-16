@@ -52,11 +52,16 @@ class SurveyController extends Controller
         $survey = survey::create([
             'title' => $request->title,
             'link' => $request->link,
-            'pay' => $request->pay,
             'limit' => $request->limit,
             'user_id' => Auth::id(),
             'gender_id' => $request->gender,
         ]);
+
+        if($request->pay != null){
+            $survey->update([
+                'pay' => $request->pay,
+            ]);
+        }
 
         $survey->jobs()->attach($request->job);
         $survey->interests()->attach($request->interest);

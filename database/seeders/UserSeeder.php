@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'User';
         $user->email = 'jonathan@user.com';
         $user->password = Hash::make('passworduser');
+        $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '0';
         $user->save();
 
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'User';
         $user->email = 'ardian@user.com';
         $user->password = Hash::make('passworduser');
+        $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '0';
         $user->save();
 
@@ -39,6 +41,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'User';
         $user->email = 'aldi@user.com';
         $user->password = Hash::make('passworduser');
+        $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '0';
         $user->save();
 
@@ -48,6 +51,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'User';
         $user->email = 'bryan@user.com';
         $user->password = Hash::make('passworduser');
+        $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '0';
         $user->save();
 
@@ -57,6 +61,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'Admin';
         $user->email = 'jonathan@admin.com';
         $user->password = Hash::make('passwordadmin');
+        $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '1';
         $user->save();
 
@@ -66,6 +71,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'Admin';
         $user->email = 'ardian@admin.com';
         $user->password = Hash::make('passwordadmin');
+        $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '1';
         $user->save();
 
@@ -75,6 +81,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'Admin';
         $user->email = 'aldi@admin.com';
         $user->password = Hash::make('passwordadmin');
+        $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '1';
         $user->save();
 
@@ -84,6 +91,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'Amdin';
         $user->email = 'bryan@admin.com';
         $user->password = Hash::make('passwordadmin');
+        $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '1';
         $user->save();
     }

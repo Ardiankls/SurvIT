@@ -25,8 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('point')->default('0');
             $table->enum('is_login', ['0', '1'])
                 ->default('0')->comment('0 = notLogin, 1 = Login');
-            $table->enum('is_verified', ['0', '1'])
-                ->default('0')->comment('0 = notVerified, 1 = Verified');
+            $table->timestamp('email_verified_at')->nullable();
             $table->enum('is_survey_avail', ['0', '1'])
                 ->default('0')->comment('0 = notAvailable, 1 = Available');
             $table->enum('is_admin', ['0', '1'])

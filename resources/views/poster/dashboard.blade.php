@@ -3,6 +3,9 @@
 @section('content')
     @include('poster.modal.createModal')
     @include('poster.modal.editModal')
+
+
+@if( Auth::user()->is_admin == '1' )
 <div class="container-fluid">
 
     <div class="p-5">
@@ -22,42 +25,6 @@
         </div>
     </div>
 
-{{--    <div class="row justify-content-center">--}}
-{{--        <div class="col-md-8">--}}
-{{--            <div class="row bg-danger ">--}}
-{{--                <div class="col-4"></div>--}}
-{{--                <div class="col-4"></div>--}}
-{{--                <div class="col-4"><a href="" data-toggle="modal" data-target="#demography" class="btn btn-primary ">Buat Survey</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--                <h1>Your Recent Surveys</h1>--}}
-
-{{--            <div class="card m-3" style="min-heigth: 15rem;">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-4">--}}
-{{--                        <img class="d-block w-100" src="" alt="ImageGonBeHere">--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-8">--}}
-{{--                        <h3 style="font-style: italic;">Add New Survey</h3>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="card m-3">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-4">--}}
-{{--                        <img class="d-block w-100" src="" alt="ImageGonBeHere">--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-8">--}}
-{{--                        <h3 style="font-style: italic;">Survey Title</h3>--}}
-{{--                        <p>Date created</p>--}}
-{{--                        <p>Clicked times</p>--}}
-{{--                        <p>Point</p>--}}
-{{--                        <a class="btn btn-success">Edit</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -78,10 +45,10 @@
                                         <a href="" data-toggle="modal" data-target="#editsurvey"> {{ $survey->title }}</a>
                                     </td>
                                     <td>
-                                        {{ $survey->pay / $survey->limit }}pt
+                                        {{-- {{ $survey->pay / $survey->limit }}pt --}}
                                     </td>
                                     <td>
-                                        <a href={{ $survey->link }} class="btn btn-primary">Open</a>
+                                        <a href="{{ $survey->link }}" class="btn btn-primary" >Open</a>
                                     </td>
                                     <td>
                                         <a href="" data-toggle="modal" data-target="#editsurvey" class="btn btn-primary ">Edit</a>
@@ -95,4 +62,23 @@
         </div>
     </div>
 </div>
+@else
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Coming Soon') }}</div>
+
+                    <div class="card-body">
+
+                        {{ __('Fitur ini akan segera kami luncurkan setelah melewati proses testing dan jumlah user ') }}
+                        {{ __('Jika ingin membuat survey, dapat menghubungi pada kontak yang kami sediakan ') }}
+
+                        <a class="btn btn-primary" target="_blank" href="https://surv-it.web.app/#Footer">Hubungi Kami</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 @endsection

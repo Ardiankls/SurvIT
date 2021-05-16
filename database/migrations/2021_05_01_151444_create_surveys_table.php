@@ -22,8 +22,9 @@ class CreateSurveysTable extends Migration
             // $table->integer('point');
             $table->string('title');
             $table->string('link');
-            $table->integer('limit');
-            $table->integer('pay');
+            $table->integer('limit')->nullable();
+            $table->integer('pay')->nullable();
+            $table->integer('count')->default('0');
             $table->timestamps();
         });
     }

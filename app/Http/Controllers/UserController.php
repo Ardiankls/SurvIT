@@ -20,6 +20,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+//        $this->middleware('auth','verified');
+    }
+
+
     public function index()
     {
         $pages = "user";
@@ -80,7 +87,24 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $genders = gender::all()->where('id', '<>', '1');
+        $jobs = job::all()->where('id', '<>', '1');
+        $interests = interest::all()->where('id', '<>', '1');
+        $provinces = province::all()->where('id', '<>', '1');
+
+        $id = Auth::user()->id;
+        $ugender = User::find($id)->gender_id;
+        $ujobs = User::find($id)->jobs;
+        $uinterests = User::find($id)->interests;
+        $uprovinces = User::find($id)->provinces;
+
+        $surveys = survey::all()->where('user_id', '<>', $id);
+        $usurveys = user_survey::all()->where('user_id', '=', $id);
+
+        $pages = "selesai";
+
+        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'ugender', 'ujobs', 'uinterests', 'uprovinces', 'surveys', 'usurveys', 'pages'));
     }
 
     /**

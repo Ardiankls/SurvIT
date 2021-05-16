@@ -1,25 +1,46 @@
 @extends('layouts.app')
 @include('surveyor.modal.demographyModal')
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card text-center">
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+    <div class="container-xxl  p-5">
+        <div class="row justify-content-center ">
+            <div class="col-md-9"></div>
+            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">
+                <div class="row">
+                    <div class="col-8">
+                        <h2 class="pt-2">POINT: {{ $user->point }}</h2>
                     </div>
-                    @if ($user->is_survey_avail == '0')
-                        <a href="" data-toggle="modal" data-target="#demography" class="btn btn-primary ">Isi Demografi
-                            terlebih dahulu</a>
-                    @else
-                        <h1>Point {{ $user->point }}</h1>
+                    <div class="col-4 text-center pt-1">
+                        <a class=" btn btn-primary">Ambil</a>
+                    </div>
+                </div>
+            </div>
+
+            @if ($user->is_survey_avail == '0')
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header fs-5">{{ __('Selamat Datang di Website Survey SurvIT!') }}</div>
+
+                                <div class="card-body">
+
+                                    {{ __('Survey survey kami akan dibagikan menurut demografi pengguna') }}
+                                    {{ __('Jika anda ingin mengisi survey, mohon klik tombol untuk mengisi demografi terlebih dahulu ') }}
+                                    <br>
+                                    <a class="btn btn-primary" href="" data-toggle="modal" data-target="#demography">Isi
+                                        Demografi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="col-md-8 mt-5 ">
+                    <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
+                        <h1 class="p-3">Survey List</h1>
                         <table class="table table-striped" id="myTable">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="col">Judul</th>
                                     <th scope="col">Topik</th>
                                     <th scope="col">Status</th>
@@ -191,7 +212,7 @@
                 if (!checked) {
                     alert(
                         "Kami akan melakukan pengecekan validasi survey anda, apabila pengisian survey sudah valid. Maka status akan berubah menjadi Sukses. Klik Ok untuk konfirmasi."
-                    );
+                        );
                     return true;
                 }
 

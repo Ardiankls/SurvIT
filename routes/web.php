@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\http\controllers\UserController;
-use App\http\controllers\SurveyController;
-use App\http\controllers\UserSurveyController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\UserSurveyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,12 +17,13 @@ use App\http\controllers\UserSurveyController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true ]);
 
-Route::resource('user', UserController::class);
-Route::resource('survey', SurveyController::class);
+Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
+Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('usersurvey', UserSurveyController::class);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('user', [UserController::class, 'selesai'])->name('user.selesai');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
