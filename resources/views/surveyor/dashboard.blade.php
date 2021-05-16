@@ -152,7 +152,7 @@
                                         @endif
                                     @endif
 
-                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -221,6 +221,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             @endif
         </div>
     </div>
