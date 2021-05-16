@@ -155,38 +155,44 @@
                             @endforeach
                             </tbody>
                         </table>
-                        @endif
                     </div>
                 </div>
-                <div class="container bg-white  shadow pr-4 pl-4 pt-4 pb-3 d-md-none" style="border-radius: 15px;">
-                    <div class="row">
-                        <div class="col-8">
-                            <h5 class="font-weight-bolder">
-                                Judul Survey
-                            </h5>
+                <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
+                    <h4 class="text-center">Survey List</h4>
+                </div>
+                <div class="card-list d-md-none">
+                    <div class="container bg-white  shadow pr-4 pl-4 pt-4 pb-3 " style="border-radius: 15px;">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5 class="font-weight-bolder">
+                                    Judul Survey
+                                </h5>
+                            </div>
+                            <div class="col-4 text-right">
+                                <div class="">Status:</div>
+                            </div>
                         </div>
-                        <div class="col-4 text-right">
-                            <div class="">Status:</div>
+                        <div class="row">
+                            <div class="col-8">
+                                temasurvey, temasurvey, temasurvey
+                            </div>
+                            <div class="col-4 text-right text-warning">
+                                Pending
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            temasurvey, temasurvey, temasurvey
-                        </div>
-                        <div class="col-4 text-right">
-                            PENDING
-                        </div>
-                    </div>
-                    <div class="row mt-2 ">
-                        <div class="col-5 mt-1 ">
-                            <i class="fas fa-coins mr-1"></i>2000
-                        </div>
-                        <div class="col-7 text-right">
-                            <a class="btn btn-sm btn-primary mr-3">Selesai</a>
-                            <a class="btn btn-sm  btn-primary">Buka</a>
+                        <div class="row mt-2 ">
+                            <div class="col-5 mt-1 ">
+                                <i class="fas fa-coins mr-1"></i>2000
+                            </div>
+                            <div class="col-7 text-right">
+                                <button class="btn btn-sm btn-primary" id="selesai" type="submit">Selesai
+                                </button>
+                                <a class="btn btn-sm  btn-primary">Buka</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            @endif
         </div>
     </div>
     <script>
