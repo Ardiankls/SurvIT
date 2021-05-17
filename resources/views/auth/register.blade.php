@@ -96,7 +96,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input id="phone" type="phone"
+                                    <input id="phone" type="number"
                                            class="form-control @error('phone') is-invalid @enderror"
                                            name="phone" value="{{ old('phone') }}" placeholder="Nomor Telepon" required
                                            autocomplete="phone">
