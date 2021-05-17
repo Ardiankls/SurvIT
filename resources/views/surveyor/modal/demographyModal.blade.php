@@ -140,7 +140,7 @@
                             <div class="form-group"><label>Rekening</label>
                                 <input class="form-control" type="number" name="nominal" value="" required></div>
                         </div>
-                        <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit</button>
+                        <button class="btn btn-primary" type="submit" style="">Submit</button>
                     </div>
                 </form>
             </div>
