@@ -201,7 +201,7 @@
                 checked = $("input[type=checkbox]:checked").length;
 
                 if (!checked) {
-                    alert("You must check at least one checkbox.");
+                    alert("Kamu harus memilih minimal 1");
                     return false;
                 }
 
