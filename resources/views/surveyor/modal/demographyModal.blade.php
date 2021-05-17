@@ -123,7 +123,8 @@
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">
                             <div class="form-group"><label>Nominal</label>
-                                <input class="form-control" type="number" name="value" value="10000" min="10000" max="{{ $user->point }}" required>
+                                <input class="form-control" id="nominal" type="number" name="value" value="10000" min="10000" required>
+                                <input class="form-control" id="upoint" type="hidden" name="upoint" value={{ $user->point }}>
                             </div>
                         </div>
                         <div class="form-group">
@@ -150,7 +151,7 @@
                                 @endif
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit" style="">Submit</button>
+                        <button class="btn btn-primary" id="pay" type="submit" style="">Submit</button>
                     </div>
                 </form>
             </div>

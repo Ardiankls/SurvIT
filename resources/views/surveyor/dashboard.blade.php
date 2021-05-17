@@ -222,14 +222,28 @@
 
             });
         });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#pay').click(function() {
+                var x, y;
+                x = document.getElementById("nominal").value;
+                y = document.getElementById("upoint").value;
+                if (isNaN(x) || x > y) {
+                    alert(
+                        "Point kamu tidak cukup."
+                    );
+                    return false;
+                }
 
+            });
+        });
     </script>
     <?php if ($pages == 'selesai') { ?>
     <script>
         $(function() {
             $('#actionmodal').modal('show');
         });
-
     </script>
     <?php } ?>
 @endsection
