@@ -123,7 +123,7 @@
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">
                             <div class="form-group"><label>Nominal</label>
-                                <input class="form-control" type="number" name="nominal" value="10000" required></div>
+                                <input class="form-control" type="number" name="nominal" min="10000" required></div>
                         </div>
                         <select class="form-control">
                             <option>BCA</option>
