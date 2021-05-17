@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserSurveyController;
+use App\Http\Controllers\AccountPaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,5 +26,6 @@ Auth::routes(['verify' => true ]);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('usersurvey', UserSurveyController::class);
+Route::resource('payment', AccountPaymentController::class);
 // Route::get('user', [UserController::class, 'selesai'])->name('user.selesai');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

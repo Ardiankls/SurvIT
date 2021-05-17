@@ -27,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'birthdate',
         'point',
+        'transfer',
         'gender_id',
         'province_id',
         'is_login',
@@ -77,5 +78,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function surveys() {
         return $this->belongsToMany(survey::class, 'user_surveys', 'user_id', 'survey_id')->withTimeStamps();
+    }
+
+    public function account_payment(){
+        return $this->hasMany(account_payment::class);
     }
 }

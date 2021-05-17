@@ -15,10 +15,14 @@ class CreateAccountPaymentsTable extends Migration
     {
         Schema::create('account_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pay_method_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->string('payment_information');
-            $table->string('payment_status');
+            // $table->foreignId('pay_method_id')->constrained();
+            $table->string('value');
+            $table->string('bank');
+            $table->string('transfer');
+            $table->string('payment_information')->nullable();
+            $table->enum('payment_status', ['0', '1'])
+                ->default('0')->comment('0 = Pending, 1 = Success');
             $table->timestamps();
         });
     }

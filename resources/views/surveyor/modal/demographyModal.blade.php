@@ -118,27 +118,37 @@
                     <div class="text-left">3. Biaya tambahan seperti pajak transfer beda bank akan dikenakan kepada user yang dapat berupa pengurangan point atau nominal penarikan point <br> (Rekening yang dianjurkan adalah BCA)</div>
                 </div>
 
-                <form action="{{route('survey.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('payment.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">
                             <div class="form-group"><label>Nominal</label>
-                                <input class="form-control" type="number" name="nominal" min="10000" required></div>
+                                <input class="form-control" type="number" name="value" value="10000" min="10000" max="{{ $user->point }}" required>
+                            </div>
                         </div>
-                        <select class="form-control">
-                            <option>BCA</option>
-                            <option>BCA Syariah</option>
-                            <option>BRI</option>
-                            <option>BRI Syariah</option>
-                            <option>Mandiri</option>
-                            <option>Bukopin</option>
-                            <option>BNI</option>
-                            <option>Bank Mega</option>
-                            <option>Bank Danamon</option>
-                        </select>
+                        <div class="form-group">
+                            <div class="form-group"><label>Bank</label>
+                                <select name="bank" class="form-control">
+                                    <option value="BCA">BCA</option>
+                                    <option value="BCA Syariah">BCA Syariah</option>
+                                    <option value="BRI">BRI</option>
+                                    <option value="BRI Syariah">BRI Syariah</option>
+                                    <option value="Mandiri">Mandiri</option>
+                                    <option value="Bukopin">Bukopin</option>
+                                    <option value="BNI">BNI</option>
+                                    <option value="Bank Mega">Bank Mega</option>
+                                    <option value="Bank Danamon">Bank Danamon</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="form-group"><label>Rekening</label>
-                                <input class="form-control" type="number" name="nominal" value="" required></div>
+                                @if($user->transfer != null)
+                                    <input class="form-control" type="number" name="transfer" value="{{ $user->transfer }}" required>
+                                @else
+                                    <input class="form-control" type="number" name="transfer" required>
+                                @endif
+                            </div>
                         </div>
                         <button class="btn btn-primary" type="submit" style="">Submit</button>
                     </div>

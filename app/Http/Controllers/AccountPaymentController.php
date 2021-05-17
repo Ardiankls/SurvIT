@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\account_payment;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AccountPaymentController extends Controller
 {
@@ -35,7 +37,21 @@ class AccountPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+        $user->update([
+            'transfer' => $request->transfer,
+            'point' => $user->point - $request->value,
+        ]);
+
+        account_payment::create([
+            'user_id' => $id,
+            'value' => $request->value,
+            'bank' => $request->bank,
+            'transfer' => $request->transfer,
+        ]);
+
+        return redirect()->route('user.index');
     }
 
     /**

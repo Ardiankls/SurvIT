@@ -9,12 +9,19 @@ class account_payment extends Model
 {
     use HasFactory;
 
-    protected $table = "account_payment";
-
     protected $fillable = [
-        'username',
-        'method_id',
+        'user_id',
+        'pay_method_id',
+        'bank',
+        'transfer',
+        'value',
         'payment_information',
         'payment_status',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class,'user_id', 'id');
+    }
+
+
 }
