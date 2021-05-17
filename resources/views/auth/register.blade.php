@@ -51,7 +51,7 @@
                                                class="form-control @error('first_name') is-invalid @enderror"
                                                name="first_name"
                                                value="{{ old('first_name') }}" required autocomplete="first_name"
-                                               placeholder="First Name" autofocus>
+                                               placeholder="Nama Depan" autofocus>
                                         @error('first_name')
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -63,7 +63,7 @@
                                                class="form-control @error('last_name') is-invalid @enderror"
                                                name="last_name"
                                                value="{{ old('last_name') }}" required autocomplete="last_name"
-                                               placeholder="Last Name" autofocus>
+                                               placeholder="Nama Belakang" autofocus>
                                         @error('last_name')
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -75,7 +75,7 @@
                                     <input id="username" type="text"
                                            class="form-control @error('username') is-invalid @enderror" name="username"
                                            value="{{ old('username') }}" required autocomplete="username"
-                                           placeholder="Username"
+                                           placeholder="Nama User"
                                            autofocus>
                                     @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -96,6 +96,18 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <input id="phone" type="phone"
+                                           class="form-control @error('phone') is-invalid @enderror"
+                                           name="phone" value="{{ old('phone') }}" placeholder="Nomor Telepon" required
+                                           autocomplete="phone">
+
+                                    @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <input id="password" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            placeholder="Password" required
@@ -110,7 +122,7 @@
                                 <div class="form-group">
                                     <input id="password-confirm" type="password" class="form-control"
                                            name="password_confirmation" required autocomplete="new-password"
-                                           placeholder="Confirm Password">
+                                           placeholder="Konfirmasi Password">
                                 </div>
 
                                 <button type="submit" data-toggle="modal" data-target="#verifymodal"
