@@ -51,9 +51,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($surveys as $survey)
-                                    <?php
-                                        $sinterests = $survey->interests;
-                                    ?>
+                                    <?php $sinterests = $survey->interests; ?>
                                     <tr class="text-center">
                                         <td>
                                             {{ $survey->title }}
@@ -116,68 +114,75 @@
                 <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
                     <h4 class="text-center">Survey List</h4>
                 </div>
-                <div class="card-list container d-md-none">
-                    <div class="container bg-white  shadow pr-4 pl-4 pt-4 pb-3 " style="border-radius: 15px;">
-                        <div class="row">
-                            <div class="col-8">
-                                <h5 class="font-weight-bolder">
-                                    {{-- {{ $survey->title }} --}}
-                                </h5>
+                @foreach ($surveys as $survey)
+                    <?php $sinterests = $survey->interests; ?>
+                    <div class="card-list container d-md-none">
+                        <div class="container bg-white  shadow pr-4 pl-4 pt-4 pb-3 " style="border-radius: 15px;">
+
+                            <div class="row">
+                                <div class="col-8">
+                                    <h5 class="font-weight-bolder">
+                                        {{ $survey->title }}
+                                    </h5>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <div class="">Status:</div>
+                                </div>
                             </div>
-                            <div class="col-4 text-right">
-                                <div class="">Status:</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">
-                                {{-- @if ($sinterest->interest == 'Tidak ada')
-                                    Umum
-                                @else
-                                    {{ $sinterest->interest }}
-                                @endif --}}
-                            </div>
-                            <div class="col-4 text-right text-warning">
-                                {{-- @if ($survey->users != null)
-                                    @foreach ($survey->users as $usurveyy)
-                                        @if ($usurveyy->pivot->user_id == $user->id)
-                                            @if ($usurveyy->exists())
-                                                @if ($usurveyy->pivot->status == 2)
-                                                    Proses
-                                                @elseif($usurveyy->pivot->status == 3)
-                                                    Sukses
-                                                @endif
-                                            @else
-                                                Baru
-                                            @endif
+                            <div class="row">
+                                <div class="col-8">
+                                    @foreach ($sinterests as $sinterest)
+                                        @if ($sinterest->interest == 'Tidak ada')
+                                            Umum
+                                        @else
+                                            {{ $sinterest->interest }}
                                         @endif
                                     @endforeach
-                                @else
-                                    Baru
-                                @endif
-                            </div> --}}
+                                </div>
+                                <div class="col-4 text-right text-warning">
+                                    @if ($survey->users != null)
+                                        @foreach ($survey->users as $usurveyy)
+                                            @if ($usurveyy->pivot->user_id == $user->id)
+                                                @if ($usurveyy->exists())
+                                                    @if ($usurveyy->pivot->status == 2)
+                                                        Proses
+                                                    @elseif($usurveyy->pivot->status == 3)
+                                                        Sukses
+                                                    @endif
+                                                @else
+                                                    Baru
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        Baru
+                                    @endif
+                                </div>
                             </div>
                             <div class="row mt-2 ">
                                 <div class="col-5 mt-1 ">
                                     <i class="fas fa-coins mr-1"></i>
-                                    {{-- @if ($survey->pay != null)
-                                    {{ $survey->pay / $survey->limit }}
-                                @else
-                                    0
-                                @endif --}}
+                                    @if ($survey->pay != null)
+                                        {{ $survey->pay / $survey->limit }}
+                                    @else
+                                        0
+                                    @endif
                                 </div>
                                 <div class="col-7 text-right">
-                                    {{-- <form action="{{ route('usersurvey.update', $survey) }}" method="post" class="no-gutter" enctype="multipart/form-data">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="PATCH">
-                                    <button class="btn btn-sm btn-primary" id="selesai" type="submit">Selesai
-                                    </button>
-                                </form>
-                                <a class="btn btn-sm  btn-primary" href={{ $survey->link }} target="_blank">Buka</a> --}}
+                                    <form action="{{ route('usersurvey.update', $survey) }}" method="post"
+                                        class="no-gutter" enctype="multipart/form-data">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="PATCH">
+                                        <button class="btn btn-sm btn-primary" id="selesai" type="submit">Selesai
+                                        </button>
+                                    </form>
+                                    <a class="btn btn-sm  btn-primary" href={{ $survey->link }} target="_blank">Buka</a>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-
+                @endforeach
             @endif
         </div>
     </div>
@@ -212,7 +217,7 @@
                 if (!checked) {
                     alert(
                         "Kami akan melakukan pengecekan validasi survey anda, apabila pengisian survey sudah valid. Maka status akan berubah menjadi Sukses. Klik Ok untuk konfirmasi."
-                        );
+                    );
                     return true;
                 }
 

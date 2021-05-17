@@ -53,11 +53,6 @@ class UserController extends Controller
             $uj[] = $ujob->pivot->job_id;
         }
 
-        // $surveys = survey::all()
-        //     ->where('gender_id', '=', $ugender || '1')
-
-        // $surveys = survey::all();
-        // if($ui != null){
         $surveys = survey::whereHas('interests', function($query) use($ui) {
             $query->whereIn('interest_id', $ui);})->whereHas('jobs', function($query) use($uj) {
                 $query->whereIn('job_id', $uj);})->whereHas('provinces', function($query) use($up) {
@@ -75,7 +70,6 @@ class UserController extends Controller
         // }
 
         // dd($up);
-
 
         return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'surveys', 'pages'));
     }
