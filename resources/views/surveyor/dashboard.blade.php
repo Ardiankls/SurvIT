@@ -10,7 +10,7 @@
                         <h2 class="pt-2">POINT: {{ $user->point }}</h2>
                     </div>
                     <div class="col-4 text-center pt-1">
-                        <a class=" btn btn-primary">Ambil</a>
+                        <a class=" btn btn-primary"data-toggle="modal" data-target="#getpoint">Ambil</a>
                     </div>
                 </div>
             </div>
