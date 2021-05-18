@@ -41,7 +41,8 @@
                 <div class="col-md-8 mt-5 ">
                     <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
                         @if (count($surveys) < 1)
-                            <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa saat
+                            <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa
+                                saat
                                 lagi.</h5>
                         @else
                             <h1 class="p-3">Daftar Survei</h1>
@@ -125,73 +126,92 @@
                     </div>
                 </div>
 
-                <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
-                    <h4 class="text-center">Survey List</h4>
-                </div>
-                @foreach ($surveys as $survey)
-                    <?php $sinterests = $survey->interests; ?>
-                    <div class="card-list container d-md-none">
-                        <div class="container bg-white  shadow pr-4 pl-4 pt-4 pb-3 mb-4" style="border-radius: 15px;">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h5 class="font-weight-bolder">
-                                        {{ $survey->title }}
-                                    </h5>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <div class="">Status:</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    @foreach ($sinterests as $sinterest)
-                                        @if ($sinterest->interest == 'Tidak ada')
-                                            Umum
-                                        @else
-                                            {{ $sinterest->interest }}
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="col-4 text-right text-warning">
-                                    @if (count($survey->users) > 0)
-                                        @foreach ($survey->users as $usurvey)
-                                            @if ($usurvey->pivot->user_id == $user->id)
-                                                @if ($usurvey->pivot->status == 2)
-                                                    Pending
-                                                @elseif($usurvey->pivot->status == 3)
-                                                    Sukses
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    @else
-                                        Baru
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mt-2 ">
-                                <div class="col-5 mt-1 ">
-                                    <i class="fas fa-coins mr-1"></i>
-                                    @if ($survey->pay != null)
-                                        {{ $survey->pay / $survey->limit }}
-                                    @else
-                                        0
-                                    @endif
-                                </div>
-                                <div class="col-7 text-right">
-                                    <form action="{{ route('usersurvey.update', $survey) }}" method="post"
-                                        class="d-inline" enctype="multipart/form-data">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="PATCH">
-                                        <button class="btn btn-sm btn-primary" id="selesai" type="submit">Selesai
-                                        </button>
-                                    </form>
-                                    <a class="btn btn-sm  btn-primary" href={{ $survey->link }} target="_blank">Buka</a>
-                                </div>
-                            </div>
-
+                <div class="container bg-white p-2 d-md-none mb-4" style="border-radius: 15px;">
+                    @if (count($surveys) < 1)
+                        <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa
+                            saat
+                            lagi.</h5>
+                    @else
+                        <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
+                            <h4 class="text-center">Survey List</h4>
                         </div>
-                    </div>
-                @endforeach
+
+                        @foreach ($surveys as $survey)
+                            <?php
+                            $sinterests = $survey->interests;
+                            $checks = $survey
+                            ->users()
+                            ->wherePivot('user_id', '=', $user->id)
+                            ->get();
+                            ?>
+                            <div class="card-list container d-md-none">
+                                <div class="container bg-white  shadow pr-4 pl-4 pt-4 pb-3 mb-4"
+                                    style="border-radius: 15px;">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h5 class="font-weight-bolder">
+                                                {{ $survey->title }}
+                                            </h5>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <div class="">Status:</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            @foreach ($sinterests as $sinterest)
+                                                @if ($sinterest->interest == 'Tidak ada')
+                                                    Umum
+                                                @else
+                                                    {{ $sinterest->interest }}
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="col-4 text-right text-warning">
+                                            @if (count($checks) > 0)
+                                                @foreach ($checks as $usurvey)
+                                                    @if ($usurvey->pivot->status == 2)
+                                                        Pending
+                                                    @elseif($usurvey->pivot->status == 3)
+                                                        Sukses
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                Baru
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2 ">
+                                        <div class="col-5 mt-1 ">
+                                            <i class="fas fa-coins mr-1"></i>
+                                            @if ($survey->pay != null)
+                                                {{ $survey->pay / $survey->limit }}
+                                            @else
+                                                0
+                                            @endif
+                                        </div>
+                                        <div class="col-7 text-right">
+                                            @if (count($checks) > 0)
+                                            @else
+                                                <form action="{{ route('usersurvey.update', $survey) }}" method="post"
+                                                    class="d-inline" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="PATCH">
+                                                    <button class="btn btn-sm btn-primary" id="selesai"
+                                                        type="submit">Selesai
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            <a class="btn btn-sm  btn-primary" href={{ $survey->link }}
+                                                target="_blank">Buka</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             @endif
         </div>
     </div>
