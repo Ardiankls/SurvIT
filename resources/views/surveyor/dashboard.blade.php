@@ -10,7 +10,7 @@
                         <h2 class="pt-2">POINT: {{ $user->point }}</h2>
                     </div>
                     <div class="col-4 text-center pt-1">
-                        <a class=" btn btn-primary"data-toggle="modal" data-target="#getpoint">Ambil</a>
+                        <a class=" btn btn-primary" data-toggle="modal" data-target="#getpoint">Ambil</a>
                     </div>
                 </div>
             </div>
@@ -35,82 +35,96 @@
                     </div>
                 </div>
             @else
+
+
+
                 <div class="col-md-8 mt-5 ">
                     <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
-                        <h1 class="p-3">Survey List</h1>
-                        <table class="table table-striped" id="myTable">
-                            <thead>
-                                <tr class="text-center">
-                                    <th scope="col">Judul</th>
-                                    <th scope="col">Topik</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Point</th>
-                                    <th scope="col">Link</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($surveys as $survey)
-                                    <?php $sinterests = $survey->interests; ?>
+                        @if (count($surveys) < 1)
+                            <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa saat
+                                lagi.</h5>
+                        @else
+                            <h1 class="p-3">Daftar Survei</h1>
+                            <table class="table table-striped" id="myTable">
+                                <thead>
                                     <tr class="text-center">
-                                        <td>
-                                            {{ $survey->title }}
-                                        </td>
-                                        <td>
-                                            @foreach ($sinterests as $sinterest)
-                                                @if ($sinterest->interest == 'Tidak ada')
-                                                    Umum
-                                                @else
-                                                    {{ $sinterest->interest }}
-                                                @endif
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @if ($survey->users != null)
-                                                @foreach ($survey->users as $usurvey)
-                                                    @if ($usurvey->pivot->user_id == $user->id)
-                                                        @if ($usurvey->exists())
-                                                            @if ($usurvey->pivot->status == 2)
-                                                                {{ $usurvey->status }}
-                                                            @elseif($usurvey->pivot->status == 3)
-                                                                Sukses
-                                                            @endif
-                                                        @else
-                                                            Baru
-                                                        @endif
+                                        <th scope="col">Judul</th>
+                                        <th scope="col">Topik</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Point</th>
+                                        <th scope="col">Link</th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($surveys as $survey)
+                                        <?php
+                                        $sinterests = $survey->interests;
+                                        $checks = $survey
+                                        ->users()
+                                        ->wherePivot('user_id', '=', $user->id)
+                                        ->get();
+                                        ?>
+                                        <tr class="text-center">
+                                            <td>
+                                                {{ $survey->title }}
+                                            </td>
+                                            <td>
+                                                @foreach ($sinterests as $sinterest)
+                                                    @if ($sinterest->interest == 'Tidak ada')
+                                                        Umum
+                                                    @else
+                                                        {{ $sinterest->interest }}
                                                     @endif
                                                 @endforeach
-                                            @else
-                                                Baru
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($survey->pay != null)
-                                                {{ $survey->pay / $survey->limit }}
-                                            @else
-                                                0
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href={{ $survey->link }} target="_blank" class="btn btn-primary">Buka</a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('usersurvey.update', $survey) }}" method="post"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <input name="_method" type="hidden" value="PATCH">
-                                                <button class="btn btn-primary" id="selesai" type="submit"
-                                                    style="background-color: rgb(221,177,226);">Selesai
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            </td>
+                                            <td>
+                                                @if (count($checks) > 0)
+                                                    @foreach ($checks as $usurvey)
+                                                        @if ($usurvey->pivot->status == 2)
+                                                            Pending
+                                                        @elseif($usurvey->pivot->status == 3)
+                                                            Sukses
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    Baru
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($survey->pay != null)
+                                                    {{ $survey->pay / $survey->limit }}
+                                                @else
+                                                    0
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href={{ $survey->link }} target="_blank"
+                                                    class="btn btn-primary">Buka</a>
+                                            </td>
+                                            <td>
+                                                @if (count($checks) > 0)
+                                                    -
+                                                @else
+                                                    <form action="{{ route('usersurvey.update', $survey) }}" method="post"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input name="_method" type="hidden" value="PATCH">
+                                                        <button class="btn btn-primary" id="selesai" type="submit"
+                                                            style="background-color: rgb(221,177,226);">Selesai
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
                 </div>
+
                 <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
                     <h4 class="text-center">Survey List</h4>
                 </div>
@@ -139,17 +153,13 @@
                                     @endforeach
                                 </div>
                                 <div class="col-4 text-right text-warning">
-                                    @if ($survey->users != null)
-                                        @foreach ($survey->users as $usurveyy)
-                                            @if ($usurveyy->pivot->user_id == $user->id)
-                                                @if ($usurveyy->exists())
-                                                    @if ($usurveyy->pivot->status == 2)
-                                                        Proses
-                                                    @elseif($usurveyy->pivot->status == 3)
-                                                        Sukses
-                                                    @endif
-                                                @else
-                                                    Baru
+                                    @if (count($survey->users) > 0)
+                                        @foreach ($survey->users as $usurvey)
+                                            @if ($usurvey->pivot->user_id == $user->id)
+                                                @if ($usurvey->pivot->status == 2)
+                                                    Pending
+                                                @elseif($usurvey->pivot->status == 3)
+                                                    Sukses
                                                 @endif
                                             @endif
                                         @endforeach
@@ -222,6 +232,7 @@
 
             });
         });
+
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -238,12 +249,14 @@
 
             });
         });
+
     </script>
     <?php if ($pages == 'selesai') { ?>
     <script>
         $(function() {
             $('#actionmodal').modal('show');
         });
+
     </script>
     <?php } ?>
 @endsection
