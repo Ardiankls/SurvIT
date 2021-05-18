@@ -45,7 +45,7 @@
                                 saat
                                 lagi.</h5>
                         @else
-                            <h1 class="p-3">Daftar Survei</h1>
+                            <h1 class="p-3">Daftar Survey</h1>
                             <table class="table table-striped" id="myTable">
                                 <thead>
                                     <tr class="text-center">
@@ -133,7 +133,7 @@
                             lagi.</h5>
                     @else
                         <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
-                            <h4 class="text-center">Survey List</h4>
+                            <h4 class="text-center">Daftar Survey</h4>
                         </div>
 
                         @foreach ($surveys as $survey)
