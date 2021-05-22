@@ -116,7 +116,7 @@
                                                         @csrf
                                                         {{-- <input name="_method" type="hidden" value="PATCH"> --}}
                                                         <button class="btn btn-primary" id="selesai" type="submit"
-                                                            style="background-color: rgb(221,177,226);">Selesai
+                                                            style="background-color: rgb(0,0,226);">Selesai
                                                         </button>
                                                     </form>
                                                 @endif
