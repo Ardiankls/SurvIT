@@ -3,21 +3,9 @@
     <div class="container-xxl  p-5">
         <div class="row justify-content-center ">
             <div class="col-md-9"></div>
-            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">
-                <div class="row">
-                    <div class="col-8">
-                        <h2 class="pt-2">POINT: {{ $user->point }}</h2>
-                    </div>
-                    <div class="col-4 text-center pt-1">
-                        <a class=" btn btn-primary" data-toggle="modal" data-target="#getpoint">Ambil</a>
-                    </div>
-                </div>
-            </div>
-
-
             <div class="col-md-8 mt-5 ">
                 <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
-                    <h1 class="p-3">Daftar Survey</h1>
+                    <h1 class="p-3">Konfirmasi Survey</h1>
                     <table class="table table-striped" id="myTable">
                         <thead>
                             <tr class="text-center">
