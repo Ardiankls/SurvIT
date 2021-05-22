@@ -100,17 +100,21 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href={{ $survey->link }} target="_blank"
-                                                    class="btn btn-primary">Buka</a>
+                                                @if (count($checks) > 0)
+                                                    -
+                                                @else
+                                                    <a href={{ $survey->link }} target="_blank"
+                                                        class="btn btn-primary">Buka</a>
+                                                @endif
                                             </td>
                                             <td>
                                                 @if (count($checks) > 0)
                                                     -
                                                 @else
-                                                    <form action="{{ route('usersurvey.update', $survey) }}" method="post"
+                                                    <form action="{{ route('usersurvey.edit', $survey) }}" method="GET"
                                                         enctype="multipart/form-data">
                                                         @csrf
-                                                        <input name="_method" type="hidden" value="PATCH">
+                                                        {{-- <input name="_method" type="hidden" value="PATCH"> --}}
                                                         <button class="btn btn-primary" id="selesai" type="submit"
                                                             style="background-color: rgb(221,177,226);">Selesai
                                                         </button>
@@ -193,7 +197,7 @@
                                         <div class="col-7 text-right">
                                             @if (count($checks) > 0)
                                             @else
-                                                <form action="{{ route('usersurvey.update', $survey) }}" method="post"
+                                                <form action="{{ route('usersurvey.create', $survey) }}" method="post"
                                                     class="d-inline" enctype="multipart/form-data">
                                                     @csrf
                                                     <input name="_method" type="hidden" value="PATCH">
@@ -202,8 +206,11 @@
                                                     </button>
                                                 </form>
                                             @endif
-                                            <a class="btn btn-sm  btn-primary" href={{ $survey->link }}
-                                                target="_blank">Buka</a>
+                                            @if (count($checks) > 0)
+                                            @else
+                                                <a class="btn btn-sm  btn-primary" href={{ $survey->link }}
+                                                    target="_blank">Buka</a>
+                                            @endif
                                         </div>
                                     </div>
 

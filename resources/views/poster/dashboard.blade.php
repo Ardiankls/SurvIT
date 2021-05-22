@@ -2,8 +2,6 @@
 
 @section('content')
     @include('poster.modal.createModal')
-    @include('poster.modal.editModal')
-
 
 @if( Auth::user()->is_admin == '1' )
 <div class="container-fluid">
@@ -51,7 +49,7 @@
                                         <a href="{{ $survey->link }}" class="btn btn-primary" >Open</a>
                                     </td>
                                     <td>
-                                        <a href="" data-toggle="modal" data-target="#editsurvey" class="btn btn-primary ">Edit</a>
+                                        <a href="" class="btn btn-primary ">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,7 +72,7 @@
                         {{ __('Fitur ini akan segera kami luncurkan setelah melewati proses testing dan jumlah user ') }}
                         {{ __('Jika ingin membuat survey, dapat menghubungi pada kontak yang kami sediakan ') }}
 
-                        <a class="btn btn-primary" target="_blank" href="https://surv-it.web.app/#Footer">Hubungi Kami</a>
+                        <a target="_blank" href="https://surv-it.web.app/#Footer">Hubungi Kami</a>
                     </div>
                 </div>
             </div>

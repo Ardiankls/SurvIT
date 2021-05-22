@@ -22,7 +22,16 @@ class UserSurveyController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $id = Auth::user()->id;
+        $genders = gender::all();
+        $jobs = job::all();
+        $interests = interest::all();
+        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
+
+        $usurveys = user_survey::all()->where('status', '<>', '3');
+
+        return view('admin.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'usurveys'));
     }
 
     /**
@@ -63,19 +72,7 @@ class UserSurveyController extends Controller
      * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function edit(user_survey $user_survey)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\user_survey  $user_survey
-     * @return \Illuminate\Http\Response
-     */
-    public function update($detail)
+    public function edit($detail)
     {
         $survey = survey::Find($detail);
         $id = Auth::user()->id;
@@ -90,6 +87,29 @@ class UserSurveyController extends Controller
         ]);
 
         return redirect()->route('user.index');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\user_survey  $user_survey
+     * @return \Illuminate\Http\Response
+     */
+    public function update($detail)
+    {
+        $usurvey = user_survey::Find($detail);
+            $point = $usurvey->survey->pay / $usurvey->survey->limit;
+            $user = User::Find($detail);
+            $user->update([
+                'point' => $user->point + $point
+            ]);
+            $usurvey->update([
+                'status' => '3'
+            ]);
+        // }
+
+        return redirect()->route('usersurvey.index');
     }
 
     /**
