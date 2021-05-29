@@ -83,4 +83,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function account_payment(){
         return $this->hasMany(account_payment::class);
     }
+
+    public function isAdmin() {
+        if($this->is_admin == '1'){
+            return true;
+        }
+        return false;
+    }
 }

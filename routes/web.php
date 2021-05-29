@@ -25,7 +25,11 @@ Auth::routes(['verify' => true ]);
 
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
-Route::resource('usersurvey', UserSurveyController::class);
 Route::resource('payment', AccountPaymentController::class);
+
+
+Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
+    Route::resource('usersurvey', UserSurveyController::class);
+});
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

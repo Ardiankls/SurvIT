@@ -71,7 +71,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('survey.index') }}">{{ __('Survey Post') }}</a>
                             </li>
-                            @if (Auth::user()->is_admin == '1')
+                            @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('usersurvey.index') }}">{{ __('Admin Page') }}</a>
                                 </li>

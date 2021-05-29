@@ -87,9 +87,21 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($detail)
     {
-        //
+        $survey = survey::Find($detail);
+        $id = Auth::user()->id;
+
+        $survey->update([
+            'count' => $survey->count + 1
+        ]);
+        $survey->users()->detach($id);
+        $survey->users()->attach($id);
+        $survey->users()->update([
+            'status' => '2'
+        ]);
+
+        return redirect()->route('user.index');
     }
 
     /**

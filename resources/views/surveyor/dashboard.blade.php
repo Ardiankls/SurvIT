@@ -111,10 +111,10 @@
                                                 @if (count($checks) > 0)
                                                     -
                                                 @else
-                                                    <form action="{{ route('usersurvey.edit', $survey) }}" method="GET"
+                                                    <form action="{{ route('survey.edit', $survey) }}" method="GET"
                                                         enctype="multipart/form-data">
                                                         @csrf
-                                                        {{-- <input name="_method" type="hidden" value="PATCH"> --}}
+                                                        <input name="_method" type="hidden" value="PATCH">
                                                         <button class="btn btn-primary" id="selesai" type="submit"
                                                             style="background-color: rgb(0,0,226);">Selesai
                                                         </button>
@@ -197,7 +197,7 @@
                                         <div class="col-7 text-right">
                                             @if (count($checks) > 0)
                                             @else
-                                                <form action="{{ route('usersurvey.create', $survey) }}" method="post"
+                                                <form action="{{ route('survey.edit', $survey) }}" method="post"
                                                     class="d-inline" enctype="multipart/form-data">
                                                     @csrf
                                                     <input name="_method" type="hidden" value="PATCH">
