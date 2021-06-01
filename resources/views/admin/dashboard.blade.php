@@ -32,7 +32,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('usersurvey.update', $usurvey->id) }}" method="post"
+                                        <form action="{{ route('usersurvey.update', $usurvey) }}" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <input name="_method" type="hidden" value="PATCH">
