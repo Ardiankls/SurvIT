@@ -200,7 +200,7 @@
                                                 <div class="col-6 no-gutters text-right ">
                                                     @if (count($checks) > 0)
                                                     @else
-                                                        <form action="{{ route('survey.edit', $survey) }}" method="post"
+                                                        <form action="{{ route('survey.edit', $survey) }}" method="GET"
                                                               class="d-inline" enctype="multipart/form-data">
                                                             @csrf
                                                             <input name="_method" type="hidden" value="PATCH">
