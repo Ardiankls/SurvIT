@@ -99,15 +99,15 @@ class UserSurveyController extends Controller
     public function update($detail)
     {
         $usurvey = user_survey::Find($detail);
-            $point = $usurvey->survey->pay / $usurvey->survey->limit;
-            $user = User::Find($detail);
-            $user->update([
-                'point' => $user->point + $point
-            ]);
-            $usurvey->update([
-                'status' => '3'
-            ]);
-        // }
+        $usurvey->update([
+            'status' => '3'
+        ]);
+
+        $point = $usurvey->survey->pay / $usurvey->survey->limit;
+        $user = User::Find($usurvey->user_id);
+        $user->update([
+            'point' => $user->point + $point
+        ]);
 
         return redirect()->route('usersurvey.index');
     }
