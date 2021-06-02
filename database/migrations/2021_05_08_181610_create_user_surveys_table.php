@@ -17,7 +17,7 @@ class CreateUserSurveysTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('survey_id')->constrained();
-            $table->string('status')->default('1');
+            $table->string('status')->default('2');
             $table->timestamps();
         });
     }

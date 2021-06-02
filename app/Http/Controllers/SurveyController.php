@@ -95,11 +95,7 @@ class SurveyController extends Controller
         $survey->update([
             'count' => $survey->count + 1
         ]);
-        $survey->users()->detach($id);
         $survey->users()->attach($id);
-        $survey->users()->update([
-            'status' => '2'
-        ]);
 
         return redirect()->route('user.index');
     }
