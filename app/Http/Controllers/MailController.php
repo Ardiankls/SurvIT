@@ -29,7 +29,7 @@ class MailController extends Controller
    public function html_email() {
       $data = array('name'=>"SurvIT Team");
       Mail::send('mail', $data, function($message) {
-        $message->to('jvalentino@student.ciputra.ac.id', 'User')->subject
+        $message->to('akurniawan06@student.ciputra.ac.id', 'User')->subject
             ('Survey Baru');
         $message->from('survitsurvey@gmail.com','SurvIT Team');
       });
