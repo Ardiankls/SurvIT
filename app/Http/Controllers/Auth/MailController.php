@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Mail\Broadcast;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,14 +17,6 @@ class MailController extends Controller
      */
     public function index()
     {
-        $data = array('name'=>"Virat Gandhi");
-
-        Mail::send(['text'=>'mail'], $data, function($message) {
-            $message->to('jvalentino@student.ciputra.ac.id', 'Tutorials Point')->subject
-                ('Laravel Basic Testing Mail');
-            $message->from('xyz@gmail.com','Virat Gandhi');
-        });
-
         return view('admin.mail');
     }
 
@@ -44,7 +38,15 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $msg = $request->message;
+        $subject = $request->subject;
+        $users = User::all()->where('email_verified_at', '=', null);
+
+        foreach($users as $user){
+            Mail::to($user->email)->send(new Broadcast($subject, $msg));
+        }
+
+        return redirect()->route('mail.index');
     }
 
     /**

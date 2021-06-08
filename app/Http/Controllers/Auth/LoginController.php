@@ -53,7 +53,7 @@ class LoginController extends Controller
             return redirect()->route('user.index');
         }
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('Fail', 'User email or password is not exist');;
     }
 
     public function logout(Request $request)
