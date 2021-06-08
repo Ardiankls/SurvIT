@@ -7,6 +7,8 @@ use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserSurveyController;
 use App\Http\Controllers\AccountPaymentController;
 use App\Http\Controllers\Auth\LoginController;
+// use App\Http\Controllers\Auth\MailController as Email;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,10 +26,15 @@ Auth::routes(['verify' => true ]);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('payment', AccountPaymentController::class);
+Route::resource('mail', Email::class);
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('usersurvey', UserSurveyController::class);
 });
 
+Route::get('sendbasicemail',[MailController::class, 'basic_email']);
+Route::get('sendhtmlemail',[MailController::class, 'html_email']);
+Route::get('sendattachmentemail','MailController@attachment_email');
+
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/email', [MailController::class, 'basic_email'])->name('email');
