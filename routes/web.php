@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserSurveyController;
 use App\Http\Controllers\AccountPaymentController;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +17,7 @@ use App\Http\Controllers\AccountPaymentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [LoginController::class, 'login']);
 
 Auth::routes(['verify' => true ]);
 
@@ -27,9 +25,9 @@ Route::resource('user', UserController::class)->middleware(['auth', 'verified'])
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('payment', AccountPaymentController::class);
 
-
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('usersurvey', UserSurveyController::class);
 });
+
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
