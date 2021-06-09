@@ -28,15 +28,15 @@
     <link href="{{ asset('assets/style.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: #d1d1d1">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand text-white" href="">
                     {{-- {{ config('app.name', 'SurvIT') }} --}}
                     SurvIT
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                <button class="navbar-toggler bg-white" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -65,22 +65,22 @@
                             @endif
                         @else
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">{{ __('Survey List') }}</a>
+                            <li class="nav-item text-">
+                                <a class="nav-link text-white" href="{{ route('user.index') }}">{{ __('Survey List') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('survey.index') }}">{{ __('Survey Post') }}</a>
+                                <a class="nav-link text-white" href="{{ route('survey.index') }}">{{ __('Survey Post') }}</a>
                             </li>
                             @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('usersurvey.index') }}">{{ __('Admin Page') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('usersurvey.index') }}">{{ __('Admin Page') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('mail.index') }}">{{ __('Blast Email') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('mail.index') }}">{{ __('Blast Email') }}</a>
                                 </li>
                             @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
@@ -102,7 +102,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 " >
             @yield('content')
         </main>
     </div>

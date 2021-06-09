@@ -4,7 +4,7 @@
     @include('poster.modal.createModal')
 
     @if (Auth::user()->is_admin == '1')
-        <div class="container-fluid">
+        <div class="container-fluid" >
 
             <div class="p-5">
                 <div class="row">
