@@ -32,5 +32,9 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('mail', Email::class);
 });
 
+Route::get('/surv', function () {
+    return view('surveyor.survey');
+});
+
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');
 // Route::get('/email', [MailController::class, 'basic_email'])->name('email');
