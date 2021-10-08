@@ -6,9 +6,28 @@
                 marginwidth="0">Loading…</iframe>
         </div>
         <div class="row justify-content-center mt-2">
-            <a class="btn btn-primary" style="width:640px" data-toggle="modal" data-target="#getpoint">Selesai</a>
+            <form action="{{ route('survey.edit', $id) }}" method="GET" enctype="multipart/form-data">
+                @csrf
+                <input name="_method" type="hidden" value="PATCH">
+                <button class="btn btn-primary" id="selesai" type="submit" style="background-color: rgb(0,0,226); width:640px;">Selesai
+                </button>
+            </form>
         </div>
+
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#selesai').click(function () {
+                checked = $("input[type=checkbox]:checked").length;
 
+                if (!checked) {
+                    alert(
+                        "Kami akan melakukan pengecekan validasi survey anda, apabila pengisian survey sudah valid. Maka status akan berubah menjadi Sukses. Klik Ok untuk konfirmasi."
+                    );
+                    return true;
+                }
 
+            });
+        });
+    </script>
 @endsection

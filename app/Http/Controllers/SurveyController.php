@@ -78,7 +78,7 @@ class SurveyController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('surveyor.survey', compact('id'));
     }
 
     /**

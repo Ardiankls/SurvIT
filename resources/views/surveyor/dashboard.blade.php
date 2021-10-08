@@ -55,7 +55,6 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Point</th>
                                     <th scope="col">Link</th>
-                                    <th scope="col">Aksi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -104,20 +103,11 @@
                                             @if (count($checks) > 0)
                                                 -
                                             @else
-                                                <a href={{ $survey->link }} target="_blank"
-                                                   class="btn btn-primary">Buka</a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if (count($checks) > 0)
-                                                -
-                                            @else
-                                                <form action="{{ route('survey.edit', $survey) }}" method="GET"
+                                                <form action="{{ route('survey.show', $survey) }}" method="GET"
                                                       enctype="multipart/form-data">
                                                     @csrf
-                                                    <input name="_method" type="hidden" value="PATCH">
                                                     <button class="btn btn-primary" id="selesai" type="submit"
-                                                            style="background-color: rgb(0,0,226);">Selesai
+                                                            style="background-color: rgb(0,0,226);">Buka
                                                     </button>
                                                 </form>
                                             @endif
@@ -245,22 +235,6 @@
                 if (!checked) {
                     alert("Kamu harus memilih minimal 1");
                     return false;
-                }
-
-            });
-        });
-
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#selesai').click(function () {
-                checked = $("input[type=checkbox]:checked").length;
-
-                if (!checked) {
-                    alert(
-                        "Kami akan melakukan pengecekan validasi survey anda, apabila pengisian survey sudah valid. Maka status akan berubah menjadi Sukses. Klik Ok untuk konfirmasi."
-                    );
-                    return true;
                 }
 
             });
