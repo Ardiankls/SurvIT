@@ -188,7 +188,7 @@
                                         <div class="col-7 no-gutters text-right ">
                                             <div class="row">
                                                 <div class="col-6 no-gutters text-right ">
-                                                    @if (count($checks) > 0)
+                                                    {{-- @if (count($checks) > 0)
                                                     @else
                                                         <form action="{{ route('survey.edit', $survey) }}" method="GET"
                                                               class="d-inline" enctype="multipart/form-data">
@@ -198,13 +198,18 @@
                                                                     type="submit">Selesai
                                                             </button>
                                                         </form>
-                                                    @endif
+                                                    @endif --}}
                                                 </div>
                                                 <div class="col-6 no-gutters text-right ">
                                                     @if (count($checks) > 0)
                                                     @else
-                                                        <a class="btn btn-sm  btn-primary" href={{ $survey->link }}
-                                                            target="_blank">Buka</a>
+                                                        <form action="{{ route('survey.show', $survey) }}" method="GET"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <button class="btn btn-primary" id="selesai" type="submit"
+                                                                    style="background-color: rgb(0,0,226);">Buka
+                                                            </button>
+                                                        </form>
                                                     @endif
                                                 </div>
                                             </div>

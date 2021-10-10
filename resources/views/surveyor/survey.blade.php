@@ -2,11 +2,11 @@
 @section('content')
     <div class="container-sm">
         <div class="row justify-content-center">
-            <iframe src="https://forms.gle/ANwdveFBUfxXU2dE9" width="640" height="550" frameborder="0" marginheight="0"
+            <iframe src={{ $survey->link }} width="640" height="550" frameborder="0" marginheight="0"
                 marginwidth="0">Loading…</iframe>
         </div>
         <div class="row justify-content-center mt-2">
-            <form action="{{ route('survey.edit', $id) }}" method="GET" enctype="multipart/form-data">
+            <form action="{{ route('survey.edit', $survey) }}" method="GET" enctype="multipart/form-data">
                 @csrf
                 <input name="_method" type="hidden" value="PATCH">
                 <button class="btn btn-primary" id="selesai" type="submit" style="background-color: rgb(0,0,226); width:640px;">Selesai

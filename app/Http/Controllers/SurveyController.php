@@ -78,7 +78,8 @@ class SurveyController extends Controller
      */
     public function show($id)
     {
-        return view('surveyor.survey', compact('id'));
+        $survey = survey::Find($id);
+        return view('surveyor.survey', compact('survey'));
     }
 
     /**
@@ -87,15 +88,15 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($detail)
+    public function edit($id)
     {
-        $survey = survey::Find($detail);
-        $id = Auth::user()->id;
+        $survey = survey::Find($id);
+        $user = Auth::user()->id;
 
         $survey->update([
             'count' => $survey->count + 1
         ]);
-        $survey->users()->attach($id);
+        $survey->users()->attach($user);
 
         return redirect()->route('user.index');
     }
