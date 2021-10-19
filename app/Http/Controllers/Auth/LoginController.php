@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -46,14 +47,39 @@ class LoginController extends Controller
         $user = [
             'email' => $request->email,
             'password' => $request->password,
+            // 'remember'=> $request->rememberToken,
         ];
 
-        if(Auth::attempt($user)){
-            $this->isLogin(Auth::id());
-            return redirect()->route('user.index');
+        $messages = [
+            "email.required" => "Email is required",
+            "email.email" => "Email is not valid",
+            "email.exists" => "Email doesn't exists",
+            "password.required" => "Password is required",
+            "password.min" => "Password must be at least 6 characters",
+            // "password.password" => "Email or password is invalid"
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required||min:6'
+        ], $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        } else {
+            // attempt to log
+            if(Auth::attempt($user)){
+                $this->isLogin(Auth::id());
+                return redirect()->route('user.index');
+            }
+
+            // if unsuccessful -> redirect back
+            return redirect()->back()->withInput($request->only('email', 'password'))->withErrors([
+                'password' => 'Email or password is invalid.',
+            ]);
         }
 
-        return redirect()->route('login')->with('Fail', 'User email or password is not exist');;
+        // return redirect()->route('login')->with('Fail', 'User email or password is not exist');
     }
 
     public function logout(Request $request)

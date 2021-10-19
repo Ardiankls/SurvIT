@@ -4,6 +4,7 @@
         <div class="row justify-content-center">
             <iframe src={{ $survey->link }} width="640" height="550" frameborder="0" marginheight="0"
                 marginwidth="0">Loading…</iframe>
+
         </div>
         <div class="row justify-content-center mt-2">
             <form action="{{ route('survey.edit', $survey) }}" method="GET" enctype="multipart/form-data">
@@ -13,7 +14,6 @@
                 </button>
             </form>
         </div>
-
     </div>
     <script type="text/javascript">
         $(document).ready(function () {

@@ -70,6 +70,9 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-8 no-gutters">
+                                        @isset($password)
+                                            {{$password}}
+                                        @endisset
                                         <div class="col-md-12 mb-2 -danger ">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="remember"
