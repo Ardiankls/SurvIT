@@ -70,7 +70,7 @@ class LoginController extends Controller
             // attempt to log
             if(Auth::attempt($user)){
                 $this->isLogin(Auth::id());
-                return redirect()->route('user.index');
+                return redirect()->route('usersurvey.index');
             }
 
             // if unsuccessful -> redirect back

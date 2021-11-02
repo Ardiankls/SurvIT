@@ -7,7 +7,7 @@
 
         </div>
         <div class="row justify-content-center mt-2">
-            <form action="{{ route('survey.edit', $survey) }}" method="GET" enctype="multipart/form-data">
+            <form action="{{ route('usersurvey.edit', $survey) }}" method="GET" enctype="multipart/form-data">
                 @csrf
                 <input name="_method" type="hidden" value="PATCH">
                 <button class="btn btn-primary" id="selesai" type="submit" style="background-color: rgb(0,0,226); width:640px;">Selesai

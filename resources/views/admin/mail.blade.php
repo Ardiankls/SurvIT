@@ -4,8 +4,8 @@
         <div class="row justify-content-center ">
             <div class="col-md-9"></div>
             <div class="col-md-8 mt-5 ">
-                <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
-                    <h1 class="p-3">Kirim Mail</h1>
+                <div class="bg-white rounded-lg shadow d-none d-md-block" style="">
+                    <h1 class="p-3 text-center">Kirim Mail</h1>
                     <form action="{{route('mail.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="container" style="padding: 20px 55px;">

@@ -22,6 +22,58 @@ class UserSurveyController extends Controller
      */
     public function index()
     {
+        $pages = "user";
+        $user = Auth::user();
+        $genders = gender::all()->where('id', '<>', '1');
+        $jobs = job::all()->where('id', '<>', '1');
+        $interests = interest::all()->where('id', '<>', '1');
+        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
+
+        $id = Auth::user()->id;
+        $ugender = User::find($id)->gender_id;
+        $uprovince = User::find($id)->province_id;
+        $ujobs = User::find($id)->jobs;
+        $uinterests = User::find($id)->interests;
+        $ui = [1];
+        $uj = [1];
+        $up = [1, $uprovince];
+
+        foreach ($uinterests as $uinterest){
+            $ui[] = $uinterest->pivot->interest_id;
+        }
+
+        foreach ($ujobs as $ujob){
+            $uj[] = $ujob->pivot->job_id;
+        }
+
+        $surveys = survey::whereHas('interests', function($query) use($ui) {
+            $query->whereIn('interest_id', $ui);})->whereHas('jobs', function($query) use($uj) {
+                $query->whereIn('job_id', $uj);})->whereHas('provinces', function($query) use($up) {
+                    $query->whereIn('province_id', $up);})
+                    ->where('user_id', '<>', $id)
+                    ->where('limit', '>=', 'count')
+                    ->where(function ($query) use($ugender){
+                        $query->where('gender_id', '=', $ugender)
+                              ->orWhere('gender_id', '=', 1);
+                    })
+                    ->get();
+
+        // foreach ($surveys as $survey){
+        //     $sinterests[] = $survey->interests;
+        // }
+
+        // dd($up);
+
+        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'surveys', 'pages'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $user = Auth::user();
         $id = Auth::user()->id;
         $genders = gender::all();
@@ -32,16 +84,6 @@ class UserSurveyController extends Controller
         $usurveys = user_survey::all()->where('status', '<>', '3');
 
         return view('admin.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'usurveys'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -61,9 +103,10 @@ class UserSurveyController extends Controller
      * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function show(user_survey $user_survey)
+    public function show($id)
     {
-        //
+        $survey = survey::Find($id);
+        return view('surveyor.survey', compact('survey'));
     }
 
     /**
@@ -72,9 +115,17 @@ class UserSurveyController extends Controller
      * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function edit($detail)
+    public function edit($id)
     {
-        //
+        $survey = survey::Find($id);
+        $user = Auth::user()->id;
+
+        $survey->update([
+            'count' => $survey->count + 1
+        ]);
+        $survey->users()->attach($user);
+
+        return redirect()->route('usersurvey.index');
     }
 
     /**
@@ -97,7 +148,7 @@ class UserSurveyController extends Controller
             'point' => $user->point + $point
         ]);
 
-        return redirect()->route('usersurvey.index');
+        return redirect()->route('usersurvey.create');
     }
 
     /**

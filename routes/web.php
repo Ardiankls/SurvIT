@@ -26,9 +26,10 @@ Auth::routes(['verify' => true ]);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('payment', AccountPaymentController::class);
+Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 'verified']);
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
-    Route::resource('usersurvey', UserSurveyController::class);
+    // Route::resource('usersurvey', UserSurveyController::class);
     Route::resource('mail', Email::class);
 });
 

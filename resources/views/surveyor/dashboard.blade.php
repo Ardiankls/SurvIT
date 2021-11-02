@@ -41,10 +41,12 @@
                 <div class="col-md-8 mt-5 ">
                     <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
                         @if (count($surveys) < 1)
+                        <div class="p-5">
                             <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek
                                 beberapa
                                 saat
                                 lagi.</h5>
+                            </div>
                         @else
                             <h1 class="p-3">Daftar Survey</h1>
                             <table class="table table-striped" id="myTable">
@@ -103,7 +105,7 @@
                                             @if (count($checks) > 0)
                                                 -
                                             @else
-                                                <form action="{{ route('survey.show', $survey) }}" method="GET"
+                                                <form action="{{ route('usersurvey.show', $survey) }}" method="GET"
                                                       enctype="multipart/form-data">
                                                     @csrf
                                                     <button class="btn btn-primary" id="selesai" type="submit"
@@ -203,7 +205,7 @@
                                                 <div class="col-6 no-gutters text-right ">
                                                     @if (count($checks) > 0)
                                                     @else
-                                                        <form action="{{ route('survey.show', $survey) }}" method="GET"
+                                                        <form action="{{ route('usersurvey.show', $survey) }}" method="GET"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <button class="btn btn-primary" id="selesai" type="submit"

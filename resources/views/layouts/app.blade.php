@@ -32,9 +32,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
             <div class="container">
-                <a class="navbar-brand text-white" href="">
+                <a class="navbar-brand text-white" href="{{ route('usersurvey.index') }}">
                     {{-- {{ config('app.name', 'SurvIT') }} --}}
-                    SurvIT
+                    <img style="height: 30px;" src="/images/survit.png" alt="">
                 </a>
                 <button class="navbar-toggler bg-white" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -66,17 +66,21 @@
                         @else
 
                             <li class="nav-item text-">
-                                <a class="nav-link text-white" href="{{ route('user.index') }}">{{ __('Survey List') }}</a>
+                                <a class="nav-link text-white"
+                                    href="{{ route('usersurvey.index') }}">{{ __('Survey List') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('survey.index') }}">{{ __('Survey Post') }}</a>
+                                <a class="nav-link text-white"
+                                    href="{{ route('survey.index') }}">{{ __('Survey Post') }}</a>
                             </li>
                             @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('usersurvey.index') }}">{{ __('Admin Page') }}</a>
+                                    <a class="nav-link text-white"
+                                        href="{{ route('usersurvey.create') }}">{{ __('Admin Page') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('mail.index') }}">{{ __('Blast Email') }}</a>
+                                    <a class="nav-link text-white"
+                                        href="{{ route('mail.index') }}">{{ __('Blast Email') }}</a>
                                 </li>
                             @endif
                             <li class="nav-item dropdown">
@@ -86,12 +90,17 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('user.index') }}">
+                                        Profile
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -102,7 +111,7 @@
             </div>
         </nav>
 
-        <main class="py-4 " >
+        <main class="py-4 ">
             @yield('content')
         </main>
     </div>
