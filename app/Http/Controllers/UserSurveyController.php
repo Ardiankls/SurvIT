@@ -91,7 +91,7 @@ class UserSurveyController extends Controller
             'status' => '3'
         ]);
 
-        $point = $usurvey->survey->pay / $usurvey->survey->limit;
+        $point = $usurvey->survey->pay;
         $user = User::Find($usurvey->user_id);
         $user->update([
             'point' => $user->point + $point

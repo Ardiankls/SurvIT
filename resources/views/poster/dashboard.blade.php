@@ -22,7 +22,7 @@
                                 <tr class="text-center">
                                     <th scope="col">Judul</th>
                                     <th scope="col">Jenis</th>
-                                    <th scope="col">Deposit</th>
+                                    <th scope="col">Poin</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Count</th>
                                     <th scope="col">Link</th>
@@ -49,7 +49,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $survey->count }}
+                                            {{ $survey->count }} / {{ $survey->limit }}
                                         </td>
                                         <td>
                                             <a href="{{ $survey->link }}" target="_blank" class="btn btn-primary">Open</a>

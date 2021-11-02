@@ -94,7 +94,7 @@
                                         </td>
                                         <td>
                                             @if ($survey->pay != null)
-                                                {{ $survey->pay / $survey->limit }}
+                                                {{ $survey->pay }}
                                             @else
                                                 0
                                             @endif
@@ -180,7 +180,7 @@
                                         <div class="col-5 mt-1 ">
                                             <i class="fas fa-coins mr-1"></i>
                                             @if ($survey->pay != null)
-                                                {{ $survey->pay / $survey->limit }}
+                                                {{ $survey->pay }}
                                             @else
                                                 0
                                             @endif

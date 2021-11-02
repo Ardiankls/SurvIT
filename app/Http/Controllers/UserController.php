@@ -34,7 +34,7 @@ class UserController extends Controller
         $genders = gender::all()->where('id', '<>', '1');
         $jobs = job::all()->where('id', '<>', '1');
         $interests = interest::all()->where('id', '<>', '1');
-        $provinces = province::all()->where('id', '<>', '1');
+        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
         $id = Auth::user()->id;
         $ugender = User::find($id)->gender_id;

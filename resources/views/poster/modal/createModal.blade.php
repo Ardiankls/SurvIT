@@ -59,7 +59,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group"><label>Deposit</label>
+                        <div class="form-group"><label>Poin</label>
                             <input class="form-control" type="text" name="pay">
                         </div>
                         <div class="form-group"><label>Limit</label>
