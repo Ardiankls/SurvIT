@@ -101,18 +101,19 @@
                                 <label>Limit</label>
                                 <input class="form-control" type="text" name="limit" value={{ $survey->limit }}>
                             </div>
-
-                            <button class="btn btn-primary" type="submit">Submit</button>
-
-                            <div class="float-right">
-                                <form action="{{ route('survey.destroy', $survey) }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                            <div class="float-left">
+                                <button class="btn btn-primary" type="submit">Submit</button>
                             </div>
-
                         </form>
+
+                        <div class="float-right">
+                            <form action="{{ route('survey.destroy', $survey) }}" method="post">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                        <div class="p-4"></div>
                     </div>
                 </div>
             </div>

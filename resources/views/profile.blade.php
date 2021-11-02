@@ -1,5 +1,4 @@
 @extends('layouts.app')
-{{-- @include('surveyor.modal.demographyModal') --}}
 @section('content')
     <div class="container-xxl  p-5">
         <div class="row justify-content-center ">
@@ -43,31 +42,14 @@
                     </div>
                     <div class="p-5"></div>
                     <div class="col text-center">
-                        Jenis Kelamin: {{ $user->gender->gender }}<br>
-                        Pekerjaan: {{ $user->jobs->first()->job_name }}<br>
-                        Kesukaan / Topik / Hobi: {{ $user->interests->first()->interest }}<br>
-                        Provinsi: {{ $user->province->province }}<br>
+                        Jenis Kelamin: {{ $user->gender->gender ?? 'null' }}<br>
+                        Pekerjaan: {{ $user->jobs->first()->job_name ?? 'null' }}<br>
+                        Kesukaan / Topik / Hobi: {{ $user->interests->first()->interest ?? 'null' }}<br>
+                        Provinsi: {{ $user->province->province ?? 'null' }}<br>
                     </div>
                     <div class="p-4"></div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#pay').click(function() {
-                var x, y;
-                x = document.getElementById("nominal").value;
-                y = document.getElementById("upoint").value;
-                if (isNaN(x) || x > y) {
-                    alert(
-                        "Point kamu tidak cukup."
-                    );
-                    return false;
-                }
-
-            });
-        });
-    </script>
 @endsection

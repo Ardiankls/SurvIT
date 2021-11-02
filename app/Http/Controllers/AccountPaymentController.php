@@ -51,7 +51,7 @@ class AccountPaymentController extends Controller
             'transfer' => $request->transfer,
         ]);
 
-        return redirect()->route('user.index');
+        return redirect()->route('usersurvey.index');
     }
 
     /**

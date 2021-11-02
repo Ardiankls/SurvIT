@@ -254,7 +254,8 @@
                 var x, y;
                 x = document.getElementById("nominal").value;
                 y = document.getElementById("upoint").value;
-                if (isNaN(x) || x > y) {
+                // if (isNaN(x) || x < y) {
+                if (isNaN(x) || 10000 > y) {
                     alert(
                         "Point kamu tidak cukup."
                     );
