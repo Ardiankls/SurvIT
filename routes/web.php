@@ -9,6 +9,7 @@ use App\Http\Controllers\AccountPaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\MailController as Email;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,14 +20,14 @@ use App\Http\Controllers\MailController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [LoginController::class, 'login']);
+Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes(['verify' => true ]);
 
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
-Route::resource('payment', AccountPaymentController::class);
 Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 'verified']);
+Route::resource('payment', AccountPaymentController::class);
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     // Route::resource('usersurvey', UserSurveyController::class);

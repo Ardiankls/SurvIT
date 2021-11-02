@@ -51,17 +51,18 @@ class LoginController extends Controller
         ];
 
         $messages = [
-            "email.required" => "Email is required",
-            "email.email" => "Email is not valid",
+            // "email.required" => "Email is required",
+            // "email.email" => "Email is not valid", <-buat register
             "email.exists" => "Email doesn't exists",
-            "password.required" => "Password is required",
-            "password.min" => "Password must be at least 6 characters",
+            // "password.required" => "Password is required",
+            // "password.min" => "Password must be at least 6 characters", <-buat register
             // "password.password" => "Email or password is invalid"
         ];
 
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users,email',
-            'password' => 'required||min:6'
+            // 'email' => 'required|email|exists:users,email',
+            'email' => 'exists:users,email',
+            // 'password' => 'required||min:6'
         ], $messages);
 
         if ($validator->fails()) {

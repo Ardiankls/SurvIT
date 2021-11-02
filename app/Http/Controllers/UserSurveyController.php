@@ -119,10 +119,6 @@ class UserSurveyController extends Controller
     {
         $survey = survey::Find($id);
         $user = Auth::user()->id;
-
-        $survey->update([
-            'count' => $survey->count + 1
-        ]);
         $survey->users()->attach($user);
 
         return redirect()->route('usersurvey.index');
@@ -137,6 +133,11 @@ class UserSurveyController extends Controller
      */
     public function update($detail)
     {
+        $survey = survey::Find($detail);
+        $survey->update([
+            'count' => $survey->count + 1
+        ]);
+
         $usurvey = user_survey::Find($detail);
         $usurvey->update([
             'status' => '3'
