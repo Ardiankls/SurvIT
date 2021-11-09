@@ -37,7 +37,7 @@
                             <h4>Demography</h4>
                         </div>
                         <div class="float-right pt-3 pr-3">
-                            <a href="{{ route('user.edit', $user) }}" class="btn btn-primary">Edit</a>
+                            {{-- <a href="{{ route('user.edit', $user) }}" class="btn btn-primary">Edit</a> --}}
                         </div>
                     </div>
                     <div class="p-5"></div>

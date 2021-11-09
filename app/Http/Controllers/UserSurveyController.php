@@ -133,11 +133,6 @@ class UserSurveyController extends Controller
      */
     public function update($detail)
     {
-        $survey = survey::Find($detail);
-        $survey->update([
-            'count' => $survey->count + 1
-        ]);
-
         $usurvey = user_survey::Find($detail);
         $usurvey->update([
             'status' => '3'
@@ -147,6 +142,11 @@ class UserSurveyController extends Controller
         $user = User::Find($usurvey->user_id);
         $user->update([
             'point' => $user->point + $point
+        ]);
+
+        $survey = survey::Find($usurvey->survey_id);
+        $survey->update([
+            'count' => $survey->count + 1
         ]);
 
         return redirect()->route('usersurvey.create');

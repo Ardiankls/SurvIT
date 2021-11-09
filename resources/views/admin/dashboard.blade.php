@@ -11,6 +11,7 @@
                             <tr class="text-center">
                                 <th scope="col">Survey</th>
                                 <th scope="col">User</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -23,6 +24,9 @@
                                     </td>
                                     <td>
                                         {{ $usurvey->user->username }}
+                                    </td>
+                                    <td>
+                                        {{ $usurvey->user->email }}
                                     </td>
                                     <td>
                                         @if ($usurvey->status == '2')
