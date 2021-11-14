@@ -426,7 +426,7 @@ mark,
 
 .glass{
   backdrop-filter: blur(0.5rem);
-  background:rgba(255,255,255, 0.2);
+  background:rgba(255,255,255, 0.5);
   /* box-shadow: 1.3rem 1.3rem 1.3rem rgba(0, 0, 0, 5); */
   /* background-color: rgba(225, 225, 225, 0.1); */
   /* background-color: linear-gradient(to right bottom, rgba(225,225,225,0.5), rgba(225,225,225,0.3) ); */
