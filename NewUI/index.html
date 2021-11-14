@@ -1,51 +1,87 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Dashboard</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='main.js'></script>
 </head>
+<style>
+  body {
+    background-image: url('/assets/background.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  </style>
+<body >
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="" style="background:rgba(255,255,255, 0.5);
+        " >
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <h1><a href="index.html" class="logo">Survit</a></h1>
+            <ul class="list-unstyled components mb-5 bg-ls " >
+                <li class="active">
+                    <a href="#" class="text-dark"><span class="fa fa-home mr-3"></span>Homepage</a>
+                </li>
+                <li>
+                    <a href="#" class="text-dark"><span class="fa fa-user mr-3"></span> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#" class="text-dark"><span class="fa fa-sticky-note mr-3"></span> Buat Survey</a>
+                </li>
+                <li>
+                    <a href="#" class="text-dark"><span class="fa fa-sticky-note mr-3"></span> Data Shop</a>
+                </li>
 
-<body>
-  <div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar" class="bg-light">
-      <div class="custom-menu">
-        <button type="button" id="sidebarCollapse" class="btn btn-primary">
-          <i class="fa fa-bars"></i>
-          <span class="sr-only">Toggle Menu</span>
-        </button>
-      </div>
-      <h1><a href="index.html" class="logo">Survit</a></h1>
-      <ul class="list-unstyled components mb-5 bg-ls">
-        <li class="active">
-          <a href="#"><span class="fa fa-home mr-3 text-dark"></span class="" style=""> Homepage</a>
-        </li>
-        <li>
-            <a href="#"><span class="fa fa-user mr-3"></span> Dashboard</a>
-        </li>
-        <li>
-          <a href="#"><span class="fa fa-sticky-note mr-3"></span> Buat Survey</a>
-        </li>
-        <li>
-          <a href="#"><span class="fa fa-sticky-note mr-3"></span> Data Shop</a>
-        </li>
-       
-      </ul>
-    </nav>
-      <!-- Page Content  -->
-    <div id="content" class="p-4 p-md-5 pt-5">
-      <h2 class="mb-4">Sidebar #04</h2>
+            </ul>
+        </nav>
+        <!-- Page Content  -->
+        <div id="content" class="p-5 p-md-5 pt-5">
+            <!-- <h2 class="mb-4">Sidebar #04</h2> -->
+            <div class="row">
+              <div class="col-8">
+                <div class="panel mr-5 px-4 py-3 glass shadow h-100 ">
+                  <h5 class="">Survey list</h5>
+                </div>
+                
+              </div>
+              <div class="col-3">
+                <div class="row mb-4">
+                  <div class=" panel glass shadow px-4 py-3">
+                    <h5>Poin</h5>
+                  </div>
+                </div>
+                <div class="row mb-5">
+                <div class="panel glass shadow px-4 py-3">
+                  <h5>News</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="panel glass shadow  px-4 py-3">
+                  <h5>Profile</h5>
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
