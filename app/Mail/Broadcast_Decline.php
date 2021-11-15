@@ -7,12 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Broadcast extends Mailable
+class Broadcast_Decline extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject;
-    public $msg;
+    public $title;
 
 
     /**
@@ -20,10 +19,9 @@ class Broadcast extends Mailable
      *
      * @return void
      */
-    public function __construct($subject, $msg)
+    public function __construct($title)
     {
-        $this->subject = $subject;
-        $this->msg = $msg;
+        $this->title = $title;
     }
 
     /**
@@ -36,9 +34,9 @@ class Broadcast extends Mailable
         return $this->from('survitsurvey@gmail.com','SurvIT')
                     ->with(
                     [
-                        'msg' => $this->msg,
+                        'survey' => $this->title,
                     ])
-                    ->subject($this->subject)
-                    ->view('mail.baru');
+                    ->subject("Respon Surveimu Ditolak")
+                    ->view('mail.tolak');
     }
 }

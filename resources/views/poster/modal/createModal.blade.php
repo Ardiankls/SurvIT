@@ -8,12 +8,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('survey.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('survey.store') }}" id="dynamic" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">
                             <div class="form-group"><label>Judul</label>
-                                <input class="form-control" type="text" name="title" required></div>
+                                <input class="form-control" type="text" name="title" required>
+                            </div>
                             <div class="form-group"><label>Link Form</label>
                                 <input class="form-control" type="text" name="link" required>
                             </div>
@@ -34,25 +35,22 @@
                             </select>
                         </div>
 
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dynamic_field">Kesukaan
-                                <tr>
-                                    <td>
-                                        <select name="interest" class="custom-select">
-                                            @foreach ($interests as $interest)
-                                                <option value="{{ $interest->id }}" required>
-                                                    {{ $interest->interest }} </option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
-                                </tr>
-                            </table>
+                        <div class="form-group" id="interest"><label>Kesukaan</label>
+                            <select name="interest[]" class="custom-select" id="test">
+                                @foreach ($interests as $interest)
+                                    <option value="{{ $interest->id }}" required>
+                                        {{ $interest->interest }} </option>
+                                @endforeach
+                            </select>
+                            <div id="container">
+                                <div id="hai"></div>
+                            </div>
+                            <button type="button" name="add" id="add" class="btn btn-success" onclick="addFields()">Add More</button>
                         </div>
 
                         <div class="form-group"><label>Provinsi</label>
                             <select name="province" class="custom-select">
-                                <option value={{1}} selected>Tidak ada</option>
+                                <option value={{ 1 }} selected>Tidak ada</option>
                                 @foreach ($provinces as $province)
                                     <option value="{{ $province->id }}">{{ $province->province }}</option>
                                 @endforeach
@@ -66,7 +64,8 @@
                             <input class="form-control" type="text" name="limit">
                         </div>
 
-                        <button class="btn btn-primary" type="submit" style="background-color: rgb(221,177,226);">Submit</button>
+                        <button class="btn btn-primary" type="submit"
+                            style="background-color: rgb(221,177,226);">Submit</button>
                     </div>
 
                 </form>
@@ -78,3 +77,39 @@
     </div>
 </div>
 
+<script type='text/javascript'>
+    // var counter = 2;
+
+    //Once add button is clicked
+    function addFields() {
+        // Number of inputs to create
+        var number = document.getElementById("test").value;
+        // Container <div> where dynamic content will be placed
+        var container = $("#hai");
+        // Add field
+        var fieldHTML = '<div><select name="interest[]" class="custom-select" style="width: 90%;">\
+                            @foreach ($interests as $interest)\
+                                <option value="{{ $interest->id }}" required>\
+                                    {{ $interest->interest }} </option>\
+                            @endforeach\
+                        </select>\
+                        <a href="javascript:void(0);" class="remove_button">X</a></div>'
+
+        container.append(fieldHTML);
+        // counter++;
+
+        // namenya beda atau array
+    }
+
+    // function removeFields() {
+    //     e.preventDefault();
+    //     $(this).parent('div').remove(); //Remove field html
+    //     x--; //Decrement field counter
+    // }
+    //Once remove button is clicked
+    $("#hai").on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        // counter--; //Decrement field counter
+    });
+</script>

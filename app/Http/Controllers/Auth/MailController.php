@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Mail\Broadcast;
+use App\Mail\Broadcast_Decline;
+use App\Models\survey;
+use App\Models\user_survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -78,9 +81,15 @@ class MailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $detail)
     {
-        //
+        $usurvey = user_survey::Find($detail);
+        $title = $usurvey->survey->title;
+        $user = User::Find($usurvey->user_id);
+        Mail::to($user->email)->send(new Broadcast_Decline($title));
+        $usurvey->delete();
+
+        return redirect()->route('usersurvey.create');
     }
 
     /**

@@ -13,7 +13,8 @@
                                 <th scope="col">User</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +42,17 @@
                                             @csrf
                                             <input name="_method" type="hidden" value="PATCH">
                                             <button class="btn btn-primary" id="selesai" type="submit">
-                                                Selesai
+                                                Accept
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('mail.update', $usurvey) }}" method="post"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="PATCH">
+                                            <button class="btn btn-primary" id="selesai" type="submit">
+                                                Decline
                                             </button>
                                         </form>
                                     </td>
