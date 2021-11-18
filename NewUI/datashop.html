@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Dashboard</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='main.js'></script>
+</head>
+<style>
+    body {
+        background-image: url('/assets/background.svg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+</style>
+
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="" style="background:rgba(255,255,255, 0.5);
+        ">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <h1><a href="index.html" class="logo">Survit</a></h1>
+            <ul class="list-unstyled components mb-5 bg-ls ">
+                <li class="active">
+                    <a href="home.html" class="text-dark"><span class="fa fa-home mr-3"></span>Homepage</a>
+                </li>
+                <li>
+                    <a href="#" class="text-dark"><span class="fa fa-user mr-3"></span> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#" class="text-dark"><span class="fa fa-sticky-note mr-3"></span> Buat Survey</a>
+                </li>
+                <li>
+                    <a href="#" class="text-dark"><span class="fa fa-sticky-note mr-3"></span> Data Shop</a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- Page Content  -->
+        <div id="content" class=" p-md-5 pt-5">
+            <!-- <h2 class="mb-4">Sidebar #04</h2> -->
+            <div class="row">
+                <div class="col-9">
+                    <div class="panel mr-3 px-4 py-3 glass shadow " style="height:680px;">
+                        <h5 class="">Data List</h5>
+                        <div class="table-responsive custom-table-responsive" style="overflow: auto; height:620px;">
+
+                            </div>
+                    </div>
+
+                </div>
+                <div class="col-3">
+                    <div class="row mb-4">
+                        <div class=" panel glass shadow px-4 py-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h5>Poin</h5>
+                                </div>
+                                <div class="col-4">
+                                    <div class="btn btn-primary">Ambil</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h2>1000</h2>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="panel glass shadow px-4 py-3">
+                            <div class="row">
+                                <h5>News</h5>
+                            </div>
+                            <div class="row px-3 py-2">
+                                <small class="text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Vivamus eu mauris elementum, vulputate magna id, maximus dolor. Curabitur accumsan
+                                    mollis lectus nec ultrices. Nulla facilisi. Aliquam consectetur cursus justo sit
+                                    amet dapibus. Curabitur egestas arcu urna, accumsan luctus lectus dignissim quis.
+                                    Maecenas faucibus convallis magna, et lacinia neque congue vel. In pulvinar laoreet
+                                    semper. Proin sit amet pulvinar turpis, at tristique massa. Vivamus lacinia dolor at
+                                    lacus consectetur egestas. Morbi auctor elit et ante congue dignissim. Nam laoreet
+                                    nulla nec felis bibendum tristique.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="panel glass shadow  px-4 py-3">
+                            <div class="row">
+                              <div class="col-3"></div>
+                              <div class="col-6">
+                                <div class="row text-start">
+                                  Ardian Kurniawan
+                                </div>
+                                <div class="row">
+                                  <small class="">ardian@email.com</small>
+                                </div>
+                              </div>
+                              <div class="col-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
