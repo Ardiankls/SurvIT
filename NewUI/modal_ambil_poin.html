@@ -47,36 +47,36 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group">
-                                <div class="form-group"><label>Rekening</label>
-                                  <!-- @if($user->transfer != null) -->
-                                      <input class="form-control" type="number" name="transfer" value="{{ $user->transfer }}" style="background-color: #e1e1e1" required>
-                                  <!-- @else -->
-                                      <!-- <input class="form-control" type="number" name="transfer" style="background-color: silver;" required> -->
-                                  <!-- @endif -->
-                              </div>
-                              </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="form-group">
-                            <div class="form-group" ><label>Bank</label>
-                                <select name="bank" class="form-control" style="background-color: #e1e1e1">
-                                    <option value="BCA">BCA</option>
-                                    <option value="BCA Syariah">BCA Syariah</option>
-                                    <option value="BRI">BRI</option>
-                                    <option value="BRI Syariah">BRI Syariah</option>
-                                    <option value="Mandiri">Mandiri</option>
-                                    <option value="Bukopin">Bukopin</option>
-                                    <option value="BNI">BNI</option>
-                                    <option value="Bank Mega">Bank Mega</option>
-                                    <option value="Bank Danamon">Bank Danamon</option>
-                                </select>
+                                <div class="form-group">
+                                    <div class="form-group"><label>Rekening</label>
+                                        <!-- @if($user->transfer != null) -->
+                                        <input class="form-control" type="number" name="transfer"
+                                            value="{{ $user->transfer }}" style="background-color: #e1e1e1" required>
+                                        <!-- @else -->
+                                        <!-- <input class="form-control" type="number" name="transfer" style="background-color: silver;" required> -->
+                                        <!-- @endif -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="form-group"><label>Bank</label>
+                                    <select name="bank" class="form-control" style="background-color: #e1e1e1">
+                                        <option value="BCA">BCA</option>
+                                        <option value="BCA Syariah">BCA Syariah</option>
+                                        <option value="BRI">BRI</option>
+                                        <option value="BRI Syariah">BRI Syariah</option>
+                                        <option value="Mandiri">Mandiri</option>
+                                        <option value="Bukopin">Bukopin</option>
+                                        <option value="BNI">BNI</option>
+                                        <option value="Bank Mega">Bank Mega</option>
+                                        <option value="Bank Danamon">Bank Danamon</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-primary px-3 text-light">Ambili</a>
