@@ -12,6 +12,7 @@ use App\Models\province;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Exists;
 
 class UserSurveyController extends Controller
 {
@@ -22,6 +23,7 @@ class UserSurveyController extends Controller
      */
     public function index()
     {
+        //Demography
         $pages = "user";
         $user = Auth::user();
         $genders = gender::all()->where('id', '<>', '1');
@@ -29,6 +31,7 @@ class UserSurveyController extends Controller
         $interests = interest::all()->where('id', '<>', '1');
         $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
+        //Survey List
         $id = Auth::user()->id;
         $ugender = User::find($id)->gender_id;
         $uprovince = User::find($id)->province_id;
@@ -51,12 +54,25 @@ class UserSurveyController extends Controller
                 $query->whereIn('job_id', $uj);})->whereHas('provinces', function($query) use($up) {
                     $query->whereIn('province_id', $up);})
                     ->where('user_id', '<>', $id)
-                    ->where('limit', '>=', 'count')
+                    ->whereColumn('count', '<', 'limit')
                     ->where(function ($query) use($ugender){
                         $query->where('gender_id', '=', $ugender)
                               ->orWhere('gender_id', '=', 1);
                     })
+                    ->where(function ($query) use($id) {
+                        $query->whereNotExists(function ($query) use($id) {
+                            $query->from('user_surveys')
+                                ->whereColumn('user_surveys.survey_id', 'surveys.id')
+                                ->where('user_surveys.user_id', $id);
+                        })
+                        ->orWhereExists(function ($query) {
+                            $query->from('user_surveys')
+                                ->whereColumn('user_surveys.survey_id', 'surveys.id')
+                                ->where('user_surveys.status', 1);
+                        });
+                    })
                     ->get();
+
 
         // foreach ($surveys as $survey){
         //     $sinterests[] = $survey->interests;
@@ -81,7 +97,7 @@ class UserSurveyController extends Controller
         $interests = interest::all();
         $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
-        $usurveys = user_survey::all()->where('status', '<>', '3');
+        $usurveys = user_survey::all()->where('status', '2');
 
         return view('admin.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'usurveys'));
     }
@@ -105,8 +121,9 @@ class UserSurveyController extends Controller
      */
     public function show($id)
     {
-        $survey = survey::Find($id);
-        return view('surveyor.survey', compact('survey'));
+        $user = Auth::user();
+        $usurveys = user_survey::all()->where('user_id', $id);
+        return view('surveylog', compact('usurveys', 'user'));
     }
 
     /**
@@ -119,7 +136,14 @@ class UserSurveyController extends Controller
     {
         $survey = survey::Find($id);
         $user = Auth::user()->id;
-        $survey->users()->attach($user);
+        $check = user_survey::where('survey_id', $id)->where('user_id', $user)->first();
+        if(!$check){
+            $survey->users()->attach($user);
+        }else{
+            $survey->users()->update([
+                'status' => '2'
+            ]);
+        }
 
         return redirect()->route('usersurvey.index');
     }

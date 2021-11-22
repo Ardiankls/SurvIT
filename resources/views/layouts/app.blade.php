@@ -17,6 +17,17 @@
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {{-- Boostrap 5 --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" --}}
+    {{-- integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> --}}
+    {{-- DataTables --}}
+    {{-- <link type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css" rel="stylesheet"> --}}
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -26,7 +37,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link href="{{ asset('assets/style.css') }}" rel="stylesheet">
-</head>
 
 <body style="background-color: #d1d1d1">
     <div id="app">
@@ -67,11 +77,11 @@
 
                             <li class="nav-item text-">
                                 <a class="nav-link text-white"
-                                    href="{{ route('usersurvey.index') }}">{{ __('Survey List') }}</a>
+                                    href="{{ route('usersurvey.index') }}">{{ __('Daftar Survei') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white"
-                                    href="{{ route('survey.index') }}">{{ __('Survey Post') }}</a>
+                                    href="{{ route('survey.index') }}">{{ __('Post Survei') }}</a>
                             </li>
                             @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
@@ -94,8 +104,12 @@
                                         Profile
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('usersurvey.show', Auth::user()->id) }}">
+                                        Riwayat Survei
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -116,7 +130,13 @@
         </main>
     </div>
 
-
+    <footer class="navbar bg-primary text-center" style="color:white; position:fixed; bottom: 0;  width:100%;">
+        <div style="float: left">
+            © Copyright 2021 Survit
+        </div>
+        <div style="float: right">
+            Contact Person: <a href="https://wa.me/6289644655003" style="color:white" target="_blank">+62 89644655003</a>
+        </div>
+    </footer>
 </body>
-
 </html>

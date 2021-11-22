@@ -34,10 +34,8 @@
                         </div>
                     </div>
                 </div>
+
             @else
-
-
-
                 <div class="col-md-8 mt-5 ">
                     <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
                         @if (count($surveys) < 1)
@@ -48,7 +46,7 @@
                                 lagi.</h5>
                             </div>
                         @else
-                            <h1 class="p-3">Daftar Survey</h1>
+                            <h1 class="p-3">Daftar Survei</h1>
                             <table class="table table-striped" id="myTable">
                                 <thead>
                                 <tr class="text-center">
@@ -66,6 +64,7 @@
                                     $checks = $survey
                                         ->users()
                                         ->wherePivot('user_id', '=', $user->id)
+                                        ->wherePivot('status', '<>', 1)
                                         ->get();
                                     ?>
                                     <tr class="text-center">
@@ -84,14 +83,14 @@
                                         <td>
                                             @if (count($checks) > 0)
                                                 @foreach ($checks as $usurvey)
-                                                    @if ($usurvey->pivot->status == 2)
-                                                        Pending
-                                                    @elseif($usurvey->pivot->status == 3)
+                                                    @if ($usurvey->pivot->status == 3)
                                                         Sukses
+                                                    @else
+                                                        Pending
                                                     @endif
                                                 @endforeach
                                             @else
-                                                Baru
+                                                Dibuka
                                             @endif
                                         </td>
                                         <td>
@@ -105,7 +104,7 @@
                                             @if (count($checks) > 0)
                                                 -
                                             @else
-                                                <form action="{{ route('usersurvey.show', $survey) }}" method="GET"
+                                                <form action="{{ route('survey.show', $survey) }}" method="GET"
                                                       enctype="multipart/form-data">
                                                     @csrf
                                                     <button class="btn btn-primary" id="selesai" type="submit"
@@ -130,7 +129,7 @@
                             lagi.</h5>
                     @else
                         <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
-                            <h4 class="text-center">Daftar Survey</h4>
+                            <h4 class="text-center">Daftar Survei</h4>
                         </div>
 
                         @foreach ($surveys as $survey)
@@ -139,6 +138,7 @@
                             $checks = $survey
                                 ->users()
                                 ->wherePivot('user_id', '=', $user->id)
+                                ->wherePivot('status', '<>', 1)
                                 ->get();
                             ?>
                             <div class="card-list w-100 no-gutters d-md-none ">
@@ -167,14 +167,14 @@
                                         <div class="col-4 text-right text-warning">
                                             @if (count($checks) > 0)
                                                 @foreach ($checks as $usurvey)
-                                                    @if ($usurvey->pivot->status == 2)
-                                                        Pending
-                                                    @elseif($usurvey->pivot->status == 3)
+                                                    @if ($usurvey->pivot->status == 3)
                                                         Sukses
+                                                    @else
+                                                        Pending
                                                     @endif
                                                 @endforeach
                                             @else
-                                                Baru
+                                                Dibuka
                                             @endif
                                         </div>
                                     </div>
@@ -190,22 +190,11 @@
                                         <div class="col-7 no-gutters text-right ">
                                             <div class="row">
                                                 <div class="col-6 no-gutters text-right ">
-                                                    {{-- @if (count($checks) > 0)
-                                                    @else
-                                                        <form action="{{ route('survey.edit', $survey) }}" method="GET"
-                                                              class="d-inline" enctype="multipart/form-data">
-                                                            @csrf
-                                                            <input name="_method" type="hidden" value="PATCH">
-                                                            <button class="btn btn-sm btn-primary" id="selesai"
-                                                                    type="submit">Selesai
-                                                            </button>
-                                                        </form>
-                                                    @endif --}}
                                                 </div>
                                                 <div class="col-6 no-gutters text-right ">
                                                     @if (count($checks) > 0)
                                                     @else
-                                                        <form action="{{ route('usersurvey.show', $survey) }}" method="GET"
+                                                        <form action="{{ route('survey.show', $survey) }}" method="GET"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <button class="btn btn-primary" id="selesai" type="submit"
@@ -264,15 +253,21 @@
 
             });
         });
-
     </script>
-    <?php if ($pages == 'selesai') { ?>
-    <script>
-        $(function () {
-            $('#actionmodal').modal('show');
+
+    {{-- Boostrap 5 --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" --}}
+        {{-- integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"> --}}
+    {{-- </script> --}}
+    {{-- jQuery --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    {{-- DataTables --}}
+    {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> --}}
+    {{-- <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.js"></script> --}}
+    {{-- <script>
+        $(document).ready(function() {
+            var thetable = $('#myTable').DataTable({});
         });
+    </script> --}}
 
-    </script>
-    <?php } ?>
 @endsection
-{{--coba push--}}
