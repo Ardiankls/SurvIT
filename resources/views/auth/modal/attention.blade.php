@@ -1,22 +1,6 @@
-<div class="modal fade" id="myModa" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Modal Methods</h4>
-            </div>
-            <div class="modal-body">
-                <p>The <strong>show</strong> method shows the modal and the <strong>hide</strong> method hides the
-                    modal.</p>
-            </div>
-        </div>
-
-    </div>
-</div>
-
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog  modal-dialog-scrollable" role="document">
+         <!-- Modal content-->
         <div class="modal-content" >
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Peringatan</h5>

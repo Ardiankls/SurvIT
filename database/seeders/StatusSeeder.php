@@ -15,7 +15,7 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $status = new status();
-        $status->status = 'Baru';
+        $status->status = 'Ditolak';
         $status->save();
 
         $status = new status();

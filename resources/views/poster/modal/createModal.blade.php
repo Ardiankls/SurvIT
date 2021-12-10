@@ -18,8 +18,9 @@
                             <div class="form-group"><label>Link Form</label>
                                 <input class="form-control" type="text" name="link" required>
                             </div>
+                        </div>
 
-                            <label>Jenis Kelamin</label>
+                        <div class="form-group"><label>Jenis Kelamin</label>
                             <select name="gender" class="custom-select">
                                 @foreach ($genders as $gender)
                                     <option value="{{ $gender->id }}">{{ $gender->gender }}</option>
@@ -58,10 +59,10 @@
                         </div>
 
                         <div class="form-group"><label>Poin</label>
-                            <input class="form-control" type="text" name="pay">
+                            <input class="form-control" type="text" name="pay"  required>
                         </div>
                         <div class="form-group"><label>Limit</label>
-                            <input class="form-control" type="text" name="limit">
+                            <input class="form-control" type="text" name="limit"  required>
                         </div>
 
                         <button class="btn btn-primary" type="submit"

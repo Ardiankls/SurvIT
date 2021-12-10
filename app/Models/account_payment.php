@@ -11,7 +11,7 @@ class account_payment extends Model
 
     protected $fillable = [
         'user_id',
-        'pay_method_id',
+        // 'pay_method_id',
         'bank',
         'transfer',
         'value',
