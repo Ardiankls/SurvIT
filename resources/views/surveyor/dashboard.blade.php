@@ -104,7 +104,7 @@
                                             @if (count($checks) > 0)
                                                 -
                                             @else
-                                                <form action="{{ route('survey.show', $survey) }}" method="GET"
+                                                <form action="{{ route('fill', $survey) }}" method="GET"
                                                       enctype="multipart/form-data">
                                                     @csrf
                                                     <button class="btn btn-primary" id="selesai" type="submit"
@@ -194,7 +194,7 @@
                                                 <div class="col-6 no-gutters text-right ">
                                                     @if (count($checks) > 0)
                                                     @else
-                                                        <form action="{{ route('survey.show', $survey) }}" method="GET"
+                                                        <form action="{{ route('fill', $survey) }}" method="GET"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <button class="btn btn-primary" id="selesai" type="submit"
