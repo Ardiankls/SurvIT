@@ -63,7 +63,7 @@
                                     @foreach ($survey->interests as $nyoba)
                                         <div>
                                             @if($count != 0)
-                                                <select name="interest[]" class="custom-select" style="width: 90%;">
+                                                <select name="interest[]" class="custom-select" style="width: 95%;">
                                                     @foreach ($interests as $interest)
                                                         <?php
                                                         $selected = '';
@@ -77,7 +77,7 @@
                                                 </select>
                                                 <a href="javascript:void(0);" class="remove_button2">X</a>
                                             @else
-                                            <select name="interest[]" class="custom-select" style="width: 90%;">
+                                            <select name="interest[]" class="custom-select">
                                                 <option value={{ 1 }}>Tidak ada</option>
                                                 @foreach ($interests as $interest)
                                                     <?php
@@ -147,14 +147,12 @@
         </div>
     </div>
     <script type='text/javascript'>
-        // var counter = 2;
-
         //Once add button is clicked
         function addFields() {
             // Container <div> where dynamic content will be placed
             var container = $("#more");
             // Add field
-            var fieldHTML = '<div><select name="interest[]" class="custom-select" style="width: 90%;">\
+            var fieldHTML = '<div><select name="interest[]" class="custom-select" style="width: 95%;">\
                                             @foreach ($interests as $interest)\
                                                 <option value="{{ $interest->id }}" required>\
                                                     {{ $interest->interest }} </option>\
@@ -175,13 +173,11 @@
         $("#more").on('click', '.remove_button', function(e) {
             e.preventDefault();
             $(this).parent('div').remove(); //Remove field html
-            // counter--; //Decrement field counter
         });
 
         $("#more2").on('click', '.remove_button2', function(e) {
             e.preventDefault();
             $(this).parent('div').remove(); //Remove field html
-            // counter--; //Decrement field counter
         });
     </script>
 @endsection
