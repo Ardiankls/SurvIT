@@ -44,7 +44,7 @@
                                 @endforeach
                             </select>
                             <div id="container">
-                                <div id="hai"></div>
+                                <div id="more"></div>
                             </div>
                             <button type="button" name="add" id="add" class="btn btn-success" onclick="addFields()">Add More</button>
                         </div>
@@ -59,10 +59,10 @@
                         </div>
 
                         <div class="form-group"><label>Poin</label>
-                            <input class="form-control" type="text" name="pay"  required>
+                            <input class="form-control" type="text" name="pay" required>
                         </div>
                         <div class="form-group"><label>Limit</label>
-                            <input class="form-control" type="text" name="limit"  required>
+                            <input class="form-control" type="text" name="limit" required>
                         </div>
 
                         <button class="btn btn-primary" type="submit"
@@ -86,7 +86,7 @@
         // Number of inputs to create
         var number = document.getElementById("test").value;
         // Container <div> where dynamic content will be placed
-        var container = $("#hai");
+        var container = $("#more");
         // Add field
         var fieldHTML = '<div><select name="interest[]" class="custom-select" style="width: 90%;">\
                             @foreach ($interests as $interest)\
@@ -108,7 +108,7 @@
     //     x--; //Decrement field counter
     // }
     //Once remove button is clicked
-    $("#hai").on('click', '.remove_button', function(e){
+    $("#more").on('click', '.remove_button', function(e){
         e.preventDefault();
         $(this).parent('div').remove(); //Remove field html
         // counter--; //Decrement field counter

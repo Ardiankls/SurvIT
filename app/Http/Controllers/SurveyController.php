@@ -43,24 +43,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        // $user = Auth::user();
-        // $genders = gender::all()->where('id', '<>', '1');
-        // $jobs = job::all()->where('id', '<>', '1');
-        // $interests = interest::all()->where('id', '<>', '1');
-        // $provinces = province::all()->where('id', '<>', '1');
-
-        // $id = Auth::user()->id;
-        // $ugender = User::find($id)->gender_id;
-        // $ujobs = User::find($id)->jobs;
-        // $uinterests = User::find($id)->interests;
-        // $uprovinces = User::find($id)->provinces;
-
-        // $surveys = survey::all()->where('user_id', '<>', $id);
-        // $usurveys = user_survey::all()->where('user_id', '=', $id);
-
-        // $pages = "selesai";
-
-        // return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'ugender', 'ujobs', 'uinterests', 'uprovinces', 'surveys', 'usurveys', 'pages'));
+        //
     }
 
     /**
@@ -89,6 +72,10 @@ class SurveyController extends Controller
         $survey->interests()->attach($request->interest);
         $survey->provinces()->attach($request->province);
 
+        // foreach($request->interest as $interest){
+        //     $survey->interests()->attach($interest);
+        // }
+
         return redirect()->route('survey.index');
     }
 
@@ -113,7 +100,7 @@ class SurveyController extends Controller
     {
         $genders = gender::all();
         $jobs = job::all();
-        $interests = interest::all();
+        $interests = interest::all()->where('id', '<>', '1');
         $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
         $survey = survey::find($id);
@@ -143,14 +130,12 @@ class SurveyController extends Controller
             ]);
         }
 
+        $survey->interests()->detach();
+        $survey->interests()->attach($request->interest);
+
         $sjob = survey_job::all()->where('survey_id', $survey->id)->first();
         $sjob->update([
             'job_id' => $request->job,
-        ]);
-
-        $sinterest = survey_interest::all()->where('survey_id', $survey->id)->first();
-        $sinterest->update([
-            'interest_id' => $request->interest,
         ]);
 
         $sprovince = survey_province::all()->where('survey_id', $survey->id)->first();

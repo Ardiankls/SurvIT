@@ -53,32 +53,59 @@
                                 </select>
                             </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dynamic_field">Kesukaan
-                                    <tr>
-                                        <td>
-                                            <select name="interest" class="custom-select">
+                            <div class="form-group" id="interest">
+                                <label>Kesukaan</label>
+                                {{-- {{ dd($survey->interests[2]) }} --}}
+                                @php
+                                    $count = 0;
+                                @endphp
+                                <div id="more2">
+                                    @foreach ($survey->interests as $nyoba)
+                                        <div>
+                                            @if($count != 0)
+                                                <select name="interest[]" class="custom-select" style="width: 90%;">
+                                                    @foreach ($interests as $interest)
+                                                        <?php
+                                                        $selected = '';
+                                                        if ($nyoba->id == $interest->id) {
+                                                            $selected = 'selected';
+                                                        }
+                                                        ?>
+                                                        <option value="{{ $interest->id }}" {{ $selected }}>
+                                                            {{ $interest->interest }} </option>
+                                                    @endforeach
+                                                </select>
+                                                <a href="javascript:void(0);" class="remove_button2">X</a>
+                                            @else
+                                            <select name="interest[]" class="custom-select" style="width: 90%;">
+                                                <option value={{ 1 }}>Tidak ada</option>
                                                 @foreach ($interests as $interest)
                                                     <?php
                                                     $selected = '';
-                                                    if ($survey->interests->first()->id == $interest->id) {
+                                                    if ($nyoba->id == $interest->id) {
                                                         $selected = 'selected';
                                                     }
                                                     ?>
                                                     <option value="{{ $interest->id }}" {{ $selected }}>
-                                                        {{ $interest->interest }}</option>
+                                                        {{ $interest->interest }} </option>
                                                 @endforeach
                                             </select>
-                                        </td>
-                                        <td><button type="button" name="add" id="add" class="btn btn-success">Add
-                                                More</button></td>
-                                    </tr>
-                                </table>
+                                            @endif
+                                            @php
+                                                $count++;
+                                            @endphp
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div id="more"></div>
+                                <button type="button" name="add" id="add" class="btn btn-success" onclick="addFields()">Add
+                                    More</button>
                             </div>
 
                             <div class="form-group">
                                 <label>Provinsi</label>
                                 <select name="province" class="custom-select">
+                                    <option value={{ 1 }}>Tidak ada</option>
                                     @foreach ($provinces as $province)
                                         <?php
                                         $selected = '';
@@ -102,7 +129,7 @@
                                 <input class="form-control" type="text" name="limit" value={{ $survey->limit }}>
                             </div>
                             <div class="float-left">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-primary" type="submit">Save</button>
                             </div>
                         </form>
 
@@ -119,4 +146,42 @@
             </div>
         </div>
     </div>
+    <script type='text/javascript'>
+        // var counter = 2;
+
+        //Once add button is clicked
+        function addFields() {
+            // Container <div> where dynamic content will be placed
+            var container = $("#more");
+            // Add field
+            var fieldHTML = '<div><select name="interest[]" class="custom-select" style="width: 90%;">\
+                                            @foreach ($interests as $interest)\
+                                                <option value="{{ $interest->id }}" required>\
+                                                    {{ $interest->interest }} </option>\
+                                            @endforeach\
+                                        </select>\
+                                        <a href="javascript:void(0);" class="remove_button">X</a></div>'
+
+            container.append(fieldHTML);
+        }
+
+        // function removeFields() {
+        //     e.preventDefault();
+        //     $(this).parent('div').remove(); //Remove field html
+        //     x--; //Decrement field counter
+        // }
+
+        //Once remove button is clicked
+        $("#more").on('click', '.remove_button', function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            // counter--; //Decrement field counter
+        });
+
+        $("#more2").on('click', '.remove_button2', function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            // counter--; //Decrement field counter
+        });
+    </script>
 @endsection
