@@ -11,19 +11,14 @@ class Broadcast_New extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject;
-    public $msg;
-
-
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject, $msg)
+    public function __construct()
     {
-        $this->subject = $subject;
-        $this->msg = $msg;
+        //
     }
 
     /**
@@ -34,11 +29,7 @@ class Broadcast_New extends Mailable
     public function build()
     {
         return $this->from('survitsurvey@gmail.com','SurvIT')
-                    ->with(
-                    [
-                        'msg' => $this->msg,
-                    ])
-                    ->subject($this->subject)
+                    ->subject("Ada Survei Baru Buat Kamu")
                     ->view('mail.baru');
     }
 }
