@@ -161,6 +161,7 @@
             </li>
         </ul>
     </nav>
+    @yield('content')
 </div>
 </body>
 </html>
