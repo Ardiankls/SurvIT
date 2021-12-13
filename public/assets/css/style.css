@@ -54,7 +54,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 ::-webkit-scrollbar{
  width: 0.5em;
-} 
+}
 ::-webkit-scrollbar-thumb{
   background-color: silver;
   border-radius: 1500vw;
@@ -70,12 +70,12 @@ body {
   color: #212529;
   text-align: left;
   /* background-color: #fff;  */
-  background-image: url('../assets/background.svg');
+  background-image: url('../assets/image/background.svg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   overflow: hidden;
-  
+
 }
 
 [tabindex="-1"]:focus {
