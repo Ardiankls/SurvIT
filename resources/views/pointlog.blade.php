@@ -15,40 +15,37 @@
             </div>
             <div class="col-md-8 mt-5 ">
                 <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
-                    <h1 class="p-3">Riwayat Survei</h1>
+                    <h1 class="p-3">Riwayat Poin</h1>
                     <table class="table table-striped" id="myTable">
                         <thead>
                             <tr class="text-center">
-                                <th scope="col">Judul</th>
-                                <th scope="col">Topik</th>
+                                <th scope="col">Keterangan</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Point</th>
+                                <th scope="col">Poin</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($usurveys as $usurvey)
+                            @foreach ($pointlogs as $pointlog)
                                 <tr class="text-center">
                                     <td>
-                                        {{ $usurvey->survey->title }}
-                                    </td>
-                                    <td>
-                                        @if($usurvey->survey->interests->first()->id == 1)
-                                            Umum
-                                        @else
-                                            {{ $usurvey->survey->interests->first()->interest }}
+                                        @if($pointlog->type == 0)
+                                            Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
+                                        @elseif($pointlog->type == 1)
+                                            Pengambilan poin
                                         @endif
                                     </td>
                                     <td>
-                                        @if($usurvey->status == 2)
-                                            Pending
-                                        @elseif($usurvey->status == 3)
-                                            Sukses
-                                        @else
-                                            Ditolak
-                                        @endif
+                                        {{ $pointlog->status->status }}
                                     </td>
                                     <td>
-                                        {{ $usurvey->survey->pay }}
+                                        @if($pointlog->type == 0)
+                                            +
+                                            {{ $pointlog->usersurvey->survey->pay }}
+                                        @elseif($pointlog->type == 1)
+                                            -
+                                            {{ $pointlog->payment->value }}
+                                        @endif
+
                                     </td>
                                 </tr>
                             @endforeach

@@ -8,6 +8,7 @@ use App\Models\survey;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
+use App\Models\point_log;
 use App\Models\province;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -54,6 +55,7 @@ class UserSurveyController extends Controller
                 $query->whereIn('job_id', $uj);})->whereHas('provinces', function($query) use($up) {
                     $query->whereIn('province_id', $up);})
                     ->where('user_id', '<>', $id)
+                    ->where('status_id', 3)
                     ->whereColumn('count', '<', 'limit')
                     ->where(function ($query) use($ugender){
                         $query->where('gender_id', '=', $ugender)
@@ -80,7 +82,7 @@ class UserSurveyController extends Controller
 
         // dd($up);
 
-        return view('surveyor.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'user', 'surveys', 'pages'));
+        return view('surveyor.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'surveys', 'pages'));
     }
 
     /**
@@ -90,16 +92,7 @@ class UserSurveyController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $id = Auth::user()->id;
-        $genders = gender::all();
-        $jobs = job::all();
-        $interests = interest::all();
-        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
-
-        $usurveys = user_survey::all()->where('status', '2');
-
-        return view('admin.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'usurveys'));
+        //
     }
 
     /**
@@ -119,11 +112,9 @@ class UserSurveyController extends Controller
      * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(user_survey $user_survey)
     {
-        $user = Auth::user();
-        $usurveys = user_survey::all()->where('user_id', $id);
-        return view('surveylog', compact('usurveys', 'user'));
+        //
     }
 
     /**
@@ -138,12 +129,21 @@ class UserSurveyController extends Controller
         $user = Auth::user()->id;
         $check = user_survey::where('survey_id', $id)->where('user_id', $user)->first();
         if(!$check){
-            $survey->users()->attach($user);
+            $survey->users()->attach($user, [
+                'point' => $survey->pay,
+            ]);
         }else{
             $survey->users()->update([
-                'status' => '2'
+                'status_id' => '2'
             ]);
         }
+
+        $usurvey = user_survey::where('survey_id', $id)->where('user_id', $user)->get()->first();
+        point_log::create([
+            'type' => '0',
+            'status_id' => '2',
+            'user_survey_id' => $usurvey->id,
+        ]);
 
         return redirect()->route('usersurvey.index');
     }

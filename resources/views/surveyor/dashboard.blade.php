@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @include('surveyor.modal.demographyModal')
+@include('surveyor.modal.pointModal')
 @section('content')
     <div class="container-xxl  p-5">
         <div class="row justify-content-center ">

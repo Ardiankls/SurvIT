@@ -86,7 +86,7 @@
                             @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
                                     <a class="nav-link text-white"
-                                        href="{{ route('usersurvey.create') }}">{{ __('Admin Page') }}</a>
+                                        href="{{ route('admin.index') }}">{{ __('Admin Page') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white"
@@ -104,8 +104,8 @@
                                         Profile
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('usersurvey.show', Auth::user()->id) }}">
-                                        Riwayat Survei
+                                    <a class="dropdown-item" href="{{ route('pointlog.index') }}">
+                                        Riwayat Poin
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -6,10 +6,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserSurveyController;
 use App\Http\Controllers\AccountPaymentController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\MailController as Email;
 use App\Http\Controllers\FillController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PointLogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,10 +30,13 @@ Route::resource('user', UserController::class)->middleware(['auth', 'verified'])
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('payment', AccountPaymentController::class)->middleware(['auth', 'verified']);
-Route::get('/fill/{survey}', [FillController::class, 'fill'])->name('fill');
+Route::resource('pointlog', PointLogController::class)->middleware(['auth', 'verified']);
+Route::get('/fill/{slug}', [FillController::class, 'fill'])->name('fill');
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('mail', Email::class);
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::patch('/{user} ', [AdminController::class, 'update'])->name('admin.update');
 });
 
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');
