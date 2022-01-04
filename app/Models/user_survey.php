@@ -12,6 +12,7 @@ class user_survey extends Model
     protected $fillable = [
         'user_id',
         'survey_id',
+        'point',
         'status'
     ];
 

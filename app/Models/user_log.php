@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class status extends Model
+class user_log extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'status',
-    ];
-
 }

@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class status extends Model
+class package extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'status',
+        'description',
+        'duration',
+        'respondent',
+        'consulation',
+        'created_by',
+        'price',
     ];
-
 }
