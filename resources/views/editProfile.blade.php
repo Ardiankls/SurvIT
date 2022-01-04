@@ -7,7 +7,7 @@
                 <div class="bg-white rounded-lg shadow d-none d-md-block" style="">
                     <h1 class="p-3 text-center">Edit Profile</h1>
                     <div class="container" style="padding: 20px 55px;">
-                        <form action="{{ route('user.update', $user) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('user.update', 'profile') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input name="_method" type="hidden" value="PATCH">
 

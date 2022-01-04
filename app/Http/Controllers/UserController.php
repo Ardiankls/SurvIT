@@ -8,8 +8,7 @@ use App\Models\interest;
 use App\Models\job;
 use App\Models\province;
 use App\Models\User;
-use App\Models\survey;
-use App\Models\user_survey;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,9 +28,23 @@ class UserController extends Controller
 
     public function index()
     {
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        return view('profile', compact('user'));
+        //Demography
+        $user = Auth::user();
+        $genders = gender::all()->where('id', '<>', '1');
+        $jobs = job::all()->where('id', '<>', '1');
+        $interests = interest::all()->where('id', '<>', '1');
+        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
+
+        $editable = false;
+        if($user->edited_at){
+            $days = Carbon::parse($user->edited_at)->diffInDays(Carbon::now());
+            if($days >= 30){
+                $editable = true;
+            }
+        }
+        // dd($days);
+
+        return view('profile', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'days'));
     }
 
     /**
@@ -96,18 +109,34 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, String $which)
     {
-        // $id = User::Auth()->id;
-        // $survey->surveys()->attach($id);
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
 
-        $user->update([
-            'username' => $request->username,
-            'email' => $request->email,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'phone' => $request->phone,
-        ]);
+        if($which == "profile"){
+            $user->update([
+                'username' => $request->username,
+                'email' => $request->email,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'phone' => $request->phone,
+            ]);
+        }
+
+        if($which == 'demography'){
+            $user->update([
+                'edited_at' => Carbon::now(),
+                'gender_id' => $request->gender,
+                'province_id' => $request->province,
+            ]);
+
+            $user->interests()->detach();
+            $user->interests()->attach($request->interest);
+
+            $user->jobs()->detach();
+            $user->jobs()->attach($request->job);
+        }
 
         return redirect()->route('user.index');
     }
