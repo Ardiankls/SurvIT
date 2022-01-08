@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\SurveyController;
 use App\Http\Controllers\Api\MySurveyController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\DemographyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::apiResource('surveys', SurveyController::class);
     Route::apiResource('mysurveys', MySurveyController::class);
     Route::apiResource('user', UserController::class);
+    Route::apiResource('demography', DemographyController::class);
+    Route::get('gender', [DemographyController::class, 'gender'])->name('gender');
+    Route::get('province', [DemographyController::class, 'province'])->name('province');
+    Route::get('job', [DemographyController::class, 'job'])->name('job');
+    Route::get('interest', [DemographyController::class, 'interest'])->name('interest');
 });
