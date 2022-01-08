@@ -46,7 +46,7 @@ class survey extends Model
     }
 
     public function users() {
-        return $this->belongsToMany(User::class, 'user_surveys', 'survey_id', 'user_id')->withPivot('point')->withTimeStamps();
+        return $this->belongsToMany(User::class, 'user_surveys', 'survey_id', 'user_id')->withTimeStamps();
     }
 
     public function status() {

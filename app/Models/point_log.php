@@ -12,6 +12,7 @@ class point_log extends Model
     protected $fillable = [
         'type',
         'status_id',
+        'point',
         'account_payment_id',
         'user_survey_id',
     ];

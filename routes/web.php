@@ -32,11 +32,14 @@ Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 
 Route::resource('payment', AccountPaymentController::class)->middleware(['auth', 'verified']);
 Route::resource('pointlog', PointLogController::class)->middleware(['auth', 'verified']);
 Route::get('/fill/{slug}', [FillController::class, 'fill'])->name('fill');
+Route::view('/price', 'price');
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('mail', Email::class);
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::patch('/{user} ', [AdminController::class, 'update'])->name('admin.update');
+    Route::match(['put', 'patch'], '/usurvey/{usurvey}/{action}', [AdminController::class, 'updateUserSurvey'])->name('admin.usurvey');
+    Route::match(['put', 'patch'], '/survey/{survey}/{action}', [AdminController::class, 'updateSurvey'])->name('admin.survey');
+    Route::match(['put', 'patch'], '/upayment/{upayment}', [AdminController::class, 'updatePoint'])->name('admin.point');
 });
 
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');

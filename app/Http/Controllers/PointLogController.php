@@ -33,6 +33,7 @@ class PointLogController extends Controller
 
         $pointlogs = point_log::whereIn('user_survey_id', $uid)
                             ->orWhereIn('account_payment_id', $pid)
+                            ->orderBy('id', 'DESC')
                             ->get();
         // dd($pointlogs);
 

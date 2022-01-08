@@ -12,7 +12,6 @@ class user_survey extends Model
     protected $fillable = [
         'user_id',
         'survey_id',
-        'point',
         'status'
     ];
 
@@ -22,5 +21,9 @@ class user_survey extends Model
 
     public function survey() {
         return $this->belongsTo(survey::class, 'survey_id', 'id');
+    }
+
+    public function point_log() {
+        return $this->hasMany(point_log::class);
     }
 }

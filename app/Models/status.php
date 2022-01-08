@@ -13,4 +13,12 @@ class status extends Model
         'status',
     ];
 
+    public function survey(){
+        return $this->hasMany(survey::class);
+    }
+
+    public function point_log(){
+        return $this->hasMany(point_log::class);
+    }
+
 }

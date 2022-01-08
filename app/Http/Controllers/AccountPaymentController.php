@@ -42,6 +42,7 @@ class AccountPaymentController extends Controller
         $user = User::findOrFail($id);
         $user->update([
             'transfer' => $request->transfer,
+            'point' => $user->point - $request->value,
         ]);
 
         $payment = account_payment::create([
@@ -54,6 +55,7 @@ class AccountPaymentController extends Controller
         point_log::create([
             'type' => '1',
             'status_id' => '2',
+            'point' => $request->value,
             'account_payment_id' => $payment->id,
         ]);
 

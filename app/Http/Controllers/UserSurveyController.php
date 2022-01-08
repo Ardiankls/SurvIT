@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\account_payment;
 use App\Models\user_survey;
 use App\Models\survey;
 use App\Models\gender;
@@ -68,21 +69,32 @@ class UserSurveyController extends Controller
                                 ->where('user_surveys.user_id', $id);
                         })
                         ->orWhereExists(function ($query) {
-                            $query->from('user_surveys')
-                                ->whereColumn('user_surveys.survey_id', 'surveys.id')
-                                ->where('user_surveys.status', 1);
+                            $query->from('point_logs')
+                                ->whereColumn('point_logs.user_survey_id', 'surveys.id')
+                                ->where('point_logs.status_id', 1);
                         });
                     })
                     ->get();
 
+        //Point
+        $upoint = 0;
+        $payments = account_payment::all()->where('user_id', $user->id);
 
-        // foreach ($surveys as $survey){
-        //     $sinterests[] = $survey->interests;
-        // }
+        $pid = [];
+        foreach($payments as $payment){
+            $pid[] = $payment->id;
+        }
 
-        // dd($up);
+        $pointlogs = point_log::WhereIn('account_payment_id', $pid)
+                            ->where('status_id', 2)
+                            ->get();
 
-        return view('surveyor.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'surveys', 'pages'));
+        foreach($pointlogs as $pointlog){
+            $upoint += $pointlog->point;
+        }
+        // dd($upoint);
+
+        return view('surveyor.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'surveys', 'upoint', 'pages'));
     }
 
     /**
@@ -123,29 +135,9 @@ class UserSurveyController extends Controller
      * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(user_survey $user_survey)
     {
-        $survey = survey::Find($id);
-        $user = Auth::user()->id;
-        $check = user_survey::where('survey_id', $id)->where('user_id', $user)->first();
-        if(!$check){
-            $survey->users()->attach($user, [
-                'point' => $survey->pay,
-            ]);
-        }else{
-            $survey->users()->update([
-                'status_id' => '2'
-            ]);
-        }
-
-        $usurvey = user_survey::where('survey_id', $id)->where('user_id', $user)->get()->first();
-        point_log::create([
-            'type' => '0',
-            'status_id' => '2',
-            'user_survey_id' => $usurvey->id,
-        ]);
-
-        return redirect()->route('usersurvey.index');
+        //
     }
 
     /**
@@ -155,25 +147,32 @@ class UserSurveyController extends Controller
      * @param  \App\Models\user_survey  $user_survey
      * @return \Illuminate\Http\Response
      */
-    public function update($detail)
+    public function update(Request $request, $id)
     {
-        $usurvey = user_survey::Find($detail);
-        $usurvey->update([
-            'status' => '3'
-        ]);
+        $survey = survey::Find($id);
+        $user = Auth::user()->id;
+        $check = user_survey::where('survey_id', $id)->where('user_id', $user)->first();
+        if(!$check){
+            // $survey->users()->attach($user, [
+            //     'point' => $survey->pay,
+            // ]);
+            $survey->users()->attach($user);
 
-        $point = $usurvey->survey->pay;
-        $user = User::Find($usurvey->user_id);
-        $user->update([
-            'point' => $user->point + $point
-        ]);
+            $usurvey = user_survey::where('survey_id', $id)->where('user_id', $user)->get()->first();
+            point_log::create([
+                'type' => '0',
+                'status_id' => '2',
+                'point' => $survey->pay,
+                'user_survey_id' => $usurvey->id,
+            ]);
 
-        $survey = survey::Find($usurvey->survey_id);
-        $survey->update([
-            'count' => $survey->count + 1
-        ]);
+        }else{
+            $check->point_log->update([
+                'status_id' => '2'
+            ]);
+        }
 
-        return redirect()->route('usersurvey.create');
+        return redirect()->route('usersurvey.index');
     }
 
     /**

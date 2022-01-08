@@ -6,13 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
+use App\Models\package;
 use App\Models\province;
 use App\Models\survey;
-use App\Models\survey_interest;
 use App\Models\survey_job;
 use App\Models\survey_province;
-use App\Models\User;
-use App\Models\user_survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,10 +28,11 @@ class SurveyController extends Controller
         $jobs = job::all();
         $interests = interest::all();
         $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
+        $packages = package::all();
 
         $surveys = survey::all()->where('user_id', '=', $id);
 
-        return view('poster.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'surveys'));
+        return view('poster.dashboard', compact('genders', 'jobs', 'interests', 'provinces', 'packages', 'surveys'));
     }
 
     /**
@@ -60,6 +59,9 @@ class SurveyController extends Controller
             'limit' => $request->limit,
             'user_id' => Auth::id(),
             'gender_id' => $request->gender,
+            'package_id' => '1',
+            'shareable' => $request->shareable,
+            'status_id' => 2,
         ]);
 
         if($request->pay != null){
@@ -68,13 +70,15 @@ class SurveyController extends Controller
             ]);
         }
 
+        if(Auth::user()->is_admin == 1){
+            $survey->update([
+                'status_id' => 3,
+            ]);
+        }
+
         $survey->jobs()->attach($request->job);
         $survey->interests()->attach($request->interest);
         $survey->provinces()->attach($request->province);
-
-        // foreach($request->interest as $interest){
-        //     $survey->interests()->attach($interest);
-        // }
 
         return redirect()->route('survey.index');
     }

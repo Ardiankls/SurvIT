@@ -19,6 +19,7 @@ class CreatePointLogsTable extends Migration
             $table->enum('type', ['0', '1'])
                 ->default('0')->comment('0 = income, 1 = outcome');
             $table->foreignId('status_id')->constrained();
+            $table->integer('point');
             $table->foreignId('account_payment_id')->nullable()->constrained();
             $table->foreignId('user_survey_id')->nullable()->constrained();
             // $table->integer('account_payment_id');
