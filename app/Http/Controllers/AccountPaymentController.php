@@ -41,7 +41,6 @@ class AccountPaymentController extends Controller
         $user = User::findOrFail($id);
         $user->update([
             'transfer' => $request->transfer,
-            'point' => $user->point - $request->value,
         ]);
 
         account_payment::create([
@@ -51,7 +50,7 @@ class AccountPaymentController extends Controller
             'transfer' => $request->transfer,
         ]);
 
-        return redirect()->route('user.index');
+        return redirect()->route('usersurvey.index');
     }
 
     /**

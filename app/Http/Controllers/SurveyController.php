@@ -8,6 +8,11 @@ use App\Models\interest;
 use App\Models\job;
 use App\Models\province;
 use App\Models\survey;
+use App\Models\survey_interest;
+use App\Models\survey_job;
+use App\Models\survey_province;
+use App\Models\User;
+use App\Models\user_survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,6 +72,10 @@ class SurveyController extends Controller
         $survey->interests()->attach($request->interest);
         $survey->provinces()->attach($request->province);
 
+        // foreach($request->interest as $interest){
+        //     $survey->interests()->attach($interest);
+        // }
+
         return redirect()->route('survey.index');
     }
 
@@ -87,17 +96,16 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($detail)
+    public function edit($id)
     {
-        $survey = survey::Find($detail);
-        $id = Auth::user()->id;
+        $genders = gender::all();
+        $jobs = job::all();
+        $interests = interest::all()->where('id', '<>', '1');
+        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
-        $survey->update([
-            'count' => $survey->count + 1
-        ]);
-        $survey->users()->attach($id);
+        $survey = survey::find($id);
 
-        return redirect()->route('user.index');
+        return view('poster.editSurvey', compact('genders', 'jobs', 'interests', 'provinces', 'survey'));
     }
 
     /**
@@ -107,9 +115,35 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, survey $survey)
     {
-        //
+        $survey->update([
+            'title' => $request->title,
+            'link' => $request->link,
+            'limit' => $request->limit,
+            'gender_id' => $request->gender,
+        ]);
+
+        if($request->pay != null){
+            $survey->update([
+                'pay' => $request->pay,
+            ]);
+        }
+
+        $survey->interests()->detach();
+        $survey->interests()->attach($request->interest);
+
+        $sjob = survey_job::all()->where('survey_id', $survey->id)->first();
+        $sjob->update([
+            'job_id' => $request->job,
+        ]);
+
+        $sprovince = survey_province::all()->where('survey_id', $survey->id)->first();
+        $sprovince->update([
+            'province_id' => $request->province,
+        ]);
+
+        return redirect()->route('survey.index');
     }
 
     /**
@@ -118,8 +152,13 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(survey $survey)
     {
-        //
+        $survey->jobs()->detach();
+        $survey->interests()->detach();
+        $survey->provinces()->detach();
+        $survey->users()->detach();
+        $survey->delete();
+        return redirect()->route('survey.index');
     }
 }

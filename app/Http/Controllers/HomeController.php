@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         //
+        if(Auth::check()){
+            return redirect()->route('usersurvey.index');
+        }
+        return redirect()->route('login');
     }
 }

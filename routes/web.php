@@ -8,7 +8,8 @@ use App\Http\Controllers\UserSurveyController;
 use App\Http\Controllers\AccountPaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\MailController as Email;
-use App\Http\Controllers\MailController;
+use App\Http\Controllers\FillController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,21 +20,18 @@ use App\Http\Controllers\MailController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [LoginController::class, 'login']);
+Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes(['verify' => true ]);
 
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
-Route::resource('payment', AccountPaymentController::class);
+Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 'verified']);
+Route::resource('payment', AccountPaymentController::class)->middleware(['auth', 'verified']);
+Route::get('/fill/{survey}', [FillController::class, 'fill'])->name('fill');
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
-    Route::resource('usersurvey', UserSurveyController::class);
     Route::resource('mail', Email::class);
-});
-
-Route::get('/surv', function () {
-    return view('surveyor.survey');
 });
 
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');

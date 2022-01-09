@@ -31,7 +31,7 @@ class survey extends Model
     }
 
     public function jobs() {
-        return $this->belongsToMany(job::class, 'survey_jobs', 'survey_id', 'job_id')->withTimeStamps();
+        return $this->belongsToMany(job::class, 'survey_jobs', 'survey_id', 'job_id')->withPivot('job_id')->withTimeStamps();
     }
 
     public function interests() {

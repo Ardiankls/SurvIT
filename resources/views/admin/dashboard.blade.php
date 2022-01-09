@@ -11,8 +11,9 @@
                             <tr class="text-center">
                                 <th scope="col">Survey</th>
                                 <th scope="col">User</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col">Email</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,11 +26,7 @@
                                         {{ $usurvey->user->username }}
                                     </td>
                                     <td>
-                                        @if ($usurvey->status == '2')
-                                            Pending
-                                        @else
-
-                                        @endif
+                                        {{ $usurvey->user->email }}
                                     </td>
                                     <td>
                                         <form action="{{ route('usersurvey.update', $usurvey) }}" method="post"
@@ -37,7 +34,17 @@
                                             @csrf
                                             <input name="_method" type="hidden" value="PATCH">
                                             <button class="btn btn-primary" id="selesai" type="submit">
-                                                Selesai
+                                                Accept
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('mail.destroy', $usurvey) }}" method="post"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button class="btn btn-danger" type="submit">
+                                                Decline
                                             </button>
                                         </form>
                                     </td>

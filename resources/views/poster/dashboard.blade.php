@@ -4,14 +4,9 @@
     @include('poster.modal.createModal')
 
     @if (Auth::user()->is_admin == '1')
-        <div class="container-fluid" >
-
-            <div class="p-5">
-                <div class="row">
-                    <div class="col-md-10 text-right">
-                        <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary ">Buat Survey</a>
-                    </div>
-                </div>
+        <div class="container-xxl p-5">
+            <div class="col-md-10 text-right">
+                <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary ">Buat Survey</a>
             </div>
             <div class="row justify-content-center ">
                 <div class="col-md-8 mt-5 ">
@@ -22,7 +17,7 @@
                                 <tr class="text-center">
                                     <th scope="col">Judul</th>
                                     <th scope="col">Jenis</th>
-                                    <th scope="col">Deposit</th>
+                                    <th scope="col">Poin</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Count</th>
                                     <th scope="col">Link</th>
@@ -32,8 +27,8 @@
                                 @foreach ($surveys as $survey)
                                     <tr>
                                         <td>
-                                            <a href="" data-toggle="modal" data-target="#editsurvey">
-                                                {{ $survey->title }}</a>
+                                            <a href="{{ route('survey.edit', $survey) }}"
+                                                {{-- data-toggle="modal" data-target="#editsurvey" --}}>{{ $survey->title }}</a>
                                         </td>
                                         <td>
                                             Berbayar
@@ -42,14 +37,14 @@
                                             {{ $survey->pay }}
                                         </td>
                                         <td>
-                                            @if($survey->count < $survey->limit)
+                                            @if ($survey->count < $survey->limit)
                                                 Dipublikasikan
                                             @else
                                                 Ditutup
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $survey->count }}
+                                            {{ $survey->count }} / {{ $survey->limit }}
                                         </td>
                                         <td>
                                             <a href="{{ $survey->link }}" target="_blank" class="btn btn-primary">Open</a>

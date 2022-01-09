@@ -34,19 +34,19 @@
                         </div>
                     </div>
                 </div>
+
             @else
-
-
-
                 <div class="col-md-8 mt-5 ">
                     <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
                         @if (count($surveys) < 1)
+                        <div class="p-5">
                             <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek
                                 beberapa
                                 saat
                                 lagi.</h5>
+                            </div>
                         @else
-                            <h1 class="p-3">Daftar Survey</h1>
+                            <h1 class="p-3">Daftar Survei</h1>
                             <table class="table table-striped" id="myTable">
                                 <thead>
                                 <tr class="text-center">
@@ -55,7 +55,6 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Point</th>
                                     <th scope="col">Link</th>
-                                    <th scope="col">Aksi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -65,6 +64,7 @@
                                     $checks = $survey
                                         ->users()
                                         ->wherePivot('user_id', '=', $user->id)
+                                        ->wherePivot('status', '<>', 1)
                                         ->get();
                                     ?>
                                     <tr class="text-center">
@@ -83,19 +83,19 @@
                                         <td>
                                             @if (count($checks) > 0)
                                                 @foreach ($checks as $usurvey)
-                                                    @if ($usurvey->pivot->status == 2)
-                                                        Pending
-                                                    @elseif($usurvey->pivot->status == 3)
+                                                    @if ($usurvey->pivot->status == 3)
                                                         Sukses
+                                                    @else
+                                                        Pending
                                                     @endif
                                                 @endforeach
                                             @else
-                                                Baru
+                                                Dibuka
                                             @endif
                                         </td>
                                         <td>
                                             @if ($survey->pay != null)
-                                                {{ $survey->pay / $survey->limit }}
+                                                {{ $survey->pay }}
                                             @else
                                                 0
                                             @endif
@@ -104,20 +104,11 @@
                                             @if (count($checks) > 0)
                                                 -
                                             @else
-                                                <a href={{ $survey->link }} target="_blank"
-                                                   class="btn btn-primary">Buka</a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if (count($checks) > 0)
-                                                -
-                                            @else
-                                                <form action="{{ route('survey.edit', $survey) }}" method="GET"
+                                                <form action="{{ route('fill', $survey) }}" method="GET"
                                                       enctype="multipart/form-data">
                                                     @csrf
-                                                    <input name="_method" type="hidden" value="PATCH">
                                                     <button class="btn btn-primary" id="selesai" type="submit"
-                                                            style="background-color: rgb(0,0,226);">Selesai
+                                                            style="background-color: rgb(0,0,226);">Buka
                                                     </button>
                                                 </form>
                                             @endif
@@ -138,7 +129,7 @@
                             lagi.</h5>
                     @else
                         <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
-                            <h4 class="text-center">Daftar Survey</h4>
+                            <h4 class="text-center">Daftar Survei</h4>
                         </div>
 
                         @foreach ($surveys as $survey)
@@ -147,6 +138,7 @@
                             $checks = $survey
                                 ->users()
                                 ->wherePivot('user_id', '=', $user->id)
+                                ->wherePivot('status', '<>', 1)
                                 ->get();
                             ?>
                             <div class="card-list w-100 no-gutters d-md-none ">
@@ -175,14 +167,14 @@
                                         <div class="col-4 text-right text-warning">
                                             @if (count($checks) > 0)
                                                 @foreach ($checks as $usurvey)
-                                                    @if ($usurvey->pivot->status == 2)
-                                                        Pending
-                                                    @elseif($usurvey->pivot->status == 3)
+                                                    @if ($usurvey->pivot->status == 3)
                                                         Sukses
+                                                    @else
+                                                        Pending
                                                     @endif
                                                 @endforeach
                                             @else
-                                                Baru
+                                                Dibuka
                                             @endif
                                         </div>
                                     </div>
@@ -190,7 +182,7 @@
                                         <div class="col-5 mt-1 ">
                                             <i class="fas fa-coins mr-1"></i>
                                             @if ($survey->pay != null)
-                                                {{ $survey->pay / $survey->limit }}
+                                                {{ $survey->pay }}
                                             @else
                                                 0
                                             @endif
@@ -198,23 +190,17 @@
                                         <div class="col-7 no-gutters text-right ">
                                             <div class="row">
                                                 <div class="col-6 no-gutters text-right ">
-                                                    @if (count($checks) > 0)
-                                                    @else
-                                                        <form action="{{ route('survey.edit', $survey) }}" method="GET"
-                                                              class="d-inline" enctype="multipart/form-data">
-                                                            @csrf
-                                                            <input name="_method" type="hidden" value="PATCH">
-                                                            <button class="btn btn-sm btn-primary" id="selesai"
-                                                                    type="submit">Selesai
-                                                            </button>
-                                                        </form>
-                                                    @endif
                                                 </div>
                                                 <div class="col-6 no-gutters text-right ">
                                                     @if (count($checks) > 0)
                                                     @else
-                                                        <a class="btn btn-sm  btn-primary" href={{ $survey->link }}
-                                                            target="_blank">Buka</a>
+                                                        <form action="{{ route('fill', $survey) }}" method="GET"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <button class="btn btn-primary" id="selesai" type="submit"
+                                                                    style="background-color: rgb(0,0,226);">Buka
+                                                            </button>
+                                                        </form>
                                                     @endif
                                                 </div>
                                             </div>
@@ -253,27 +239,12 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#selesai').click(function () {
-                checked = $("input[type=checkbox]:checked").length;
-
-                if (!checked) {
-                    alert(
-                        "Kami akan melakukan pengecekan validasi survey anda, apabila pengisian survey sudah valid. Maka status akan berubah menjadi Sukses. Klik Ok untuk konfirmasi."
-                    );
-                    return true;
-                }
-
-            });
-        });
-
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
             $('#pay').click(function () {
                 var x, y;
                 x = document.getElementById("nominal").value;
                 y = document.getElementById("upoint").value;
-                if (isNaN(x) || x > y) {
+                // if (isNaN(x) || x < y) {
+                if (isNaN(x) || 10000 > y) {
                     alert(
                         "Point kamu tidak cukup."
                     );
@@ -282,15 +253,21 @@
 
             });
         });
-
     </script>
-    <?php if ($pages == 'selesai') { ?>
-    <script>
-        $(function () {
-            $('#actionmodal').modal('show');
+
+    {{-- Boostrap 5 --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" --}}
+        {{-- integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"> --}}
+    {{-- </script> --}}
+    {{-- jQuery --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    {{-- DataTables --}}
+    {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> --}}
+    {{-- <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.js"></script> --}}
+    {{-- <script>
+        $(document).ready(function() {
+            var thetable = $('#myTable').DataTable({});
         });
+    </script> --}}
 
-    </script>
-    <?php } ?>
 @endsection
-{{--coba push--}}
