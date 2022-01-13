@@ -35,6 +35,7 @@ class UserController extends Controller
         $interests = interest::all()->where('id', '<>', '1');
         $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
+        $days = 30;
         $editable = false;
         if($user->edited_at){
             $days = Carbon::parse($user->edited_at)->diffInDays(Carbon::now());
