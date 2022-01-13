@@ -17,12 +17,13 @@ class survey extends Model
         'gender_id',
         'title',
         'link',
-        'package_id',
         'limit',
         'pay',
         'count',
-        'shareable',
+        'package_id',
         'status_id',
+        'shareable',
+        'opened_at',
     ];
 
     public function user() {
@@ -47,6 +48,10 @@ class survey extends Model
 
     public function users() {
         return $this->belongsToMany(User::class, 'user_surveys', 'survey_id', 'user_id')->withTimeStamps();
+    }
+
+    public function usersurvey() {
+        return $this->hasMany(user_survey::class, 'survey_id', 'id');
     }
 
     public function status() {

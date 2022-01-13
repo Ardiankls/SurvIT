@@ -13,8 +13,9 @@ class package extends Model
         'description',
         'duration',
         'respondent',
-        'consulation',
+        'consultation',
         'created_by',
         'price',
+        'point'
     ];
 }

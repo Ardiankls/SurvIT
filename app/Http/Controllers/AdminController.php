@@ -6,6 +6,7 @@ use App\Mail\Broadcast_Decline;
 use App\Models\point_log;
 use App\Models\survey;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -63,6 +64,7 @@ class AdminController extends Controller
         if($action == 'accept'){
             $survey->update([
                 'status_id' => '3',
+                'opened_at' => Carbon::now()
             ]);
         }
 

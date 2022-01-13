@@ -22,6 +22,7 @@ class CreatePackagesTable extends Migration
             $table->enum('created_by', ['0', '1'])
                 ->default('0')->comment('0 = user, 1 = survit team');
             $table->integer('price');
+            $table->integer('point');
             $table->timestamps();
         });
     }

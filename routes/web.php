@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\MailController as Email;
 use App\Http\Controllers\FillController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PointLogController;
 
 /*
@@ -31,8 +32,8 @@ Route::resource('survey', SurveyController::class)->middleware(['auth', 'verifie
 Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('payment', AccountPaymentController::class)->middleware(['auth', 'verified']);
 Route::resource('pointlog', PointLogController::class)->middleware(['auth', 'verified']);
+Route::resource('package', PackageController::class);
 Route::get('/fill/{slug}', [FillController::class, 'fill'])->name('fill');
-Route::view('/price', 'price');
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('mail', Email::class);
