@@ -52,12 +52,19 @@ class UserSurveyController extends Controller
         }
 
         $surveys = survey::whereHas('interests', function($query) use($ui) {
-            $query->whereIn('interest_id', $ui);})->whereHas('jobs', function($query) use($uj) {
-                $query->whereIn('job_id', $uj);})->whereHas('provinces', function($query) use($up) {
-                    $query->whereIn('province_id', $up);})
+                        $query->whereIn('interest_id', $ui);
+                    })
+                    ->whereHas('jobs', function($query) use($uj) {
+                        $query->whereIn('job_id', $uj);
+                    })
+                    ->whereHas('provinces', function($query) use($up) {
+                        $query->whereIn('province_id', $up);
+                    })
                     ->where('user_id', '<>', $id)
                     ->where('status_id', 3)
-                    ->whereColumn('count', '<', 'limit')
+                    ->whereHas('package', function($query) {
+                        $query->whereColumn('count', '<', 'respondent');
+                    })
                     ->where(function ($query) use($ugender){
                         $query->where('gender_id', '=', $ugender)
                               ->orWhere('gender_id', '=', 1);
@@ -68,12 +75,13 @@ class UserSurveyController extends Controller
                                 ->whereColumn('user_surveys.survey_id', 'surveys.id')
                                 ->where('user_surveys.user_id', $id);
                         })
-                        ->orWhereExists(function ($query) {
-                            $query->from('point_logs')
-                                ->whereColumn('point_logs.user_survey_id', 'surveys.id')
-                                ->where('point_logs.status_id', 1);
+                        ->orWhereHas('usersurvey', function($query) {
+                            $query->whereHas('point_log', function($query) {
+                                $query->where('status_id', 1);
+                            });
                         });
                     })
+                    ->orderBy('point', 'DESC')
                     ->get();
 
         //Point
@@ -162,12 +170,12 @@ class UserSurveyController extends Controller
             point_log::create([
                 'type' => '0',
                 'status_id' => '2',
-                'point' => $survey->pay,
+                'point' => $survey->point,
                 'user_survey_id' => $usurvey->id,
             ]);
 
         }else{
-            $check->point_log->update([
+            $check->point_log->first()->update([
                 'status_id' => '2'
             ]);
         }

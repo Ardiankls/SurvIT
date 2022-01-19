@@ -88,7 +88,11 @@
                                 </tr>
                         </tbody>
                     </table>
+                    <div class="text-danger pb-3">
+                        *Survey yang berbayar cenderung diprioritaskan dan di posisi paling atas dengan poin yang lebih tinggi*
+                    </div>
                 </div>
+                <br>
                 <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
                     <h1 class="p-3">Paket Custom</h1>
                     <table class="table table-striped" id="myTable">
@@ -174,6 +178,9 @@
                                 </tr>
                         </tbody>
                     </table>
+                    <div class="text-danger pb-3">
+                        *Survey yang berbayar cenderung diprioritaskan dan di posisi paling atas dengan poin yang lebih tinggi*
+                    </div>
                 </div>
             </div>
         </div>

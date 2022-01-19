@@ -40,10 +40,10 @@
                                     <td>
                                         @if($pointlog->type == 0)
                                             +
-                                            {{ $pointlog->usersurvey->survey->pay }}
+                                            {{ $pointlog->point }}
                                         @elseif($pointlog->type == 1)
                                             -
-                                            {{ $pointlog->payment->value }}
+                                            {{ $pointlog->point }}
                                         @endif
 
                                     </td>

@@ -18,12 +18,12 @@ class AdminController extends Controller
             $usurveys = point_log::all()->where('status_id', '2')->where('user_survey_id', '<>', null);
             // return view('admin.dashboard', compact('usurveys'));
         // }else if($type == 2){
-            $surveys = survey::all()->where('status_id', '2');
+            $surveys = survey::where('status_id', '2')->orWhere('status_id', '5')->get();
             // return view('admin.dashboard', compact('surveys'));
         // }else if($type == 3){
-            $upayments = point_log::all()->where('status_id', '2')->where('account_payment_id', '<>', null);
+            $upoints = point_log::all()->where('status_id', '2')->where('account_payment_id', '<>', null);
             // dd($usurveys);
-            return view('admin.dashboard', compact('usurveys', 'surveys', 'upayments'));
+            return view('admin.dashboard', compact('usurveys', 'surveys', 'upoints'));
         // }
     }
 
@@ -62,10 +62,15 @@ class AdminController extends Controller
     public function updateSurvey(survey $survey, String $action)
     {
         if($action == 'accept'){
-            $survey->update([
-                'status_id' => '3',
-                'opened_at' => Carbon::now()
-            ]);
+            if($survey->package_id == 1){
+                $survey->update([
+                    'status_id' => '3',
+                ]);
+            }else{
+                $survey->update([
+                    'status_id' => '4',
+                ]);
+            }
         }
 
         if($action == 'decline'){
@@ -82,6 +87,16 @@ class AdminController extends Controller
         $point_log = point_log::findorfail($id);
         $point_log->update([
             'status_id' => '3',
+        ]);
+
+        return redirect()->route('admin.index');
+    }
+
+    public function updatePayment(survey $survey)
+    {
+        $survey->update([
+            'status_id' => '3',
+            'opened_at' => Carbon::now()
         ]);
 
         return redirect()->route('admin.index');

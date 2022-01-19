@@ -8,7 +8,7 @@
             @else
                 <iframe src={{ $survey->link }} width="640" height="570vh" frameborder="0" marginheight="0"
                     marginwidth="0">Loading…</iframe>
-                <form action="{{ route('usersurvey.edit', $survey) }}" method="GET" enctype="multipart/form-data">
+                <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input name="_method" type="hidden" value="PATCH">
                     <button class="btn btn-primary" id="selesai" type="submit"
@@ -33,7 +33,8 @@
                     Survit!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="myBtn2">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="myBtn2">Tidak dulu</button>
+                    <a href="{{ route('register') }}" class="btn btn-primary" data-dismiss="modal">Register Sekarang</a>
                 </div>
             </div>
         </div>

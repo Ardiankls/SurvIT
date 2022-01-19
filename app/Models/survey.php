@@ -13,16 +13,17 @@ class survey extends Model
         'user_id',
         //'age_from',
         //'age_to',
-        //'point'
         'gender_id',
         'title',
         'link',
         'limit',
-        'pay',
+        'point',
         'count',
+        'url',
+        'shareable',
+        'evidence',
         'package_id',
         'status_id',
-        'shareable',
         'opened_at',
     ];
 

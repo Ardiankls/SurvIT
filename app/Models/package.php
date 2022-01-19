@@ -12,6 +12,7 @@ class package extends Model
     protected $fillable = [
         'description',
         'duration',
+        'time',
         'respondent',
         'consultation',
         'created_by',

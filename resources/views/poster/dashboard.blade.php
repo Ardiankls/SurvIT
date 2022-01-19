@@ -1,63 +1,67 @@
 @extends('layouts.app')
-
+@include('poster.modal.createModal')
 @section('content')
-    @include('poster.modal.createModal')
-
-    @if (Auth::user()->is_admin == '1')
-        <div class="container-xxl p-5">
-            <div class="col-md-10 text-right">
-                <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary ">Buat Survey</a>
-            </div>
-            <div class="row justify-content-center ">
-                <div class="col-md-8 mt-5 ">
-                    <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
-                        <h1 class="p-3">Survey Saya</h1>
-                        <table class="table table-striped" id="myTable">
-                            <thead>
+    {{-- @if (Auth::user()->is_admin == '1') --}}
+    <div class="container-xxl p-5">
+        <div class="col-md-10 text-right">
+            <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary ">Buat Survey</a>
+        </div>
+        <div class="row justify-content-center ">
+            <div class="col-md-8 mt-5 ">
+                <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
+                    <h1 class="p-3">Survey Saya</h1>
+                    <table class="table table-striped" id="myTable">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Judul</th>
+                                <th scope="col">Paket</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($surveys as $survey)
                                 <tr class="text-center">
-                                    <th scope="col">Judul</th>
-                                    <th scope="col">Jenis</th>
-                                    <th scope="col">Poin</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Count</th>
-                                    <th scope="col">Link</th>
+                                    <td>
+                                        {{ $survey->title }}
+                                    </td>
+                                    <td>
+                                        {{ $survey->package->description }}
+                                    </td>
+                                    <td>
+                                        @if ($survey->count < $survey->package->respondent)
+                                            {{ $survey->status->status }}
+                                        @else
+                                            Selesai
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $survey->count }} / {{ $survey->package->respondent }}
+                                    </td>
+                                    <td>
+                                        @if ($survey->status_id == 2)
+                                            <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary">Ubah</a>
+                                        @elseif($survey->status_id == 3)
+                                            <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary">Detail</a>
+                                        @elseif($survey->status_id == 4)
+                                            <a href="" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#pay-{{ $survey->id }}">Bayar</a>
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($surveys as $survey)
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('survey.edit', $survey) }}"
-                                                {{-- data-toggle="modal" data-target="#editsurvey" --}}>{{ $survey->title }}</a>
-                                        </td>
-                                        <td>
-                                            Berbayar
-                                        </td>
-                                        <td>
-                                            {{ $survey->pay }}
-                                        </td>
-                                        <td>
-                                            @if ($survey->count < $survey->limit)
-                                                Dipublikasikan
-                                            @else
-                                                Ditutup
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{ $survey->count }} / {{ $survey->limit }}
-                                        </td>
-                                        <td>
-                                            <a href="{{ $survey->link }}" target="_blank" class="btn btn-primary">Open</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+
+                                @include('poster.modal.payModal')
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    @else
+    </div>
+    {{-- @else
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -75,5 +79,5 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 @endsection
