@@ -17,7 +17,7 @@ class CreatePackagesTable extends Migration
             $table->id();
             $table->string('description');
             $table->string('duration');
-            $table->integer('time');
+            $table->integer('time')->nullable();
             $table->integer('respondent');
             $table->string('consultation');
             $table->enum('created_by', ['0', '1'])
