@@ -13,13 +13,18 @@ class survey extends Model
         'user_id',
         //'age_from',
         //'age_to',
-        //'point'
+        'gender_id',
         'title',
         'link',
-        'pay',
-        'gender_id',
         'limit',
+        'point',
         'count',
+        'url',
+        'shareable',
+        'evidence',
+        'package_id',
+        'status_id',
+        'opened_at',
     ];
 
     public function user() {
@@ -31,7 +36,7 @@ class survey extends Model
     }
 
     public function jobs() {
-        return $this->belongsToMany(job::class, 'survey_jobs', 'survey_id', 'job_id')->withPivot('job_id')->withTimeStamps();
+        return $this->belongsToMany(job::class, 'survey_jobs', 'survey_id', 'job_id')->withTimeStamps();
     }
 
     public function interests() {
@@ -43,6 +48,18 @@ class survey extends Model
     }
 
     public function users() {
-        return $this->belongsToMany(User::class, 'user_surveys', 'survey_id', 'user_id')->withPivot('status')->withTimeStamps();
+        return $this->belongsToMany(User::class, 'user_surveys', 'survey_id', 'user_id')->withTimeStamps();
+    }
+
+    public function usersurvey() {
+        return $this->hasMany(user_survey::class, 'survey_id', 'id');
+    }
+
+    public function status() {
+        return $this->belongsTo(status::class,'status_id', 'id');
+    }
+
+    public function package() {
+        return $this->belongsTo(package::class,'package_id', 'id');
     }
 }

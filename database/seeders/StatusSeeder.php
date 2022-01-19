@@ -15,15 +15,23 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $status = new status();
-        $status->status = 'Ditolak';
+        $status->status = 'Tidak Diterima';
         $status->save();
 
         $status = new status();
-        $status->status = 'Proses';
+        $status->status = 'Menunggu Validasi';
         $status->save();
 
         $status = new status();
         $status->status = 'Sukses';
+        $status->save();
+
+        $status = new status();
+        $status->status = 'Menunggu Pembayaran';
+        $status->save();
+
+        $status = new status();
+        $status->status = 'Pengecekan Pembayaran';
         $status->save();
     }
 }

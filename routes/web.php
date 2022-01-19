@@ -6,10 +6,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserSurveyController;
 use App\Http\Controllers\AccountPaymentController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\MailController as Email;
 use App\Http\Controllers\FillController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\PointLogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,12 +29,20 @@ Auth::routes(['verify' => true ]);
 
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
+Route::match(['put', 'patch'], '/survey/payment/{payment}', [SurveyController::class, 'payment'])->middleware(['auth', 'verified'])->name('survey.payment');
 Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 'verified']);
 Route::resource('payment', AccountPaymentController::class)->middleware(['auth', 'verified']);
-Route::get('/fill/{survey}', [FillController::class, 'fill'])->name('fill');
+Route::resource('pointlog', PointLogController::class)->middleware(['auth', 'verified']);
+Route::resource('package', PackageController::class);
+Route::get('/fill/{url}', [FillController::class, 'fill'])->name('fill');
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('mail', Email::class);
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::match(['put', 'patch'], '/usurvey/{usurvey}/{action}', [AdminController::class, 'updateUserSurvey'])->name('admin.usurvey');
+    Route::match(['put', 'patch'], '/survey/{survey}/{action}', [AdminController::class, 'updateSurvey'])->name('admin.survey');
+    Route::match(['put', 'patch'], '/point/{upoint}', [AdminController::class, 'updatePoint'])->name('admin.point');
+    Route::match(['put', 'patch'], '/payment/{survey}', [AdminController::class, 'updatePayment'])->name('admin.payment');
 });
 
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');

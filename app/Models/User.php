@@ -29,13 +29,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'birthdate',
         'point',
         'transfer',
-        'gender_id',
-        'province_id',
         'is_login',
         'email_verified_at',
-        'is_admin',
         'is_survey_avail',
+        'is_admin',
         'stat_delete',
+        'edited_at',
+        'gender_id',
+        'province_id',
     ];
 
     /**

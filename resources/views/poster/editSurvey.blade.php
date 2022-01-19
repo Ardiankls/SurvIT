@@ -1,11 +1,12 @@
 @extends('layouts.app')
+@include('poster.modal.resubmitModal')
 @section('content')
     <div class="container-xxl  p-5">
         <div class="row justify-content-center ">
             <div class="col-md-9"></div>
             <div class="col-md-8 mt-5 ">
                 <div class="bg-white rounded-lg shadow d-none d-md-block" style="">
-                    <h1 class="p-3 text-center">Edit Survey</h1>
+                    <h1 class="p-3 text-center">Detail Survei</h1>
                     <div class="container" style="padding: 20px 55px;">
                         <form action="{{ route('survey.update', $survey) }}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -19,6 +20,31 @@
                             <div class="form-group">
                                 <label>Link Form</label>
                                 <input class="form-control" type="text" name="link" value={{ $survey->link }} required>
+                            </div>
+
+                            {{-- <div class="form-group">
+                                <label>Poin</label>
+                                <input class="form-control" type="text" name="pay" value={{ $survey->pay }}>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Limit</label>
+                                <input class="form-control" type="text" name="limit" value={{ $survey->limit }}>
+                            </div> --}}
+
+                            <div class="form-group"><label>Paket</label>
+                                <select name="package" class="custom-select">
+                                    @foreach ($packages as $package)
+                                        <?php
+                                            $selected = '';
+                                            if ($survey->package_id == $package->id) {
+                                                $selected = 'selected';
+                                            }
+                                        ?>
+                                        <option value="{{ $package->id }}" {{ $selected }}>{{ $package->description }}</option>
+                                    @endforeach
+                                </select>
+                                <a href="/price" target="_blank" >Lihat Paket</a>
                             </div>
 
                             <div class="form-group">
@@ -119,27 +145,29 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label>Poin</label>
-                                <input class="form-control" type="text" name="pay" value={{ $survey->pay }}>
-                            </div>
+                            @if($survey->evidence != null)
+                                <div class="form-group">
+                                    <label>Bukti Pembayaran</label><br>
+                                    <img style="width: 50%;" src="/images/payment/survey/{{ $survey->evidence }}" alt="">
+                                </div>
+                            @endif
 
-                            <div class="form-group">
-                                <label>Limit</label>
-                                <input class="form-control" type="text" name="limit" value={{ $survey->limit }}>
-                            </div>
-                            <div class="float-left">
-                                <button class="btn btn-primary" type="submit">Save</button>
-                            </div>
+                            @if($survey->status_id == '2' || $survey->status_id == '1')
+                                <div class="float-left">
+                                    <button class="btn btn-primary" type="submit">Simpan</button>
+                                </div>
+                            @endif
                         </form>
 
-                        <div class="float-right">
-                            <form action="{{ route('survey.destroy', $survey) }}" method="post">
-                                @csrf
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
+                        @if($survey->status_id == '2' || $survey->status_id == '1')
+                            <div class="float-right">
+                                <form action="{{ route('survey.destroy', $survey) }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </div>
+                        @endif
                         <div class="p-4"></div>
                     </div>
                 </div>
@@ -180,4 +208,22 @@
             $(this).parent('div').remove(); //Remove field html
         });
     </script>
+
+    {{-- <script>
+        $(document).ready(function() {
+            // Show the Modal on load
+            @guest
+                $("#guest").modal("show");
+            @endguest
+
+            // Hide the Modal
+            $("#myBtn").click(function() {
+                $("#resubmit").modal("hide");
+            });
+
+            $("#myBtn2").click(function() {
+                $("#resubmit").modal("hide");
+            });
+        });
+    </script> --}}
 @endsection

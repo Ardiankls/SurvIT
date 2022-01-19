@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             UserSeeder::class,
             StatusSeeder::class,
+            PackageSeeder::class,
         ]);
 
         Model::reguard();

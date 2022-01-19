@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\account_payment;
 use App\Models\point_log;
-use App\Models\User;
+use App\Models\user_survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AccountPaymentController extends Controller
+class PointLogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,27 @@ class AccountPaymentController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $usurveys = user_survey::all()->where('user_id', $user->id);
+        $payments = account_payment::all()->where('user_id', $user->id);
+
+        $uid = [];
+        foreach($usurveys as $usurvey){
+            $uid[] = $usurvey->id;
+        }
+
+        $pid = [];
+        foreach($payments as $payment){
+            $pid[] = $payment->id;
+        }
+
+        $pointlogs = point_log::whereIn('user_survey_id', $uid)
+                            ->orWhereIn('account_payment_id', $pid)
+                            ->orderBy('id', 'DESC')
+                            ->get();
+        // dd($pointlogs);
+
+        return view('pointlog', compact('pointlogs', 'user'));
     }
 
     /**
@@ -38,37 +58,16 @@ class AccountPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Auth::user()->id;
-        $user = User::findOrFail($id);
-        $user->update([
-            'transfer' => $request->transfer,
-            'point' => $user->point - $request->value,
-        ]);
-
-        $payment = account_payment::create([
-            'user_id' => $id,
-            'value' => $request->value,
-            'bank' => $request->bank,
-            'transfer' => $request->transfer,
-        ]);
-
-        point_log::create([
-            'type' => '1',
-            'status_id' => '2',
-            'point' => $request->value,
-            'account_payment_id' => $payment->id,
-        ]);
-
-        return redirect()->route('usersurvey.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\account_payment  $account_payment
+     * @param  \App\Models\point_log  $point_log
      * @return \Illuminate\Http\Response
      */
-    public function show(account_payment $account_payment)
+    public function show(point_log $point_log)
     {
         //
     }
@@ -76,10 +75,10 @@ class AccountPaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\account_payment  $account_payment
+     * @param  \App\Models\point_log  $point_log
      * @return \Illuminate\Http\Response
      */
-    public function edit(account_payment $account_payment)
+    public function edit(point_log $point_log)
     {
         //
     }
@@ -88,10 +87,10 @@ class AccountPaymentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\account_payment  $account_payment
+     * @param  \App\Models\point_log  $point_log
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, account_payment $account_payment)
+    public function update(Request $request, point_log $point_log)
     {
         //
     }
@@ -99,10 +98,10 @@ class AccountPaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\account_payment  $account_payment
+     * @param  \App\Models\point_log  $point_log
      * @return \Illuminate\Http\Response
      */
-    public function destroy(account_payment $account_payment)
+    public function destroy(point_log $point_log)
     {
         //
     }
