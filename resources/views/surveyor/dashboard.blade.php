@@ -76,7 +76,7 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                {{ $survey->package->point }}
+                                                {{ $survey->point }}
                                             </td>
                                             <td>
                                                 <form action="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
@@ -106,14 +106,6 @@
                         </div>
 
                         @foreach ($surveys as $survey)
-                            <?php
-                            $sinterests = $survey->interests;
-                            $checks = $survey
-                                ->users()
-                                ->wherePivot('user_id', '=', $user->id)
-                                ->wherePivot('status', '<>', 1)
-                                ->get();
-                            ?>
                             <div class="card-list w-100 no-gutters d-md-none ">
                                 <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
                                     style="border-radius: 15px;">
@@ -123,13 +115,10 @@
                                                 {{ $survey->title }}
                                             </h5>
                                         </div>
-                                        <div class="col-4 text-right">
-                                            <div class="">Status:</div>
-                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-8">
-                                            @foreach ($sinterests as $sinterest)
+                                            @foreach ($survey->interests as $sinterest)
                                                 @if ($sinterest->interest == 'Tidak ada')
                                                     Umum
                                                 @else
@@ -137,44 +126,24 @@
                                                 @endif
                                             @endforeach
                                         </div>
-                                        <div class="col-4 text-right text-warning">
-                                            @if (count($checks) > 0)
-                                                @foreach ($checks as $usurvey)
-                                                    @if ($usurvey->pivot->status == 3)
-                                                        Sukses
-                                                    @else
-                                                        Pending
-                                                    @endif
-                                                @endforeach
-                                            @else
-                                                Dibuka
-                                            @endif
-                                        </div>
                                     </div>
                                     <div class="row mt-2 ">
                                         <div class="col-5 mt-1 ">
                                             <i class="fas fa-coins mr-1"></i>
-                                            @if ($survey->pay != null)
-                                                {{ $survey->pay }}
-                                            @else
-                                                0
-                                            @endif
+                                            {{ $survey->point }}
                                         </div>
                                         <div class="col-7 no-gutters text-right ">
                                             <div class="row">
                                                 <div class="col-6 no-gutters text-right ">
                                                 </div>
                                                 <div class="col-6 no-gutters text-right ">
-                                                    @if (count($checks) > 0)
-                                                    @else
-                                                        <form action="{{ route('fill', $survey) }}" method="GET"
-                                                            enctype="multipart/form-data">
-                                                            @csrf
-                                                            <button class="btn btn-primary" id="selesai" type="submit"
-                                                                style="background-color: rgb(0,0,226);">Buka
-                                                            </button>
-                                                        </form>
-                                                    @endif
+                                                    <form action="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <button class="btn btn-primary" id="selesai" type="submit"
+                                                            style="background-color: rgb(0,0,226);">Buka
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
