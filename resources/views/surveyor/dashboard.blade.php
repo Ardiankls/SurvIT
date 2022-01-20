@@ -10,7 +10,7 @@
                     <div class="col-8">
                         <h2 class="pt-2">POIN: {{ $user->point }}</h2>
                         @if ($upoint != 0)
-                            <h6>POIN DIPROSES: {{ $upoint }}</h2>
+                            <h2>POIN DIPROSES: {{ $upoint }}</h2>
                         @endif
                     </div>
                     <div class="col-4 text-center pt-1">
