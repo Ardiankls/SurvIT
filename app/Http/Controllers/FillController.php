@@ -12,6 +12,7 @@ class FillController extends Controller
     public function fill($url){
 
         $survey = survey::where('url', $url)->get()->first();
+
         if($survey->shareable == 1){
             return view('surveyor.survey', compact('survey'));
         }
@@ -37,7 +38,7 @@ class FillController extends Controller
             $uj[] = $ujob->pivot->job_id;
         }
 
-        $survey = $survey->whereHas('interests', function($query) use($ui) {
+        $survey = survey::where('url', $url)->whereHas('interests', function($query) use($ui) {
                         $query->whereIn('interest_id', $ui);
                     })
                     ->whereHas('jobs', function($query) use($uj) {
@@ -72,6 +73,7 @@ class FillController extends Controller
 
         if(!$survey->isEmpty()){
             $survey = $survey->first();
+            // dd($survey);
             return view('surveyor.survey', compact('survey'));
         }
         else{
