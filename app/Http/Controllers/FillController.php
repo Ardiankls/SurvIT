@@ -11,10 +11,11 @@ class FillController extends Controller
 {
     public function fill($url){
 
+        $user = Auth::user();
         $survey = survey::where('url', $url)->get()->first();
 
         if($survey->shareable == 1){
-            return view('surveyor.survey', compact('survey'));
+            return view('surveyor.survey', compact('survey', 'user'));
         }
 
         if(Auth::user() == null){
@@ -74,7 +75,7 @@ class FillController extends Controller
         if(!$survey->isEmpty()){
             $survey = $survey->first();
             // dd($survey);
-            return view('surveyor.survey', compact('survey'));
+            return view('surveyor.survey', compact('survey', 'user'));
         }
         else{
             return redirect()->route('usersurvey.index');
