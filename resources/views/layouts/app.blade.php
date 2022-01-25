@@ -65,7 +65,7 @@
 {{--        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">--}}
 {{--            <div class="container">--}}
 {{--                <a class="navbar-brand text-white" href="{{ route('usersurvey.index') }}">--}}
-{{--                    --}}{{-- {{ config('app.name', 'SurvIT') }} --}}
+{{--                     {{ config('app.name', 'SurvIT') }}--}}
 {{--                    <img style="height: 30px;" src="/images/survit.png" alt="">--}}
 {{--                </a>--}}
 {{--                <button class="navbar-toggler bg-white" type="button" data-toggle="collapse"--}}
@@ -130,8 +130,7 @@
 {{--                                        Riwayat Poin--}}
 {{--                                    </a>--}}
 
-{{--                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();--}}
-{{--                                                                 document.getElementById('logout-form').submit();">--}}
+{{--                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
 {{--                                        {{ __('Logout') }}--}}
 {{--                                    </a>--}}
 
@@ -161,6 +160,8 @@
 {{--        </div>--}}
 {{--    </footer>--}}
 {{--</body>--}}
+
+{{--New UI Body--}}
 <body>
 <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar" class="" style="background:rgba(255,255,255, 0.5);">
@@ -170,20 +171,28 @@
                 <span class="sr-only">Toggle Menu</span>
             </button>
         </div>
-        <h1><a href="index.html" class="logo">Survit</a></h1>
+        <h1><a href="{{ route('usersurvey.index') }}" class="logo"><img style="height: 30px;" src="/images/survit.png" alt=""></a></h1>
         <ul class="list-unstyled components mb-5 bg-ls ">
             <li class="active">
-                <a href="#" class="text-dark"><span class="fa fa-home mr-3"></span>Homepage</a>
+                <a href="{{ route('usersurvey.index') }}" class="text-dark"><span class="fa fa-home mr-3"></span>Homepage</a>
             </li>
             <li>
                 <a href="#" class="text-dark"><span class="fa fa-user mr-3"></span> Dashboard</a>
             </li>
             <li>
-                <a href="modalcreate.html" class="text-dark"><span class="fa fa-sticky-note mr-3"></span> Buat Survey</a>
+                <a href="{{ route('survey.index') }}" class="text-dark"><span class="fa fa-sticky-note mr-3"></span> Buat Survey</a>
             </li>
             <li>
-                <a href="detailed_datashop.html" class="text-dark"><span class="fa fa-sticky-note mr-3"></span> Data Shop</a>
+                <a href="detailed_datashop.html" class="text-dark"><span class="fa fa-shopping-cart mr-3"></span> Data Shop</a>
             </li>
+            <li>
+                <a class="text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <span class="fa fa-sign-out mr-3"></span> Log Out</a>
+            </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
         </ul>
     </nav>
     @yield('content')
