@@ -54,7 +54,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <h2>1000</h2>
+                        <h2>
+{{--                            {{ $user->point }}--}}
+                        </h2>
                     </div>
 
                 </div>
