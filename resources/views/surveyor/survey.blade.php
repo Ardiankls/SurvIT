@@ -25,75 +25,29 @@
 <div id="content" class=" p-md-5 pt-5">
     <!-- <h2 class="mb-4">Sidebar #04</h2> -->
     <div class="row">
-        <div class="col-9">
-            <div class="panel mr-3 px-4 py-3 glass shadow mb-3" style="height:630px;">
-                <h5 class="">Survey list</h5>
-                <div class="table-responsive custom-table-responsive" style="overflow: auto; height:600px;">
+            <div class="col-12">
+                <div class="panel mr-3 px-4 py-3 glass shadow " style="height:660px;">
+                    <h5 class="">Survey list</h5>
+                    <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:620px;">
+                    <div class="ml-5 survey align-content-center"><iframe src={{ $survey->link }} width="98%" height="530" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
+                </div>
+            </div>
+            <div class="text-dark mt-2 ">
+                Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
+                <div class="float-end mr-3">
 
-                    <div class="ml-5 survey align-content-center"><iframe src={{ $survey->link }} width="640" height="530" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
+                    <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input name="_method" type="hidden" value="PATCH">
+                        <button class="btn btn-sm btn-primary px-5 mx-auto pt-2" id="selesai" type="submit"
+                        >Selesai
+                        </button>
+                    </form>
                 </div>
             </div>
-            <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <input name="_method" type="hidden" value="PATCH">
-                <button class="btn btn-sm btn-primary px-5 mx-auto" id="selesai" type="submit"
-                >Selesai
-                </button>
-            </form>
 
-        </div>
-        <div class="col-3">
-            <div class="row mb-4">
-                <div class=" panel glass shadow px-4 py-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <h5>Poin</h5>
-                        </div>
-                        <div class="col-4">
-                            <div class="btn btn-primary">Ambil</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <h2>
-                           {{ $user->point }}
-                        </h2>
-                    </div>
+            </div>
 
-                </div>
-            </div>
-            <div class="row mb-5">
-                <div class="panel glass shadow px-4 py-3">
-                    <div class="row">
-                        <h5>News</h5>
-                    </div>
-                    <div class="row px-3 py-2">
-                        <small class="text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Vivamus eu mauris elementum, vulputate magna id, maximus dolor. Curabitur accumsan
-                            mollis lectus nec ultrices. Nulla facilisi. Aliquam consectetur cursus justo sit
-                            amet dapibus. Curabitur egestas arcu urna, accumsan luctus lectus dignissim quis.
-                            Maecenas faucibus convallis magna, et lacinia neque congue vel. In pulvinar laoreet
-                            semper. Proin sit amet pulvinar turpis, at tristique massa. Vivamus lacinia dolor at
-                            lacus consectetur egestas. Morbi auctor elit et ante congue dignissim. Nam laoreet
-                            nulla nec felis bibendum tristique.</small>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="panel glass shadow  px-4 py-3">
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-6">
-                            <div class="row text-start">
-                                Ardian Kurniawan
-                            </div>
-                            <div class="row">
-                                <small class="">ardian@email.com</small>
-                            </div>
-                        </div>
-                        <div class="col-3"></div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
