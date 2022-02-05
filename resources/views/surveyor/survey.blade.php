@@ -26,25 +26,26 @@
     <!-- <h2 class="mb-4">Sidebar #04</h2> -->
     <div class="row">
             <div class="col-12">
-                <div class="panel mr-3 px-4 py-3 glass shadow " style="height:660px;">
+                <div class="panel mr-3 px-4 py-3 glass shadow " style="height:690px;">
                     <h5 class="">Survey list</h5>
-                    <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:620px;">
-                    <div class="ml-5 survey align-content-center"><iframe src={{ $survey->link }} width="98%" height="530" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
-                </div>
-            </div>
-            <div class="text-dark mt-2 ">
-                Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
-                <div class="float-end mr-3">
+                    <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:640px;">
+                    <div class="ml-5 survey align-content-center"><iframe src={{ $survey->link }} width="98%" height="550" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
+                        <div class="text-dark mt-3 px-5 ">
+                            Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
+                            <div class="float-end ">
 
-                    <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <input name="_method" type="hidden" value="PATCH">
-                        <button class="btn btn-sm btn-primary px-5 mx-auto pt-2" id="selesai" type="submit"
-                        >Selesai
-                        </button>
-                    </form>
+                                <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="PATCH">
+                                    <button class="btn btn-sm btn-primary px-5 mx-auto pt-2" id="selesai" type="submit"
+                                    >Selesai
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                 </div>
             </div>
+
 
             </div>
 
