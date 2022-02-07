@@ -189,9 +189,9 @@
                                 ->wherePivot('user_id', '=', $user->id)
                                 ->get();
                             ?>
-                            <tr scope="row">
-                                <td><a href="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
-                                       enctype="multipart/form-data">{{ $survey->title }}</a></td>
+                            <tr data-href="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
+                                enctype="multipart/form-data" scope="row">
+                                <td>{{ $survey->title }}</td>
                                 <td>
                                     @foreach ($sinterests as $sinterest)
                                         @if ($sinterest->interest == 'Tidak ada')
@@ -279,6 +279,13 @@
     </div>
 </div>
     <script>
+        $(document).ready(function () {
+            $(document.body).on("click", "tr[data-href]", function () {
+                window.location.href = this.dataset.href;
+            });
+        });
+    </script>
+    <script>
         $('input[type=checkbox]').change(function(e) {
             if ($('input[type=checkbox]:checked').length > 3) {
                 $(this).prop('checked', false)
@@ -316,5 +323,6 @@
             });
         });
     </script>
+
 
 @endsection

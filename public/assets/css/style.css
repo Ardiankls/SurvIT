@@ -394,6 +394,15 @@ h6, .h6 {
     border-radius: 15px;
 }
 
+tr[data-href]{
+    cursor:pointer;
+    transition: 0.3s;
+}
+tr[data-href]:hover{
+    background-color: #0070FF;
+    color:white;
+}
+
 hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
