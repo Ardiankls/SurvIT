@@ -3,24 +3,44 @@
 @include('surveyor.modal.pointModal')
 @section('content')
 
+    @if ($user->is_survey_avail == '0')
+        <div class="container p-5 mt-5">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8 mt-5">
+                    <div class="glass panel mt-5 text-dark">
+                        <div class="card-header fs-5 ">{{ __('Selamat Datang di Website Survey SurvIT!') }}</div>
+
+                        <div class="card-body">
+
+                            {{ __('Survey survey kami akan dibagikan menurut demografi pengguna') }}
+                            {{ __('Jika anda ingin mengisi survey, mohon klik tombol untuk mengisi demografi terlebih dahulu ') }}
+                            <br>
+                            <a class="btn btn-primary mt-3" href="" data-toggle="modal" data-target="#demography">Isi
+                                Demografi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @else
     <div class="container-xxl p-5 d-md-none">
         <div class="row justify-content-center ">
             <div class="col-md-9"></div>
 
 {{--old ui point--}}
-            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">
-                <div class="row">
-                    <div class="col-8">
-                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>
-                        @if ($upoint != 0)
-                            <h2>POIN DIPROSES: {{ $upoint }}</h2>
-                        @endif
-                    </div>
-                    <div class="col-4 text-center pt-1">
-                        <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-8">--}}
+{{--                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>--}}
+{{--                        @if ($upoint != 0)--}}
+{{--                            <h2>POIN DIPROSES: {{ $upoint }}</h2>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                    <div class="col-4 text-center pt-1">--}}
+{{--                        <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
 {{--old ui isi demografi--}}
 {{--            @if ($user->is_survey_avail == '0')--}}
@@ -278,6 +298,7 @@
         </div>
     </div>
 </div>
+    @endif
     <script>
         $(document).ready(function () {
             $(document.body).on("click", "tr[data-href]", function () {
