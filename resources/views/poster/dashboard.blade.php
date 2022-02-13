@@ -8,7 +8,7 @@
         </div>
         <div class="row justify-content-center ">
             <div class="col-md-8 mt-5 ">
-                <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
+                <div class="text-center rounded-lg shadow d-none d-md-block glass panel" style="">
                     <h1 class="p-3">Survey Saya</h1>
                     <table class="table table-striped" id="myTable">
                         <thead>
