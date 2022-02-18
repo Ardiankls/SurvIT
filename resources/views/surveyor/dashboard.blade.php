@@ -279,6 +279,7 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ route('user.index') }}">
             <div class="row">
                 <div class="panel glass shadow  px-4 py-3">
                     <div class="row">
@@ -297,6 +298,7 @@
                     </div>
                 </div>
             </div>
+            </a>
         </div>
     </div>
 </div>
