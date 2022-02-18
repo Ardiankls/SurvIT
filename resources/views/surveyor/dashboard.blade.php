@@ -282,7 +282,9 @@
             <div class="row">
                 <div class="panel glass shadow  px-4 py-3">
                     <div class="row">
-                        <div class="col-3 "></div>
+                        <div class="col-3 ">
+                            <img src="/images/profile.png" alt="" style="width:100%">
+                        </div>
                         <div class="col-6">
                             <div class="row text-start">
                                 {{ Auth::user()->username }}
