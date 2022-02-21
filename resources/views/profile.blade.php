@@ -79,7 +79,7 @@
                                         <div class="col-6 fs-5 text-primary">
                                             25 Februari 2021
                                         </div>
-                                        <div class="mb-2 ">
+                                        <div class="mt-3 mb-3">
                                             <button class="btn  btn-danger">logout</button>
                                         </div>
                                     </div>
@@ -99,23 +99,27 @@
                                 </div>
                                 <div class="body px-4 py-3">
                                     <div class="row mb-4">
-                                        <h5>Pekerjaan</h5>
+                                        <div class="fs-6 text-dark font-weight-bold">Pekerjaan</div>
                                         <div class="ml-2 text-dark">
                                             <div> {{ $user->jobs->first()->job_name ?? 'null' }} </div>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
-                                        <h5>Provinsi</h5>
+                                        <div class="fs-6 text-dark font-weight-bold">Provinsi</div>
                                         <div class="ml-2 text-dark">
                                             <div>{{ $user->province->province ?? 'null' }}</div>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
-                                        <h5>Hobi/Kesukaan/Topik</h5>
+                                        <div class="fs-6 text-dark font-weight-bold">Hobi/Kesukaan/Topik</div>
                                         <div class="ml-2 text-dark">
-                                            <div>{{ $user->interests->first()->interest ?? 'null' }}</div>
-                                            <div>Games</div>
-                                            <div>Teknologi</div>
+                                            @foreach($user->interests as $interest)
+{{--                                            <div>{{ $user->interests->first()->interest ?? 'null' }}</div>--}}
+{{--                                            <div>Games</div>--}}
+{{--                                            <div>Teknologi</div>--}}
+                                                {{$interest->interest}}
+                                                <br>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
