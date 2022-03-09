@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Request_Payment;
+use App\Mail\Request_Survey;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
@@ -14,6 +16,7 @@ use App\Models\survey_province;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class SurveyController extends Controller
 {
@@ -63,6 +66,7 @@ class SurveyController extends Controller
         }
 
         while(!$exist->isEmpty());
+
         $survey = survey::create([
             'title' => $request->title,
             'link' => $request->link,
@@ -96,6 +100,9 @@ class SurveyController extends Controller
                 'opened_at' => Carbon::now()
             ]);
         }
+
+        //EMAIL
+        Mail::to(Auth::user()->email)->send(new Request_Survey($survey->title));
 
         return redirect()->route('survey.index');
     }
@@ -145,6 +152,7 @@ class SurveyController extends Controller
             // 'limit' => $request->limit,
             'package_id' => $request->package,
             'gender_id' => $request->gender,
+            'status_id' => 2,
         ]);
 
         $survey->interests()->detach();
@@ -195,6 +203,9 @@ class SurveyController extends Controller
                 ]);
             }
         }
+
+        //EMAIL
+        Mail::to(Auth::user()->email)->send(new Request_Payment($survey->title, $survey->point));
 
         return redirect()->route('survey.index');
     }

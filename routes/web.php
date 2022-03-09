@@ -42,7 +42,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::match(['put', 'patch'], '/usurvey/{usurvey}/{action}', [AdminController::class, 'updateUserSurvey'])->name('admin.usurvey');
     Route::match(['put', 'patch'], '/survey/{survey}/{action}', [AdminController::class, 'updateSurvey'])->name('admin.survey');
     Route::match(['put', 'patch'], '/point/{upoint}', [AdminController::class, 'updatePoint'])->name('admin.point');
-    Route::match(['put', 'patch'], '/payment/{survey}', [AdminController::class, 'updatePayment'])->name('admin.payment');
+    Route::match(['put', 'patch'], '/payment/{survey}/{action}', [AdminController::class, 'updatePayment'])->name('admin.payment');
 });
 
 // Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');

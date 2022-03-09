@@ -7,22 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Broadcast_Convert extends Mailable
+class Request_Survey extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $point;
-    public $bank_account;
+    public $title;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($point, $bank_account)
+    public function __construct($title)
     {
-        $this->point = $point;
-        $this->$bank_account = $bank_account;
+        $this->title = $title;
     }
 
     /**
@@ -33,12 +31,11 @@ class Broadcast_Convert extends Mailable
     public function build()
     {
         return $this->from('survitsurvey@gmail.com','SurvIT')
-                    ->subject("Ada Survei Baru Buat Kamu")
+                    ->subject("Surveimu Sedang Diproses")
                     ->with(
                         [
-                            'point' => $this->point,
-                            'bank_account' => $this->bank_account,
+                            'title' => $this->title,
                         ])
-                    ->view('mail.penarikan_pengajuan');
+                    ->view('mail.request_survey');
     }
 }

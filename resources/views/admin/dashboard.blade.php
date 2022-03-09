@@ -163,6 +163,7 @@
                                 <th scope="col">User</th>
                                 <th scope="col">Email</th>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -185,7 +186,18 @@
                                                 @csrf
                                                 <input name="_method" type="hidden" value="PATCH">
                                                 <button class="btn btn-primary" type="submit">
-                                                    Finish
+                                                    Accept
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form
+                                                action="{{ route('admin.payment', ['survey' => $survey, 'action' => 'decline']) }}"
+                                                method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input name="_method" type="hidden" value="PATCH">
+                                                <button class="btn btn-danger" type="submit">
+                                                    Decline
                                                 </button>
                                             </form>
                                         </td>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Request_Withdrawal;
 use App\Models\account_payment;
 use App\Models\point_log;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AccountPaymentController extends Controller
 {
@@ -58,6 +60,9 @@ class AccountPaymentController extends Controller
             'point' => $request->value,
             'account_payment_id' => $payment->id,
         ]);
+
+        //EMAIL
+        Mail::to($user->email)->send(new Request_Withdrawal($request->value, $request->bank, $request->transfer));
 
         return redirect()->route('usersurvey.index');
     }
