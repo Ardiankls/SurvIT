@@ -9,6 +9,7 @@
                         <thead>
                             <tr class="text-center">
                                 <th scope="col"></th>
+                                <th scope="col">Free</th>
                                 <th scope="col">Basic A</th>
                                 <th scope="col">Basic B</th>
                                 <th scope="col">Basic C</th>
@@ -99,6 +100,7 @@
                         <thead>
                             <tr class="text-center">
                                 <th scope="col"></th>
+                                <th scope="col">Free</th>
                                 <th scope="col">Custom A</th>
                                 <th scope="col">Custom B</th>
                                 <th scope="col">Custom C</th>

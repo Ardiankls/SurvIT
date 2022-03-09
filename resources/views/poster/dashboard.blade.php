@@ -31,16 +31,16 @@
                                     </td>
                                     <td>
                                         @if ($survey->count < $survey->package->respondent)
-                                            {{ $survey->status->status }}
+                                            Dibuka
                                         @else
-                                            Selesai
+                                            Ditutup
                                         @endif
                                     </td>
                                     <td>
                                         {{ $survey->count }} / {{ $survey->package->respondent }}
                                     </td>
                                     <td>
-                                        @if ($survey->status_id == 2)
+                                        @if ($survey->status_id == 1 || $survey->status_id == 2)
                                             <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary">Ubah</a>
                                         @elseif($survey->status_id == 3)
                                             <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary">Detail</a>

@@ -14,8 +14,8 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $packagesB = package::all()->where('id', '<', 5);
-        $packagesC = package::all()->where('id', '>', 4);
+        $packagesB = package::where('id', '<', 6)->get();
+        $packagesC = package::where('id', '>', 5)->orWhere('id', '=', 1)->get();
         return view('price', compact('packagesB', 'packagesC'));
     }
 

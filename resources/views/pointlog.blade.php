@@ -6,7 +6,7 @@
             <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">
                 <div class="row">
                     <div class="col-8">
-                        <h2 class="pt-2">POINT: {{ $user->point }}</h2>
+                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>
                     </div>
                     <div class="col-4 text-center pt-1">
                         <a class=" btn btn-primary" data-toggle="modal" data-target="#getpoint">Ambil</a>
