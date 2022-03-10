@@ -1,6 +1,6 @@
 <div class="modal fade" id="demography" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered glass panel" role="document">
+        <div class="modal-content text-dark">
             <div class="modal-header">
                 <h5 class="modal-title text-center" id="exampleModalLongTitle">Isi Demografi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -93,8 +93,7 @@
                             </select>
                         </div>
 
-                        <button class="btn btn-primary" id="checkBtn" type="submit"
-                            style="background-color: rgb(221,177,226);">Submit
+                        <button class="btn btn-primary" id="checkBtn" type="submit";">Submit
                         </button>
                     </div>
 
