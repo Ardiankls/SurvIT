@@ -99,10 +99,11 @@ class SurveyController extends Controller
                 'status_id' => 3,
                 'opened_at' => Carbon::now()
             ]);
-        }
 
-        //EMAIL
-        Mail::to(Auth::user()->email)->send(new Request_Survey($survey->title));
+        }else{
+            //EMAIL
+            Mail::to(Auth::user()->email)->send(new Request_Survey($survey->title));
+        }
 
         return redirect()->route('survey.index');
     }
