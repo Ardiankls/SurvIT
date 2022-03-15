@@ -38,7 +38,7 @@ Route::get('/fill/{url}', [FillController::class, 'fill'])->name('fill');
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('mail', Email::class);
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/{type}', [AdminController::class, 'index'])->name('admin.index');
     Route::match(['put', 'patch'], '/usurvey/{usurvey}/{action}', [AdminController::class, 'updateUserSurvey'])->name('admin.usurvey');
     Route::match(['put', 'patch'], '/survey/{survey}/{action}', [AdminController::class, 'updateSurvey'])->name('admin.survey');
     Route::match(['put', 'patch'], '/point/{upoint}', [AdminController::class, 'updatePoint'])->name('admin.point');

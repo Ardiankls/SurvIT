@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Broadcast_Decline;
 use App\Mail\Decline_Payment;
 use App\Mail\Decline_Survey;
 use App\Mail\Decline_UserSurvey;
@@ -19,19 +18,23 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(int $type)
     {
-        // if($type == 1){
-            $usurveys = point_log::all()->where('status_id', '2')->where('user_survey_id', '<>', null);
-            // return view('admin.dashboard', compact('usurveys'));
-        // }else if($type == 2){
-            $surveys = survey::where('status_id', '2')->orWhere('status_id', '5')->get();
-            // return view('admin.dashboard', compact('surveys'));
-        // }else if($type == 3){
-            $upoints = point_log::all()->where('status_id', '2')->where('account_payment_id', '<>', null);
-            // dd($usurveys);
-            return view('admin.dashboard', compact('usurveys', 'surveys', 'upoints'));
-        // }
+        $usurveys = point_log::all()->where('status_id', '2')->where('user_survey_id', '<>', null);
+        $surveys = survey::where('status_id', '2')->orWhere('status_id', '5')->get();
+        $upoints = point_log::all()->where('status_id', '2')->where('account_payment_id', '<>', null);
+
+        if($type == 1){
+            return view('admin.usurvey', compact('usurveys'));
+        }else if($type == 2){
+            return view('admin.survey', compact('surveys'));
+        }else if($type == 3){
+            return view('admin.payment', compact('surveys'));
+        }else if($type == 4){
+            return view('admin.point', compact('upoints'));
+        }
+
+        // return view('admin.point', compact('usurveys', 'surveys', 'upoints'));
     }
 
     public function updateUserSurvey($id, String $action)
@@ -69,7 +72,7 @@ class AdminController extends Controller
             Mail::to($user->email)->send(new Decline_UserSurvey($title));
         }
 
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index', 1);
     }
 
     public function updateSurvey(survey $survey, String $action)
@@ -101,21 +104,7 @@ class AdminController extends Controller
             Mail::to($user->email)->send(new Decline_Survey($survey->title));
         }
 
-        return redirect()->route('admin.index');
-    }
-
-    public function updatePoint($id)
-    {
-        $point_log = point_log::findOrFail($id);
-        $point_log->update([
-            'status_id' => '3',
-        ]);
-
-        //EMAIL
-        $user = User::findOrFail($point_log->payment->user_id);
-        Mail::to($user->email)->send(new Success_Withdrawal($point_log->point, $point_log->payment->bank, $point_log->payment->transfer));
-
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index', 2);
     }
 
     public function updatePayment(survey $survey, String $action)
@@ -141,6 +130,21 @@ class AdminController extends Controller
             Mail::to($user->email)->send(new Decline_Payment($survey->title));
         }
 
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index', 3);
     }
+
+    public function updatePoint($id)
+    {
+        $point_log = point_log::findOrFail($id);
+        $point_log->update([
+            'status_id' => '3',
+        ]);
+
+        //EMAIL
+        $user = User::findOrFail($point_log->payment->user_id);
+        Mail::to($user->email)->send(new Success_Withdrawal($point_log->point, $point_log->payment->bank, $point_log->payment->transfer));
+
+        return redirect()->route('admin.index', 4);
+    }
+
 }

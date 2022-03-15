@@ -216,7 +216,7 @@
                     </li>
                     @if (Auth::user()->isAdmin())
                         <li>
-                            <a href="{{ route('admin.index') }}" class="text-dark"><span
+                            <a href="{{ route('admin.index', 1) }}" class="text-dark"><span
                                     class="fa fa-sticky-note mr-3"></span> Admin Page</a>
                         </li>
                     @endif
