@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@400;800&display=swap');
+@font-face {
+    font-family: MartelSansExtraBold;
+    src: url("https://fonts.googleapis.com/css2?family=Martel+Sans:wght@800&display=swap") format("opentype");
+}
+
+@font-face {
+    font-family: MartelSansRegular;
+    src: url("https://fonts.googleapis.com/css2?family=Martel+Sans:wght@400;800&display=swap") format("opentype");
+}
+
+html {}
+
+.feature-first {
+    background: linear-gradient(90deg, #ffffff 83%, #3F9CFF 0);
+}
+
+#firstsec {
+    height: 100vh;
+    background: linear-gradient(90deg, #ffffff 83%, #3F9CFF 0);
+}
+
+#secondsec {
+    background-image: linear-gradient(to bottom, #3f9cff, #2a8bf8, #147aef, #0068e6, #0056db);
+    color: white;
+    height: 100%;
+}
+
+#thirdsec {
+    /* background: linear-gradient(-90deg, #ffffff 83%, #3F9CFF 0); */
+}
+
+#forthsec {
+    background-image: linear-gradient(to bottom, #0056db, #0068e6, #147aef, #2a8bf8, #3f9cff);
+    color: white;
+}
+
+#_1sit h1 {
+    font-family: Martel Sans;
+    font-style: normal;
+    font-weight: 800;
+    color: #000000;
+}
+
+#_1sit p {
+    font-family: Martel Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 138.9%;
+    color: #000000;
+}
+
+.button1 {
+    position: absolute;
+    width: 222px;
+    height: 57px;
+    left: 93px;
+    top: 638px;
+    background: #3F9CFF;
+    border-radius: 11px;
+}
+
+#socmed {
+    color: #3F9CFF;
+}
+
+#socmed:hover {
+    color: #0056DB;
+    transition: 0.45s;
+}
+
+.glass{
+    backdrop-filter: blur(0.5rem);
+    background:rgba(255,255,255, 0.5);
+  }
+
+#Footer {}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .feature-first {
+        background: linear-gradient(90deg, #ffffff 93%, #3F9CFF 0);
+    }
+    #firstsec {
+        height: 80vh;
+        background: linear-gradient(90deg, #ffffff 93%, #3F9CFF 0);
+    }
+    #thirdsec img {
+        width: 50%;
+    }
+}

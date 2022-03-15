@@ -23,7 +23,9 @@ use App\Http\Controllers\PointLogController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', function(){
+    return view('surveyor');
+});
 
 Auth::routes(['verify' => true ]);
 
@@ -45,5 +47,4 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::match(['put', 'patch'], '/payment/{survey}/{action}', [AdminController::class, 'updatePayment'])->name('admin.payment');
 });
 
-// Route::post('usersurvey/fill', [UserSurveyController::class, 'fill'])->name('usersurvey.fill');
 // Route::get('/email', [MailController::class, 'basic_email'])->name('email');
