@@ -6,7 +6,7 @@
         <div class="row ">
             <div class="col-md-4 d-none d-md-block">
                 <div class="row">
-                    <div class="col-md-12 vh-100 bg-danger text-center p-5 " id="gradient">
+                    <div class="col-md-12 vh-100 bg-primary text-center p-5 " id="gradient">
                         <div class="container-sm mt-5 ">
                             <img class="logo w-75 mt-5" src="{{ asset('assets/assets/logo/logoWhite.svg') }}" alt="">
                             <p class="mt-5 font-weight-bold text-white">Kumpulkan Poin dan Dapatkan Hadiah Hanya Dengan
