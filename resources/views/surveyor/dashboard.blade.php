@@ -121,7 +121,7 @@
 {{--                </div>--}}
 
 {{--                Old UI Mobile Survey list--}}
-                <div class="container-fluid p-2 d-md-none mb-4" style="border-radius: 15px;">
+                <div class="container-fluid p-2 d-md-none mb-4 " style="overflow-y: scroll; border-radius: 15px;">
                     @if (count($surveys) < 1)
                         <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa
                             saat
@@ -245,15 +245,15 @@
             </div>
 
         </div>
-        <div class="col-3 d-flex justify-content-between flex-column">
+        <div class="col-3">
             <div class="row mb-4">
                 <div class=" panel glass shadow px-4 py-3">
-                    <div class="row">
-                        <div class="col-8">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="">
                             <h5>Poin</h5>
                         </div>
-                        <div class="col-4">
-                            <a class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>
+                        <div class="">
+                            <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</div>
                         </div>
                     </div>
                     <div class="row">
