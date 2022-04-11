@@ -28,19 +28,19 @@
             <div class="col-md-9"></div>
 
 {{--old ui point--}}
-{{--            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-8">--}}
-{{--                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>--}}
-{{--                        @if ($upoint != 0)--}}
-{{--                            <h2>POIN DIPROSES: {{ $upoint }}</h2>--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
-{{--                    <div class="col-4 text-center pt-1">--}}
-{{--                        <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="">
+                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>
+                        @if ($upoint != 0)
+                            <h2>POIN DIPROSES: {{ $upoint }}</h2>
+                        @endif
+                    </div>
+                    <div class="col-4 text-center pt-1 my-auto">
+                        <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>
+                    </div>
+                </div>
+            </div>
 
 {{--old ui isi demografi--}}
 {{--            @if ($user->is_survey_avail == '0')--}}
