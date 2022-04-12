@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserSurveyController;
@@ -24,7 +25,7 @@ use App\Http\Controllers\PointLogController;
 |
 */
 Route::get('/', function(){
-    return view('surveyor');
+    return view('landingPage');
 });
 
 Auth::routes(['verify' => true ]);
@@ -45,6 +46,11 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::match(['put', 'patch'], '/survey/{survey}/{action}', [AdminController::class, 'updateSurvey'])->name('admin.survey');
     Route::match(['put', 'patch'], '/point/{upoint}', [AdminController::class, 'updatePoint'])->name('admin.point');
     Route::match(['put', 'patch'], '/payment/{survey}/{action}', [AdminController::class, 'updatePayment'])->name('admin.payment');
+});
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return redirect('/');
 });
 
 // Route::get('/email', [MailController::class, 'basic_email'])->name('email');
