@@ -38,12 +38,12 @@ class PointLogController extends Controller
 
         //Point dalam proses
         $upoint = 0;
-        $pointlogs = point_log::WhereIn('account_payment_id', $pid)
+        $pendings = point_log::WhereIn('account_payment_id', $pid)
                             ->where('status_id', 2)
                             ->get();
 
-        foreach($pointlogs as $pointlog){
-            $upoint += $pointlog->point;
+        foreach($pendings as $pending){
+            $upoint += $pending->point;
         }
 
         return view('pointlog', compact('pointlogs', 'user', 'upoint'));
