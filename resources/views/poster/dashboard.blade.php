@@ -30,10 +30,14 @@
                                         {{ $survey->package->description }}
                                     </td>
                                     <td>
-                                        @if ($survey->count < $survey->package->respondent)
-                                            Dibuka
+                                        @if ($survey->status_id == '3')
+                                            @if ($survey->count < $survey->package->respondent)
+                                                Dibuka
+                                            @else
+                                                Ditutup
+                                            @endif
                                         @else
-                                            Ditutup
+                                            {{ $survey->status->status }}
                                         @endif
                                     </td>
                                     <td>
