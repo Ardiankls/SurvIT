@@ -20,13 +20,13 @@
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">
                             <div class="form-group"><label>Nominal</label>
-                                <input class="form-control" id="nominal" type="number" name="value" value="10000" min="10000" required>
+                                <input class="form-control border" id="nominal" type="number" name="value" value="10000" min="10000" required>
                                 <input class="form-control" id="upoint" type="hidden" name="upoint" value={{ $user->point }}>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-group"><label>Bank</label>
-                                <select name="bank" class="form-control">
+                                <select name="bank" class="form-control border">
                                     <option value="BCA">BCA</option>
                                     <option value="BCA Syariah">BCA Syariah</option>
                                     <option value="BRI">BRI</option>
@@ -44,7 +44,7 @@
                                 @if($user->transfer != null)
                                     <input class="form-control" type="number" name="transfer" value="{{ $user->transfer }}" required>
                                 @else
-                                    <input class="form-control" type="number" name="transfer" required>
+                                    <input class="form-control border" type="number" name="transfer" required>
                                 @endif
                             </div>
                         </div>

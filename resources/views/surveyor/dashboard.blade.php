@@ -27,20 +27,20 @@
             <div class="row justify-content-center ">
                 <div class="col-md-9"></div>
 
-                {{-- old ui point --}}
-                {{-- <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters"> --}}
-                {{-- <div class="row"> --}}
-                {{-- <div class="col-8"> --}}
-                {{-- <h2 class="pt-2">POIN: {{ $user->point }}</h2> --}}
-                {{-- @if ($upoint != 0) --}}
-                {{-- <h2>POIN DIPROSES: {{ $upoint }}</h2> --}}
-                {{-- @endif --}}
-                {{-- </div> --}}
-                {{-- <div class="col-4 text-center pt-1"> --}}
-                {{-- <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a> --}}
-                {{-- </div> --}}
-                {{-- </div> --}}
-                {{-- </div> --}}
+            {{--old ui point--}}
+            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="">
+                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>
+                        @if ($upoint != 0)
+                            <h2>POIN DIPROSES: {{ $upoint }}</h2>
+                        @endif
+                    </div>
+                    <div class="col-4 text-center pt-1 my-auto">
+                        <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>
+                    </div>
+                </div>
+            </div>
 
                 {{-- old ui isi demografi --}}
                 {{-- @if ($user->is_survey_avail == '0') --}}
@@ -120,8 +120,8 @@
                 {{-- </div> --}}
                 {{-- </div> --}}
 
-                {{-- Old UI Mobile Survey list --}}
-                <div class="container-fluid p-2 d-md-none mb-4" style="border-radius: 15px;">
+               {{-- Old UI Mobile Survey list --}}
+                <div class="container-fluid p-2 d-md-none mb-4 " style="overflow-y: scroll; border-radius: 15px;">
                     @if (count($surveys) < 1)
                         <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa
                             saat
@@ -222,16 +222,15 @@
                     </div>
 
                 </div>
-                <div class="col-3 d-flex justify-content-between flex-column">
+                <div class="col-3">
                     <div class="row mb-4">
                         <div class=" panel glass shadow px-4 py-3">
-                            <div class="row">
-                                <div class="col-8">
+                            <div class="d-flex flex-row justify-content-between">
+                                <div class="">
                                     <h5>Poin</h5>
                                 </div>
-                                <div class="col-4">
-                                    <a class="btn btn-primary text-white" data-toggle="modal"
-                                        data-target="#getpoint">Ambil</a>
+                                <div class="">
+                                    <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</div>
                                 </div>
                             </div>
                             <div class="row">

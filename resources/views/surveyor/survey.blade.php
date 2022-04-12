@@ -24,12 +24,11 @@
 
     {{-- new ui --}}
     <div id="content" class=" p-md-5 pt-5">
-        <!-- <h2 class="mb-4">Sidebar #04</h2> -->
         <div class="row">
             <div class="col-12">
-                <div class="panel mr-3 px-4 py-3 glass shadow " style="height:690px;">
+                <div class="panel mr-3 px-4 py-3 glass shadow " style="height:100vh;">
                     <h5 class="">Survey list</h5>
-                    <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:640px;">
+                    <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:700px;">
                         <div class="ml-5 survey align-content-center"><iframe src={{ $survey->link }} width="98%"
                                 height="550" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
                         <div class="text-dark mt-3 px-5 ">
@@ -52,18 +51,18 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Show the Modal on load
             @guest
-                $("#guest").modal("show");
+            $("#guest").modal("show");
             @endguest
 
             // Hide the Modal
-            $("#myBtn").click(function() {
+            $("#myBtn").click(function () {
                 $("#guest").modal("hide");
             });
 
-            $("#myBtn2").click(function() {
+            $("#myBtn2").click(function () {
                 $("#guest").modal("hide");
             });
         });
