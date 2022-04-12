@@ -1,6 +1,6 @@
 <div class="" style="height: 200px">
     <h3 style="margin-bottom: 15px">Maaf Pengisian Survei Ditolak</h3>
-    Maaf pengisian survei "<b>{{ $title }}</b>" Kami tolak karena kamu belum mengisi survei tersebut.
+    Maaf pengisian survei "<b>{{ $title }}</b>" Kami tolak karena Kamu belum mengisi survei tersebut.
     Silakan mengisi survei tersebut dan pastikan Kamu menggunakan email yang sama dengan email yang Kamu gunakan di Survit.
     Segera hubungi Kami jika menemukan kesulitan.
     <br><br>
