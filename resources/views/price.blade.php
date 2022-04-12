@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-xxl p-5">
+    <div class="container-xxl p-5" style="overflow-y:scroll; height:100vh">
         <div class="row justify-content-center ">
             <div class="col-md-8 mt-5 ">
                 <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">

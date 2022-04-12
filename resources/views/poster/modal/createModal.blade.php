@@ -11,7 +11,7 @@
                 <form action="{{ route('survey.store') }}" id="dynamic" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="container" style="padding: 20px 55px;">
-                        <a class="float-end" href="">petunjuk pembuatan survei di survit</a>
+                        {{-- <a class="float-end" href="">petunjuk pembuatan survei di survit</a> --}}
                         <div class="form-group"><label>Judul</label>
                             <input class="form-control border" type="text" name="title" required>
                         </div>
@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label>Link Edit Form</label>
 {{--                            <a href="https://google.com" class="text-primary pe-auto float-end"> Petunjuk</a>--}}
-                            <input class="form-control border" type="text" name="link" required>
+                            <input class="form-control border" type="text" name="edit_link" required>
                         </div>
 
                         {{-- <div class="form-group"><label>Poin</label>
@@ -75,8 +75,8 @@
                             <div id="container">
                                 <div id="more"></div>
                             </div>
-                            <button type="button" name="add" id="add" class="btn btn-primary" onclick="addFields()">Add
-                                More</button>
+                            {{-- <button type="button" name="add" id="add" class="btn btn-primary" onclick="addFields()">Add
+                                More</button> --}}
                         </div>
 
                         <div class="form-group"><label>Provinsi</label>

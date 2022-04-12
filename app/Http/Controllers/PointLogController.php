@@ -35,9 +35,18 @@ class PointLogController extends Controller
                             ->orWhereIn('account_payment_id', $pid)
                             ->orderBy('id', 'DESC')
                             ->get();
-        // dd($pointlogs);
 
-        return view('pointlog', compact('pointlogs', 'user'));
+        //Point dalam proses
+        $upoint = 0;
+        $pointlogs = point_log::WhereIn('account_payment_id', $pid)
+                            ->where('status_id', 2)
+                            ->get();
+
+        foreach($pointlogs as $pointlog){
+            $upoint += $pointlog->point;
+        }
+
+        return view('pointlog', compact('pointlogs', 'user', 'upoint'));
     }
 
     /**

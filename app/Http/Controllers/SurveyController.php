@@ -70,7 +70,7 @@ class SurveyController extends Controller
         $survey = survey::create([
             'title' => $request->title,
             'link' => $request->link,
-            // 'limit' => $request->limit,
+            'edit_link' => $request->edit_link,
             'user_id' => Auth::id(),
             'gender_id' => $request->gender,
             'point' => $package->point,
@@ -150,7 +150,7 @@ class SurveyController extends Controller
         $survey->update([
             'title' => $request->title,
             'link' => $request->link,
-            // 'limit' => $request->limit,
+            'edit_link' => $request->edit_link,
             'package_id' => $request->package,
             'gender_id' => $request->gender,
             'status_id' => 2,

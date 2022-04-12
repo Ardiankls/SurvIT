@@ -38,6 +38,9 @@ Route::resource('payment', AccountPaymentController::class)->middleware(['auth',
 Route::resource('pointlog', PointLogController::class)->middleware(['auth', 'verified']);
 Route::resource('package', PackageController::class);
 Route::get('/fill/{url}', [FillController::class, 'fill'])->name('fill');
+Route::get('/datashop', function(){
+    return view('datashop');
+});
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::resource('mail', Email::class);

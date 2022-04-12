@@ -100,7 +100,6 @@ class UserSurveyController extends Controller
         foreach($pointlogs as $pointlog){
             $upoint += $pointlog->point;
         }
-        // dd($upoint);
 
         return view('surveyor.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'surveys', 'upoint', 'pages'));
     }

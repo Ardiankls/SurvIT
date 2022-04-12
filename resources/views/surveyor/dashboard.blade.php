@@ -183,17 +183,19 @@
             </div>
         </div>
 
+
+        {{-- DESKTOP --}}
         <div id="content" class=" p-md-5 pt-5 d-none d-md-block">
             <!-- <h2 class="mb-4">Sidebar #04</h2> -->
             <div class="row">
                 <div class="col-9">
                     <div class="panel mr-3 px-4 py-3 glass shadow " style="height:680px;">
-                        <h5 class="">Survey list</h5>
+                        <h5 class="">Daftar Survei</h5>
                         <div class="table-responsive custom-table-responsive" style="overflow: auto; height:620px;">
 
                             <table class="table custom-table">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-left">
                                         <th scope="col">Judul</th>
                                         <th scope="col">Topik</th>
                                         <th scope="col">Poin</th>
@@ -245,14 +247,10 @@
                                 <h5>News</h5>
                             </div>
                             <div class="row px-3 py-2">
-                                <small class="text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Vivamus eu mauris elementum, vulputate magna id, maximus dolor. Curabitur accumsan
-                                    mollis lectus nec ultrices. Nulla facilisi. Aliquam consectetur cursus justo sit
-                                    amet dapibus. Curabitur egestas arcu urna, accumsan luctus lectus dignissim quis.
-                                    Maecenas faucibus convallis magna, et lacinia neque congue vel. In pulvinar laoreet
-                                    semper. Proin sit amet pulvinar turpis, at tristique massa. Vivamus lacinia dolor at
-                                    lacus consectetur egestas. Morbi auctor elit et ante congue dignissim. Nam laoreet
-                                    nulla nec felis bibendum tristique.</small>
+                                <small class="text-dark">Hai selamat datang di website Survit. Kamu bisa mengisi survei atau membuat
+                                    survei sesuai kesukaan Kamu. Jika Kamu butuh bantuan silahkan menghubungi Kami melalui WhatsApp
+                                    <a href="https://api.whatsapp.com/send?phone=6285158909371&text=Hai%20Tim%20Survit!" class="underline">di sini.</a>
+                                </small>
                             </div>
                         </div>
                     </div>

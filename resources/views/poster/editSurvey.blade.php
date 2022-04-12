@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @include('poster.modal.resubmitModal')
 @section('content')
-    <div class="container-xxl  p-5">
+    <div class="container-xxl p-5" style="overflow-y:scroll; height:100vh">
         <div class="row justify-content-center ">
             <div class="col-md-9"></div>
             <div class="col-md-8 mt-5 ">
@@ -14,12 +14,17 @@
 
                             <div class="form-group">
                                 <label>Judul</label>
-                                <input class="form-control" type="text" name="title" value={{ $survey->title }} required>
+                                <input class="form-control border" type="text" name="title" value={{ $survey->title }} required>
                             </div>
 
                             <div class="form-group">
                                 <label>Link Form</label>
-                                <input class="form-control" type="text" name="link" value={{ $survey->link }} required>
+                                <input class="form-control border" type="text" name="link" value={{ $survey->link }} required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Edit Link Form</label>
+                                <input class="form-control border" type="text" name="link" value={{ $survey->edit_link }} required>
                             </div>
 
                             {{-- <div class="form-group">
@@ -124,8 +129,8 @@
                                     @endforeach
                                 </div>
                                 <div id="more"></div>
-                                <button type="button" name="add" id="add" class="btn btn-success" onclick="addFields()">Add
-                                    More</button>
+                                {{-- <button type="button" name="add" id="add" class="btn btn-success" onclick="addFields()">Add
+                                    More</button> --}}
                             </div>
 
                             <div class="form-group">

@@ -16,6 +16,7 @@ class survey extends Model
         'gender_id',
         'title',
         'link',
+        'edit_link',
         'limit',
         'point',
         'count',

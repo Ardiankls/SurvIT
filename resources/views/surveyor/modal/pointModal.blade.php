@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <div class="form-group"><label>Rekening</label>
                                 @if($user->transfer != null)
-                                    <input class="form-control" type="number" name="transfer" value="{{ $user->transfer }}" required>
+                                    <input class="form-control border" type="number" name="transfer" value="{{ $user->transfer }}" required>
                                 @else
                                     <input class="form-control border" type="number" name="transfer" required>
                                 @endif

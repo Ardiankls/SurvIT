@@ -1,18 +1,28 @@
 @extends('layouts.app')
+@include('surveyor.modal.pointModal')
 @section('content')
-    <div class="container-xxl p-5">
+    <div class="container-xxl p-5" style="overflow-y:scroll; height:100vh">
         <div class="row justify-content-center ">
             <div class="col-md-9"></div>
-            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">
-                <div class="row">
-                    <div class="col-8">
-                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>
-                    </div>
-                    <div class="col-4 text-center pt-1">
-                        <a class=" btn btn-primary" data-toggle="modal" data-target="#getpoint">Ambil</a>
+            <div class="col-md-3 no-gutters">
+                <div class="row mb-4">
+                    <div class=" panel glass shadow px-4 py-3">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="">
+                                <h5>Poin</h5>
+                            </div>
+                            <div class="">
+                                <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h2>{{ $user->point }}</h2>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
             <div class="col-md-8 mt-5 ">
                 <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
                     <h1 class="p-3">Riwayat Poin</h1>
@@ -55,4 +65,22 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#pay').click(function() {
+                var x, y;
+                x = document.getElementById("nominal").value;
+                y = document.getElementById("upoint").value;
+                // if (isNaN(x) || x < y) {
+                if (isNaN(x) || 10000 > y) {
+                    alert(
+                        "Point kamu tidak cukup."
+                    );
+                    return false;
+                }
+
+            });
+        });
+    </script>
 @endsection

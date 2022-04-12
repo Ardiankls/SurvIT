@@ -2,7 +2,7 @@
 @include('poster.modal.createModal')
 @section('content')
     {{-- @if (Auth::user()->is_admin == '1') --}}
-    <div class="container-xxl p-5">
+    <div class="container-xxl p-5" style="overflow-y:scroll; height:100vh">
         <div class="col-md-10 text-right">
             <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary ">Buat Survey</a>
         </div>

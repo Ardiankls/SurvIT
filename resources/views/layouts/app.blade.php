@@ -197,27 +197,27 @@
                 @else
                     <li class="active">
                         <a href="{{ route('usersurvey.index') }}" class="text-dark"><span
-                                class="fa fa-home mr-3"></span>Homepage</a>
+                                class="fa fa-home mr-3"></span>Dashboard</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#" class="text-dark"><span class="fa fa-user mr-3"></span> Dashboard</a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('survey.index') }}" class="text-dark"><span
                                 class="fa fa-sticky-note mr-3"></span> Buat Survey</a>
                     </li>
                     <li>
-                        <a href="detailed_datashop.html" class="text-dark"><span
+                        <a href="/datashop" class="text-dark"><span
                                 class="fa fa-shopping-cart mr-3"></span> Data Shop</a>
                     </li>
                     <li>
                         <a href="{{ route('pointlog.index') }}" class="text-dark"><span
-                                class="fa fa-sticky-note mr-3"></span> Riwayat Poin</a>
+                                class="fa fa-money mr-3"></span> Riwayat Poin</a>
                     </li>
                     @if (Auth::user()->isAdmin())
                         <li>
                             <a href="{{ route('admin.index', 1) }}" class="text-dark"><span
-                                    class="fa fa-sticky-note mr-3"></span> Admin Page</a>
+                                    class="fa fa-user mr-3"></span> Admin Page</a>
                         </li>
                     @endif
                     <li>
