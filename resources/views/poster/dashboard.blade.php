@@ -3,13 +3,134 @@
 @section('content')
     {{-- @if (Auth::user()->is_admin == '1') --}}
     <div class="container-xxl p-5" style="overflow-y:scroll; height:100vh">
-        <div class="col-md-10 text-right">
+        <div class="col-md-10 text-right mb-3">
             <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary ">Buat Survey</a>
         </div>
         <div class="row justify-content-center ">
-            <div class="col-md-8 mt-5 ">
+            {{-- MOBILE --}}
+            <div class="container-fluid p-2 d-md-none mb-4 " style="overflow-y: scroll; border-radius: 15px;">
+                <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
+                    <h4 class="text-center">Survei Saya</h4>
+                </div>
+                @foreach ($surveys as $survey)
+                    <div class="card-list w-100 no-gutters d-md-none ">
+                        <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
+                            style="border-radius: 15px;">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h5 class="font-weight-bolder">
+                                        {{ $survey->title }}
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    @if ($survey->status_id == '3')
+                                        @if ($survey->count < $survey->package->respondent)
+                                            Dibuka
+                                        @else
+                                            Ditutup
+                                        @endif
+                                    @else
+                                        {{ $survey->status->status }}
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row mt-2 ">
+                                <div class="col-5 mt-1 ">
+                                    {{ $survey->count }} / {{ $survey->package->respondent }}
+                                </div>
+                                <div class="col-7 no-gutters text-right ">
+                                    <div class="row">
+                                        <div class="col-6 no-gutters text-right ">
+                                        </div>
+                                        <div class="col-6 no-gutters text-right ">
+                                            @if ($survey->status_id == 1 || $survey->status_id == 2)
+                                                <a href="{{ route('survey.edit', $survey) }}"
+                                                    class="btn btn-primary">Ubah</a>
+                                            @elseif($survey->status_id == 3)
+                                                <a href="{{ route('survey.edit', $survey) }}"
+                                                    class="btn btn-primary">Detail</a>
+                                            @elseif($survey->status_id == 4)
+                                                <a href="" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#pay-{{ $survey->id }}">Bayar</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            {{-- DESKTOP --}}
+            <div class="col-9 d-none d-md-block">
+                <div class="panel mr-3 px-4 py-3 glass shadow " style="height:630px;">
+                    <h5 class="">Survei Saya</h5>
+                    <div class="table-responsive custom-table-responsive" style="overflow: auto; height:620px;">
+
+                        <table class="table custom-table">
+                            <thead>
+                                <tr class="text-left">
+                                    <th scope="col">Judul</th>
+                                    <th scope="col">Paket</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($surveys as $survey)
+                                    <tr data-href="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
+                                        enctype="multipart/form-data" scope="row">
+                                        <td>
+                                            {{ $survey->title }}
+                                        </td>
+                                        <td>
+                                            {{ $survey->package->description }}
+                                        </td>
+                                        <td>
+                                            @if ($survey->status_id == '3')
+                                                @if ($survey->count < $survey->package->respondent)
+                                                    Dibuka
+                                                @else
+                                                    Ditutup
+                                                @endif
+                                            @else
+                                                {{ $survey->status->status }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $survey->count }} / {{ $survey->package->respondent }}
+                                        </td>
+                                        <td>
+                                            @if ($survey->status_id == 1 || $survey->status_id == 2)
+                                                <a href="{{ route('survey.edit', $survey) }}"
+                                                    class="btn btn-primary">Ubah</a>
+                                            @elseif($survey->status_id == 3)
+                                                <a href="{{ route('survey.edit', $survey) }}"
+                                                    class="btn btn-primary">Detail</a>
+                                            @elseif($survey->status_id == 4)
+                                                <a href="" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#pay-{{ $survey->id }}">Bayar</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            {{-- <div class="col-md-8 mt-5 ">
                 <div class="text-center rounded-lg shadow d-md-block glass panel" style="">
-                    <h1 class="p-3">Survey Saya</h1>
+                    <h1 class="p-3">Survei Saya</h1>
                     <table class="table table-striped" id="myTable">
                         <thead>
                             <tr class="text-center">
@@ -45,9 +166,11 @@
                                     </td>
                                     <td>
                                         @if ($survey->status_id == 1 || $survey->status_id == 2)
-                                            <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary">Ubah</a>
+                                            <a href="{{ route('survey.edit', $survey) }}"
+                                                class="btn btn-primary">Ubah</a>
                                         @elseif($survey->status_id == 3)
-                                            <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary">Detail</a>
+                                            <a href="{{ route('survey.edit', $survey) }}"
+                                                class="btn btn-primary">Detail</a>
                                         @elseif($survey->status_id == 4)
                                             <a href="" class="btn btn-primary" data-toggle="modal"
                                                 data-target="#pay-{{ $survey->id }}">Bayar</a>
@@ -62,7 +185,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     {{-- @else

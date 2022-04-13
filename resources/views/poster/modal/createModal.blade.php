@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Link Form</label>
+                            <label>Link Form (Tidak dishorten)</label>
 {{--                            <a href="https://google.com" class="text-primary pe-auto float-end">Petunjuk</a>--}}
                             <input class="form-control border" type="text" name="link" required>
                         </div>
@@ -41,14 +41,17 @@
                                     <option value="{{ $package->id }}">{{ $package->description }}</option>
                                 @endforeach
                             </select>
-                            <a href={{ route('package.index') }} target="_blank" >Lihat Pricing</a>
+                            <a href={{ route('package.index') }} target="_blank" >Lihat Keterangan Paket</a>
                         </div>
 
                         <div class="form-group"><label>Dibagikan ke umum</label>
                             <input type='hidden'name="shareable"  value='0'>
                             <input class="float-right" type="checkbox" name="shareable" value="1">
                         </div>
-
+                        {{-- <hr> --}}
+                        <div class="form-group">
+                            ------- Filter Demografi -------
+                        </div>
                         <div class="form-group"><label>Jenis Kelamin</label>
                             <select name="gender" class="custom-select">
                                 @foreach ($genders as $gender)

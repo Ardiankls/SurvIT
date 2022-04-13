@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             // Show the Modal on load
             @if(!$errors->any())
@@ -117,5 +117,5 @@
                 $("#myModal").modal("hide");
             });
         });
-    </script>
+    </script> --}}
 @endsection

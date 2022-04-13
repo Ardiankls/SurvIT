@@ -3,6 +3,7 @@
 @include('surveyor.modal.pointModal')
 @section('content')
 
+    {{-- Belum Isi Demografi --}}
     @if ($user->is_survey_avail == '0')
         <div class="container p-5 mt-5">
             <div class="row justify-content-center mt-5">
@@ -23,24 +24,23 @@
             </div>
         </div>
     @else
+        {{-- MOBILE --}}
         <div class="container-xxl p-5 d-md-none">
             <div class="row justify-content-center ">
                 <div class="col-md-9"></div>
-
-            {{--old ui point--}}
-            <div class="col-md-3 bg-white rounded-lg shadow-sm p-3 no-gutters">
-                <div class="d-flex flex-row justify-content-between">
-                    <div class="">
-                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>
-                        @if ($upoint != 0)
-                            <h2>POIN DIPROSES: {{ $upoint }}</h2>
-                        @endif
-                    </div>
-                    <div class="col-4 text-center pt-1 my-auto">
-                        <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>
+                <div class="col-md-3 glass pannel rounded-lg shadow-sm p-3 no-gutters">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="">
+                            <h2 class="pt-2">POIN: {{ $user->point }}</h2>
+                            @if ($upoint != 0)
+                                <h2>POIN DIPROSES: {{ $upoint }}</h2>
+                            @endif
+                        </div>
+                        <div class="col-4 text-center pt-1 my-auto">
+                            <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
                 {{-- old ui isi demografi --}}
                 {{-- @if ($user->is_survey_avail == '0') --}}
@@ -120,12 +120,15 @@
                 {{-- </div> --}}
                 {{-- </div> --}}
 
-               {{-- Old UI Mobile Survey list --}}
+
                 <div class="container-fluid p-2 d-md-none mb-4 " style="overflow-y: scroll; border-radius: 15px;">
                     @if (count($surveys) < 1)
-                        <h5>Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa
-                            saat
-                            lagi.</h5>
+                        <div class="p-4 mt-4 pannel glass">
+                            <p class="text-dark">Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa
+                                saat
+                                lagi.
+                            </p>
+                        </div>
                     @else
                         <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
                             <h4 class="text-center">Daftar Survei</h4>
@@ -179,14 +182,12 @@
                         @endforeach
                     @endif
                 </div>
-                {{-- @endif --}}
             </div>
         </div>
 
 
         {{-- DESKTOP --}}
         <div id="content" class=" p-md-5 pt-5 d-none d-md-block">
-            <!-- <h2 class="mb-4">Sidebar #04</h2> -->
             <div class="row">
                 <div class="col-9">
                     <div class="panel mr-3 px-4 py-3 glass shadow " style="height:680px;">
@@ -232,7 +233,8 @@
                                     <h5>Poin</h5>
                                 </div>
                                 <div class="">
-                                    <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</div>
+                                    <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">
+                                        Ambil</div>
                                 </div>
                             </div>
                             <div class="row">
@@ -244,12 +246,15 @@
                     <div class="row mb-5">
                         <div class="panel glass shadow px-4 py-3">
                             <div class="row">
-                                <h5>News</h5>
+                                <h5>Berita</h5>
                             </div>
                             <div class="row px-3 py-2">
-                                <small class="text-dark">Hai selamat datang di website Survit. Kamu bisa mengisi survei atau membuat
-                                    survei sesuai kesukaan Kamu. Jika Kamu butuh bantuan silahkan menghubungi Kami melalui WhatsApp
-                                    <a href="https://api.whatsapp.com/send?phone=6285158909371&text=Hai%20Tim%20Survit!" class="underline">di sini.</a>
+                                <small class="text-dark">Hai selamat datang di website Survit. Kamu bisa mengisi survei
+                                    atau membuat
+                                    survei sesuai kesukaan Kamu. Jika Kamu butuh bantuan silahkan menghubungi Kami melalui
+                                    WhatsApp
+                                    <a href="https://api.whatsapp.com/send?phone=6285158909371&text=Hai%20Tim%20Survit!"
+                                        class="underline">di sini.</a>
                                 </small>
                             </div>
                         </div>

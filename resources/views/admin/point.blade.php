@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-xxl p-5" style="overflow-y:scroll; height:100vh">
         <div class="row justify-content-center ">
-            <div class="col-md-8 mt-3">
+            <div class="col-md-10 mt-3">
                 <a href="{{ route('admin.index', 1) }}" class="btn btn-secondary">Isi Survei</a>
                 <a href="{{ route('admin.index', 2) }}" class="btn btn-secondary">Buat Survei</a>
                 <a href="{{ route('admin.index', 3) }}" class="btn btn-secondary">Pembayaran Survei</a>
