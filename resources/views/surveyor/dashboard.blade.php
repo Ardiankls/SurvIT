@@ -26,9 +26,23 @@
     @else
         {{-- MOBILE --}}
         <div class="container-xxl p-5 d-md-none">
-            <div class="row justify-content-center ">
-                <div class="col-md-9"></div>
-                <div class="col-md-3 glass pannel rounded-lg shadow-sm p-3 no-gutters">
+            {{-- <div class="col-4"></div> --}}
+            {{-- <div class="col-md-3 glass pannel rounded-lg shadow-sm p-3 no-gutters">
+                <div class="d-flex flex-row justify-content-between">
+                    <div>
+                        <h2 class="pt-2">POIN: {{ $user->point }}</h2>
+                        @if ($upoint != 0)
+                            <h2>POIN DIPROSES: {{ $upoint }}</h2>
+                        @endif
+                    </div>
+                    <div class="col-4 text-center pt-1 my-auto">
+                        <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>
+                    </div>
+                </div>
+            </div> --}}
+            <div class="row justify-content-center">
+                {{-- <div class="col-md-9"></div> --}}
+                {{-- <div class="col-md-3 glass pannel rounded-lg shadow-sm p-3 no-gutters">
                     <div class="d-flex flex-row justify-content-between">
                         <div class="">
                             <h2 class="pt-2">POIN: {{ $user->point }}</h2>
@@ -40,7 +54,7 @@
                             <a class=" btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- old ui isi demografi --}}
                 {{-- @if ($user->is_survey_avail == '0') --}}
@@ -120,66 +134,86 @@
                 {{-- </div> --}}
                 {{-- </div> --}}
 
-
-                <div class="container-fluid p-2 d-md-none mb-4 " style="overflow-y: scroll; border-radius: 15px;">
+                <div style="overflow-y:scroll; height:100vh;">
+                    <div class="col-md-3 no-gutters">
+                        <div class="row mb-4">
+                            <div class="container bg-white shadow px-4 py-3" style="border-radius: 15px;">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <div class="">
+                                        <h5>Poin</h5>
+                                    </div>
+                                    <div class="">
+                                        <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">
+                                            Ambil
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h2>{{ $user->point }}</h2>
+                                </div>
+                                <div>
+                                    Poin Diproses: {{ $upoint }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @if (count($surveys) < 1)
-                        <div class="p-4 mt-4 pannel glass">
-                            <p class="text-dark">Maaf, tapi untuk saat ini belum terdapat survei yang tersedia. Silahkan coba cek beberapa
-                                saat
-                                lagi.
+                        <div class="p-4 mt-4 glass pannel rounded-lg shadow-sm">
+                            <p class="text-dark">Maaf, tapi untuk saat ini belum terdapat survei yang tersedia.
+                                Silahkan coba cek beberapa
+                                saat lagi.
                             </p>
                         </div>
                     @else
-                        <div class="container bg-white  shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
-                            <h4 class="text-center">Daftar Survei</h4>
-                        </div>
-
-                        @foreach ($surveys as $survey)
-                            <div class="card-list w-100 no-gutters d-md-none ">
-                                <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
-                                    style="border-radius: 15px;">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <h5 class="font-weight-bolder">
-                                                {{ $survey->title }}
-                                            </h5>
+                        <div class="container-fluid p-2 mb-5">
+                            <div class="container bg-white shadow p-2 mb-4" style="border-radius: 15px;">
+                                <h4 class="text-center">Daftar Survei</h4>
+                            </div>
+                            @foreach ($surveys as $survey)
+                                <div class="card-list w-100 no-gutters d-md-none ">
+                                    <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
+                                        style="border-radius: 15px;">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h5 class="font-weight-bolder">
+                                                    {{ $survey->title }}
+                                                </h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-8">
-                                            @foreach ($survey->interests as $sinterest)
-                                                @if ($sinterest->interest == 'Tidak ada')
-                                                    Umum
-                                                @else
-                                                    {{ $sinterest->interest }}
-                                                @endif
-                                            @endforeach
+                                        <div class="row">
+                                            <div class="col-8">
+                                                @foreach ($survey->interests as $sinterest)
+                                                    @if ($sinterest->interest == 'Tidak ada')
+                                                        Umum
+                                                    @else
+                                                        {{ $sinterest->interest }}
+                                                    @endif
+                                                @endforeach
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-2 ">
-                                        <div class="col-5 mt-1 ">
-                                            <i class="fas fa-coins mr-1"></i>
-                                            {{ $survey->point }}
-                                        </div>
-                                        <div class="col-7 no-gutters text-right ">
-                                            <div class="row">
-                                                <div class="col-6 no-gutters text-right ">
-                                                </div>
-                                                <div class="col-6 no-gutters text-right ">
-                                                    <form action="{{ route('fill', ['url' => $survey->url]) }}"
-                                                        method="GET" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <button class="btn btn-primary" id="selesai" type="submit"
-                                                            style="background-color: rgb(0,0,226);">Buka
-                                                        </button>
-                                                    </form>
+                                        <div class="row mt-2 ">
+                                            <div class="col-5 mt-1 ">
+                                                <i class="fas fa-coins mr-1"></i>
+                                                {{ $survey->point }}
+                                            </div>
+                                            <div class="col-7 no-gutters text-right">
+                                                <div class="row">
+                                                    <div class="no-gutters text-right ">
+                                                        <form action="{{ route('fill', ['url' => $survey->url]) }}"
+                                                            method="GET" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <button class="btn btn-primary" id="selesai" type="submit"
+                                                                style="background-color: rgb(0,0,226);">Buka
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     @endif
                 </div>
             </div>
@@ -240,7 +274,9 @@
                             <div class="row">
                                 <h2>{{ $user->point }}</h2>
                             </div>
-
+                            <div>
+                                Poin Diproses: {{ $upoint }}
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-5">

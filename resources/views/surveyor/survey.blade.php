@@ -2,7 +2,7 @@
 @include('surveyor.modal.surveyModal')
 @include('surveyor.modal.guestModal')
 @section('content')
-    {{-- old ui --}}
+    {{-- Old UI --}}
     {{-- <div class="container-sm"> --}}
     {{-- <div class="row justify-content-center"> --}}
     {{-- @guest --}}
@@ -22,15 +22,45 @@
     {{-- </div> --}}
     {{-- </div> --}}
 
-    {{-- new ui --}}
-    <div id="content" class=" p-md-5 pt-5">
-        <div class="row">
+    {{-- New UI --}}
+    {{-- MOBILE --}}
+    <div id="content" class="p-md-5 pt-5 d-md-none">
+        <div class="row justify-content-center">
+            <div style="overflow-y:scroll; height:100vh;">
+                <div class="">
+                    <div class="panel ml-3 py-3 glass shadow" style="height:100vh;">
+                        <h5 class="px-4">Isi Survei</h5>
+                        <div style="overflow: auto; height:90%;">
+                            <div class="survey align-content-center"><iframe src={{ $survey->link }} width="100%"
+                                    height="80%" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
+                            <div class="text-dark mt-4 px-4">
+                                @guest
+                                    Jika anda ingin mendapatkan poin dengan mengisi survei ini, segera daftarkan diri anda di
+                                    Survit!
+                                @else
+                                    Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
+                                    <div>
+                                        <button class="btn btn-sm btn-primary mx-auto pt-2 mt-2" style="width:100%" data-toggle="modal"
+                                            data-target="#confirmation">Selesai
+                                        </button>
+                                    </div>
+                                @endguest
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- DESKTOP --}}
+    <div id="content" class="p-md-5 pt-5 d-none d-md-block">
+        <div class="row justify-content-center">
             <div class="col-12">
-                <div class="panel mr-3 px-4 py-3 glass shadow " style="height:100vh;">
-                    <h5 class="">Survey list</h5>
-                    <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:700px;">
-                        <div class="ml-5 survey align-content-center"><iframe src={{ $survey->link }} width="98%"
-                                height="550" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
+                <div class="panel mr-3 px-4 py-3 glass shadow" style="height:100vh;">
+                    <h5 class="">Isi Survei</h5>
+                    <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:90%;">
+                        <div class="ml-5 survey align-content-center"><iframe src={{ $survey->link }} width="95%"
+                                height="90%" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
                         <div class="text-dark mt-3 px-5 ">
                             @guest
                                 Jika anda ingin mendapatkan poin dengan mengisi survei ini, segera daftarkan diri anda di
@@ -51,18 +81,18 @@
     </div>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Show the Modal on load
             @guest
-            $("#guest").modal("show");
+                $("#guest").modal("show");
             @endguest
 
             // Hide the Modal
-            $("#myBtn").click(function () {
+            $("#myBtn").click(function() {
                 $("#guest").modal("hide");
             });
 
-            $("#myBtn2").click(function () {
+            $("#myBtn2").click(function() {
                 $("#guest").modal("hide");
             });
         });

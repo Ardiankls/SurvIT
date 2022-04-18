@@ -1,5 +1,4 @@
 @extends('layouts.head')
-
 @section('content2')
     @include('auth.modal.attention')
     <div class="container-fluid vh-100 ">
@@ -10,7 +9,7 @@
                         <div class="container-sm mt-5 ">
                             <img class="logo w-75 mt-5" src="{{ asset('assets/assets/logo/logoWhite.svg') }}" alt="">
                             <p class="mt-5 font-weight-bold text-white">Kumpulkan Poin dan Dapatkan Hadiah Hanya Dengan
-                                Mengisi Survey</p>
+                                Mengisi Survei</p>
                         </div>
                     </div>
                 </div>

@@ -1,80 +1,109 @@
 @extends('layouts.app')
 @include('surveyor.modal.pointModal')
 @section('content')
-    <div class="container-xxl p-5" style="overflow-y:scroll; height:100vh">
-        <div class="row justify-content-center ">
-            <div class="col-md-9"></div>
-            <div class="col-md-3 no-gutters">
-                <div class="row mb-4">
-                    <div class=" panel glass shadow px-4 py-3">
-                        <div class="d-flex flex-row justify-content-between">
-                            <div class="">
-                                <h5>Poin</h5>
-                            </div>
-                            <div class="">
-                                <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil
+    {{-- MOBILE --}}
+    <div class="container-xxl p-5 d-md-none">
+        <div class="row justify-content-center">
+            <div style="overflow-y:scroll; height:100vh;">
+                <div class="col-md-3 no-gutters">
+                    <div class="row mb-4">
+                        <div class="container bg-white shadow px-4 py-3" style="border-radius: 15px;">
+                            <div class="d-flex flex-row justify-content-between">
+                                <div class="">
+                                    <h5>Poin</h5>
+                                </div>
+                                <div class="">
+                                    <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">Ambil
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <h2>{{ $user->point }}</h2>
+                            </div>
+                            <div>
+                                Poin Diproses: {{ $upoint }}
+                            </div>
                         </div>
-                        <div class="row">
-                            <h2>{{ $user->point }}</h2>
-                        </div>
-
                     </div>
                 </div>
-            </div>
-            {{-- MOBILE --}}
-            <div class="container-fluid p-2 d-md-none mb-4 " style="overflow-y: scroll; border-radius: 15px;">
-                <div class="container bg-white shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
-                    <h4 class="text-center">Riwayat Poin</h4>
-                </div>
-                @foreach ($pointlogs as $pointlog)
-                    <div class="card-list w-100 no-gutters d-md-none ">
-                        <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
-                            style="border-radius: 15px;">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h5 class="font-weight-bolder">
-                                        @if ($pointlog->type == 0)
-                                            Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
-                                        @elseif($pointlog->type == 1)
-                                            Pengambilan poin
-                                        @endif
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    {{ $pointlog->status->status }}
-                                </div>
-                            </div>
-                            <div class="row mt-2 ">
-                                <div class="col-5 mt-1 ">
-                                    {{-- {{ $survey->count }} / {{ $survey->package->respondent }} --}}
-                                </div>
-                                <div class="col-7 no-gutters text-right ">
-                                    <div class="row">
-                                        <div class="col-6 no-gutters text-right ">
-                                        </div>
-                                        <div class="col-6 no-gutters text-right ">
+                <div class="container-fluid p-2 mb-5">
+                    <div class="container bg-white shadow p-2 mb-4" style="border-radius: 15px;">
+                        <h4 class="text-center">Riwayat Poin</h4>
+                    </div>
+                    @foreach ($pointlogs as $pointlog)
+                        <div class="card-list w-100 no-gutters d-md-none ">
+                            <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
+                                style="border-radius: 15px;">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h5 class="font-weight-bolder">
                                             @if ($pointlog->type == 0)
-                                                +
-                                                {{ $pointlog->point }}
+                                                Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
                                             @elseif($pointlog->type == 1)
-                                                -
-                                                {{ $pointlog->point }}
+                                                Pengambilan poin
                                             @endif
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        {{ $pointlog->status->status }}
+                                    </div>
+                                </div>
+                                <div class="row mt-2 ">
+                                    <div class="col-5 mt-1 ">
+                                        {{-- {{ $survey->count }} / {{ $survey->package->respondent }} --}}
+                                    </div>
+                                    <div class="col-7 no-gutters text-right ">
+                                        <div class="row">
+                                            <div class="col-6 no-gutters text-right ">
+                                            </div>
+                                            <div class="col-6 no-gutters text-right ">
+                                                @if ($pointlog->type == 0)
+                                                    +
+                                                    {{ $pointlog->point }}
+                                                @elseif($pointlog->type == 1)
+                                                    -
+                                                    {{ $pointlog->point }}
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
+        </div>
+    </div>
 
-            {{-- DESKTOP --}}
-            <div class="col-md-9 mt-5 glass rounded shadow">
+    {{-- DESKTOP --}}
+    <div class="container-xxl p-5 d-none d-md-block">
+        <div class="row justify-content-center ">
+            <div class="col-md-9"></div>
+            <div class="col-md-3 no-gutters">
+                <div class="row mb-4">
+                    <div class="panel glass shadow px-4 py-3">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div>
+                                <h5>Poin</h5>
+                            </div>
+                            <div class="">
+                                <div class="btn btn-primary text-white" data-toggle="modal" data-target="#getpoint">
+                                    Ambil</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h2>{{ $user->point }}</h2>
+                        </div>
+                        <div>
+                            Poin Diproses: {{ $upoint }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 mt-3 glass rounded shadow">
                 <div class="text-center rounded-lg d-none d-md-block" style="">
                     <h1 class="p-3">Riwayat Poin</h1>
                     <table class="table custom-table" id="myTable">

@@ -48,8 +48,7 @@
                             <input type='hidden'name="shareable"  value='0'>
                             <input class="float-right" type="checkbox" name="shareable" value="1">
                         </div>
-                        {{-- <hr> --}}
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             ------- Filter Demografi -------
                         </div>
                         <div class="form-group"><label>Jenis Kelamin</label>

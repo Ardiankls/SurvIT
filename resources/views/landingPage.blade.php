@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="Easy Survey For Your Business" />
+    <meta name="Description" content="Untuk Kamu Para Mahasiswa Yang Butuh Data" />
     <link rel="icon" href="assets/assets/logo/surviticon.png" sizes="1080x1080" type="assets/surviticon.png">
     <!-- js -->
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>

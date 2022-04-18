@@ -1,110 +1,112 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-xxl p-5" style="overflow-y:scroll; height:100vh">
-        <div class="row justify-content-center ">
-            {{-- MOBILE --}}
-            <div class="container-fluid p-2 d-md-none mb-4 " style="overflow-y: scroll; border-radius: 15px;">
-                <div class="container bg-white shadow p-2 d-md-none mb-4" style="border-radius: 15px;">
-                    <h4 class="text-center">Daftar Paket</h4>
-                </div>
-                <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4" style="border-radius: 15px;">
-                    <div class="text-danger pb-3">
-                        *Survey yang berbayar cenderung diprioritaskan dan di posisi paling atas dengan poin yang lebih
-                        tinggi*
+    {{-- MOBILE --}}
+    <div class="container-xxl p-5 d-md-none">
+        <div class="row justify-content-center">
+            <div style="overflow-y:scroll; height:100vh;">
+                <div class="container-fluid p-2 mb-5">
+                    <div class="container bg-white shadow p-2 mb-4" style="border-radius: 15px;">
+                        <h4 class="text-center">Daftar Paket</h4>
                     </div>
-                </div>
-                @foreach ($packagesB as $package)
-                    <div class="card-list w-100 no-gutters d-md-none ">
-                        <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
-                            style="border-radius: 15px;">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h5 class="font-weight-bolder">
-                                        {{ $package->description }}
-                                    </h5>
+                    <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4" style="border-radius: 15px;">
+                        <div class="text-danger pb-3">
+                            *Survey yang berbayar cenderung diprioritaskan dan di posisi paling atas dengan poin yang lebih
+                            tinggi*
+                        </div>
+                    </div>
+                    @foreach ($packagesB as $package)
+                        <div class="card-list w-100 no-gutters d-md-none ">
+                            <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
+                                style="border-radius: 15px;">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h5 class="font-weight-bolder">
+                                            {{ $package->description }}
+                                        </h5>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    Respondent: {{ $package->respondent }}
+                                <div class="row">
+                                    <div class="col-8">
+                                        Respondent: {{ $package->respondent }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    Konsultasi: {{ $package->consultation }}
+                                <div class="row">
+                                    <div class="col-8">
+                                        Konsultasi: {{ $package->consultation }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    {{ $package->duration }}
+                                <div class="row">
+                                    <div class="col-8">
+                                        {{ $package->duration }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mt-2 ">
-                                <div class="col-5 mt-1 ">
-                                    <i class="fas fa-coins mr-1"></i>
-                                    {{ $package->price }}
-                                </div>
-                                <div class="col-7 no-gutters text-right ">
-                                    <div class="row">
-                                        <div class="col-6 no-gutters text-right ">
-                                        </div>
-                                        <div class="col-6 no-gutters text-right ">
-                                            By Yourself
+                                <div class="row mt-2 ">
+                                    <div class="col-5 mt-1 ">
+                                        <i class="fas fa-coins mr-1"></i>
+                                        {{ $package->price }}
+                                    </div>
+                                    <div class="col-7 no-gutters text-right ">
+                                        <div class="row">
+                                            <div class="col-12 no-gutters text-right ">
+                                                Dibuat Mandiri
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-                @foreach ($packagesC as $package)
-                    <div class="card-list w-100 no-gutters d-md-none ">
-                        <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
-                            style="border-radius: 15px;">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h5 class="font-weight-bolder">
-                                        {{ $package->description }}
-                                    </h5>
+                    @endforeach
+                    @foreach ($packagesC as $package)
+                        <div class="card-list w-100 no-gutters d-md-none ">
+                            <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
+                                style="border-radius: 15px;">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h5 class="font-weight-bolder">
+                                            {{ $package->description }}
+                                        </h5>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    Respondent: {{ $package->respondent }}
+                                <div class="row">
+                                    <div class="col-8">
+                                        Respondent: {{ $package->respondent }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    Konsultasi: {{ $package->consultation }}
+                                <div class="row">
+                                    <div class="col-8">
+                                        Konsultasi: {{ $package->consultation }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    {{ $package->duration }}
+                                <div class="row">
+                                    <div class="col-8">
+                                        {{ $package->duration }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mt-2 ">
-                                <div class="col-5 mt-1 ">
-                                    <i class="fas fa-coins mr-1"></i>
-                                    {{ $package->price }}
-                                </div>
-                                <div class="col-7 no-gutters text-right ">
-                                    <div class="row">
-                                        <div class="col-6 no-gutters text-right ">
-                                        </div>
-                                        <div class="col-6 no-gutters text-right ">
-                                            By Our Team
+                                <div class="row mt-2 ">
+                                    <div class="col-5 mt-1 ">
+                                        <i class="fas fa-coins mr-1"></i>
+                                        {{ $package->price }}
+                                    </div>
+                                    <div class="col-7 no-gutters text-right ">
+                                        <div class="row">
+                                            <div class="col-12 no-gutters text-right ">
+                                                Dibuat Tim Survit
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
+        </div>
+    </div>
 
-            {{-- DESKTOP --}}
-            <div class="col-md-8 mt-5 ">
+    {{-- DESKTOP --}}
+    <div class="container-xxl p-5 d-none d-md-block" style="overflow-y: scroll; height:100vh;">
+        <div class="row justify-content-center">
+            <div class="col-md-8 mt-5 d-none d-md-block">
                 <div class="bg-white text-center rounded-lg shadow d-none d-md-block" style="">
                     <h1 class="p-3">Paket Basic</h1>
                     <table class="table table-striped" id="myTable">

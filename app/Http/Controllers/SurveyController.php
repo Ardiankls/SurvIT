@@ -127,15 +127,20 @@ class SurveyController extends Controller
      */
     public function edit($id)
     {
+        $survey = survey::find($id);
+        $user = Auth::user();
+
+        if(Auth::user()->id != $survey->user_id){
+            return redirect()->route('usersurvey.index');
+        }
+
         $genders = gender::all();
         $jobs = job::all();
         $interests = interest::all()->where('id', '<>', '1');
         $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
         $packages = package::all();
 
-        $survey = survey::find($id);
-
-        return view('poster.editSurvey', compact('genders', 'jobs', 'interests', 'provinces', 'packages', 'survey'));
+        return view('poster.editSurvey', compact('genders', 'jobs', 'interests', 'provinces', 'packages', 'survey', 'user'));
     }
 
     /**
