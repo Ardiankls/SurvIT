@@ -38,9 +38,14 @@ class PointLogController extends Controller
 
         //Point dalam proses
         $upoint = 0;
-        $pendings = point_log::whereIn('user_survey_id', $uid)
-                            ->orWhereIn('account_payment_id', $pid)
-                            ->where('status_id', 2)
+        $pendings = point_log::where(function ($query) use($uid){
+                                $query->whereIn('user_survey_id', $uid)
+                                    ->where('status_id', 2);
+                            })
+                            ->orWhere(function ($query) use($pid){
+                                $query->whereIn('account_payment_id', $pid)
+                                    ->where('status_id', 2);
+                            })
                             ->get();
 
         foreach($pendings as $pending){
