@@ -20,7 +20,7 @@
                     <div class="container" style="padding: 20px 55px;">
                         <div class="form-group">
                             <div class="form-group"><label>Nominal</label>
-                                <input class="form-control border" id="nominal" type="number" name="value" value="10000" min="10000" required>
+                                <input class="form-control border" id="nominal" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="value" value="10000" min="10000" required>
                                 <input class="form-control" id="upoint" type="hidden" name="upoint" value={{ $user->point }}>
                             </div>
                         </div>
@@ -42,9 +42,9 @@
                         <div class="form-group">
                             <div class="form-group"><label>Rekening</label>
                                 @if($user->transfer != null)
-                                    <input class="form-control border" type="number" name="transfer" value="{{ $user->transfer }}" required>
+                                    <input class="form-control border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="transfer" value="{{ $user->transfer }}" required>
                                 @else
-                                    <input class="form-control border" type="number" name="transfer" required>
+                                    <input class="form-control border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="transfer" required>
                                 @endif
                             </div>
                         </div>

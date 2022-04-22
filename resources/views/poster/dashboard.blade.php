@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @include('poster.modal.createModal')
 @section('content')
+    @foreach ($surveys as $survey)
+        @include('poster.modal.payModal')
+    @endforeach
+
     {{-- MOBILE --}}
     <div class="container-xxl p-5 d-md-none">
         <div class="row justify-content-center">
@@ -13,18 +17,24 @@
                         <h4 class="text-center">Survei Saya</h4>
                     </div>
                     @foreach ($surveys as $survey)
+                        {{-- @include('poster.modal.payModal') --}}
                         <div class="card-list w-100 no-gutters">
                             <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
                                 style="border-radius: 15px;">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-11">
                                         <h5 class="font-weight-bolder">
                                             {{ $survey->title }}
                                         </h5>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-8 text-dark">
+                                        {{ $survey->package->description }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10">
                                         @if ($survey->status_id == '3')
                                             @if ($survey->count < $survey->package->respondent)
                                                 Dibuka
@@ -77,7 +87,6 @@
                 <div class="panel mr-3 px-4 py-3 glass shadow" style="height:630px;">
                     <h5 class="">Survei Saya</h5>
                     <div class="table-responsive custom-table-responsive" style="overflow: auto; height:620px;">
-
                         <table class="table custom-table">
                             <thead>
                                 <tr class="text-left">
@@ -90,6 +99,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($surveys as $survey)
+
                                     <tr data-href="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
                                         enctype="multipart/form-data" scope="row">
                                         <td>
@@ -120,13 +130,14 @@
                                                 <a href="{{ route('survey.edit', $survey) }}"
                                                     class="btn btn-primary" style="background-color: rgb(0,0,226);">Detail</a>
                                             @elseif($survey->status_id == 4)
-                                                <a href="" class="btn btn-primary" style="background-color: rgb(0,0,226);" data-toggle="modal"
-                                                    data-target="#pay-{{ $survey->id }}">Bayar</a>
+                                                <div class="btn btn-primary" style="background-color: rgb(0,0,226);" data-toggle="modal"
+                                                    data-target="#pay-{{ $survey->id }}">Bayar</div>
                                             @else
                                                 -
                                             @endif
                                         </td>
                                     </tr>
+
                                 @endforeach
                             </tbody>
                         </table>

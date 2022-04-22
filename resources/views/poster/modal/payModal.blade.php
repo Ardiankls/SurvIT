@@ -24,6 +24,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-group"><label>Bukti Transfer</label>
+                                <br>
                                 <input type="file" id="file" name="file" required>
                             </div>
                         </div>

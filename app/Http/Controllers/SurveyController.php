@@ -13,6 +13,7 @@ use App\Models\province;
 use App\Models\survey;
 use App\Models\survey_job;
 use App\Models\survey_province;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -130,17 +131,17 @@ class SurveyController extends Controller
         $survey = survey::find($id);
         $user = Auth::user();
 
-        if(Auth::user()->id != $survey->user_id){
-            return redirect()->route('usersurvey.index');
+        if($user->id == $survey->user_id || $user->is_admin == 1){
+            $genders = gender::all();
+            $jobs = job::all();
+            $interests = interest::all()->where('id', '<>', '1');
+            $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
+            $packages = package::all();
+
+            return view('poster.editSurvey', compact('genders', 'jobs', 'interests', 'provinces', 'packages', 'survey', 'user'));
         }
 
-        $genders = gender::all();
-        $jobs = job::all();
-        $interests = interest::all()->where('id', '<>', '1');
-        $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
-        $packages = package::all();
-
-        return view('poster.editSurvey', compact('genders', 'jobs', 'interests', 'provinces', 'packages', 'survey', 'user'));
+        return redirect()->route('usersurvey.index');
     }
 
     /**
@@ -173,6 +174,16 @@ class SurveyController extends Controller
         $sprovince->update([
             'province_id' => $request->province,
         ]);
+
+        //YANG BUAT KALO ADMIN
+        $admins = User::where('is_admin', '1')->get();
+        foreach($admins as $admin){
+            if($survey->user_id == $admin->id){
+                $survey->update([
+                    'status_id' => 3,
+                ]);
+            }
+        }
 
         return redirect()->route('survey.index');
     }

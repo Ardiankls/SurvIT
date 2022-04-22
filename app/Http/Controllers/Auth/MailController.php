@@ -169,7 +169,7 @@ class MailController extends Controller
      */
     public function update(Request $request, $detail)
     {
-
+        //
     }
 
     /**
@@ -180,14 +180,6 @@ class MailController extends Controller
      */
     public function destroy($detail)
     {
-        $usurvey = user_survey::Find($detail);
-        $title = $usurvey->survey->title;
-        $user = User::Find($usurvey->user_id);
-        Mail::to($user->email)->send(new Broadcast_Decline($title));
-        $usurvey->update([
-            'status' => '1',
-        ]);
-
-        return redirect()->route('usersurvey.create');
+        //
     }
 }

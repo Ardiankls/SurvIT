@@ -19,7 +19,7 @@
                             <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
                                 style="border-radius: 15px;">
                                 <div class="row">
-                                    <div class="col-9">
+                                    <div class="col-11">
                                         <h5 class="font-weight-bolder">
                                             {{ $package->description }}
                                         </h5>

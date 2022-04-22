@@ -94,7 +94,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input id="phone" type="number"
+                                    <input id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                            class="form-control @error('phone') is-invalid @enderror"
                                            name="phone" value="{{ old('phone') }}" placeholder="Nomor Telepon" required
                                            autocomplete="phone">

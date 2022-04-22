@@ -35,7 +35,7 @@
                             <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
                                 style="border-radius: 15px;">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-11">
                                         <h5 class="font-weight-bolder">
                                             @if ($pointlog->type == 0)
                                                 Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-11">
                                         {{ $pointlog->status->status }}
                                     </div>
                                 </div>

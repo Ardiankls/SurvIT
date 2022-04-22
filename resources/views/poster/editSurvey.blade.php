@@ -5,9 +5,9 @@
     <div class="container-xxl d-md-none" style="overflow-y:scroll; height:100vh">
         <div class="row justify-content-center">
             <div class="col-md-9"></div>
-            <div class="col-md-8 mt-5 mb-2">
+            <div class="col-md-8 pt-2 mt-5 mb-2">
                 <div class="bg-white rounded-lg shadow" style="">
-                    <h1 class="p-3 text-center">Detail Survei</h1>
+                    <h3 class="p-3 text-center">Detail Survei</h3>
                     <div class="container" style="padding: 20px 30px;">
                         <form action="{{ route('survey.update', $survey) }}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -15,17 +15,17 @@
 
                             <div class="form-group">
                                 <label>Judul</label>
-                                <input class="form-control border" type="text" name="title" value={{ $survey->title }} required>
+                                <input class="form-control border" type="text" name="title" value="{{ $survey->title }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Link Form</label>
-                                <input class="form-control border" type="text" name="link" value={{ $survey->link }} required>
+                                <input class="form-control border" type="text" name="link" value="{{ $survey->link }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Edit Link Form</label>
-                                <input class="form-control border" type="text" name="edit_link" value={{ $survey->edit_link }} required>
+                                <input class="form-control border" type="text" name="edit_link" value="{{ $survey->edit_link }}" required>
                             </div>
 
                             <div class="form-group"><label>Paket</label>
@@ -144,7 +144,7 @@
                             @if($survey->evidence != null)
                                 <div class="form-group">
                                     <label>Bukti Pembayaran</label><br>
-                                    <img style="width: 50%;" src="/images/payment/survey/{{ $survey->evidence }}" alt="">
+                                    <img style="height: 300px;" src="/images/payment/survey/{{ $survey->evidence }}" alt="">
                                 </div>
                             @endif
 
@@ -176,7 +176,7 @@
         <div class="row justify-content-center ">
             <div class="col-md-9"></div>
             <div class="col-md-8 mt-5">
-                <div class="bg-white rounded-lg shadow" style="">
+                <div class="bg-white rounded-lg shadow">
                     <h1 class="p-3 text-center">Detail Survei</h1>
                     <div class="container" style="padding: 20px 55px;">
                         <form action="{{ route('survey.update', $survey) }}" method="post" enctype="multipart/form-data">
@@ -185,17 +185,17 @@
 
                             <div class="form-group">
                                 <label>Judul</label>
-                                <input class="form-control border" type="text" name="title" value={{ $survey->title }} required>
+                                <input class="form-control border" type="text" name="title" value="{{ $survey->title }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Link Form</label>
-                                <input class="form-control border" type="text" name="link" value={{ $survey->link }} required>
+                                <input class="form-control border" type="text" name="link" value="{{ $survey->link }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Edit Link Form</label>
-                                <input class="form-control border" type="text" name="edit_link" value={{ $survey->edit_link }} required>
+                                <input class="form-control border" type="text" name="edit_link" value="{{ $survey->edit_link }}" required>
                             </div>
 
                             {{-- <div class="form-group">
@@ -328,7 +328,7 @@
                             @if($survey->evidence != null)
                                 <div class="form-group">
                                     <label>Bukti Pembayaran</label><br>
-                                    <img style="width: 50%;" src="/images/payment/survey/{{ $survey->evidence }}" alt="">
+                                    <img style="height: 300px;" src="/images/payment/survey/{{ $survey->evidence }}" alt="">
                                 </div>
                             @endif
 

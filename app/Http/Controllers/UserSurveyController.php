@@ -86,19 +86,26 @@ class UserSurveyController extends Controller
 
         //Point
         $upoint = 0;
+        $usurveys = user_survey::all()->where('user_id', $user->id);
         $payments = account_payment::all()->where('user_id', $user->id);
+
+        $uid = [];
+        foreach($usurveys as $usurvey){
+            $uid[] = $usurvey->id;
+        }
 
         $pid = [];
         foreach($payments as $payment){
             $pid[] = $payment->id;
         }
 
-        $pointlogs = point_log::WhereIn('account_payment_id', $pid)
+        $pendings = point_log::whereIn('user_survey_id', $uid)
+                            ->orWhereIn('account_payment_id', $pid)
                             ->where('status_id', 2)
                             ->get();
 
-        foreach($pointlogs as $pointlog){
-            $upoint += $pointlog->point;
+        foreach($pendings as $pending){
+            $upoint += $pending->point;
         }
 
         return view('surveyor.dashboard', compact('user', 'genders', 'jobs', 'interests', 'provinces', 'surveys', 'upoint', 'pages'));

@@ -174,7 +174,7 @@
                                     <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
                                         style="border-radius: 15px;">
                                         <div class="row">
-                                            <div class="col-8">
+                                            <div class="col-11">
                                                 <h5 class="font-weight-bolder">
                                                     {{ $survey->title }}
                                                 </h5>
@@ -227,7 +227,6 @@
                     <div class="panel mr-3 px-4 py-3 glass shadow " style="height:680px;">
                         <h5 class="">Daftar Survei</h5>
                         <div class="table-responsive custom-table-responsive" style="overflow: auto; height:620px;">
-
                             <table class="table custom-table">
                                 <thead>
                                     <tr class="text-left">
