@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone')->nullable();
-            $table->timestamp('birthdate')->nullable();
+            $table->date('birthdate')->nullable();
             $table->integer('point')->default('0');
             $table->string('transfer')->nullable();
             $table->enum('is_login', ['0', '1'])

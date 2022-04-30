@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\Broadcast_Decline;
+use App\Mail\Blast_New_Demography;
 use App\Mail\Broadcast_New;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
 use App\Models\province;
 use App\Models\User;
-use App\Models\user_survey;
 use App\Models\user_job;
 use App\Models\user_interest;
 use Illuminate\Http\Request;
@@ -146,7 +145,11 @@ class MailController extends Controller
      */
     public function show($id)
     {
-        //
+        //MAIL
+        $users = User::where('is_survey_avail' == '1' && 'birthdate' == null)->get();
+        foreach($users as $user){
+            Mail::to($user->email)->send(new Blast_New_Demography(500));
+        }
     }
 
     /**

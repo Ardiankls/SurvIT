@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             StatusSeeder::class,
             PackageSeeder::class,
+            CampaignSeeder::class,
+            SurveySeeder::class,
         ]);
 
         Model::reguard();

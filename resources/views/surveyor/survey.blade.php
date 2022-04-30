@@ -31,8 +31,9 @@
                     <div class="panel ml-3 py-3 glass shadow" style="height:100vh;">
                         <h5 class="px-4">Isi Survei</h5>
                         <div style="overflow: auto; height:90%;">
-                            <div class="survey align-content-center"><iframe src={{ $survey->link }} width="100%"
-                                    height="80%" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
+                            <div class="survey align-content-center">
+                                <iframe id="redirect" src={{ $survey->link }} width="100%"
+                                    height="80%" frameborder="0" marginheight="0" marginwidth="0" onload="onMyFrameLoad(this)">Memuat…</iframe></div>
                             <div class="text-dark mt-4 px-4">
                                 @guest
                                     Jika anda ingin mendapatkan poin dengan mengisi survei ini, segera daftarkan diri anda di
@@ -59,8 +60,10 @@
                 <div class="panel mr-3 px-4 py-3 glass shadow" style="height:100vh;">
                     <h5 class="">Isi Survei</h5>
                     <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:90%;">
-                        <div class="ml-5 survey align-content-center"><iframe src={{ $survey->link }} width="95%"
-                                height="90%" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe></div>
+                        <div class="ml-5 survey align-content-center">
+                            <iframe id="redirect" src={{ $survey->link }} width="95%"
+                                height="90%" frameborder="0" marginheight="0" marginwidth="0" onload="onMyFrameLoad(this)">Memuat…</iframe>
+                        </div>
                         <div class="text-dark mt-3 px-5 ">
                             @guest
                                 Jika anda ingin mendapatkan poin dengan mengisi survei ini, segera daftarkan diri anda di
@@ -97,4 +100,26 @@
             });
         });
     </script>
+
+    {{-- <script>
+        $(document).ready(function () {
+            $('.l4V7wb').onsubmit({
+                alert("Submit !");
+            });
+        })
+    </script> --}}
+
+    {{-- <script>
+        var page = -1;
+
+        function onMyFrameLoad() {
+            page++;
+            if(page > 1){
+                alert('Terima Kasih Sudah Mengisi Survei');
+                // document.location = @json(route('usersurvey.update', $survey));
+                // $("#confirmation").modal("show");
+            }
+        };
+    </script> --}}
+
 @endsection

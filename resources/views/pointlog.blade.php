@@ -38,7 +38,11 @@
                                     <div class="col-11">
                                         <h5 class="font-weight-bolder">
                                             @if ($pointlog->type == 0)
-                                                Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
+                                                @if ($pointlog->user_survey != null)
+                                                    Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
+                                                @else
+                                                    {{ $pointlog->usercampaign->campaign->description }}
+                                                @endif
                                             @elseif($pointlog->type == 1)
                                                 Pengambilan poin
                                             @endif
@@ -119,7 +123,11 @@
                                 <tr class="text-left">
                                     <td>
                                         @if ($pointlog->type == 0)
-                                            Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
+                                            @if ($pointlog->user_survey != null)
+                                                Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
+                                            @else
+                                                {{ $pointlog->usercampaign->campaign->description }}
+                                            @endif
                                         @elseif($pointlog->type == 1)
                                             Pengambilan poin
                                         @endif

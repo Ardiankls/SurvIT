@@ -15,6 +15,7 @@ class point_log extends Model
         'point',
         'account_payment_id',
         'user_survey_id',
+        'user_campaign_id',
     ];
 
     public function payment() {
@@ -23,6 +24,10 @@ class point_log extends Model
 
     public function usersurvey() {
         return $this->belongsTo(user_survey::class, 'user_survey_id', 'id');
+    }
+
+    public function usercampaign() {
+        return $this->belongsTo(user_campaign::class, 'user_campaign_id', 'id');
     }
 
     public function status() {

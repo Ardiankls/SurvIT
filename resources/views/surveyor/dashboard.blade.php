@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @include('surveyor.modal.demographyModal')
 @include('surveyor.modal.pointModal')
+@include('surveyor.modal.newDemographyModal')
 @section('content')
 
     {{-- Belum Isi Demografi --}}
@@ -8,7 +9,7 @@
         <div class="container p-5 mt-5">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-8 mt-5">
-                    <div class="glass panel mt-5 text-dark">
+                    <div class="glass shadow rounded mt-5 text-dark">
                         <div class="card-header fs-5 ">{{ __('Selamat Datang di Website Survey SurvIT!') }}</div>
 
                         <div class="card-body">
@@ -319,6 +320,7 @@
         </div>
     @endif
 
+    {{-- Click Table --}}
     <script>
         $(document).ready(function() {
             $(document.body).on("click", "tr[data-href]", function() {
@@ -326,6 +328,8 @@
             });
         });
     </script>
+
+    {{-- Demography Modal --}}
     <script>
         $('input[type=checkbox]').change(function(e) {
             if ($('input[type=checkbox]:checked').length > 3) {
@@ -347,21 +351,38 @@
             });
         });
     </script>
+
+    {{-- Point Modal --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('#pay').click(function() {
                 var x, y;
                 x = document.getElementById("nominal").value;
                 y = document.getElementById("upoint").value;
-                // if (isNaN(x) || x < y) {
-                if (isNaN(x) || 10000 > y) {
+                if (10000 > y || x > y) {
                     alert(
                         "Point kamu tidak cukup."
                     );
                     return false;
                 }
+                if (10000 > x) {
+                    alert(
+                        "Minimal penarikan poin 10000."
+                    );
+                    return false;
+                }
 
             });
+        });
+    </script>
+
+    {{-- New Demography Modal --}}
+    <script>
+        $(document).ready(function() {
+            // Show the Modal on load
+            if ((@json($user->is_survey_avail) == '1') && (@json($user->birthdate) == null)) {
+                $("#newdemography").modal({backdrop: 'static', keyboard: false})
+            }
         });
     </script>
 

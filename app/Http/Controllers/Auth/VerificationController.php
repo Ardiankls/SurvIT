@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\point_log;
 use App\Models\User;
+use App\Models\user_campaign;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -53,6 +55,24 @@ class VerificationController extends Controller
 
         if ($user->markEmailAsVerified())
             event(new Verified($user));
+
+
+        // POINT LOG
+        $user->update([
+            'point' => $user->point + 500,
+        ]);
+
+        $ucampaign = user_campaign::create([
+            'user_id' => $user->id,
+            'campaign_id' => 1,
+        ]);
+
+        point_log::create([
+            'type' => '0',
+            'status_id' => '3',
+            'point' => 500,
+            'user_campaign_id' => $ucampaign->id,
+        ]);
 
         return view('auth.verified');
         // return redirect($this->redirectPath())->with('verified', true);

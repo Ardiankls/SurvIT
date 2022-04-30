@@ -51,7 +51,11 @@ class UserSurveyController extends Controller
             $uj[] = $ujob->pivot->job_id;
         }
 
-        $surveys = survey::whereHas('interests', function($query) use($ui) {
+        $age = date_diff(date_create($user->birthdate), date_create('now'))->y;
+
+        $surveys = survey::where('user_id', '<>', $id)
+                    ->where('status_id', 3)
+                    ->whereHas('interests', function($query) use($ui) {
                         $query->whereIn('interest_id', $ui);
                     })
                     ->whereHas('jobs', function($query) use($uj) {
@@ -60,14 +64,14 @@ class UserSurveyController extends Controller
                     ->whereHas('provinces', function($query) use($up) {
                         $query->whereIn('province_id', $up);
                     })
-                    ->where('user_id', '<>', $id)
-                    ->where('status_id', 3)
-                    ->whereHas('package', function($query) {
-                        $query->whereColumn('count', '<', 'respondent');
-                    })
                     ->where(function ($query) use($ugender){
                         $query->where('gender_id', '=', $ugender)
                               ->orWhere('gender_id', '=', 1);
+                    })
+                    ->where('age_from', '<=', $age)
+                    ->where('age_to', '>=', $age)
+                    ->whereHas('package', function($query) {
+                        $query->whereColumn('count', '<', 'respondent');
                     })
                     ->where(function ($query) use($id) {
                         $query->whereNotExists(function ($query) use($id) {

@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class user_survey extends Model
+class user_campaign extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'survey_id',
+        'campaign_id',
     ];
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(survey::class, 'user_id', 'id');
     }
 
-    public function survey() {
-        return $this->belongsTo(survey::class, 'survey_id', 'id');
+    public function campaign() {
+        return $this->belongsTo(campaign::class, 'campaign_id', 'id');
     }
 
     public function point_log() {

@@ -40,9 +40,32 @@
                                         <option value="{{ $package->id }}" {{ $selected }}>{{ $package->description }}</option>
                                     @endforeach
                                 </select>
-                                <a href="/package" target="_blank" >Lihat Paket</a>
+                                <a href="/package" target="_blank" >Lihat Keterangan Paket</a>
                             </div>
-                            <hr>
+
+                            @php
+                                $checked = '';
+                                $value = 0;
+                                if ($survey->shareable == 1) {
+                                    $checked = 'checked';
+                                    $value = 1;
+                                }
+                            @endphp
+
+                            <div class="form-group"><label>Dibagikan ke umum</label>
+                                <input class="float-right" type="checkbox" name="shareable" {{ $checked }} value="1">
+                            </div>
+
+                            <div class="form-group text-center">
+                                ------- Filter Demografi -------
+                            </div>
+
+                            <div class="form-group"><label>Usia</label><br>
+                                <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 10%" required>
+                                hingga
+                                <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 10%" required>
+                            </div>
+
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
                                 <select name="gender" class="custom-select">
@@ -223,8 +246,26 @@
                                 <a href="/package" target="_blank" >Lihat Keterangan Paket</a>
                             </div>
 
+                            @php
+                                $checked = '';
+                                if ($survey->shareable == 1) {
+                                    $checked = 'checked';
+                                }
+                            @endphp
+
+                            <div class="form-group"><label>Dibagikan ke umum</label>
+                                <input type='hidden' name="shareable" value='0'>
+                                <input class="float-right" type="checkbox" name="shareable" {{ $checked }} value="1">
+                            </div>
+
                             <div class="form-group text-center">
                                 ------- Filter Demografi -------
+                            </div>
+
+                            <div class="form-group"><label>Usia</label><br>
+                                <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 5%" required>
+                                hingga
+                                <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 5%" required>
                             </div>
 
                             <div class="form-group">

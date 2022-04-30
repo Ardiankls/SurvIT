@@ -33,5 +33,9 @@ class StatusSeeder extends Seeder
         $status = new status();
         $status->status = 'Pengecekan Pembayaran';
         $status->save();
+
+        $status = new status();
+        $status->status = 'Diberhentikan Sementara';
+        $status->save();
     }
 }

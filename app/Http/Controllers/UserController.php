@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Blast_New_Demography;
+use App\Mail\Success_Add_Demography;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
+use App\Models\point_log;
 use App\Models\province;
 use App\Models\User;
+use App\Models\user_campaign;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -55,7 +61,12 @@ class UserController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+        if($user->birthdate == null){
+            return view('addDemography', compact('user'));
+        }
 
+        return redirect()->route('user.index');
     }
 
     /**
@@ -69,6 +80,7 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $user = User::findOrFail($id);
         $user->update([
+            'birthdate' => $request->birthdate,
             'gender_id' => $request->gender,
             'province_id' => $request->province,
             'is_survey_avail' => '1'
@@ -76,6 +88,23 @@ class UserController extends Controller
 
         $user->jobs()->attach($request->job);
         $user->interests()->attach($request->interest);
+
+        //POINT LOG
+        $user->update([
+            'point' => $user->point + 500,
+        ]);
+
+        $ucampaign = user_campaign::create([
+            'user_id' => $id,
+            'campaign_id' => 2,
+        ]);
+
+        point_log::create([
+            'type' => '0',
+            'status_id' => '3',
+            'point' => 500,
+            'user_campaign_id' => $ucampaign->id,
+        ]);
 
         return redirect()->route('usersurvey.index');
     }
@@ -128,6 +157,7 @@ class UserController extends Controller
         if($which == 'demography'){
             $user->update([
                 'edited_at' => Carbon::now(),
+                'birthdate' => $request->birthdate,
                 'gender_id' => $request->gender,
                 'province_id' => $request->province,
             ]);
@@ -151,5 +181,35 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addDemography(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+
+        if($user->birthdate == null){
+            $user->update([
+                'birthdate' => $request->birthdate,
+                'point' => $user->point + 500,
+            ]);
+
+            $ucampaign = user_campaign::create([
+                'user_id' => $id,
+                'campaign_id' => 2,
+            ]);
+
+            point_log::create([
+                'type' => '0',
+                'status_id' => '3',
+                'point' => 500,
+                'user_campaign_id' => $ucampaign->id,
+            ]);
+
+            //MAIL
+            Mail::to($user->email)->send(new Success_Add_Demography(500));
+        }
+
+        return redirect()->route('usersurvey.index');
     }
 }

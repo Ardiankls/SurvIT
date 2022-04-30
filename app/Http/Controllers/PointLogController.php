@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\account_payment;
 use App\Models\point_log;
+use App\Models\user_campaign;
 use App\Models\user_survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ class PointLogController extends Controller
         $user = Auth::user();
         $usurveys = user_survey::all()->where('user_id', $user->id);
         $payments = account_payment::all()->where('user_id', $user->id);
+        $campaigns = user_campaign::all()->where('user_id', $user->id);
 
         $uid = [];
         foreach($usurveys as $usurvey){
@@ -31,8 +33,14 @@ class PointLogController extends Controller
             $pid[] = $payment->id;
         }
 
+        $cid = [];
+        foreach($campaigns as $campaign){
+            $cid[] = $campaign->id;
+        }
+
         $pointlogs = point_log::whereIn('user_survey_id', $uid)
                             ->orWhereIn('account_payment_id', $pid)
+                            ->orWhereIn('user_campaign_id', $cid)
                             ->orderBy('id', 'DESC')
                             ->get();
 

@@ -28,6 +28,11 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label>Tanggal Lahir</label>
+                            <input class="form-control border" type="date" name="birthdate" required>
+                        </div>
+
                         {{-- CHECKBOX --}}
                         <label>Kesukaan / Topik / Hobi</label>
                         <div class="container rounded border ">
@@ -93,7 +98,7 @@
                             </select>
                         </div>
 
-                        <button class="btn btn-primary" id="checkBtn" type="submit";">Submit
+                        <button class="btn btn-primary" id="checkBtn" type="submit">Submit
                         </button>
                     </div>
 
@@ -214,11 +219,11 @@
     </div>
 </div> --}}
 
-<script>
+{{-- <script>
     $('input[type=checkbox]').change(function(e) {
         if ($('input[type=checkbox]:checked').length > 3) {
             $(this).prop('checked', false)
             alert("allowed only 3");
         }
     })
-</script>
+</script> --}}

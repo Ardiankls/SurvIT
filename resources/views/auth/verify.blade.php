@@ -4,7 +4,7 @@
 <div class="container-xxl p-5">
     <div class="row justify-content-center">
         <div class="col-md-8 mt-3">
-            <div class="card">
+            <div class="card text-dark">
                 <div class="card-header">{{ __('Verfikasi Email Anda') }}</div>
 
                 <div class="card-body">
@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    {{ __('Sebelum anda dapat mengisi atau membuat proses, Mohon verifikasi Email anda terlebih dahulu.') }}
+                    Sebelum Kamu memulai mengisi atau membuat survei, Mohon verifikasi Email anda terlebih dahulu. Kamu bisa mendapatkan <b>500 poin</b> setelah melakukan verifikasi.
+                    <br><br>
                     {{ __('Jika anda tidak mendapatkan email') }},
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf

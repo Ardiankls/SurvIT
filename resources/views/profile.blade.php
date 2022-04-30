@@ -220,6 +220,11 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label>Tanggal Lahir</label>
+                                <input class="form-control border" type="date" name="birthdate" value="{{ $user->birthdate }}" required>
+                            </div>
+
                             {{-- CHECKBOX --}}
                             <label>Kesukaan / Topik / Hobi</label>
                             <div class="container rounded border ">

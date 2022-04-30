@@ -69,13 +69,15 @@ class SurveyController extends Controller
         while(!$exist->isEmpty());
 
         $survey = survey::create([
+            'user_id' => Auth::id(),
             'title' => $request->title,
             'link' => $request->link,
             'edit_link' => $request->edit_link,
-            'user_id' => Auth::id(),
-            'gender_id' => $request->gender,
-            'point' => $package->point,
             'url' => $url,
+            'gender_id' => $request->gender,
+            'age_from' => $request->agefrom,
+            'age_to' => $request->ageto,
+            'point' => $package->point,
             'shareable' => $request->shareable,
             'package_id' => $request->package,
         ]);
@@ -157,8 +159,11 @@ class SurveyController extends Controller
             'title' => $request->title,
             'link' => $request->link,
             'edit_link' => $request->edit_link,
-            'package_id' => $request->package,
             'gender_id' => $request->gender,
+            'age_from' => $request->agefrom,
+            'age_to' => $request->ageto,
+            'shareable' => $request->shareable,
+            'package_id' => $request->package,
             'status_id' => 2,
         ]);
 

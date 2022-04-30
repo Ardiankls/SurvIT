@@ -14,9 +14,9 @@ class AddUrlStatusPackageShareableEvidenceToSurveysTable extends Migration
     public function up()
     {
         Schema::table('surveys', function (Blueprint $table) {
-            $table->string('url')->after('count');
+            $table->string('url')->after('link');
             $table->enum('shareable', ['0', '1'])
-                ->default('0')->comment('0 = no, 1 = yes')->after('url')->nullable();;
+                ->default('0')->comment('0 = no, 1 = yes')->after('count')->nullable();;
             $table->text('evidence')->after('shareable')->nullable();
             $table->foreignId('package_id')->after('evidence')->constrained();
             $table->foreignId('status_id')->after('package_id')->default(2)->constrained();

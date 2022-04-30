@@ -45,12 +45,20 @@
                         </div>
 
                         <div class="form-group"><label>Dibagikan ke umum</label>
-                            <input type='hidden'name="shareable"  value='0'>
+                            <input type='hidden' name="shareable" value='0'>
                             <input class="float-right" type="checkbox" name="shareable" value="1">
                         </div>
+
                         <div class="form-group text-center">
                             ------- Filter Demografi -------
                         </div>
+
+                        <div class="form-group"><label>Usia</label><br>
+                            <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" style="width: 10%" required>
+                            hingga
+                            <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" style="width: 10%" required>
+                        </div>
+
                         <div class="form-group"><label>Jenis Kelamin</label>
                             <select name="gender" class="custom-select">
                                 @foreach ($genders as $gender)

@@ -31,6 +31,7 @@ Route::get('/', function(){
 Auth::routes(['verify' => true ]);
 
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
+Route::post('/updateDemography', [UserController::class, 'addDemography'])->middleware(['auth', 'verified'])->name('user.add.demography');
 Route::resource('survey', SurveyController::class)->middleware(['auth', 'verified']);
 Route::match(['put', 'patch'], '/survey/payment/{payment}', [SurveyController::class, 'payment'])->middleware(['auth', 'verified'])->name('survey.payment');
 Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 'verified']);
