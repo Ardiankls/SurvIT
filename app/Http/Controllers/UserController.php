@@ -61,12 +61,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        if($user->birthdate == null){
-            return view('addDemography', compact('user'));
-        }
+        // $user = Auth::user();
+        // if($user->birthdate == null){
+        //     return view('addDemography', compact('user'));
+        // }
 
-        return redirect()->route('user.index');
+        // return redirect()->route('user.index');
     }
 
     /**

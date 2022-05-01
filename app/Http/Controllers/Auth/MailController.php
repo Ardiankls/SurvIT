@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\Blast_New_Demography;
-use App\Mail\Broadcast_New;
+use App\Mail\Blast_New_Survey;
 use App\Models\gender;
 use App\Models\interest;
 use App\Models\job;
@@ -131,7 +131,7 @@ class MailController extends Controller
         dd($users);
 
         foreach($users as $user){
-            Mail::to($user->email)->send(new Broadcast_New());
+            Mail::to($user->email)->send(new Blast_New_Survey());
         }
 
         return redirect()->route('mail.index');
@@ -145,11 +145,7 @@ class MailController extends Controller
      */
     public function show($id)
     {
-        //MAIL
-        $users = User::where('is_survey_avail' == '1' && 'birthdate' == null)->get();
-        foreach($users as $user){
-            Mail::to($user->email)->send(new Blast_New_Demography(500));
-        }
+        //
     }
 
     /**
