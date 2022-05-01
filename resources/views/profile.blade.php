@@ -167,20 +167,20 @@
                     <div class="col-6">
                         <div class=" glass shadow panel">
                             <div class="p-1">
-                                <div class="ps-2 pt-2">
+                                <div class="ps-3 pt-2 font-weight-bold">
                                     Points
                                 </div>
                                 <div class="mx-auto text-center py-2 fs-1 text-primary">
                                     {{ $user->point }}
                                 </div>
-                            </div>
+                            </div>x
 
                         </div>
                     </div>
                     <div class="col-6">
                         <div class=" glass shadow panel">
                             <div class="p-1">
-                                <div class="ps-2 pt-2">
+                                <div class="ps-3 pt-2 font-weight-bold">
                                     Survei
                                 </div>
                                 <div class="mx-auto text-center py-2 fs-1 text-primary">
