@@ -37,4 +37,5 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('province', [DemographyController::class, 'province'])->name('province');
     Route::get('job', [DemographyController::class, 'job'])->name('job');
     Route::get('interest', [DemographyController::class, 'interest'])->name('interest');
+    Route::post('addInterest', [DemographyController::class, 'addInterest'])->name('addInterest');
 });

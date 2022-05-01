@@ -51,7 +51,6 @@ class DemographyController extends Controller
             'province_id' => $request->province,
             'is_survey_avail' => '1'
         ]);
-
         $user->jobs()->attach($request->job);
         $user->interests()->attach($request->interest);
 
@@ -114,5 +113,12 @@ class DemographyController extends Controller
     {
         $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
         return ProvinceResource::collection($provinces);
+    }
+
+    public function addInterest(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+        $user->interests()->attach($request->interest);
     }
 }
