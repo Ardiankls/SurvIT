@@ -32,6 +32,8 @@ class AdminController extends Controller
             return view('admin.payment', compact('surveys'));
         }else if($type == 4){
             return view('admin.point', compact('upoints'));
+        }else if($type == 5){
+            return view('admin.blast');
         }
 
         // return view('admin.point', compact('usurveys', 'surveys', 'upoints'));

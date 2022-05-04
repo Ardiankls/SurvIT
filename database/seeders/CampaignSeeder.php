@@ -18,14 +18,14 @@ class CampaignSeeder extends Seeder
         $status->campaign = 'Verify Email';
         $status->description = 'Telah verifikasi email';
         $status->point = 500;
-        $status->is_ongoing = 1;
+        $status->is_ongoing = '1';
         $status->save();
 
         $status = new campaign();
         $status->campaign = 'Fill Demography';
         $status->description = 'Melengkapi demografi';
         $status->point = 500;
-        $status->is_ongoing = 1;
+        $status->is_ongoing = '1';
         $status->save();
     }
 }

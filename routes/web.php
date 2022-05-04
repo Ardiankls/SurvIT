@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\MailController as Email;
 use App\Http\Controllers\FillController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PointLogController;
 
@@ -50,6 +51,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::match(['put', 'patch'], '/survey/{survey}/{action}', [AdminController::class, 'updateSurvey'])->name('admin.survey');
     Route::match(['put', 'patch'], '/point/{upoint}', [AdminController::class, 'updatePoint'])->name('admin.point');
     Route::match(['put', 'patch'], '/payment/{survey}/{action}', [AdminController::class, 'updatePayment'])->name('admin.payment');
+    Route::post('/blastadddemography', [MailController::class, 'add_demography_email'])->name('mail.addDemography');
 });
 
 Route::get('/clear-cache', function() {

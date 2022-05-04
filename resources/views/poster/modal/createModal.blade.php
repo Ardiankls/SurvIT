@@ -27,14 +27,6 @@
                             <input class="form-control border" type="text" name="edit_link" required>
                         </div>
 
-                        {{-- <div class="form-group"><label>Poin</label>
-                            <input class="form-control" type="text" name="pay" required>
-                        </div>
-
-                        <div class="form-group"><label>Limit</label>
-                            <input class="form-control" type="text" name="limit" required>
-                        </div> --}}
-
                         <div class="form-group"><label>Paket</label>
                             <select name="package" class="custom-select">
                                 @foreach ($packages as $package)
@@ -54,9 +46,12 @@
                         </div>
 
                         <div class="form-group"><label>Usia</label><br>
-                            <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" style="width: 10%" required>
+                            <input class="form border text-center" id="agefrom" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" style="width: 10%" value="0" required>
                             hingga
-                            <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" style="width: 10%" required>
+                            <input class="form border text-center" id="ageto" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" style="width: 10%" value="99" required>
+                            <p class="mt-2 float-right" style="font-size: 10px">
+                                *Default: 0 hingga 99 (Semua umur)
+                            </p>
                         </div>
 
                         <div class="form-group"><label>Jenis Kelamin</label>
@@ -98,7 +93,7 @@
                             </select>
                         </div>
 
-                        <button class="btn btn-success" type="submit">Submit</button>
+                        <button id="create" class="btn btn-success" type="submit">Submit</button>
                     </div>
 
                 </form>
@@ -109,112 +104,6 @@
         </div>
     </div>
 </div>
-
-{{-- <div class="modal fade" id="pricing" tabindex="-1" role="dialog">
-    <div class="modal-dialog-scrollable" role="document" style="padding: 100px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLongTitle">Daftar Paket</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="myBtn">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-striped" id="myTable">
-                    <thead>
-                        <tr class="text-center">
-                            <th scope="col"></th>
-                            <th scope="col">Basic</th>
-                            <th scope="col">Custom</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <tr class="text-center">
-                                <td>
-                                    Respondent
-                                </td>
-                                <td>
-                                    50-100
-                                </td>
-                                <td>
-                                    50-200
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>
-                                    Demography Mapping
-                                </td>
-                                <td>
-                                    Iya
-                                </td>
-                                <td>
-                                    Iya
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>
-                                    Waktu
-                                </td>
-                                <td>
-                                    1-4 Minggu
-                                </td>
-                                <td>
-                                    1-4 Minggu
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>
-                                    Report and Visualization
-                                </td>
-                                <td>
-                                    1-4 Minggu
-                                </td>
-                                <td>
-                                    1-4 Minggu
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>
-                                    Konsultasi
-                                </td>
-                                <td>
-                                    1-4 Minggu
-                                </td>
-                                <td>
-                                    1-4 Minggu
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>
-                                    Survey Form
-                                </td>
-                                <td>
-                                    1-4 Minggu
-                                </td>
-                                <td>
-                                    1-4 Minggu
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>
-                                    Harga
-                                </td>
-                                <td>
-                                    Rp. 40,000 - 100,000
-                                </td>
-                                <td>
-                                    Rp. 200,000 - 320,000
-                                </td>
-                            </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="myBtn2">Close</button>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 <script type='text/javascript'>
     // var counter = 2;

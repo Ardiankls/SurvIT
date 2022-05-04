@@ -14,7 +14,12 @@ use App\Models\User;
 class MailController extends Controller
 {
     public function add_demography_email() {
-        $users = User::where('is_survey_avail' == '1' && 'birthdate' == null)->get();
+        $users = User::where('id', '>' , '8')
+                    ->where('birthdate' == null)
+                    ->where('is_survey_avail' == '1')
+                    ->get();
+
+        dd($users);
         foreach($users as $user){
             Mail::to($user->email)->send(new Blast_New_Demography(500));
         }

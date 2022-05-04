@@ -7,6 +7,7 @@
                 <a href="{{ route('admin.index', 2) }}" class="btn btn-secondary">Buat Survei</a>
                 <a href="{{ route('admin.index', 3) }}" class="btn btn-secondary" style="background: blue">Pembayaran Survei</a>
                 <a href="{{ route('admin.index', 4) }}" class="btn btn-secondary">Ambil Poin</a>
+                <a href="{{ route('admin.index', 5) }}" class="btn btn-secondary">Blast Email</a>
                 <div id="payment">
                     <div class="bg-white text-center rounded-lg shadow d-none d-md-block">
                         <h1 class="p-3">Konfirmasi Pembayaran</h1>

@@ -224,4 +224,28 @@
             </div>
         </div>
     @endif --}}
+
+     {{-- Age --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#create').click(function() {
+                var x, y;
+                x = document.getElementById("agefrom").value;
+                y = document.getElementById("ageto").value;
+                if (parseInt(x) > parseInt(y)) {
+                    alert(
+                        "Ada kesalahan di demografi usia."
+                    );
+                    return false;
+                }
+                if (parseInt(x) > 99 || parseInt(y) > 99) {
+                    alert(
+                        "Usia tidak boleh lebih dari 100."
+                    );
+                    return false;
+                }
+            });
+        });
+    </script>
+
 @endsection

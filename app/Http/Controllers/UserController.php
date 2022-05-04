@@ -106,6 +106,9 @@ class UserController extends Controller
             'user_campaign_id' => $ucampaign->id,
         ]);
 
+        //MAIL
+        Mail::to($user->email)->send(new Success_Add_Demography(500));
+
         return redirect()->route('usersurvey.index');
     }
 

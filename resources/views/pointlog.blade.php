@@ -160,10 +160,15 @@
                 var x, y;
                 x = document.getElementById("nominal").value;
                 y = document.getElementById("upoint").value;
-                // if (isNaN(x) || x < y) {
-                if (isNaN(x) || 10000 > y) {
+                if (10000 > parseInt(y) || parseInt(x) > parseInt(y)) {
                     alert(
                         "Point kamu tidak cukup."
+                    );
+                    return false;
+                }
+                if (10000 > parseInt(x)) {
+                    alert(
+                        "Minimal penarikan poin 10000."
                     );
                     return false;
                 }
@@ -171,4 +176,5 @@
             });
         });
     </script>
+
 @endsection
