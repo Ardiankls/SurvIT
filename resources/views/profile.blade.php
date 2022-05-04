@@ -173,7 +173,7 @@
                                 <div class="mx-auto text-center py-2 fs-1 text-primary">
                                     {{ $user->point }}
                                 </div>
-                            </div>x
+                            </div>
 
                         </div>
                     </div>
@@ -198,7 +198,10 @@
                             <div class="font-weight-bold">
                                 Demography
                             </div>
-                            <button class=" btn btn-sm btn-primary ">Ubah</button>
+                            <button class="btn btn-sm btn-primary">
+                                <a href="" class="text-white px-2" id="edit2" data-toggle="modal"
+                                    data-target="#editdemography">Ubah</a>
+                            </button>
                         </div>
                         <div class=" body px-4 py-3">
                             <div class="row mb-4">
@@ -456,6 +459,20 @@
             var days = document.getElementById("editable").value;
             var left = 30 - days;
             $('#edit').click(function () {
+                if (days >= 30) {
+                    alert(
+                        "Kamu hanya dapat mengubah demografi sekali dalam sebulan (30 hari)."
+                    );
+                    return true;
+                } else {
+                    alert(
+                        "Kamu hanya dapat mengubah demografi sekali dalam sebulan (30 hari). Silahkan tunggu " +
+                        left + " hari lagi."
+                    );
+                    return false;
+                }
+            });
+            $('#edit2').click(function () {
                 if (days >= 30) {
                     alert(
                         "Kamu hanya dapat mengubah demografi sekali dalam sebulan (30 hari)."
