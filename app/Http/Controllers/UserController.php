@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Mail\Blast_New_Demography;
 use App\Mail\Success_Add_Demography;
 use App\Models\gender;
 use App\Models\interest;
@@ -13,7 +12,6 @@ use App\Models\province;
 use App\Models\User;
 use App\Models\user_campaign;
 use Carbon\Carbon;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
