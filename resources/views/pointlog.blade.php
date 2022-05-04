@@ -38,7 +38,7 @@
                                     <div class="col-11">
                                         <h5 class="font-weight-bolder">
                                             @if ($pointlog->type == 0)
-                                                @if ($pointlog->user_survey != null)
+                                                @if ($pointlog->user_survey_id != null)
                                                     Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
                                                 @else
                                                     {{ $pointlog->usercampaign->campaign->description }}
@@ -123,7 +123,7 @@
                                 <tr class="text-left">
                                     <td>
                                         @if ($pointlog->type == 0)
-                                            @if ($pointlog->user_survey != null)
+                                            @if ($pointlog->user_survey_id != null)
                                                 Mengisi survei "{{ $pointlog->usersurvey->survey->title }}"
                                             @else
                                                 {{ $pointlog->usercampaign->campaign->description }}
