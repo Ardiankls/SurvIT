@@ -17,7 +17,6 @@
                         <h4 class="text-center">Survei Saya</h4>
                     </div>
                     @foreach ($surveys as $survey)
-                        {{-- @include('poster.modal.payModal') --}}
                         <div class="card-list w-100 no-gutters">
                             <div class="container bg-white no-gutters shadow pr-4 pl-4 pt-4 pb-3 mb-4"
                                 style="border-radius: 15px;">
@@ -79,14 +78,14 @@
 
     {{-- DESKTOP --}}
     <div class="container-xxl p-5 d-none d-md-block">
-        <div class="row justify-content-center ">
-            <div class="col-md-9 text-right mb-3 mr-4">
+        <div class="row justify-content-center">
+            <div class="col-md-9 text-right mb-3">
                 <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary">Buat Survey</a>
             </div>
             <div class="col-9">
-                <div class="panel mr-3 px-4 py-3 glass shadow" style="height:630px;">
-                    <h5 class="">Survei Saya</h5>
-                    <div class="table-responsive custom-table-responsive" style="overflow: auto; height:620px;">
+                <div class="panel px-4 py-3 glass shadow" style="height:100vh;">
+                    <h5>Survei Saya</h5>
+                    <div class="table-responsive custom-table-responsive" style="overflow: auto; height:85%;">
                         <table class="table custom-table">
                             <thead>
                                 <tr class="text-left">
@@ -99,7 +98,6 @@
                             </thead>
                             <tbody>
                                 @foreach ($surveys as $survey)
-
                                     <tr data-href="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
                                         enctype="multipart/form-data" scope="row">
                                         <td>
@@ -225,7 +223,16 @@
         </div>
     @endif --}}
 
-     {{-- Age --}}
+    {{-- Click Table --}}
+    <script>
+        $(document).ready(function() {
+            $(document.body).on("click", "tr[data-href]", function() {
+                window.location.href = this.dataset.href;
+            });
+        });
+    </script>
+
+    {{-- Age --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('#create').click(function() {

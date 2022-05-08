@@ -25,7 +25,7 @@ class UserSurveyController extends Controller
      */
     public function index()
     {
-        //Demography
+        //Demography Modal
         $pages = "user";
         $user = Auth::user();
         $genders = gender::all()->where('id', '<>', '1');
@@ -34,11 +34,11 @@ class UserSurveyController extends Controller
         $provinces = province::all()->where('id', '<>', '1')->sortBy('province');
 
         //Survey List
-        $id = Auth::user()->id;
-        $ugender = User::find($id)->gender_id;
-        $uprovince = User::find($id)->province_id;
-        $ujobs = User::find($id)->jobs;
-        $uinterests = User::find($id)->interests;
+        $id = $user->id;
+        $ugender = $user->gender_id;
+        $uprovince = $user->province_id;
+        $ujobs = $user->jobs;
+        $uinterests = $user->interests;
         $ui = [1];
         $uj = [1];
         $up = [1, $uprovince];

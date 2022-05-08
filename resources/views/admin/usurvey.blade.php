@@ -40,7 +40,7 @@
                                                 method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input name="_method" type="hidden" value="PATCH">
-                                                <button class="btn btn-primary" type="submit">
+                                                <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">
                                                     Accept
                                                 </button>
                                             </form>
@@ -51,7 +51,7 @@
                                                 method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input name="_method" type="hidden" value="PATCH">
-                                                <button class="btn btn-danger" type="submit">
+                                                <button class="btn btn-danger" type="submit" onclick="this.disabled=true;this.form.submit();">
                                                     Decline
                                                 </button>
                                             </form>

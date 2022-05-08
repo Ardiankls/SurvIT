@@ -98,7 +98,7 @@
                             </select>
                         </div>
 
-                        <button class="btn btn-primary" id="checkBtn" type="submit">Submit
+                        <button class="btn btn-primary" id="checkBtn" type="submit" onclick="this.disabled=true;this.form.submit();">Submit
                         </button>
                     </div>
 

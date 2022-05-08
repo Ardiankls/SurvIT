@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="float-right">
-                            <button class="btn btn-primary" type="submit">Simpan</button>
+                            <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
                         </div>
                     @endif
                 </form>

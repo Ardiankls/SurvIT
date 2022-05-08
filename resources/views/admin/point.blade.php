@@ -41,7 +41,7 @@
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <input name="_method" type="hidden" value="PATCH">
-                                                <button class="btn btn-primary" id="selesai" type="submit">
+                                                <button class="btn btn-primary" id="selesai" type="submit" onclick="this.disabled=true;this.form.submit();">
                                                     Finish
                                                 </button>
                                             </form>

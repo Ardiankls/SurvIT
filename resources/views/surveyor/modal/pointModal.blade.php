@@ -48,7 +48,7 @@
                                 @endif
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="pay" type="submit" style="">Submit</button>
+                        <button class="btn btn-primary" id="pay" type="submit" onclick="this.disabled=true;this.form.submit();">Submit</button>
                     </div>
                 </form>
             </div>

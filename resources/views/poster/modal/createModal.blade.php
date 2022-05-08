@@ -93,7 +93,7 @@
                             </select>
                         </div>
 
-                        <button id="create" class="btn btn-success" type="submit">Submit</button>
+                        <button id="create" class="btn btn-success" type="submit" onclick="this.disabled=true;this.form.submit();">Submit</button>
                     </div>
 
                 </form>

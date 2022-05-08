@@ -28,7 +28,7 @@
                                 <input type="file" id="file" name="file" required>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit" style="">Submit</button>
+                        <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Submit</button>
                     </div>
                 </form>
             </div>

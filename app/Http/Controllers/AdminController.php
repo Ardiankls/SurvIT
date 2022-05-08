@@ -88,55 +88,55 @@ class AdminController extends Controller
                     'opened_at' => Carbon::now()
                 ]);
 
-            //     //BLAST
-            //     $users = User::where('id', '>', 5);
-            //     $uid = [];
+                // //BLAST
+                // $users = User::where('id', '>', 5)->get();
+                // $uid = [];
 
-            //     //AGE
-            //     foreach ($users as $user){
-            //         $age = date_diff(date_create($user->birthdate), date_create('now'))->y;
-            //         if($survey->age_from <= $age && $survey->age_to >= $age){
-            //             $uid[] = $user->id;
-            //         }
-            //     }
+                // //AGE
+                // foreach ($users as $user){
+                //     $age = date_diff(date_create($user->birthdate), date_create('now'))->y;
+                //     if($survey->age_from <= $age && $survey->age_to >= $age){
+                //         $uid[] = $user->id;
+                //     }
+                // }
 
-            //     $users = User::whereIn('id', $uid);
+                // $users = User::whereIn('id', $uid);
 
-            //     dd($uid);
-            //     //INTERESTS
-            //     foreach ($survey->interests as $interest){
-            //         $si[] = $interest->id;
-            //     }
-            //     if($si[0] != 1){
-            //         $users = $users->whereHas('interests', function($query) use($si) {
-            //             $query->whereIn('interest_id', $si);
-            //         });
-            //     }
+                // dd($uid);
+                // //INTERESTS
+                // foreach ($survey->interests as $interest){
+                //     $si[] = $interest->id;
+                // }
+                // if($si[0] != 1){
+                //     $users = $users->whereHas('interests', function($query) use($si) {
+                //         $query->whereIn('interest_id', $si);
+                //     });
+                // }
 
-            //     //JOBS
-            //     foreach ($survey->jobs as $job){
-            //         $sj[] = $job->id;
-            //     }
-            //     if($sj[0] != 1){
-            //         $users = $users->whereHas('jobs', function($query) use($sj) {
-            //             $query->whereIn('job_id', $sj);
-            //         });
-            //     }
+                // //JOBS
+                // foreach ($survey->jobs as $job){
+                //     $sj[] = $job->id;
+                // }
+                // if($sj[0] != 1){
+                //     $users = $users->whereHas('jobs', function($query) use($sj) {
+                //         $query->whereIn('job_id', $sj);
+                //     });
+                // }
 
-            //     //PROVINCE
-            //     foreach ($survey->provinces as $province){
-            //         $sp[] = $province->id;
-            //     }
-            //     if($sp[0] != 1){
-            //         $users = $users->whereIn('province_id', $sp);
-            //     }
+                // //PROVINCE
+                // foreach ($survey->provinces as $province){
+                //     $sp[] = $province->id;
+                // }
+                // if($sp[0] != 1){
+                //     $users = $users->whereIn('province_id', $sp);
+                // }
 
-            //     //GENDER
-            //     if($survey->gender_id != 1){
-            //         $users = $users->where('gender_id', $survey->gender_id);
-            //     }
+                // //GENDER
+                // if($survey->gender_id != 1){
+                //     $users = $users->where('gender_id', $survey->gender_id);
+                // }
 
-            //     dd($users->get());
+                // dd($users->get());
 
             }else{
                 $survey->update([

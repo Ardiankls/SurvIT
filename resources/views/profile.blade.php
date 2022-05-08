@@ -1,39 +1,173 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-xxl  p-5">
-        <div class="row justify-content-center ">
+    {{-- Old Ui --}}
+    {{-- <div class="col-md-8 mt-5"> --}}
+    {{-- <div class="bg-white rounded-lg shadow d-none d-md-block" style=""> --}}
+    {{-- <div> --}}
+    {{-- <div class="float-left pt-3 pl-3"> --}}
+    {{-- <h4>Profil</h4> --}}
+    {{-- </div> --}}
+    {{-- <div class="float-right pt-3 pr-3"> --}}
+    {{-- <a href="{{ route('user.edit', $user) }}" class="btn btn-primary">Ubah</a> --}}
+    {{-- </div> --}}
+    {{-- </div> --}}
+    {{-- <div class="p-5"></div> --}}
+    {{-- <div class="text-center"> --}}
+    {{-- <img style="width: 20%;" src="/images/profile.png" alt=""> --}}
+    {{-- </div> --}}
+    {{-- <div class="p-3"></div> --}}
+    {{-- <div class="col text-center"> --}}
+    {{-- <h2>{{ $user->first_name }} {{ $user->last_name }}</h2> --}}
+    {{-- <h4>{{ $user->email }}</h4><br> --}}
+    {{-- Nama Depan: {{ $user->first_name }}<br> --}}
+    {{-- Nama Belakang: {{ $user->last_name }}<br> --}}
+    {{-- Nomor Telepon: {{ $user->phone }}<br> --}}
+    {{-- </div> --}}
+    {{-- <div class="p-5"></div> --}}
+    {{-- </div> --}}
+    {{-- </div> --}}
+
+    {{-- <div class="col-md-8 mt-5"> --}}
+    {{-- <div class="bg-white rounded-lg shadow d-none d-md-block" style=""> --}}
+    {{-- @if ($user->is_survey_avail == '0') --}}
+    {{-- <div> --}}
+    {{-- <div class="float-left pt-3 pl-3"> --}}
+    {{-- <h4>Demografi</h4> --}}
+    {{-- </div> --}}
+    {{-- </div> --}}
+    {{-- <div class="p-5"></div> --}}
+    {{-- <div class="col text-center"> --}}
+    {{-- Anda belum mengisi demografi --}}
+    {{-- </div> --}}
+    {{-- <div class="p-4"></div> --}}
+    {{-- @else --}}
+    {{-- <div> --}}
+    {{-- <div class="float-left pt-3 pl-3"> --}}
+    {{-- <h4>Demografi</h4> --}}
+    {{-- </div> --}}
+    {{-- <div class="float-right pt-3 pr-3"> --}}
+    {{-- <a href="" class="btn btn-primary" id="edit" data-toggle="modal" --}}
+    {{-- data-target="#editdemography">Ubah</a> --}}
+    {{-- </div> --}}
+    {{-- </div> --}}
+    {{-- <div class="p-5"></div> --}}
+    {{-- <div class="col text-center"> --}}
+    {{-- Jenis Kelamin: {{ $user->gender->gender ?? 'null' }}<br> --}}
+    {{-- Pekerjaan: {{ $user->jobs->first()->job_name ?? 'null' }}<br> --}}
+    {{-- Kesukaan / Topik / Hobi: {{ $user->interests->first()->interest ?? 'null' }}<br> --}}
+    {{-- Provinsi: {{ $user->province->province ?? 'null' }}<br> --}}
+    {{-- </div> --}}
+    {{-- <div class="p-4"></div> --}}
+    {{-- @endif --}}
+    {{-- </div> --}}
+    {{-- </div> --}}
+
+    {{-- NEW UI --}}
+    {{-- Mobile View --}}
+    <div class="container-xxl p-5 d-md-none">
+        <div class="row justify-content-center">
             <div class="col-md-9"></div>
+            <div id="content" class=" d-md-none">
+                <div class="row px-2">
+                    <div class="col-12 mt-3">
+                        <div class="panel glass shadow  ps-4 py-3">
+                            <div class="row text-dark">
+                                <div class="col-3 my-auto">
+                                    <img src="/images/profile.png" alt="" style="width:100%">
+                                </div>
+                                <div class="col-6 my-auto">
+                                    <div class="row text-start ">
+                                        {{ $user->first_name }} {{ $user->last_name }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="pl-0">{{ $user->email }}</div>
+                                    </div>
+                                    <div class="row text-start p-0">
+                                        <small class="pl-0">Terdaftar
+                                            Pada: {{ $user->created_at->format('Y-m-d') }}</small>
+                                    </div>
+                                </div>
+                                <div class="col-3 "></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row px-2 mt-3 text-dark">
+                    <div class="col-6">
+                        <div class=" glass shadow panel">
+                            <div class="p-1">
+                                <div class="ps-3 pt-2 font-weight-bold">
+                                    Points
+                                </div>
+                                <div class="mx-auto text-center py-2 fs-1 text-primary">
+                                    {{ $user->point }}
+                                </div>
+                            </div>
 
-            {{-- Old Ui --}}
-            {{-- <div class="col-md-8 mt-5"> --}}
-            {{-- <div class="bg-white rounded-lg shadow d-none d-md-block" style=""> --}}
-            {{-- <div> --}}
-            {{-- <div class="float-left pt-3 pl-3"> --}}
-            {{-- <h4>Profil</h4> --}}
-            {{-- </div> --}}
-            {{-- <div class="float-right pt-3 pr-3"> --}}
-            {{-- <a href="{{ route('user.edit', $user) }}" class="btn btn-primary">Ubah</a> --}}
-            {{-- </div> --}}
-            {{-- </div> --}}
-            {{-- <div class="p-5"></div> --}}
-            {{-- <div class="text-center"> --}}
-            {{-- <img style="width: 20%;" src="/images/profile.png" alt=""> --}}
-            {{-- </div> --}}
-            {{-- <div class="p-3"></div> --}}
-            {{-- <div class="col text-center"> --}}
-            {{-- <h2>{{ $user->first_name }} {{ $user->last_name }}</h2> --}}
-            {{-- <h4>{{ $user->email }}</h4><br> --}}
-            {{-- Nama Depan: {{ $user->first_name }}<br> --}}
-            {{-- Nama Belakang: {{ $user->last_name }}<br> --}}
-            {{-- Nomor Telepon: {{ $user->phone }}<br> --}}
-            {{-- </div> --}}
-            {{-- <div class="p-5"></div> --}}
-            {{-- </div> --}}
-            {{-- </div> --}}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class=" glass shadow panel">
+                            <div class="p-1">
+                                <div class="ps-3 pt-2 font-weight-bold">
+                                    Survei
+                                </div>
+                                <div class="mx-auto text-center py-2 fs-1 text-primary">
+                                    {{ count($user->surveys) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row px-2 mt-3">
+                    <div class="col-12 text-dark">
+                        <div class=" panel glass shadow px-4 py-3">
+                            <div class="d-flex flex-row justify-content-between">
+                                <div class="font-weight-bold">
+                                    Demography
+                                </div>
+                                <button class="btn btn-sm btn-primary">
+                                    <a href="" class="text-white px-2" id="edit2" data-toggle="modal"
+                                        data-target="#editdemography">Ubah</a>
+                                </button>
+                            </div>
+                            <div class=" body px-4 py-3">
+                                <div class="row mb-4">
+                                    <div class="font-weight-bold">Pekerjaan</div>
+                                    <div class="ml-2 text-dark">
+                                        <div>{{ $user->jobs->first()->job_name ?? 'null' }} </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="font-weight-bold">Provinsi</div>
+                                    <div class="ml-2 text-dark">
+                                        <div>{{ $user->province->province ?? 'null' }}</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="font-weight-bold">Hobi/Kesukaan/Topik</div>
+                                    <div class="ml-2 text-dark">
+                                        <div>
+                                            @foreach ($user->interests as $interest)
+                                                {{ $interest->interest }}
+                                                <br>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            {{-- NEW UI --}}
-            {{--Desktop View--}}
-            <div id="content" class=" p-md-5 pt-5 d-none d-md-block">
+    {{-- Desktop View --}}
+    <div class="container-xxl p-5 d-none d-md-block">
+        <div class="row justify-content-center">
+            <div class="col-md-9"></div>
+            <div id="content" class=" p-md-5 pt-5 ">
                 <div class="row">
                     <div class="col-9">
                         <div class="panel mr-3 px-4 py-3 glass shadow ">
@@ -105,7 +239,7 @@
                                     </div>
                                     <button class="btn btn-primary">
                                         <a href="" class="text-white px-2" id="edit" data-toggle="modal"
-                                           data-target="#editdemography">Ubah</a>
+                                            data-target="#editdemography">Ubah</a>
                                     </button>
                                 </div>
                                 <div class="body px-4 py-3">
@@ -136,137 +270,7 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Mobile View --}}
-            <div id="content" class=" d-md-none">
-                <div class="row px-2">
-                    <div class="col-12 mt-3">
-                        <div class="panel glass shadow  ps-4 py-3">
-                            <div class="row text-dark">
-                                <div class="col-3 my-auto">
-                                    <img src="/images/profile.png" alt="" style="width:100%">
-                                </div>
-                                <div class="col-6 my-auto">
-                                    <div class="row text-start ">
-                                        {{ $user->first_name }} {{ $user->last_name }}
-                                    </div>
-                                    <div class="row">
-                                        <div class="pl-0">{{ $user->email }}</div>
-                                    </div>
-                                    <div class="row text-start p-0">
-                                        <small class="pl-0">Terdaftar
-                                            Pada: {{ $user->created_at->format('Y-m-d') }}</small>
-                                    </div>
-                                </div>
-                                <div class="col-3 "></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row px-2 mt-3 text-dark">
-                    <div class="col-6">
-                        <div class=" glass shadow panel">
-                            <div class="p-1">
-                                <div class="ps-3 pt-2 font-weight-bold">
-                                    Points
-                                </div>
-                                <div class="mx-auto text-center py-2 fs-1 text-primary">
-                                    {{ $user->point }}
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class=" glass shadow panel">
-                            <div class="p-1">
-                                <div class="ps-3 pt-2 font-weight-bold">
-                                    Survei
-                                </div>
-                                <div class="mx-auto text-center py-2 fs-1 text-primary">
-                                    {{ count($user->surveys) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row px-2 mt-3">
-                    <div class="col-12 text-dark">
-                        <div class=" panel glass shadow px-4 py-3">
-                            <div class="d-flex flex-row justify-content-between"
-                            >
-                            <div class="font-weight-bold">
-                                Demography
-                            </div>
-                            <button class="btn btn-sm btn-primary">
-                                <a href="" class="text-white px-2" id="edit2" data-toggle="modal"
-                                    data-target="#editdemography">Ubah</a>
-                            </button>
-                        </div>
-                        <div class=" body px-4 py-3">
-                            <div class="row mb-4">
-                                <div class="font-weight-bold">Pekerjaan</div>
-                                <div class="ml-2 text-dark">
-                                    <div>{{ $user->jobs->first()->job_name ?? 'null' }} </div>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="font-weight-bold">Provinsi</div>
-                                <div class="ml-2 text-dark">
-                                    <div>{{ $user->province->province ?? 'null' }}</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="font-weight-bold">Hobi/Kesukaan/Topik</div>
-                                <div class="ml-2 text-dark">
-                                    <div>
-                                        @foreach ($user->interests as $interest)
-                                            {{ $interest->interest }}
-                                            <br>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-    {{-- <div class="col-md-8 mt-5"> --}}
-    {{-- <div class="bg-white rounded-lg shadow d-none d-md-block" style=""> --}}
-    {{-- @if ($user->is_survey_avail == '0') --}}
-    {{-- <div> --}}
-    {{-- <div class="float-left pt-3 pl-3"> --}}
-    {{-- <h4>Demografi</h4> --}}
-    {{-- </div> --}}
-    {{-- </div> --}}
-    {{-- <div class="p-5"></div> --}}
-    {{-- <div class="col text-center"> --}}
-    {{-- Anda belum mengisi demografi --}}
-    {{-- </div> --}}
-    {{-- <div class="p-4"></div> --}}
-    {{-- @else --}}
-    {{-- <div> --}}
-    {{-- <div class="float-left pt-3 pl-3"> --}}
-    {{-- <h4>Demografi</h4> --}}
-    {{-- </div> --}}
-    {{-- <div class="float-right pt-3 pr-3"> --}}
-    {{-- <a href="" class="btn btn-primary" id="edit" data-toggle="modal" --}}
-    {{-- data-target="#editdemography">Ubah</a> --}}
-    {{-- </div> --}}
-    {{-- </div> --}}
-    {{-- <div class="p-5"></div> --}}
-    {{-- <div class="col text-center"> --}}
-    {{-- Jenis Kelamin: {{ $user->gender->gender ?? 'null' }}<br> --}}
-    {{-- Pekerjaan: {{ $user->jobs->first()->job_name ?? 'null' }}<br> --}}
-    {{-- Kesukaan / Topik / Hobi: {{ $user->interests->first()->interest ?? 'null' }}<br> --}}
-    {{-- Provinsi: {{ $user->province->province ?? 'null' }}<br> --}}
-    {{-- </div> --}}
-    {{-- <div class="p-4"></div> --}}
-    {{-- @endif --}}
-    {{-- </div> --}}
-    {{-- </div> --}}
     </div>
 
     {{-- Edit Demography Modal --}}
@@ -320,7 +324,7 @@
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
                                 <input class="form-control border" type="date" name="birthdate"
-                                       value="{{ $user->birthdate }}" required>
+                                    value="{{ $user->birthdate }}" required>
                             </div>
 
                             {{-- CHECKBOX --}}
@@ -351,54 +355,54 @@
                                         @endforeach
                                         <div class="form-group ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="2"
+                                                    aria-label="Checkbox for following text input" value="2"
                                                     {{ $checked[2] }}> Olahraga</label>
                                         </div>
                                         <div class="form-group ">
                                             <label><input type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="3"
+                                                    aria-label="Checkbox for following text input" value="3"
                                                     {{ $checked[3] }}> Musik</label>
                                         </div>
                                         <div class="form-group ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="4"
+                                                    aria-label="Checkbox for following text input" value="4"
                                                     {{ $checked[4] }}> Buku</label>
                                         </div>
                                         <div class="form-group ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="5"
+                                                    aria-label="Checkbox for following text input" value="5"
                                                     {{ $checked[5] }}> Film</label>
                                         </div>
                                         <div class="form-group  ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="6"
+                                                    aria-label="Checkbox for following text input" value="6"
                                                     {{ $checked[6] }}> Games</label>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="7"
+                                                    aria-label="Checkbox for following text input" value="7"
                                                     {{ $checked[7] }}> Kuliner</label>
                                         </div>
                                         <div class="form-group ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="8"
+                                                    aria-label="Checkbox for following text input" value="8"
                                                     {{ $checked[8] }}> Teknologi</label>
                                         </div>
                                         <div class="form-group ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="9"
+                                                    aria-label="Checkbox for following text input" value="9"
                                                     {{ $checked[9] }}> Fashion</label>
                                         </div>
                                         <div class="form-group ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="10"
+                                                    aria-label="Checkbox for following text input" value="10"
                                                     {{ $checked[10] }}> Seni</label>
                                         </div>
                                         <div class="form-group  ">
                                             <label><input class="single-checkbox" type="checkbox" name="interest[]"
-                                                          aria-label="Checkbox for following text input" value="11"
+                                                    aria-label="Checkbox for following text input" value="11"
                                                     {{ $checked[11] }}> Kecantikan</label>
                                         </div>
                                     </div>
@@ -421,7 +425,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <button class="btn btn-success" id="checkBtn" type="submit">Save
+                            <button class="btn btn-success" id="checkBtn" type="submit"
+                                onclick="this.disabled=true;this.form.submit();">Save
                             </button>
                         </div>
                     </form>
@@ -432,9 +437,10 @@
             </div>
         </div>
     </div>
+
     <input id="editable" name="editable" type="hidden" value={{ $days }}>
     <script>
-        $('input[type=checkbox]').change(function (e) {
+        $('input[type=checkbox]').change(function(e) {
             if ($('input[type=checkbox]:checked').length > 3) {
                 $(this).prop('checked', false)
                 alert("Kamu hanya dapat memilih maksimal 3");
@@ -442,8 +448,8 @@
         })
     </script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#checkBtn').click(function () {
+        $(document).ready(function() {
+            $('#checkBtn').click(function() {
                 checked = $("input[type=checkbox]:checked").length;
 
                 if (!checked) {
@@ -455,10 +461,10 @@
         });
     </script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             var days = document.getElementById("editable").value;
             var left = 30 - days;
-            $('#edit').click(function () {
+            $('#edit').click(function() {
                 if (days >= 30) {
                     alert(
                         "Kamu hanya dapat mengubah demografi sekali dalam sebulan (30 hari)."
@@ -472,7 +478,7 @@
                     return false;
                 }
             });
-            $('#edit2').click(function () {
+            $('#edit2').click(function() {
                 if (days >= 30) {
                     alert(
                         "Kamu hanya dapat mengubah demografi sekali dalam sebulan (30 hari)."

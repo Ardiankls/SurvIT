@@ -12,7 +12,7 @@
                 <form action="{{ route('usersurvey.update', $survey) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input name="_method" type="hidden" value="PATCH">
-                    <button class="btn btn-sm btn-primary px-5 mx-auto pt-2" type="submit">Setuju
+                    <button class="btn btn-sm btn-primary px-5 mx-auto pt-2" type="submit" onclick="this.disabled=true;this.form.submit();">Setuju
                     </button>
                 </form>
             </div>

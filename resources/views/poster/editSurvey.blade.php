@@ -61,9 +61,12 @@
                             </div>
 
                             <div class="form-group"><label>Usia</label><br>
-                                <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 10%" required>
+                                <input class="form border text-center" id="agefrom" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 10%" equired>
                                 hingga
-                                <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 10%" required>
+                                <input class="form border text-center" id="ageto" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 10%" required>
+                                <p class="mt-2 float-right" style="font-size: 10px">
+                                    *Default: 0 hingga 99 (Semua umur)
+                                </p>
                             </div>
 
                             <div class="form-group">
@@ -173,7 +176,7 @@
 
                             @if(($survey->status_id != '3' && $survey->status_id != '5') || $user->is_admin == 1)
                                 <div class="float-left">
-                                    <button class="btn btn-primary" type="submit">Simpan</button>
+                                    <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
                                 </div>
                             @endif
                         </form>
@@ -183,7 +186,7 @@
                                 <form action="{{ route('survey.destroy', $survey) }}" method="post">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                    <button class="btn btn-danger"  type="submit" onclick="this.disabled=true;this.form.submit();">Hapus</button>
                                 </form>
                             </div>
                         @endif
@@ -263,9 +266,12 @@
                             </div>
 
                             <div class="form-group"><label>Usia</label><br>
-                                <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 5%" required>
+                                <input class="form border text-center" id="agefrom" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 5%" equired>
                                 hingga
-                                <input class="form border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 5%" required>
+                                <input class="form border text-center" id="ageto" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 5%" required>
+                                <p class="mt-2 float-right" style="font-size: 10px">
+                                    *Default: 0 hingga 99 (Semua umur)
+                                </p>
                             </div>
 
                             <div class="form-group">
@@ -375,7 +381,7 @@
 
                             @if(($survey->status_id != '3' && $survey->status_id != '5') || $user->is_admin == 1)
                                 <div class="float-left">
-                                    <button class="btn btn-primary" type="submit">Simpan</button>
+                                    <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
                                 </div>
                             @endif
                         </form>
@@ -385,7 +391,7 @@
                                 <form action="{{ route('survey.destroy', $survey) }}" method="post">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                    <button class="btn btn-danger" type="submit" onclick="this.disabled=true;this.form.submit();">Hapus</button>
                                 </form>
                             </div>
                         @endif

@@ -39,12 +39,14 @@
                                     Jika anda ingin mendapatkan poin dengan mengisi survei ini, segera daftarkan diri anda di
                                     Survit!
                                 @else
-                                    Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
-                                    <div>
-                                        <button class="btn btn-sm btn-primary mx-auto pt-2 mt-2" style="width:100%" data-toggle="modal"
-                                            data-target="#confirmation">Selesai
-                                        </button>
-                                    </div>
+                                    @if ($survey->user_id != $user->id)
+                                        Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
+                                        <div>
+                                            <button class="btn btn-sm btn-primary mx-auto pt-2 mt-2" style="width:100%" data-toggle="modal"
+                                                data-target="#confirmation">Selesai
+                                            </button>
+                                        </div>
+                                    @endif
                                 @endguest
                             </div>
                         </div>
@@ -53,6 +55,7 @@
             </div>
         </div>
     </div>
+
     {{-- DESKTOP --}}
     <div id="content" class="p-md-5 pt-5 d-none d-md-block">
         <div class="row justify-content-center">
@@ -69,12 +72,14 @@
                                 Jika anda ingin mendapatkan poin dengan mengisi survei ini, segera daftarkan diri anda di
                                 Survit!
                             @else
-                                Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
-                                <div class="float-end ">
-                                    <button class="btn btn-sm btn-primary px-5 mx-auto pt-2" data-toggle="modal"
-                                        data-target="#confirmation">Selesai
-                                    </button>
-                                </div>
+                                @if ($survey->user_id != $user->id)
+                                    Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
+                                    <div class="float-end ">
+                                        <button class="btn btn-sm btn-primary px-5 mx-auto pt-2" data-toggle="modal"
+                                            data-target="#confirmation">Selesai
+                                        </button>
+                                    </div>
+                                @endif
                             @endguest
                         </div>
                     </div>

@@ -42,7 +42,7 @@
                                     required>
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                                     required>
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
                         </form>
                     </div>
                 </div>
