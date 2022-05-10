@@ -83,7 +83,7 @@ class UserSurveyController extends Controller
                             $query->whereColumn('survey_id', 'surveys.id')
                                 ->where('user_id', $id)
                                 ->whereHas('point_log', function($query) {
-                                $query->where('status_id', 2);
+                                $query->where('status_id', 1);
                             });
                         });
                     })
