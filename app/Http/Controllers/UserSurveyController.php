@@ -79,9 +79,11 @@ class UserSurveyController extends Controller
                                 ->whereColumn('user_surveys.survey_id', 'surveys.id')
                                 ->where('user_surveys.user_id', $id);
                         })
-                        ->orWhereHas('usersurvey', function($query) {
-                            $query->whereHas('point_log', function($query) {
-                                $query->where('status_id', 1);
+                        ->orWhereHas('usersurvey', function($query) use($id) {
+                            $query->whereColumn('survey_id', 'surveys.id')
+                                ->where('user_id', $id)
+                                ->whereHas('point_log', function($query) {
+                                $query->where('status_id', 2);
                             });
                         });
                     })
