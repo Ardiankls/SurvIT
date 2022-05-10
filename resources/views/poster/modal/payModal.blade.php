@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body text-left">
-                <form action="{{route('survey.payment', $survey)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('survey.payment', $survey)}}" id="payForm-{{ $survey->id }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input name="_method" type="hidden" value="PATCH">
                     <div class="container" style="padding: 20px 55px;">
@@ -28,9 +28,10 @@
                                 <input type="file" id="file" name="file" required>
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="payBtn-{{ $survey->id }}" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
+                        <button class="btn btn-primary" id="payBtn-{{ $survey->id }}" type="submit" onclick="checkFields({{ $survey->id }})">Simpan</button>
                     </div>
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

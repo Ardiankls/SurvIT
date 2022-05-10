@@ -276,12 +276,10 @@
 
     {{-- Pay Modal --}}
     <script type="text/javascript">
-        var submitted = true;
-
-        function checkFields() {
+        function checkFields(id) {
             var state = true;
             var counter = true;
-            var id = "payBtn-" + @json($survey->id);
+            // var id = "payBtn-";
 
             // Check Fields
             $('input,textarea,select').filter('[required]:visible').each(function() {
@@ -295,8 +293,9 @@
             });
 
             if (state == true) {
-                this.form.submit();
-                document.getElementById('payBtn-4').disabled = true;
+                // this.form.submit();
+                document.getElementById('payForm-'+id).submit();
+                document.getElementById('payBtn-'+id).disabled = true;
             }
 
             return state;
