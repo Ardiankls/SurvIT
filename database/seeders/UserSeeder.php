@@ -94,5 +94,15 @@ class UserSeeder extends Seeder
         $user->email_verified_at = '2021-05-01 05:46:03';
         $user->is_admin = '1';
         $user->save();
+
+        // $user = new User();
+        // $user->username = 'sirjvp';
+        // $user->first_name = 'Jonathan';
+        // $user->last_name = 'Furry';
+        // $user->email = 'secondaryjvp@gmail.com';
+        // $user->password = Hash::make('12345678');
+        // $user->email_verified_at = '2021-05-01 05:46:03';
+        // $user->is_admin = '0';
+        // $user->save();
     }
 }

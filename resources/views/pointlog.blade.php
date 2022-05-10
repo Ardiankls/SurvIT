@@ -154,26 +154,45 @@
         </div>
     </div>
 
+    {{-- Point Modal --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#pay').click(function() {
-                var x, y;
-                x = document.getElementById("nominal").value;
-                y = document.getElementById("upoint").value;
-                if (10000 > parseInt(y) || parseInt(x) > parseInt(y)) {
-                    alert(
-                        "Point kamu tidak cukup."
-                    );
-                    return false;
-                }
-                if (10000 > parseInt(x)) {
-                    alert(
-                        "Minimal penarikan poin 10000."
-                    );
-                    return false;
-                }
+        $('#pointBtn').click(function() {
+            var state = true;
+            var counter = true;
 
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if(counter == true){
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
+                }
             });
+
+            var x, y;
+            x = document.getElementById("nominal").value;
+            y = document.getElementById("upoint").value;
+            if (10000 > parseInt(y) || parseInt(x) > parseInt(y)) {
+                alert(
+                    "Point kamu tidak cukup."
+                );
+                state = false;
+            }
+            if (10000 > parseInt(x)) {
+                alert(
+                    "Minimal penarikan poin 10000."
+                );
+                state = false;
+            }
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("pointBtn").disabled = true;
+            }
+
+            return state;
         });
     </script>
 

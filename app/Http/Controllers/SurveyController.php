@@ -224,10 +224,10 @@ class SurveyController extends Controller
                     'evidence' => $file_name,
                 ]);
             }
-        }
 
-        //EMAIL
-        Mail::to(Auth::user()->email)->send(new Request_Payment($survey->title, $survey->point));
+            //EMAIL
+            Mail::to(Auth::user()->email)->send(new Request_Payment($survey->title, $survey->point));
+        }
 
         return redirect()->route('survey.index');
     }

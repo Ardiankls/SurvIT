@@ -48,12 +48,12 @@
                                 @endif
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="pay" type="submit" onclick="this.disabled=true;this.form.submit();">Submit</button>
+                        <button class="btn btn-primary" id="pointBtn" type="submit">Ajukan</button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

@@ -330,49 +330,83 @@
     </script>
 
     {{-- Demography Modal --}}
-    <script>
+    <script type="text/javascript">
         $('input[type=checkbox]').change(function(e) {
             if ($('input[type=checkbox]:checked').length > 3) {
                 $(this).prop('checked', false)
-                alert("Kamu hanya dapat memilih maksimal 3");
+                alert("Kamu hanya dapat memilih maksimal 3 Kesukaan/ Topik/ Hobi");
             }
         })
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#checkBtn').click(function() {
-                checked = $("input[type=checkbox]:checked").length;
 
-                if (!checked) {
-                    alert("Kamu harus memilih minimal 1");
-                    return false;
-                }
+        $('#checkBtn').click(function() {
+            var state = true;
+            var counter = true;
 
-            });
+            checked = $("input[type=checkbox]:checked").length;
+            if (!checked) {
+                alert("Kamu harus memilih minimal 1 Kesukaan/ Topik/ Hobi");
+                state = false;
+            } else {
+                // Check Fields
+                $('input,textarea,select').filter('[required]:visible').each(function() {
+                    if ($(this).val() == '') {
+                        if(counter == true){
+                            alert("Silahkan isi kolom yang masih kosong");
+                        }
+                        state = false;
+                        counter = false;
+                    }
+                });
+            }
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("checkBtn").disabled = true;
+            }
+
+            return state;
         });
     </script>
 
     {{-- Point Modal --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#pay').click(function() {
-                var x, y;
-                x = document.getElementById("nominal").value;
-                y = document.getElementById("upoint").value;
-                if (10000 > parseInt(y) || parseInt(x) > parseInt(y)) {
-                    alert(
-                        "Point kamu tidak cukup."
-                    );
-                    return false;
-                }
-                if (10000 > parseInt(x)) {
-                    alert(
-                        "Minimal penarikan poin 10000."
-                    );
-                    return false;
-                }
+        $('#pointBtn').click(function() {
+            var state = true;
+            var counter = true;
 
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if(counter == true){
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
+                }
             });
+
+            var x, y;
+            x = document.getElementById("nominal").value;
+            y = document.getElementById("upoint").value;
+            if (10000 > parseInt(y) || parseInt(x) > parseInt(y)) {
+                alert(
+                    "Point kamu tidak cukup."
+                );
+                state = false;
+            }
+            if (10000 > parseInt(x)) {
+                alert(
+                    "Minimal penarikan poin 10000."
+                );
+                state = false;
+            }
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("pointBtn").disabled = true;
+            }
+
+            return state;
         });
     </script>
 
@@ -380,9 +414,36 @@
     <script>
         $(document).ready(function() {
             // Show the Modal on load
-            if ((@json($user->is_survey_avail) == '1') && (@json($user->birthdate) == null)) {
-                $("#newdemography").modal({backdrop: 'static', keyboard: false})
+            if ((@json($user->is_survey_avail) == '1') && (@json($user->birthdate) == null) && (
+                    @json($user->id > 8))) {
+                $("#newdemography").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                })
             }
+        });
+
+        $('#addDemoBtn').click(function() {
+            var state = true;
+            var counter = true;
+
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if (counter == true) {
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
+                }
+            });
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("addDemoBtn").disabled = true;
+            }
+
+            return state;
         });
     </script>
 

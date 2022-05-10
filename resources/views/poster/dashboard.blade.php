@@ -53,13 +53,14 @@
                                         <div class="row">
                                             <div class="no-gutters text-right">
                                                 @if ($survey->status_id == 1 || $survey->status_id == 2)
-                                                    <a href="{{ route('survey.edit', $survey) }}"
-                                                        class="btn btn-primary" style="background-color: rgb(0,0,226);">Ubah</a>
+                                                    <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary"
+                                                        style="background-color: rgb(0,0,226);">Ubah</a>
                                                 @elseif($survey->status_id == 3)
-                                                    <a href="{{ route('survey.edit', $survey) }}"
-                                                        class="btn btn-primary" style="background-color: rgb(0,0,226);">Detail</a>
+                                                    <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary"
+                                                        style="background-color: rgb(0,0,226);">Detail</a>
                                                 @elseif($survey->status_id == 4)
-                                                    <a href="" class="btn btn-primary" style="background-color: rgb(0,0,226);" data-toggle="modal"
+                                                    <a href="" class="btn btn-primary"
+                                                        style="background-color: rgb(0,0,226);" data-toggle="modal"
                                                         data-target="#pay-{{ $survey->id }}">Bayar</a>
                                                 @else
                                                     -
@@ -122,20 +123,19 @@
                                         </td>
                                         <td>
                                             @if ($survey->status_id == 1 || $survey->status_id == 2)
-                                                <a href="{{ route('survey.edit', $survey) }}"
-                                                    class="btn btn-primary" style="background-color: rgb(0,0,226);">Ubah</a>
+                                                <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary"
+                                                    style="background-color: rgb(0,0,226);">Ubah</a>
                                             @elseif($survey->status_id == 3)
-                                                <a href="{{ route('survey.edit', $survey) }}"
-                                                    class="btn btn-primary" style="background-color: rgb(0,0,226);">Detail</a>
+                                                <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary"
+                                                    style="background-color: rgb(0,0,226);">Detail</a>
                                             @elseif($survey->status_id == 4)
-                                                <div class="btn btn-primary" style="background-color: rgb(0,0,226);" data-toggle="modal"
-                                                    data-target="#pay-{{ $survey->id }}">Bayar</div>
+                                                <div class="btn btn-primary" style="background-color: rgb(0,0,226);"
+                                                    data-toggle="modal" data-target="#pay-{{ $survey->id }}">Bayar</div>
                                             @else
                                                 -
                                             @endif
                                         </td>
                                     </tr>
-
                                 @endforeach
                             </tbody>
                         </table>
@@ -224,35 +224,83 @@
     @endif --}}
 
     {{-- Click Table --}}
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $(document.body).on("click", "tr[data-href]", function() {
                 window.location.href = this.dataset.href;
             });
         });
-    </script>
+    </script> --}}
 
-    {{-- Age --}}
+    {{-- Survey Modal --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#create').click(function() {
-                var x, y;
-                x = document.getElementById("agefrom").value;
-                y = document.getElementById("ageto").value;
-                if (parseInt(x) > parseInt(y)) {
-                    alert(
-                        "Ada kesalahan di demografi usia."
-                    );
-                    return false;
-                }
-                if (parseInt(x) > 99 || parseInt(y) > 99) {
-                    alert(
-                        "Usia tidak boleh lebih dari 100."
-                    );
-                    return false;
+        $('#createBtn').click(function() {
+            var state = true;
+            var counter = true;
+
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if(counter == true){
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
                 }
             });
+
+            var x, y;
+            x = document.getElementById("agefrom").value;
+            y = document.getElementById("ageto").value;
+            if (parseInt(x) > parseInt(y)) {
+                alert(
+                    "Ada kesalahan di demografi usia."
+                );
+                state = false;
+            }
+            if (parseInt(x) > 99 || parseInt(y) > 99) {
+                alert(
+                    "Usia tidak boleh lebih dari 100."
+                );
+                state = false;
+            }
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("createBtn").disabled = true;
+            }
+
+            return state;
         });
+    </script>
+
+    {{-- Pay Modal --}}
+    <script type="text/javascript">
+        var submitted = true;
+
+        function checkFields() {
+            var state = true;
+            var counter = true;
+            var id = "payBtn-" + @json($survey->id);
+
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if(counter == true){
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
+                }
+            });
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById('payBtn-4').disabled = true;
+            }
+
+            return state;
+        }
     </script>
 
 @endsection

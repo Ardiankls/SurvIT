@@ -28,12 +28,12 @@
                                 <input type="file" id="file" name="file" required>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Submit</button>
+                        <button class="btn btn-primary" id="payBtn-{{ $survey->id }}" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

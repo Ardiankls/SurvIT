@@ -425,41 +425,58 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <button class="btn btn-success" id="checkBtn" type="submit"
-                                onclick="this.disabled=true;this.form.submit();">Save
+                            <button class="btn btn-success" id="checkBtn" type="submit">Simpan
                             </button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <input id="editable" name="editable" type="hidden" value={{ $days }}>
-    <script>
+    {{-- Edit Demography Modal --}}
+    <script type="text/javascript">
         $('input[type=checkbox]').change(function(e) {
             if ($('input[type=checkbox]:checked').length > 3) {
                 $(this).prop('checked', false)
-                alert("Kamu hanya dapat memilih maksimal 3");
+                alert("Kamu hanya dapat memilih maksimal 3 Kesukaan/ Topik/ Hobi");
             }
         })
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#checkBtn').click(function() {
-                checked = $("input[type=checkbox]:checked").length;
 
-                if (!checked) {
-                    alert("Kamu harus memilih minimal 1");
-                    return false;
-                }
+        $('#checkBtn').click(function() {
+            var state = true;
+            var counter = true;
 
-            });
+            checked = $("input[type=checkbox]:checked").length;
+            if (!checked) {
+                alert("Kamu harus memilih minimal 1 Kesukaan/ Topik/ Hobi");
+                state = false;
+            } else {
+                // Check Fields
+                $('input,textarea,select').filter('[required]:visible').each(function() {
+                    if ($(this).val() == '') {
+                        if(counter == true){
+                            alert("Silahkan isi kolom yang masih kosong");
+                        }
+                        state = false;
+                        counter = false;
+                    }
+                });
+            }
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("checkBtn").disabled = true;
+            }
+
+            return state;
         });
     </script>
+
+    <input id="editable" name="editable" type="hidden" value={{ $days }}>
     <script type="text/javascript">
         $(document).ready(function() {
             var days = document.getElementById("editable").value;

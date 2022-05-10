@@ -38,11 +38,11 @@
 
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input class="form-control border" type="text" name="phone" value={{ $user->phone }}
-                                    required>
+                                <input class="form-control border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                    name="phone" value="{{ $user->phone }}" required>
                             </div>
 
-                            <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
+                            <button class="btn btn-primary" id="editProfileBtn2" type="submit">Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -88,15 +88,64 @@
 
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input class="form-control border" type="text" name="phone" value={{ $user->phone }}
-                                    required>
+                                <input class="form-control border" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                    name="phone" value="{{ $user->phone }}" required>
                             </div>
 
-                            <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
+                            <button class="btn btn-primary" id="editProfileBtn" type="submit">Simpan</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $('#editProfileBtn').click(function() {
+            var state = true;
+            var counter = true;
+
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if(counter == true){
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
+                }
+            });
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("editProfileBtn").disabled = true;
+            }
+
+            return state;
+        });
+
+        $('#editProfileBtn2').click(function() {
+            var state = true;
+            var counter = true;
+
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if(counter == true){
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
+                }
+            });
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("editProfileBtn2").disabled = true;
+            }
+
+            return state;
+        });
+    </script>
+
 @endsection

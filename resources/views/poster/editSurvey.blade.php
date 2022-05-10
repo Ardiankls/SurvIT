@@ -61,9 +61,9 @@
                             </div>
 
                             <div class="form-group"><label>Usia</label><br>
-                                <input class="form border text-center" id="agefrom" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 10%" equired>
+                                <input class="form border text-center" id="agefrom2" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 10%" required>
                                 hingga
-                                <input class="form border text-center" id="ageto" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 10%" required>
+                                <input class="form border text-center" id="ageto2" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 10%" required>
                                 <p class="mt-2 float-right" style="font-size: 10px">
                                     *Default: 0 hingga 99 (Semua umur)
                                 </p>
@@ -176,7 +176,7 @@
 
                             @if(($survey->status_id != '3' && $survey->status_id != '5') || $user->is_admin == 1)
                                 <div class="float-left">
-                                    <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
+                                    <button class="btn btn-primary" id="editBtn2" type="submit">Simpan</button>
                                 </div>
                             @endif
                         </form>
@@ -186,7 +186,7 @@
                                 <form action="{{ route('survey.destroy', $survey) }}" method="post">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button class="btn btn-danger"  type="submit" onclick="this.disabled=true;this.form.submit();">Hapus</button>
+                                    <button class="btn btn-danger" type="submit" onclick="this.disabled=true;this.form.submit();">Hapus</button>
                                 </form>
                             </div>
                         @endif
@@ -266,7 +266,7 @@
                             </div>
 
                             <div class="form-group"><label>Usia</label><br>
-                                <input class="form border text-center" id="agefrom" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 5%" equired>
+                                <input class="form border text-center" id="agefrom" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="agefrom" value="{{ $survey->age_from }}" style="width: 5%" required>
                                 hingga
                                 <input class="form border text-center" id="ageto" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="ageto" value="{{ $survey->age_to }}" style="width: 5%" required>
                                 <p class="mt-2 float-right" style="font-size: 10px">
@@ -381,7 +381,7 @@
 
                             @if(($survey->status_id != '3' && $survey->status_id != '5') || $user->is_admin == 1)
                                 <div class="float-left">
-                                    <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Simpan</button>
+                                    <button class="btn btn-primary" id="editBtn" type="submit">Simpan</button>
                                 </div>
                             @endif
                         </form>
@@ -391,7 +391,7 @@
                                 <form action="{{ route('survey.destroy', $survey) }}" method="post">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button class="btn btn-danger" type="submit" onclick="this.disabled=true;this.form.submit();">Hapus</button>
+                                    <button class="btn btn-danger" type="submit">Hapus</button>
                                 </form>
                             </div>
                         @endif
@@ -454,4 +454,86 @@
             });
         });
     </script> --}}
+
+    {{-- Survey Modal --}}
+    <script type="text/javascript">
+        $('#editBtn').click(function() {
+            var state = true;
+            var counter = true;
+
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if(counter == true){
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
+                }
+            });
+
+            var x, y;
+            x = document.getElementById("agefrom").value;
+            y = document.getElementById("ageto").value;
+            if (parseInt(x) > parseInt(y)) {
+                alert(
+                    "Ada kesalahan di demografi usia."
+                );
+                state = false;
+            }
+            if (parseInt(x) > 99 || parseInt(y) > 99) {
+                alert(
+                    "Usia tidak boleh lebih dari 100."
+                );
+                state = false;
+            }
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("editBtn").disabled = true;
+            }
+
+            return state;
+        });
+
+        $('#editBtn2').click(function() {
+            var state = true;
+            var counter = true;
+
+            // Check Fields
+            $('input,textarea,select').filter('[required]:visible').each(function() {
+                if ($(this).val() == '') {
+                    if(counter == true){
+                        alert("Silahkan isi kolom yang masih kosong");
+                    }
+                    state = false;
+                    counter = false;
+                }
+            });
+
+            var x, y;
+            x = document.getElementById("agefrom2").value;
+            y = document.getElementById("ageto2").value;
+            if (parseInt(x) > parseInt(y)) {
+                alert(
+                    "Ada kesalahan di demografi usia."
+                );
+                state = false;
+            }
+            if (parseInt(x) > 99 || parseInt(y) > 99) {
+                alert(
+                    "Usia tidak boleh lebih dari 100."
+                );
+                state = false;
+            }
+
+            if (state == true) {
+                this.form.submit();
+                document.getElementById("editBtn").disabled = true;
+            }
+
+            return state;
+        });
+    </script>
+
 @endsection
