@@ -218,7 +218,7 @@ class SurveyController extends Controller
             ]);
             if ($request->has('file')) {
                 $file_name = time() . '-' . $data['file']->getClientOriginalName();
-                $request->file->move(public_path('images\payment\survey'), $file_name);
+                $request->file->move(public_path('images/payment/survey'), $file_name);
                 $survey->update([
                     'status_id' => '5',
                     'evidence' => $file_name,
