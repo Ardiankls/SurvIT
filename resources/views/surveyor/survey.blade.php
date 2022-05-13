@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @include('surveyor.modal.surveyModal')
 @include('surveyor.modal.guestModal')
+<head>
+    <meta name="Description" content="Platform Survei Untuk Kamu Para Mahasiswa Yang Butuh Data" />
+</head>
 @section('content')
     {{-- Old UI --}}
     {{-- <div class="container-sm"> --}}
