@@ -8,20 +8,52 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Mail\Blast_New_Demography;
 use App\Mail\Blast_New_Survey;
+use App\Models\survey;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 
 class MailController extends Controller
 {
-    public function add_demography_email() {
-        $users = User::where('id', '>' , '8')
-                    ->where('birthdate' == null)
-                    ->where('is_survey_avail' == '1')
-                    ->get();
+    public function send_new_demography(Request $request, $point) {
 
-        dd($users);
-        foreach($users as $user){
-            Mail::to($user->email)->send(new Blast_New_Demography(500));
-        }
+        // $details = [
+    	// 	'subject' => 'Yuk Dapatkan EKSTRA POIN Dari Survit'
+    	// ];
+
+    	// send all mail in the queue.
+        $job = (new \App\Mail\Blast_New_Demography($point))
+            ->delay(
+            	now()
+            	->addSeconds(2)
+            );
+
+        dispatch($job);
+
+        // echo "Bulk mail send successfully in the background...";
+        Artisan::call('queue:listen');
+
+        return redirect()->route('admin.index', 5);
+
+    }
+
+    public function send_match_demography(Request $request, survey $survey)
+    {
+    	// $details = [
+    	// 	'subject' => 'Yuk Dapatkan EKSTRA POIN Dari Survit'
+    	// ];
+
+    	// send all mail in the queue.
+        $job = (new \App\Mail\Blast_New_Survey($survey))
+            ->delay(
+            	now()
+            	->addSeconds(2)
+            );
+
+        dispatch($job);
+
+        // echo "Bulk mail send successfully in the background...";
+
+        return redirect()->route('admin.index', 2);
     }
 }

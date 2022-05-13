@@ -2,14 +2,17 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
-class Blast_New_Demography extends Mailable
+class Blast_New_Demography implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $point;
 
@@ -28,14 +31,25 @@ class Blast_New_Demography extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function handle()
     {
-        return $this->from('survitsurvey@gmail.com','SurvIT')
-                    ->subject("Yuk Dapatkan EKSTRA POIN Dari Survit")
-                    ->with(
-                        [
-                            'point' => $this->point,
-                        ])
-                    ->view('mail.blast_new_demography');
+        $point = $this->point;
+        $users = User::where('id', '>', 8)
+                    ->where('birthdate', null)
+                    ->where('is_survey_avail', '1');
+
+        $targets = $users->get();
+
+        $input['subject'] = 'Yuk Dapatkan EKSTRA POIN Dari Survit';
+
+        foreach ($targets as $key => $value) {
+            $input['email'] = $value->email;
+            $input['name'] = $value->name;
+
+            Mail::send('mail.blast_new_demography', ['point' => $point], function($message) use($input){
+                $message->to($input['email'], $input['name'])
+                    ->subject($input['subject']);
+            });
+        }
     }
 }
