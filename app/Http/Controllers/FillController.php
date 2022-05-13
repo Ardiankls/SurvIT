@@ -11,6 +11,7 @@ class FillController extends Controller
 {
     public function fill($url){
         $survey = survey::where('url', $url)->get()->first();
+        $user = Auth::user();
 
         if($survey->shareable == 1){
             return view('surveyor.survey', compact('survey', 'user'));
@@ -20,7 +21,6 @@ class FillController extends Controller
             return redirect()->route('login');
         }
 
-        $user = Auth::user();
         $id = $user->id;
         $ugender = $user->gender_id;
         $uprovince = $user->province_id;

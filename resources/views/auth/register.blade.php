@@ -20,8 +20,8 @@
                         <img class="logo w-25" src="{{ asset('assets/assets/logo/logoBlack.svg') }}" alt="">
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a class="btn btn-sm btn-light " href="{{ route('register') }}"> Sign Up</a>
-                        <a class="btn btn-sm btn-primary" href="{{ route('login') }}"> Log In</a>
+                        <a class="btn btn-sm btn-light " href="{{ route('register') }}"> Daftar</a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('login') }}"> Masuk</a>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
 
                     <div class="col-3 col-md-4"></div>
                     <div class="col-6 d-none d-md-block">
-                        <h1 class="font-weight-bold ">SIGN UP</h1>
+                        <h1 class="font-weight-bold ">DAFTAR</h1>
                     </div>
                     <div class="col-6 no-gutters text-center d-block d-md-none">
                         <img class="logo w-75" src="{{ asset('assets/assets/logo/logoBlack.svg') }}" alt="">
@@ -124,7 +124,7 @@
                                 </div>
 
                                 <button type="submit" data-toggle="modal" data-target="#verifymodal"
-                                        class="btn btn-primary">Register
+                                        class="btn btn-primary">Daftar
                                 </button>
                             </form>
                         </div>

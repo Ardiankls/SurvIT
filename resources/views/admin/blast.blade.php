@@ -15,6 +15,7 @@
                             <thead>
                                 <tr class="text-center">
                                     <th scope="col">Type</th>
+                                    <th scope="col">Last Blast</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -24,9 +25,12 @@
                                         Blast Age Demography
                                     </td>
                                     <td>
+                                        -
+                                    </td>
+                                    <td>
                                         <form
-                                            action="{{ route('mail.addDemography') }}"
-                                            method="post" enctype="multipart/form-data">
+                                            action="{{ route('mail.blast-new-demography', 500) }}"
+                                            method="GET" enctype="multipart/form-data">
                                             @csrf
                                             <button class="btn btn-danger" type="submit">
                                                 Blast

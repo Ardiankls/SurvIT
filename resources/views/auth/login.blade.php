@@ -20,8 +20,8 @@
                         <img class="logo w-25" src="{{ asset('assets/assets/logo/logoBlack.svg') }}" alt="">
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a class="btn btn-sm btn-primary " href="{{ route('register') }}"> Sign Up</a>
-                        <a class="btn btn-sm btn-light" href="{{ route('login') }}"> Log In</a>
+                        <a class="btn btn-sm btn-primary " href="{{ route('register') }}"> Daftar</a>
+                        <a class="btn btn-sm btn-light" href="{{ route('login') }}"> Masuk</a>
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@
 
                     <div class="col-3 col-md-4"></div>
                     <div class="col-6 d-none d-md-block">
-                        <h1 class="font-weight-bold ">SIGN IN</h1>
+                        <h1 class="font-weight-bold ">MASUK</h1>
                     </div>
                     <div class="col-6 no-gutters text-center d-block d-md-none">
                         <img class="logo w-75" src="{{ asset('assets/assets/logo/logoBlack.svg') }}" alt="">
@@ -74,7 +74,7 @@
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                                 <label class="form-check-label " for="remember">
-                                                    {{ __('Remember Me') }}
+                                                    {{ __('Ingat Saya') }}
                                                 </label>
                                             </div>
                                         </div>
@@ -82,12 +82,12 @@
 
                                         <div class="col-md-12 ">
                                             <button type="submit" class="btn btn-primary">
-                                                {{ __('Login') }}
+                                                {{ __('Masuk') }}
                                             </button>
 
                                             @if (Route::has('password.request'))
                                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot Your Password?') }}
+                                                    {{ __('Lupa Kata Sandi?') }}
                                                 </a>
                                             @endif
                                         </div>

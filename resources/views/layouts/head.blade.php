@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="Easy Survey For Your Business" />
+    <meta name="Description" content="Platform Survei Untuk Kamu Para Mahasiswa Yang Butuh Data" />
     <link rel="icon" type="image/svg" sizes="32x32" href="{{ asset('assets/assets/logo/surviticon.png') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SurvIT') }}</title>
+    <title>Survit - Masuk atau Daftar</title>
 
     {{-- <!-- Scripts --> --}}
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}

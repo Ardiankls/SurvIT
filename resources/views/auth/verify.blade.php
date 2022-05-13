@@ -16,7 +16,10 @@
 
                     Sebelum Kamu memulai mengisi atau membuat survei, Mohon verifikasi Email anda terlebih dahulu. Kamu bisa mendapatkan <b>500 poin</b> setelah melakukan verifikasi.
                     <br><br>
-                    {{ __('Jika anda tidak mendapatkan email') }},
+
+                    @if (session('resent'))
+                        Jika anda tidak mendapatkan email,
+                    @endif
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
                         <button type="Submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('klik disini untuk mengirim verifikasi') }}</button>.

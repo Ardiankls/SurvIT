@@ -58,21 +58,24 @@ class VerificationController extends Controller
 
 
         // POINT LOG
-        $user->update([
+        if($user->email_verified_at == null){
+            $user->update([
             'point' => $user->point + 500,
-        ]);
+            ]);
 
-        $ucampaign = user_campaign::create([
-            'user_id' => $user->id,
-            'campaign_id' => 1,
-        ]);
+            $ucampaign = user_campaign::create([
+                'user_id' => $user->id,
+                'campaign_id' => 1,
+            ]);
 
-        point_log::create([
-            'type' => '0',
-            'status_id' => '3',
-            'point' => 500,
-            'user_campaign_id' => $ucampaign->id,
-        ]);
+            point_log::create([
+                'type' => '0',
+                'status_id' => '3',
+                'point' => 500,
+                'user_campaign_id' => $ucampaign->id,
+            ]);
+        }
+
 
         return view('auth.verified');
         // return redirect($this->redirectPath())->with('verified', true);

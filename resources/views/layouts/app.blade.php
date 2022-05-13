@@ -46,7 +46,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SurvIT') }}</title>
+    <title>{{ config('app.name', 'Survit') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -190,14 +190,14 @@
                     @if (Route::has('login'))
                         <li class="active">
                             <a href="{{ route('register') }}" class="text-dark"><span
-                                    class="fa fa-sign-in mr-3"></span>Register</a>
+                                    class="fa fa-sign-in mr-3"></span>Daftar</a>
                         </li>
                     @endif
 
                     @if (Route::has('register'))
                         <li class="active">
                             <a href="{{ route('login') }}" class="text-dark"><span
-                                    class="fa fa-sign-in mr-3"></span>Login</a>
+                                    class="fa fa-sign-in mr-3"></span>Masuk</a>
                         </li>
                     @endif
                 @else
@@ -229,9 +229,9 @@
                     <li>
                         <a class="text-danger" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <span class="fa fa-sign-out mr-3"></span> Log Out</a>
+                            <span class="fa fa-sign-out mr-3"></span> Keluar</a>
                     </li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" --}} class="d-none">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 @endguest

@@ -11,7 +11,7 @@
             <div style="overflow-y:scroll; height:100vh;">
                 <div class="container-fluid p-2 mb-5">
                     <div class="text-right mb-3">
-                        <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary ">Buat Survey</a>
+                        <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary ">Buat Survei</a>
                     </div>
                     <div class="container bg-white shadow p-2 mb-4" style="border-radius: 15px;">
                         <h4 class="text-center">Survei Saya</h4>
@@ -81,7 +81,7 @@
     <div class="container-xxl p-5 d-none d-md-block">
         <div class="row justify-content-center">
             <div class="col-md-9 text-right mb-3">
-                <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary">Buat Survey</a>
+                <a href="" data-toggle="modal" data-target="#createsurvey" class="btn btn-primary">Buat Survei</a>
             </div>
             <div class="col-9">
                 <div class="panel px-4 py-3 glass shadow" style="height:100vh;">

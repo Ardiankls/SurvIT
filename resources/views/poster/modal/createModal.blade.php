@@ -36,13 +36,13 @@
                             <a href={{ route('package.index') }} target="_blank" >Lihat Keterangan Paket</a>
                         </div>
 
-                        <div class="form-group"><label>Dibagikan ke umum</label>
-                            <input type='hidden' name="shareable" value='0'>
-                            <input class="float-right" type="checkbox" name="shareable" value="1">
-                        </div>
-
                         <div class="form-group text-center">
                             ------- Filter Demografi -------
+                        </div>
+
+                        <div class="form-group"><label class="mt-2">Sebar diluar responden Survit </label>
+                            <input type='hidden' name="shareable" value='0'>
+                            <input class="float-right mt-3" type="checkbox" name="shareable" value="1">
                         </div>
 
                         <div class="form-group"><label>Usia</label><br>
