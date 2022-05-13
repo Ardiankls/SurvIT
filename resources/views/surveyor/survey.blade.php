@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@include('surveyor.modal.surveyModal')
 @include('surveyor.modal.guestModal')
 <head>
     <meta name="Description" content="Platform Survei Untuk Kamu Para Mahasiswa Yang Butuh Data" />
