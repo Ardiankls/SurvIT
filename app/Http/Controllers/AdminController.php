@@ -88,7 +88,7 @@ class AdminController extends Controller
                     'opened_at' => Carbon::now()
                 ]);
 
-                // return redirect()->route('mail.blast-new-survey', $survey);
+                // return redirect()->route('mail.blast-match-new-survey', $survey);
 
             }else{
                 $survey->update([
