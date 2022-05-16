@@ -52,7 +52,8 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::match(['put', 'patch'], '/point/{upoint}', [AdminController::class, 'updatePoint'])->name('admin.point');
     Route::match(['put', 'patch'], '/payment/{survey}/{action}', [AdminController::class, 'updatePayment'])->name('admin.payment');
     Route::get('/blast-new-demography/{point}', [MailController::class, 'send_new_demography'])->name('mail.blast-new-demography');
-    Route::get('/blast-new-survey/{survey}', [MailController::class, 'send_match_demography'])->name('mail.blast-new-survey');
+    Route::get('/blast-match-new-survey/{survey}', [MailController::class, 'send_match_demography'])->name('mail.blast-match-new-survey');
+    Route::get('/blast-all-new-survey/{point}', [MailController::class, 'send_all_demography'])->name('mail.blast-all-new-survey');
 });
 
 Route::get('/clear-cache', function() {

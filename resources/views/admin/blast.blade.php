@@ -38,6 +38,27 @@
                                         </form>
                                     </td>
                                 </tr>
+                                <tr class="text-center">
+                                    <td>
+                                        Blast New Survey to Everyone
+                                    </td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>
+                                        @php
+                                            $survey = null
+                                        @endphp
+                                        <form
+                                            action="{{ route('mail.blast-all-new-survey', 500) }}"
+                                            method="GET" enctype="multipart/form-data">
+                                            @csrf
+                                            <button class="btn btn-danger" type="submit">
+                                                Blast
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

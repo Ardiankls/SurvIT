@@ -95,14 +95,56 @@ class UserSeeder extends Seeder
         $user->is_admin = '1';
         $user->save();
 
-        // $user = new User();
-        // $user->username = 'sirjvp';
-        // $user->first_name = 'Jonathan';
-        // $user->last_name = 'Furry';
-        // $user->email = 'secondaryjvp@gmail.com';
-        // $user->password = Hash::make('12345678');
-        // $user->email_verified_at = '2021-05-01 05:46:03';
-        // $user->is_admin = '0';
-        // $user->save();
+        $user = new User();
+        $user->username = 'sirjvp';
+        $user->first_name = 'Jonathan';
+        $user->last_name = 'Furry';
+        $user->email = 'secondaryjvp@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->email_verified_at = '2021-05-01 05:46:03';
+        $user->is_admin = '0';
+        $user->save();
+
+        $user = new User();
+        $user->username = 'sirjvpa';
+        $user->first_name = 'Jonathan';
+        $user->last_name = 'Furry';
+        $user->email = 'jonathanprawira.almaz@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->email_verified_at = '2021-05-01 05:46:03';
+        $user->is_admin = '0';
+        $user->save();
+
+        $user = new User();
+        $user->username = 'sirjvpb';
+        $user->first_name = 'Jonathan';
+        $user->last_name = 'Furry';
+        $user->email = 'blackluminate@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->email_verified_at = '2021-05-01 05:46:03';
+        $user->is_admin = '0';
+        $user->save();
+
+        $user = new User();
+        $user->username = 'sirjvpc';
+        $user->first_name = 'Jonathan';
+        $user->last_name = 'Furry';
+        $user->email = 'jonathanvalentinoprawira123@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->email_verified_at = '2021-05-01 05:46:03';
+        $user->is_admin = '0';
+        $user->save();
+
+        $user = new User();
+        $user->username = 'sirjvpd';
+        $user->first_name = 'Jonathan';
+        $user->last_name = 'Furry';
+        $user->email = 'vleonard@student.ciputra.ac.id';
+        $user->password = Hash::make('12345678');
+        $user->email_verified_at = '2021-05-01 05:46:03';
+        $user->is_admin = '0';
+        $user->save();
+
+
     }
 }
