@@ -53,7 +53,7 @@ class MailController extends Controller
         return redirect()->route('admin.index', 2);
     }
 
-    public function send_all_demography(Request $request, $point)
+    public function send_all_demography(Request $request)
     {
     	// $details = [
     	// 	'subject' => 'Yuk Dapatkan EKSTRA POIN Dari Survit'

@@ -32,7 +32,7 @@ class Blast_All_New_Survey implements ShouldQueue
 
     public function handle()
     {
-        $users = User::where('id', '>', 8)->get();
+        $users = User::where('id', '>', 8);
 
         $targets = $users->get();
         // dd($targets);

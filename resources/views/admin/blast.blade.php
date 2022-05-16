@@ -50,8 +50,8 @@
                                             $survey = null
                                         @endphp
                                         <form
-                                            action="{{ route('mail.blast-all-new-survey', 500) }}"
-                                            method="GET" enctype="multipart/form-data">
+                                            action="{{ route('mail.blast-all-new-survey') }}"
+                                            method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <button class="btn btn-danger" type="submit">
                                                 Blast
