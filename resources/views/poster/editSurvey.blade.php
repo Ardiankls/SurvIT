@@ -386,7 +386,7 @@
                             @endif
                         </form>
 
-                        @if(($survey->status_id != '3' && $survey->status_id != '5') || $user->is_admin == 1)
+                        @if($user->is_admin == 1)
                             <div class="float-right">
                                 <form action="{{ route('survey.destroy', $survey) }}" method="post">
                                     @csrf
