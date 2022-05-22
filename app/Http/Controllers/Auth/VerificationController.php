@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\point_log;
 use App\Models\User;
 use App\Models\user_campaign;
+use App\Models\user_log;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -76,6 +77,12 @@ class VerificationController extends Controller
             ]);
         }
 
+        user_log::create([
+            'table' => 'user',
+            'user_id' => $user->id,
+            'log_path' => 'VerificationController@verify',
+            'log_desc' => $user->username + ' is verifying email',
+        ]);
 
         return view('auth.verified');
         // return redirect($this->redirectPath())->with('verified', true);

@@ -14,6 +14,7 @@ use App\Models\survey;
 use App\Models\survey_job;
 use App\Models\survey_province;
 use App\Models\User;
+use App\Models\user_log;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -96,6 +97,13 @@ class SurveyController extends Controller
         $survey->jobs()->attach($request->job);
         $survey->interests()->attach($request->interest);
         $survey->provinces()->attach($request->province);
+
+        user_log::create([
+            'table' => 'surveys',
+            'user_id' => Auth::user()->id,
+            'log_path' => 'SurveyController@store',
+            'log_desc' => Auth::user()->username + ' is creating survey "' + $survey->title + '"',
+        ]);
 
         if(Auth::user()->is_admin == 1){
             $survey->update([
@@ -180,6 +188,13 @@ class SurveyController extends Controller
             'province_id' => $request->province,
         ]);
 
+        user_log::create([
+            'table' => 'surveys',
+            'user_id' => Auth::user()->id,
+            'log_path' => 'SurveyController@update',
+            'log_desc' => Auth::user()->username + ' is updating survey "' + $survey->title + '"',
+        ]);
+
         //YANG BUAT KALO ADMIN
         $admins = User::where('is_admin', '1')->get();
         foreach($admins as $admin){
@@ -201,11 +216,19 @@ class SurveyController extends Controller
      */
     public function destroy(survey $survey)
     {
+        user_log::create([
+            'table' => 'surveys',
+            'user_id' => Auth::user()->id,
+            'log_path' => 'SurveyController@destroy',
+            'log_desc' => Auth::user()->username + ' is deleting survey "' + $survey->title + '"',
+        ]);
+
         $survey->jobs()->detach();
         $survey->interests()->detach();
         $survey->provinces()->detach();
         $survey->users()->detach();
         $survey->delete();
+
         return redirect()->route('survey.index');
     }
 
@@ -224,6 +247,13 @@ class SurveyController extends Controller
                     'evidence' => $file_name,
                 ]);
             }
+
+            user_log::create([
+                'table' => 'surveys',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'SurveyController@payment',
+                'log_desc' => Auth::user()->username + ' is paying survey "' + $survey->title + '"',
+            ]);
 
             //EMAIL
             Mail::to(Auth::user()->email)->send(new Request_Payment($survey->title, $survey->point));

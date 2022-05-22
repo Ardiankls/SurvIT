@@ -47,7 +47,7 @@ class LoginController extends Controller
         $user = [
             'email' => $request->email,
             'password' => $request->password,
-            // 'remember'=> $request->rememberToken,
+            'remember'=> $request->rememberToken,
         ];
 
         $messages = [

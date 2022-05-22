@@ -6,6 +6,7 @@ use App\Mail\Request_Withdrawal;
 use App\Models\account_payment;
 use App\Models\point_log;
 use App\Models\User;
+use App\Models\user_log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -59,6 +60,13 @@ class AccountPaymentController extends Controller
             'status_id' => '2',
             'point' => $request->value,
             'account_payment_id' => $payment->id,
+        ]);
+
+        user_log::create([
+            'table' => 'account_payments',
+            'user_id' => Auth::user()->id,
+            'log_path' => 'AccountPaymentController@store',
+            'log_desc' => Auth::user()->username + ' is redeeming points',
         ]);
 
         //EMAIL

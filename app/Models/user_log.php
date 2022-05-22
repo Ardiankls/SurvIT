@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class user_log extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'table',
+        'user_id',
+        'log_desc',
+        'log_path',
+        'log_ip',
+    ];
 }

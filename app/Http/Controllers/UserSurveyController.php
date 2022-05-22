@@ -12,6 +12,7 @@ use App\Models\job;
 use App\Models\point_log;
 use App\Models\province;
 use App\Models\User;
+use App\Models\user_log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Exists;
@@ -196,6 +197,13 @@ class UserSurveyController extends Controller
                 'status_id' => '2'
             ]);
         }
+
+        user_log::create([
+            'table' => 'user_surveys',
+            'user_id' => Auth::user()->id,
+            'log_path' => 'UserSurveyController@update',
+            'log_desc' => Auth::user()->username + ' is filling survey "' + $survey->title + '"',
+        ]);
 
         return redirect()->route('usersurvey.index');
     }

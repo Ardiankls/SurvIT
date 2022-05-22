@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\user_log;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -88,6 +89,13 @@ class RegisterController extends Controller
         if(empty($user)){
             redirect()->route('register');
         }
+
+        user_log::create([
+            'table' => 'user',
+            'user_id' => $user->id,
+            'log_path' => 'RegisterController@register',
+            'log_desc' => $user->username + ' is registering',
+        ]);
 
         //send email
         // event(new ActivationEvent($user));

@@ -131,7 +131,7 @@ class MailController extends Controller
         dd($users);
 
         foreach($users as $user){
-            Mail::to($user->email)->send(new Blast_New_Survey());
+            // Mail::to($user->email)->send(new Blast_New_Survey());
         }
 
         return redirect()->route('mail.index');

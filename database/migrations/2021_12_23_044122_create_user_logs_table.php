@@ -19,7 +19,7 @@ class CreateUserLogsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('log_desc');
             $table->string('log_path');
-            $table->string('log_ip');
+            $table->string('log_ip')->nullable();
             $table->timestamps();
         });
     }

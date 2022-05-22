@@ -73,8 +73,8 @@
                 <div class="row">
                     <div class="col-sm-5 p-5">
                         <div class="position-relative top-50 start-50 translate-middle w3-animate-left fs-5 " id="_1sit">
-                            <h1>Platform Survey<br>Buat Kamu Para Mahasiswa</h1>
-                            <p> Buat survey mu sekarang atau dapatkan uang cuman isi survey ✨</p>
+                            <h1>Platform Survei<br>Buat Kamu Para Mahasiswa</h1>
+                            <p> Buat survei mu sekarang atau dapatkan uang cuman isi survei ✨</p>
                             <a href="{{ route('register') }}"><button type="button"  class="btn btn-primary">Daftar Sekarang</button></a>
                             <p class="fs-6 mt-3">Sudah punya akun? <a href="{{ route('login') }}" class="text-primary text-decoration-none">Masuk</a></p>
                             <!-- <a href="#" class="button1">Learn More</a> -->
@@ -116,7 +116,7 @@
                             <div class="col-sm-4">
                                 <div class="position-relative top-50 start-50 translate-middle text-center text-lg-end">
                                     <h1 class="fw-bolder mb-5">Integrasi Dengan Google Form</h1>
-                                    <p class="fs-3">Kami menggunakan google form<br>agar kamu lebih mudah membuat survey</p>
+                                    <p class="fs-3">Kami menggunakan google form<br>agar kamu lebih mudah membuat survei</p>
                                 </div>
                             </div>
                             <div class="col-sm-4 ">
@@ -179,7 +179,7 @@
                                 <img src="assets/fillsurvey.svg" alt="Phishing Detect" class="mx-auto shadow" style="border-radius: 15px;">
                                 <div class="mt-3 fs-5">
                                     <h3 class="fw-bolder">Preferensi</h3>
-                                    <p>Kami menyiapkan survey-survey yang sesuai dengan demografi kamu 😄</p>
+                                    <p>Kami menyiapkan survei-survei yang sesuai dengan demografi kamu 😄</p>
                                 </div>
                             </div>
                             <div class="col-1"></div>
@@ -200,7 +200,7 @@
                                 <img src="assets/register.svg" alt="Anti-spam" class="mx-auto shadow" style="border-radius: 15px;">
                                 <div class="mt-3 fs-5">
                                     <h3 class="fw-bolder">Daftar</h3>
-                                    <p>Daftarkan akun anda di SUrvit.</p>
+                                    <p>Daftarkan akun anda di Survit.</p>
                                 </div>
                             </div>
                             <div class="col-1"></div>
@@ -216,7 +216,7 @@
                                 <img src="assets/collect.svg" alt="Smart Scan" class="mx-auto shadow" style="border-radius: 15px;">
                                 <div class="mt-3 fs-5">
                                     <h3 class="fw-bolder">Hasil</h3>
-                                    <p>Kumpulkan dan lihat hasil survey</p>
+                                    <p>Kumpulkan dan lihat hasil survei</p>
                                 </div>
                             </div>
                             <div class="col-2"></div>
@@ -253,7 +253,7 @@
                 </form> -->
                 <div class="bg-light p-4 rounded-3 shadow">
                     <div class="px-3">
-                        <h5 class="mb-5 text-dark">Buat akun mu dan dapatkan poin atau buat survey mu sekarang</h5>
+                        <h5 class="mb-5 text-dark">Buat akun mu dan dapatkan poin atau buat survei mu sekarang</h5>
                         <a href="{{ route('register') }}" class="btn btn-lg btn-primary">Daftar</a>
                     </div>
                 </div>
@@ -275,7 +275,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 align-self-center text-center ">
-                <p class="" style="font-size: 0.7em;">Copyright © 2021 SurvIT</p>
+                <p class="" style="font-size: 0.7em;">Copyright © 2021 Survit</p>
             </div>
         </div>
     </div>

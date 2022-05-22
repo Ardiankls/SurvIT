@@ -11,6 +11,7 @@ use App\Models\point_log;
 use App\Models\province;
 use App\Models\User;
 use App\Models\user_campaign;
+use App\Models\user_log;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -104,6 +105,13 @@ class UserController extends Controller
             'user_campaign_id' => $ucampaign->id,
         ]);
 
+        user_log::create([
+            'table' => 'users',
+            'user_id' => Auth::user()->id,
+            'log_path' => 'UserController@store',
+            'log_desc' => Auth::user()->username + ' is filling demography',
+        ]);
+
         //MAIL
         Mail::to($user->email)->send(new Success_Add_Demography(500));
 
@@ -153,6 +161,13 @@ class UserController extends Controller
                 'last_name' => $request->last_name,
                 'phone' => $request->phone,
             ]);
+
+            user_log::create([
+                'table' => 'users',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'UserController@update',
+                'log_desc' => Auth::user()->username + ' is updating profile',
+            ]);
         }
 
         if($which == 'demography'){
@@ -168,6 +183,13 @@ class UserController extends Controller
 
             $user->jobs()->detach();
             $user->jobs()->attach($request->job);
+
+            user_log::create([
+                'table' => 'users',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'UserController@update',
+                'log_desc' => Auth::user()->username + ' is updating demography',
+            ]);
         }
 
         return redirect()->route('user.index');
@@ -205,6 +227,13 @@ class UserController extends Controller
                 'status_id' => '3',
                 'point' => 500,
                 'user_campaign_id' => $ucampaign->id,
+            ]);
+
+            user_log::create([
+                'table' => 'users',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'UserController@addDemography',
+                'log_desc' => Auth::user()->username + ' is updating new demography',
             ]);
 
             //MAIL
