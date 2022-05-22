@@ -39,6 +39,7 @@ Route::resource('usersurvey', UserSurveyController::class)->middleware(['auth', 
 Route::resource('payment', AccountPaymentController::class)->middleware(['auth', 'verified']);
 Route::resource('pointlog', PointLogController::class)->middleware(['auth', 'verified']);
 Route::resource('package', PackageController::class);
+Route::get('/pdf_guide', [SurveyController::class, 'pdfGuide'])->name('openGuide');
 Route::get('/fill/{url}', [FillController::class, 'fill'])->name('fill');
 Route::get('/datashop', function(){
     return view('datashop');

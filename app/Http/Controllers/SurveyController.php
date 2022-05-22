@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class SurveyController extends Controller
 {
@@ -260,5 +261,13 @@ class SurveyController extends Controller
         }
 
         return redirect()->route('survey.index');
+    }
+
+    public function pdfGuide(Request $request)
+    {
+        $filename = 'PetunjukPembuatanSurvey.pdf';
+        $path = public_path($filename);
+
+        return response()->file($path);
     }
 }
