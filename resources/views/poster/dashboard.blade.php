@@ -99,8 +99,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($surveys as $survey)
-                                    <tr data-href="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
-                                        enctype="multipart/form-data" scope="row">
+                                    <tr @if($survey->status_id == '3') data-href="{{ route('fill', ['url' => $survey->url]) }}" method="GET"
+                                            enctype="multipart/form-data" scope="row" @endif>
                                         <td>
                                             {{ $survey->title }}
                                         </td>
@@ -129,8 +129,8 @@
                                                 <a href="{{ route('survey.edit', $survey) }}" class="btn btn-primary"
                                                     style="background-color: rgb(0,0,226);">Detail</a>
                                             @elseif($survey->status_id == 4)
-                                                <div class="btn btn-primary" style="background-color: rgb(0,0,226);"
-                                                    data-toggle="modal" data-target="#pay-{{ $survey->id }}">Bayar</div>
+                                                <a href="" class="btn btn-primary"
+                                                    style="background-color: rgb(0,0,226);" data-toggle="modal" data-target="#pay-{{ $survey->id }}">Bayar</a>
                                             @else
                                                 -
                                             @endif

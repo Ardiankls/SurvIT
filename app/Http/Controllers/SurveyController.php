@@ -100,10 +100,10 @@ class SurveyController extends Controller
         $survey->provinces()->attach($request->province);
 
         user_log::create([
-            'table' => 'surveys',
+            'table' => 'surveys, survey_interests, survey_jobs, survey_provinces',
             'user_id' => Auth::user()->id,
             'log_path' => 'SurveyController@store',
-            'log_desc' => Auth::user()->username + ' is creating survey "' + $survey->title + '"',
+            'log_desc' => Auth::user()->username . ' created survey "' . $survey->title . '"',
         ]);
 
         if(Auth::user()->is_admin == 1){
@@ -190,10 +190,10 @@ class SurveyController extends Controller
         ]);
 
         user_log::create([
-            'table' => 'surveys',
+            'table' => 'surveys, survey_interests, survey_jobs, survey_provinces',
             'user_id' => Auth::user()->id,
             'log_path' => 'SurveyController@update',
-            'log_desc' => Auth::user()->username + ' is updating survey "' + $survey->title + '"',
+            'log_desc' => Auth::user()->username . ' updated survey "' . $survey->title . '"',
         ]);
 
         //YANG BUAT KALO ADMIN
@@ -221,7 +221,7 @@ class SurveyController extends Controller
             'table' => 'surveys',
             'user_id' => Auth::user()->id,
             'log_path' => 'SurveyController@destroy',
-            'log_desc' => Auth::user()->username + ' is deleting survey "' + $survey->title + '"',
+            'log_desc' => Auth::user()->username . ' deleted survey "' . $survey->title . '"',
         ]);
 
         $survey->jobs()->detach();
@@ -253,7 +253,7 @@ class SurveyController extends Controller
                 'table' => 'surveys',
                 'user_id' => Auth::user()->id,
                 'log_path' => 'SurveyController@payment',
-                'log_desc' => Auth::user()->username + ' is paying survey "' + $survey->title + '"',
+                'log_desc' => Auth::user()->username . ' payed survey "' . $survey->title . '"',
             ]);
 
             //EMAIL

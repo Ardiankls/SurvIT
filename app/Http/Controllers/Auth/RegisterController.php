@@ -91,10 +91,10 @@ class RegisterController extends Controller
         }
 
         user_log::create([
-            'table' => 'user',
+            'table' => 'users',
             'user_id' => $user->id,
             'log_path' => 'RegisterController@register',
-            'log_desc' => $user->username + ' is registering',
+            'log_desc' => $user->username . ' is registered',
         ]);
 
         //send email

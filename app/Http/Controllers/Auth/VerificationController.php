@@ -78,10 +78,10 @@ class VerificationController extends Controller
         }
 
         user_log::create([
-            'table' => 'user',
+            'table' => 'users, user_campaigns, point_logs',
             'user_id' => $user->id,
             'log_path' => 'VerificationController@verify',
-            'log_desc' => $user->username + ' is verifying email',
+            'log_desc' => $user->username . ' is verified',
         ]);
 
         return view('auth.verified');

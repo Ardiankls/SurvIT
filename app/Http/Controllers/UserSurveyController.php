@@ -199,10 +199,10 @@ class UserSurveyController extends Controller
         }
 
         user_log::create([
-            'table' => 'user_surveys',
+            'table' => 'user_surveys, point_logs',
             'user_id' => Auth::user()->id,
             'log_path' => 'UserSurveyController@update',
-            'log_desc' => Auth::user()->username + ' is filling survey "' + $survey->title + '"',
+            'log_desc' => Auth::user()->username . ' filled a survey "' . $survey->title . '"',
         ]);
 
         return redirect()->route('usersurvey.index');

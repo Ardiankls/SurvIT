@@ -106,10 +106,10 @@ class UserController extends Controller
         ]);
 
         user_log::create([
-            'table' => 'users',
+            'table' => 'users, user_interests, user_jobs, user_campaigns, point_logs',
             'user_id' => Auth::user()->id,
             'log_path' => 'UserController@store',
-            'log_desc' => Auth::user()->username + ' is filling demography',
+            'log_desc' => Auth::user()->username . ' filled demography',
         ]);
 
         //MAIL
@@ -166,7 +166,7 @@ class UserController extends Controller
                 'table' => 'users',
                 'user_id' => Auth::user()->id,
                 'log_path' => 'UserController@update',
-                'log_desc' => Auth::user()->username + ' is updating profile',
+                'log_desc' => Auth::user()->username . ' updated their profile',
             ]);
         }
 
@@ -185,10 +185,10 @@ class UserController extends Controller
             $user->jobs()->attach($request->job);
 
             user_log::create([
-                'table' => 'users',
+                'table' => 'users, user_interests, user_jobs',
                 'user_id' => Auth::user()->id,
                 'log_path' => 'UserController@update',
-                'log_desc' => Auth::user()->username + ' is updating demography',
+                'log_desc' => Auth::user()->username . ' updated their demography',
             ]);
         }
 
@@ -230,10 +230,10 @@ class UserController extends Controller
             ]);
 
             user_log::create([
-                'table' => 'users',
+                'table' => 'users, user_campaigns, point_logs',
                 'user_id' => Auth::user()->id,
                 'log_path' => 'UserController@addDemography',
-                'log_desc' => Auth::user()->username + ' is updating new demography',
+                'log_desc' => Auth::user()->username . ' updated their new demography',
             ]);
 
             //MAIL

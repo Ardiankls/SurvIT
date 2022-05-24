@@ -63,10 +63,10 @@ class AccountPaymentController extends Controller
         ]);
 
         user_log::create([
-            'table' => 'account_payments',
+            'table' => 'account_payments, users, point_logs',
             'user_id' => Auth::user()->id,
             'log_path' => 'AccountPaymentController@store',
-            'log_desc' => Auth::user()->username + ' is redeeming points',
+            'log_desc' => Auth::user()->username . ' requested to redeem points',
         ]);
 
         //EMAIL

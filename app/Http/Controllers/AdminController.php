@@ -12,8 +12,10 @@ use App\Mail\Success_Withdrawal;
 use App\Models\point_log;
 use App\Models\survey;
 use App\Models\User;
+use App\Models\user_log;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
@@ -42,7 +44,7 @@ class AdminController extends Controller
     public function updateUserSurvey($id, String $action)
     {
         $point_log = point_log::findOrFail($id);
-        $user = User::Find($point_log->usersurvey->user_id);
+        $user = User::find($point_log->usersurvey->user_id);
 
         if($action == 'accept'){
             $point_log->update([
@@ -59,6 +61,13 @@ class AdminController extends Controller
                 'count' => $survey->count + 1
             ]);
 
+            user_log::create([
+                'table' => 'point_logs, users, surveys',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'AdminController@updateUserSurvey',
+                'log_desc' => Auth::user()->username . ' accepted response from ' . $user->username,
+            ]);
+
             //EMAIL
             $title = $point_log->usersurvey->survey->title;
             Mail::to($user->email)->send(new Success_UserSurvey($title, $point));
@@ -67,6 +76,13 @@ class AdminController extends Controller
         if($action == 'decline'){
             $point_log->update([
                 'status_id' => '1',
+            ]);
+
+            user_log::create([
+                'table' => 'point_logs',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'AdminController@updateUserSurvey',
+                'log_desc' => Auth::user()->username . ' declined response from ' . $user->username,
             ]);
 
             //EMAIL
@@ -96,6 +112,13 @@ class AdminController extends Controller
                 ]);
             }
 
+            user_log::create([
+                'table' => 'surveys',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'AdminController@updateSurvey',
+                'log_desc' => Auth::user()->username . ' accepted survey "' . $survey->title . '"',
+            ]);
+
             //EMAIL
             Mail::to($user->email)->send(new Success_Survey($survey->title));
 
@@ -105,6 +128,13 @@ class AdminController extends Controller
         if($action == 'decline'){
             $survey->update([
                 'status_id' => '1',
+            ]);
+
+            user_log::create([
+                'table' => 'point_logs, users, surveys',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'AdminController@updateSurvey',
+                'log_desc' => Auth::user()->username . ' declined survey "' . $survey->title . '"',
             ]);
 
             //EMAIL
@@ -124,6 +154,13 @@ class AdminController extends Controller
                 'opened_at' => Carbon::now()
             ]);
 
+            user_log::create([
+                'table' => 'surveys',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'AdminController@updatePayment',
+                'log_desc' => Auth::user()->username . ' accepted payment from ' . $user->username,
+            ]);
+
             //EMAIL
             Mail::to($user->email)->send(new Success_Payment($survey->title));
         }
@@ -131,6 +168,13 @@ class AdminController extends Controller
         if($action == 'decline'){
             $survey->update([
                 'status_id' => '4',
+            ]);
+
+            user_log::create([
+                'table' => 'surveys',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'AdminController@updatePayment',
+                'log_desc' => Auth::user()->username . ' declined payment from ' . $user->username,
             ]);
 
             //EMAIL
@@ -143,8 +187,17 @@ class AdminController extends Controller
     public function updatePoint($id)
     {
         $point_log = point_log::findOrFail($id);
+        $user = User::find($point_log->payment->user_id);
+
         $point_log->update([
             'status_id' => '3',
+        ]);
+
+        user_log::create([
+            'table' => 'point_logs',
+            'user_id' => Auth::user()->id,
+            'log_path' => 'AdminController@updatePoint',
+            'log_desc' => Auth::user()->username . ' accepted redeem points from ' . $user->username,
         ]);
 
         //EMAIL
