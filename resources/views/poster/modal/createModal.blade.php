@@ -11,7 +11,7 @@
                 <form action="{{ route('survey.store') }}" id="dynamic" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="container" style="padding: 20px 55px;">
-                        <a class="float-end" href="{{ route('openGuide') }}" target="_blank">petunjuk pembuatan survei di survit</a>
+                        <a class="float-end" href="{{ route('openGuide') }}" target="_blank">Bantuan</a>
                         <div class="form-group"><label>Judul</label>
                             <input class="form-control border" type="text" name="title" required>
                         </div>

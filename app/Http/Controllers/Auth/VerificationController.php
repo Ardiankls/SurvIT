@@ -75,14 +75,14 @@ class VerificationController extends Controller
                 'point' => 500,
                 'user_campaign_id' => $ucampaign->id,
             ]);
-        }
 
-        user_log::create([
-            'table' => 'users, user_campaigns, point_logs',
-            'user_id' => $user->id,
-            'log_path' => 'VerificationController@verify',
-            'log_desc' => $user->username . ' is verified',
-        ]);
+            user_log::create([
+                'table' => 'users, user_campaigns, point_logs',
+                'user_id' => $user->id,
+                'log_path' => 'VerificationController@verify',
+                'log_desc' => $user->username . ' is verified',
+            ]);
+        }
 
         return view('auth.verified');
         // return redirect($this->redirectPath())->with('verified', true);

@@ -27,12 +27,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8">
-                                        Respondent: {{ $package->respondent }}
+                                        Responden: {{ $package->respondent }}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8">
-                                        Konsultasi: {{ $package->consultation }}
+                                        Konsultasi: {{ $package->consultation }}x
                                     </div>
                                 </div>
                                 <div class="row">
@@ -69,12 +69,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8">
-                                        Respondent: {{ $package->respondent }}
+                                        Responden: {{ $package->respondent }}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8">
-                                        Konsultasi: {{ $package->consultation }}
+                                        Konsultasi: {{ $package->consultation }}x
                                     </div>
                                 </div>
                                 <div class="row">
@@ -123,7 +123,7 @@
                         <tbody>
                             <tr class="text-center">
                                 <td>
-                                    Respondent
+                                    Responden
                                 </td>
                                 @foreach ($packagesB as $package)
                                     <td>
@@ -133,7 +133,7 @@
                             </tr>
                             <tr class="text-center">
                                 <td>
-                                    Demography Mapping
+                                    Filter Demografi
                                 </td>
                                 @foreach ($packagesB as $package)
                                     <td>
@@ -153,7 +153,7 @@
                             </tr>
                             <tr class="text-center">
                                 <td>
-                                    Report and Visualization
+                                    Laporan dan Visualisasi
                                 </td>
                                 @foreach ($packagesB as $package)
                                     <td>
@@ -167,17 +167,17 @@
                                 </td>
                                 @foreach ($packagesB as $package)
                                     <td>
-                                        {{ $package->consultation }}
+                                        {{ $package->consultation }}x
                                     </td>
                                 @endforeach
                             </tr>
                             <tr class="text-center">
                                 <td>
-                                    Survey Form
+                                    Form Survei
                                 </td>
                                 @foreach ($packagesB as $package)
                                     <td>
-                                        By Yourself
+                                        Dibuat Mandiri
                                     </td>
                                 @endforeach
                             </tr>
@@ -214,7 +214,7 @@
                         <tbody>
                             <tr class="text-center">
                                 <td>
-                                    Respondent
+                                    Responden
                                 </td>
                                 @foreach ($packagesC as $package)
                                     <td>
@@ -224,7 +224,7 @@
                             </tr>
                             <tr class="text-center">
                                 <td>
-                                    Demography Mapping
+                                    Filter Demografi
                                 </td>
                                 @foreach ($packagesC as $package)
                                     <td>
@@ -244,7 +244,7 @@
                             </tr>
                             <tr class="text-center">
                                 <td>
-                                    Report and Visualization
+                                    Laporan dan Visualisasi
                                 </td>
                                 @foreach ($packagesC as $package)
                                     <td>
@@ -264,11 +264,11 @@
                             </tr>
                             <tr class="text-center">
                                 <td>
-                                    Survey Form
+                                    Form Survei
                                 </td>
                                 @foreach ($packagesC as $package)
                                     <td>
-                                        By Our Team
+                                        Dibuat Tim Survit
                                     </td>
                                 @endforeach
                             </tr>
