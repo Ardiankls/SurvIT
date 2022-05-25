@@ -44,9 +44,6 @@ class UserController extends Controller
         $editable = false;
         if($user->edited_at){
             $days = Carbon::parse($user->edited_at)->diffInDays(Carbon::now());
-            if($days >= 30){
-                $editable = true;
-            }
         }
         // dd($days);
 
@@ -78,42 +75,45 @@ class UserController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::findOrFail($id);
-        $user->update([
-            'birthdate' => $request->birthdate,
-            'gender_id' => $request->gender,
-            'province_id' => $request->province,
-            'is_survey_avail' => '1'
-        ]);
 
-        $user->jobs()->attach($request->job);
-        $user->interests()->attach($request->interest);
+        if($user->is_survey_avail == '0'){
+            $user->update([
+                'birthdate' => $request->birthdate,
+                'gender_id' => $request->gender,
+                'province_id' => $request->province,
+                'is_survey_avail' => '1'
+            ]);
 
-        //POINT LOG
-        $user->update([
-            'point' => $user->point + 500,
-        ]);
+            $user->jobs()->attach($request->job);
+            $user->interests()->attach($request->interest);
 
-        $ucampaign = user_campaign::create([
-            'user_id' => $id,
-            'campaign_id' => 2,
-        ]);
+            //POINT LOG
+            $user->update([
+                'point' => $user->point + 500,
+            ]);
 
-        point_log::create([
-            'type' => '0',
-            'status_id' => '3',
-            'point' => 500,
-            'user_campaign_id' => $ucampaign->id,
-        ]);
+            $ucampaign = user_campaign::create([
+                'user_id' => $id,
+                'campaign_id' => 2,
+            ]);
 
-        user_log::create([
-            'table' => 'users, user_interests, user_jobs, user_campaigns, point_logs',
-            'user_id' => Auth::user()->id,
-            'log_path' => 'UserController@store',
-            'log_desc' => Auth::user()->username . ' filled demography',
-        ]);
+            point_log::create([
+                'type' => '0',
+                'status_id' => '3',
+                'point' => 500,
+                'user_campaign_id' => $ucampaign->id,
+            ]);
 
-        //MAIL
-        Mail::to($user->email)->send(new Success_Add_Demography(500));
+            user_log::create([
+                'table' => 'users, user_interests, user_jobs, user_campaigns, point_logs',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'UserController@store',
+                'log_desc' => Auth::user()->username . ' filled demography',
+            ]);
+
+            //MAIL
+            Mail::to($user->email)->send(new Success_Add_Demography(500));
+        }
 
         return redirect()->route('usersurvey.index');
     }
@@ -171,25 +171,33 @@ class UserController extends Controller
         }
 
         if($which == 'demography'){
-            $user->update([
-                'edited_at' => Carbon::now(),
-                'birthdate' => $request->birthdate,
-                'gender_id' => $request->gender,
-                'province_id' => $request->province,
-            ]);
+            $days = 30;
 
-            $user->interests()->detach();
-            $user->interests()->attach($request->interest);
+            if($user->edited_at != null){
+                $days = Carbon::parse($user->edited_at)->diffInDays(Carbon::now());
+            }
 
-            $user->jobs()->detach();
-            $user->jobs()->attach($request->job);
+            if($days >= 30){
+                $user->update([
+                    'edited_at' => Carbon::now(),
+                    'birthdate' => $request->birthdate,
+                    'gender_id' => $request->gender,
+                    'province_id' => $request->province,
+                ]);
 
-            user_log::create([
-                'table' => 'users, user_interests, user_jobs',
-                'user_id' => Auth::user()->id,
-                'log_path' => 'UserController@update',
-                'log_desc' => Auth::user()->username . ' updated their demography',
-            ]);
+                $user->interests()->detach();
+                $user->interests()->attach($request->interest);
+
+                $user->jobs()->detach();
+                $user->jobs()->attach($request->job);
+
+                user_log::create([
+                    'table' => 'users, user_interests, user_jobs',
+                    'user_id' => Auth::user()->id,
+                    'log_path' => 'UserController@update',
+                    'log_desc' => Auth::user()->username . ' updated their demography',
+                ]);
+            }
         }
 
         return redirect()->route('user.index');

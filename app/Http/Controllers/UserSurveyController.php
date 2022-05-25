@@ -192,18 +192,27 @@ class UserSurveyController extends Controller
                 'user_survey_id' => $usurvey->id,
             ]);
 
-        }else{
-            $check->point_log->first()->update([
-                'status_id' => '2'
+            user_log::create([
+                'table' => 'user_surveys, point_logs',
+                'user_id' => Auth::user()->id,
+                'log_path' => 'UserSurveyController@update',
+                'log_desc' => Auth::user()->username . ' filled a survey "' . $survey->title . '"',
             ]);
-        }
 
-        user_log::create([
-            'table' => 'user_surveys, point_logs',
-            'user_id' => Auth::user()->id,
-            'log_path' => 'UserSurveyController@update',
-            'log_desc' => Auth::user()->username . ' filled a survey "' . $survey->title . '"',
-        ]);
+        }else{
+            if($check->point_log->first()->status_id == '1'){
+                $check->point_log->first()->update([
+                    'status_id' => '2'
+                ]);
+
+                user_log::create([
+                    'table' => 'point_logs',
+                    'user_id' => Auth::user()->id,
+                    'log_path' => 'UserSurveyController@update',
+                    'log_desc' => Auth::user()->username . ' filled a survey "' . $survey->title . '"',
+                ]);
+            }
+        }
 
         return redirect()->route('usersurvey.index');
     }

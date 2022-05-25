@@ -224,11 +224,11 @@ class SurveyController extends Controller
             'log_desc' => Auth::user()->username . ' deleted survey "' . $survey->title . '"',
         ]);
 
-        $survey->jobs()->detach();
-        $survey->interests()->detach();
-        $survey->provinces()->detach();
-        $survey->users()->detach();
-        $survey->delete();
+        // $survey->jobs()->detach();
+        // $survey->interests()->detach();
+        // $survey->provinces()->detach();
+        // $survey->users()->detach();
+        // $survey->delete();
 
         return redirect()->route('survey.index');
     }
