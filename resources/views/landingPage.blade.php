@@ -171,7 +171,7 @@
                                 <img src="assets/register.svg" class="mx-auto shadow " style="border-radius: 15px;">
                                 <div class="mt-3 fs-5">
                                     <h3 class="fw-bolder">Aman</h3>
-                                    <p>Data kamu diri kamu pasti aman 👍</p>
+                                    <p>Data diri kamu pasti aman 👍</p>
                                 </div>
                             </div>
                             <div class="col-1"></div>

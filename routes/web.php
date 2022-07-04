@@ -55,6 +55,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
     Route::get('/blast-new-demography/{point}', [MailController::class, 'send_new_demography'])->name('mail.blast-new-demography');
     Route::get('/blast-match-new-survey/{survey}', [MailController::class, 'send_match_demography'])->name('mail.blast-match-new-survey');
     Route::post('/blast-all-new-survey', [MailController::class, 'send_all_demography'])->name('mail.blast-all-new-survey');
+    Route::post('/send-custom-mail', [MailController::class, 'send_custom_receiver'])->name('mail.send-custom-mail');
 });
 
 Route::get('/clear-cache', function() {

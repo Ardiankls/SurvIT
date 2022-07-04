@@ -27,5 +27,12 @@ class CampaignSeeder extends Seeder
         $status->point = 500;
         $status->is_ongoing = '1';
         $status->save();
+
+        $status = new campaign();
+        $status->campaign = 'Bonus';
+        $status->description = 'Bonus';
+        $status->point = 0;
+        $status->is_ongoing = '1';
+        $status->save();
     }
 }

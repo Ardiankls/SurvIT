@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('admin.modal.customMail')
 @section('content')
     <div class="container-xxl p-5 d-none d-md-block" style="overflow-y:scroll; height:100vh">
         <div class="row justify-content-center ">
@@ -57,6 +58,17 @@
                                                 Blast
                                             </button>
                                         </form>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td>
+                                        Send Custom Mail
+                                    </td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>
+                                        <a href="" class="btn btn-danger" data-toggle="modal" data-target="#customMail">Send</a>
                                     </td>
                                 </tr>
                             </tbody>
