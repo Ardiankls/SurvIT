@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Admin_New_Withdrawal;
 use App\Mail\Request_Withdrawal;
 use App\Models\account_payment;
 use App\Models\point_log;
@@ -71,6 +72,20 @@ class AccountPaymentController extends Controller
 
         //EMAIL
         Mail::to($user->email)->send(new Request_Withdrawal($request->value, $request->bank, $request->transfer));
+
+        //NOTIFY ADMIN
+        // $admins = User::where('is_admin', '1')->get();
+        $admins = [
+            "ardiankurniawan7@gmail.com",
+            "secondaryjvp@gmail.com",
+            "benedictbryan744@gmail.com",
+            "aldisama12@gmail.com",
+        ];
+
+        foreach($admins as $admin){
+            //EMAIL
+            Mail::to($admin)->send(new Admin_New_Withdrawal($request->value, $request->bank, $request->transfer, Auth::user()->username));
+        }
 
         return redirect()->route('usersurvey.index');
     }

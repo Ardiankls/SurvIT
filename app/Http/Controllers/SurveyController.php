@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Admin_New_Payment;
+use App\Mail\Admin_New_Survey;
 use App\Mail\Request_Payment;
 use App\Mail\Request_Survey;
 use App\Models\gender;
@@ -115,6 +117,19 @@ class SurveyController extends Controller
         }else{
             //EMAIL
             Mail::to(Auth::user()->email)->send(new Request_Survey($survey->title));
+
+            //NOTIFY ADMIN
+            $admins = [
+                "ardiankurniawan7@gmail.com",
+                "secondaryjvp@gmail.com",
+                "benedictbryan744@gmail.com",
+                "aldisama12@gmail.com",
+            ];
+
+            foreach($admins as $admin){
+                //EMAIL
+                Mail::to($admin)->send(new Admin_New_Survey($survey->title, Auth::user()->username));
+            }
         }
 
         return redirect()->route('survey.index');
@@ -197,14 +212,32 @@ class SurveyController extends Controller
         ]);
 
         //YANG BUAT KALO ADMIN
-        $admins = User::where('is_admin', '1')->get();
-        foreach($admins as $admin){
-            if($survey->user_id == $admin->id){
-                $survey->update([
-                    'status_id' => 3,
-                ]);
+        if($survey->user->is_admin == '1') {
+            $survey->update([
+                'status_id' => 3,
+            ]);
+        } else {
+            //NOTIFY ADMIN
+            $admins = [
+                "ardiankurniawan7@gmail.com",
+                "secondaryjvp@gmail.com",
+                "benedictbryan744@gmail.com",
+                "aldisama12@gmail.com",
+            ];
+
+            foreach($admins as $admin){
+                //EMAIL
+                Mail::to($admin)->send(new Admin_New_Survey($survey->title, Auth::user()->username));
             }
         }
+
+        // foreach($admins as $admin){
+        //     if($survey->user_id == $admin->id){
+        //         $survey->update([
+        //             'status_id' => 3,
+        //         ]);
+        //     }
+        // }
 
         return redirect()->route('survey.index');
     }
@@ -217,12 +250,12 @@ class SurveyController extends Controller
      */
     public function destroy(survey $survey)
     {
-        user_log::create([
-            'table' => 'surveys',
-            'user_id' => Auth::user()->id,
-            'log_path' => 'SurveyController@destroy',
-            'log_desc' => Auth::user()->username . ' deleted survey "' . $survey->title . '"',
-        ]);
+        // user_log::create([
+        //     'table' => 'surveys',
+        //     'user_id' => Auth::user()->id,
+        //     'log_path' => 'SurveyController@destroy',
+        //     'log_desc' => Auth::user()->username . ' deleted survey "' . $survey->title . '"',
+        // ]);
 
         // $survey->jobs()->detach();
         // $survey->interests()->detach();
@@ -235,7 +268,7 @@ class SurveyController extends Controller
 
     public function payment(Request $request, $id)
     {
-        $survey = survey::findorfail($id);
+        $survey = survey::findOrFail($id);
         if ($request->file != null) {
             $data = $request->validate([
                 'file' => 'image',
@@ -258,6 +291,19 @@ class SurveyController extends Controller
 
             //EMAIL
             Mail::to(Auth::user()->email)->send(new Request_Payment($survey->title, $survey->point));
+
+            //NOTIFY ADMIN
+            $admins = [
+                "ardiankurniawan7@gmail.com",
+                "secondaryjvp@gmail.com",
+                "benedictbryan744@gmail.com",
+                "aldisama12@gmail.com",
+            ];
+
+            foreach($admins as $admin){
+                //EMAIL
+                Mail::to($admin)->send(new Admin_New_Payment($survey->title, $survey->point, Auth::user()->username));
+            }
         }
 
         return redirect()->route('survey.index');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Admin_New_User_Survey;
 use App\Models\account_payment;
 use App\Models\user_survey;
 use App\Models\survey;
@@ -15,6 +16,7 @@ use App\Models\User;
 use App\Models\user_log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Exists;
 
 class UserSurveyController extends Controller
@@ -212,6 +214,19 @@ class UserSurveyController extends Controller
                     'log_desc' => Auth::user()->username . ' filled a survey "' . $survey->title . '"',
                 ]);
             }
+        }
+
+        //NOTIFY ADMIN
+        $admins = [
+            "ardiankurniawan7@gmail.com",
+            "secondaryjvp@gmail.com",
+            "benedictbryan744@gmail.com",
+            "aldisama12@gmail.com",
+        ];
+
+        foreach($admins as $admin){
+            //EMAIL
+            Mail::to($admin)->send(new Admin_New_User_Survey($survey->title, Auth::user()->username));
         }
 
         return redirect()->route('usersurvey.index');
