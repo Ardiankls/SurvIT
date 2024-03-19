@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @include('surveyor.modal.surveyModal')
 @include('surveyor.modal.guestModal')
+
 <head>
     <meta name="Description" content="Platform Survei Untuk Kamu Para Mahasiswa Yang Butuh Data" />
 </head>
@@ -35,8 +36,9 @@
                         <h5 class="px-4">Isi Survei</h5>
                         <div style="overflow: auto; height:90%;">
                             <div class="survey align-content-center">
-                                <iframe id="redirect" src={{ $survey->link }} width="100%"
-                                    height="80%" frameborder="0" marginheight="0" marginwidth="0" onload="onMyFrameLoad(this)">Memuat…</iframe></div>
+                                <iframe id="redirect" src={{ $survey->link }} width="100%" height="80%" frameborder="0"
+                                    marginheight="0" marginwidth="0" onload="onMyFrameLoad(this)">Memuat…</iframe>
+                            </div>
                             <div class="text-dark mt-4 px-4">
                                 @guest
                                     Jika anda ingin mendapatkan poin dengan mengisi survei ini, segera daftarkan diri anda di
@@ -45,8 +47,8 @@
                                     @if ($survey->user_id != $user->id)
                                         Klik "Selesai" jika anda telah mengisi <b>SEMUA</b> form dengan benar
                                         <div>
-                                            <button class="btn btn-sm btn-primary mx-auto pt-2 mt-2" style="width:100%" data-toggle="modal"
-                                                data-target="#confirmation">Selesai
+                                            <button class="btn btn-sm btn-primary mx-auto pt-2 mt-2" style="width:100%"
+                                                data-toggle="modal" data-target="#confirmation">Selesai
                                             </button>
                                         </div>
                                     @endif
@@ -67,8 +69,8 @@
                     <h5 class="">Isi Survei</h5>
                     <div class="table-responsive custom-table-responsive mx-auto" style="overflow: auto; height:90%;">
                         <div class="ml-5 survey align-content-center">
-                            <iframe id="redirect" src={{ $survey->link }} width="95%"
-                                height="90%" frameborder="0" marginheight="0" marginwidth="0" onload="onMyFrameLoad(this)">Memuat…</iframe>
+                            <iframe id="surveyForm" src={{ $survey->link }} width="95%" height="90%" frameborder="0"
+                                marginheight="0" marginwidth="0" onload="onMyFrameLoad(this)">Memuat…</iframe>
                         </div>
                         <div class="text-dark mt-3 px-5 ">
                             @guest
@@ -95,19 +97,161 @@
         $(document).ready(function() {
             // Show the Modal on load
             @guest
-                $("#guest").modal("show");
-            @endguest
+            $("#guest").modal("show");
+        @endguest
 
-            // Hide the Modal
-            $("#myBtn").click(function() {
-                $("#guest").modal("hide");
-            });
+        // Hide the Modal
+        $("#myBtn").click(function() {
+            $("#guest").modal("hide");
+        });
 
-            $("#myBtn2").click(function() {
-                $("#guest").modal("hide");
-            });
+        $("#myBtn2").click(function() {
+            $("#guest").modal("hide");
+        });
         });
     </script>
+
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var iframe = document.getElementById('surveyForm');
+
+        // Check if the iframe has loaded
+        iframe.onload = function () {
+            // Access the iframe's document
+            var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+            // Listen for the form submission event within the iframe
+            iframeDoc.forms[0].addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Redirect the parent page to a new URL
+            window.location.href = 'https://survit.test';
+            });
+        };
+        });
+    </script> --}}
+
+    {{-- <script>
+        // Replace "my-iframe-id" with the actual ID of your iframe
+        var iframe = document.getElementById("surveyForm");
+
+        // Function to check for form submission within the iframe
+        function checkFormSubmission() {
+            try {
+                var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                console.log("Checking for form submission...");
+
+                // Add more console.log statements to debug
+                // Example: console.log(iframeDoc.querySelector(".success-message"));
+
+                if (iframeDoc.querySelector(".success-message")) {
+                    console.log("Form submission detected!");
+                    window.location.href = "https://example.com/another-page";
+                }
+            } catch (error) {
+                console.error("Error checking for form submission:", error);
+            }
+        }
+
+        // Periodically check for form submission (every 1 second)
+        setInterval(checkFormSubmission, 1000);
+    </script> --}}
+
+    {{-- <script>
+        // Replace "my-iframe-id" with the actual ID of your iframe
+        var iframe = document.getElementById("surveyForm");
+
+        // Function to check for form submission within the iframe
+        function checkFormSubmission() {
+            try {
+                var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                console.log("iframeDoc.body.innerText:", iframeDoc.body.innerText); // Log the content
+
+                var successMessage = "Your response has been recorded";
+
+                if (iframeDoc.body.innerText.includes(successMessage)) {
+                    console.log("Form submission detected!");
+                    window.location.href = "https://survit.site";
+                }
+            } catch (error) {
+                console.error("Error checking for form submission:", error);
+            }
+        }
+
+        // Periodically check for form submission (every 1 second)
+        setInterval(checkFormSubmission, 1000);
+    </script> --}}
+
+    {{-- <script>
+        // Function to detect form submission in the iframe
+        function detectFormSubmission() {
+            // Replace "my-iframe-id" with the actual ID of your iframe
+            var iframe = document.getElementById("surveyForm");
+
+            // Define the URL of the Google Form's "Thank you" page
+            var thankYouPageURL =
+                "https://docs.google.com/forms/u/3/d/e/1FAIpQLSe7CnvCbdtazAlRs_YscSB35QJ8Z6GrsTg5BAN-LkffhHCwYw/formResponse";
+
+            // Periodically check the URL of the iframe's content
+            var checkInterval = setInterval(function() {
+                if (iframe.contentWindow.location.href === thankYouPageURL) {
+                    // Form submission detected, stop checking
+                    clearInterval(checkInterval);
+                    // Redirect to another page on your website
+                    window.location.href = "https://survit.site";
+                }
+            }, 1000); // Check every 1 second
+        }
+
+        // Call the function when the page loads
+        window.onload = detectFormSubmission;
+    </script> --}}
+
+    {{-- <script>
+        // Function to detect form submission in the iframe
+        function detectFormSubmission() {
+          // Replace "my-iframe-id" with the actual ID of your iframe
+          var iframe = document.getElementById("suvreyForm");
+
+          // Define the URL of the Google Form's "Thank you" page
+          var thankYouPageURL = "https://docs.google.com/forms/u/4/d/e/1FAIpQLSe7CnvCbdtazAlRs_YscSB35QJ8Z6GrsTg5BAN-LkffhHCwYw/formResponse";
+
+          // Periodically check the URL of the iframe's content
+          var checkInterval = setInterval(function () {
+            if (iframe.contentWindow.location.href === thankYouPageURL) {
+              // Form submission detected, stop checking
+              clearInterval(checkInterval);
+              // Redirect to another page on your website
+              window.location.href = "https://survit.site";
+            }
+          }, 1000); // Check every 1 second
+        }
+
+        // Call the function when the page loads
+        window.onload = detectFormSubmission;
+    </script> --}}
+
+    {{-- <script>
+        // Function to detect form submission in the iframe
+        function detectFormSubmission() {
+          // Replace "my-iframe-id" with the actual ID of your iframe
+          var iframe = document.getElementById("surveyForm");
+
+          // Add an event listener to detect when the iframe loads a new page
+          iframe.onload = function () {
+            // Check if the URL of the iframe contains a keyword specific to form submission
+            // You should inspect the URL of your Google Form's "Thank you" page to find a unique keyword
+            var submissionKeyword = "formResponse"; // Replace with your keyword
+            if (iframe.contentWindow.location.href.includes(submissionKeyword)) {
+              // Redirect to another page on your website
+              window.location.href = "https://survit.test";
+            }
+          };
+        }
+
+        // Call the function when the page loads
+        window.onload = detectFormSubmission;
+    </script> --}}
 
     {{-- <script>
         $(document).ready(function () {
@@ -117,17 +261,17 @@
         })
     </script> --}}
 
-    {{-- <script>
+    <script>
         var page = -1;
 
         function onMyFrameLoad() {
             page++;
-            if(page > 1){
+            if (page > 1) {
                 alert('Terima Kasih Sudah Mengisi Survei');
                 // document.location = @json(route('usersurvey.update', $survey));
-                // $("#confirmation").modal("show");
+                document.location = @json(route('usersurvey.index'));
+                $("#confirmation").modal("show");
             }
         };
-    </script> --}}
-
+    </script>
 @endsection
